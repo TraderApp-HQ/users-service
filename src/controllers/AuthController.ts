@@ -63,14 +63,14 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 
 export async function loginHandler(req: Request, res: Response, next: NextFunction) {
     const { email, password } = req.body;
-    let errorFlag = false;
 
     try {
         const data = await User.login(email, password);
 
         if(!data) {
-            errorFlag = true;
-            throw Error("Invalid login credentials!");
+            const error = new Error("Invalid login credentials!")
+            error.name = "NotFound"
+            throw error;
         }
 
         const tokenRes =  await buildResponse(data);
@@ -78,7 +78,6 @@ export async function loginHandler(req: Request, res: Response, next: NextFuncti
 
     }
     catch(err: any) {
-        if(errorFlag)  err.name = "NotFound";
         next(err);
     }
 }

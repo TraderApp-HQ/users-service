@@ -7,13 +7,16 @@ import User from "../models/User";
 import PasswordResetToken from "../models/PasswordResetToken";
 
 export async function validateLoginRequest(req: Request, res: Response, next: NextFunction) {
+    //get params from request body
     const { email, password } = req.body;
 
+    //define validation schema
     const schema = Joi.object({
         email: Joi.string().email().required().label("Email"),
         password: Joi.string().required().label("Password")
     });
 
+    //validate request
     const { error } = schema.validate({ email, password });
 
     if(error) {
@@ -37,6 +40,7 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
         country_id: Joi.number().required().label("Country Id")
     })
 
+    //validate request
     const { error } = schema.validate(req.body);
 
     if(error) {
@@ -45,60 +49,62 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
         next(error);
     }
     else {
-        let errorFlag = false;
+        //get email from request body
         const { email } = req.body;
 
         try {
-            //check if email already in use
+            //check if email already in use and throw error if true
             const isUser = await User.findOne({ email });
-            
             if(isUser) {
-                errorFlag = true;
-                throw Error("This Email address is already in use!");
+                const err = new Error("This Email address is already in use!");
+                err.name = "Forbidden";
+                throw err;
             }
+
+            next();
         }
         catch(err: any) {
-            if(errorFlag)  err.name = "Forbidden";
             next(err);
         }
     }
 }
 
 export async function validateRefreshTokenRequest(req: Request, res: Response, next: NextFunction) {
+    //get refresh token from request body
     const { refresh_token } = req.body;
 
+    //define validation schema
     const schema = Joi.object({
         refresh_token: Joi.string().required().label("Refresh Token")
     });
 
+    //validate request
     const { error } = schema.validate({ refresh_token });
 
+    //check if error in request and throw error
     if(error) {
         error.message = error.message.replace(/\"/g, "");
         next(error);
         return
     }
 
-    let errorFlag = false;
-
     try {
+        //create error object
+        const err = new Error("Invalid Token");
+        err.name = "Unauthorized";
+
+        //verify refresh token and get user's id
         let _id = await verifyRefreshToken(refresh_token);
 
-        //check if user has token in db
+        //check if user has token in db and throw error if not
         const userSession = await Token.findOne({ _id });
-
-        //if not throw unauthorized error
-        if(!userSession) {
-            errorFlag = true;
-            throw Error("Invalid Token");
-        }
+        if(!userSession) throw err;
 
         //check if token is not same as the one the user has in db
         //throw unauthorized error and delete token from db
         if(userSession.refresh_token !== refresh_token) {
-            errorFlag = true;
             await Token.deleteOne({ _id });
-            throw Error("Invalid Token");
+            throw err;
         }
         
         //attach id to req body and continue;
@@ -106,20 +112,23 @@ export async function validateRefreshTokenRequest(req: Request, res: Response, n
         next();
     }
     catch(err: any) {
-        if(errorFlag) err.name = "Unauthorized";
         next(err);
     }
 }
 
 export async function validateLogoutRequest(req: Request, res: Response, next: NextFunction) {
+    //get refresh token from request body
     const { refresh_token } = req.body;
 
+    //define validation schema
     const schema = Joi.object({
         refresh_token: Joi.string().required().label("Refresh Token")
     });
 
+    //validate request
     const { error } = schema.validate({ refresh_token });
 
+    //throw error if request is invalid
     if(error) {
         error.message = error.message.replace(/\"/g, "");
         next(error);
@@ -127,6 +136,7 @@ export async function validateLogoutRequest(req: Request, res: Response, next: N
     }
 
     try {
+        //verify refresh token and get user's id
         let _id = await verifyRefreshToken(refresh_token);
         
         //attach id to req body and continue;
