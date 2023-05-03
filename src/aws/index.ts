@@ -1,0 +1,1 @@
+export { default as getSecret } from "./secrets-manager";

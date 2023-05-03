@@ -1,37 +1,40 @@
 import express, { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-
-import { config } from "./config";
 import { AuthRoutes, CountryRoutes, VerificationRoutes } from "./routes";
 
-//import { getCountries } from "../fixtures/country";
-//import insertRoles from "../fixtures/role";
+import { getCountries, insertRoles } from "./fixtures";
+
+import { getSecret } from "./aws";
 
 const app = express();
 
-//connect to mongodb
-mongoose.connect(config.dbUrl).then(() => {
-    app.listen(config.port, () => {
-        console.log(`Server listening at port ${config.port}`);
-        startServer();
+(async function() {
+    const port = 8000;
 
-        //get all countries and fill db countries collection
-        //getCountries();
+    //get mongodb credentials from aws secrets manager
+    const secret: any = await getSecret("mongodb-credentials");
 
-        //populate roles collection
-        //insertRoles();
+    //initialize mongodb url with username and password
+    const dbUrl = `mongodb+srv://${secret["MONGO_USERNAME"]}:${secret["MONGO_PASSWORD"]}@cluster0.z6zfix6.mongodb.net/traderapp-users?retryWrites=true&w=majority`;
+
+    //connect to mongodb
+    mongoose.connect(dbUrl).then(() => {
+        app.listen(port, () => {
+            console.log(`Server listening at port ${port}`);
+            startServer();
+        })
     })
-})
-.catch((err) => {
-    console.log("Unable to connect to mongodb")
-});
+    .catch((err) => {
+        console.log("Unable to connect to mongodb")
+    });
+})();
 
 function startServer() {
     //cors
     app.use(
         cors({  
-          origin: "http://localhost:3000",
+          origin: "*",
           methods: "GET, HEAD, PUT, PATCH, POST, DELETE"
         })
     );
@@ -41,12 +44,27 @@ function startServer() {
     app.use(express.json());
 
     //api routes
-    app.use("/api/v1/auth", AuthRoutes);
-    app.use("/api/v1/verify", VerificationRoutes);
-    app.use("/api/v1/countries", CountryRoutes);
+    app.use("/auth", AuthRoutes);
+    app.use("/verify", VerificationRoutes);
+    app.use("/countries", CountryRoutes);
+
+    //route to populate db with countries and roles data
+    app.post("/fixtures", async (req, res, next) => {
+        try {
+            //get all countries and fill db countries collection
+            await getCountries();
+
+            //populate roles collection
+            await insertRoles();
+
+            res.status(200).send({ message: "pong" });
+        } catch (error) {
+            next(error);
+        }
+    })
 
     //health check
-    app.get("/api/v1/ping", (req, res) => {
+    app.get("/ping", async (req, res, next) => {
         res.status(200).send({ message: "pong" });
     });
 

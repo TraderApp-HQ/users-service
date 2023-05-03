@@ -1,9 +1,13 @@
 import JWT from "jsonwebtoken"; 
 import dotenv from "dotenv";
 import { Payload } from "../types";
+import { getSecret } from "../aws";
 
 //init env variables
 dotenv.config();
+
+//cache to store token secrets in memory
+const cache: { [k:string]: string } = {};
 
 //access token expiration time in minutes
 const expires = 15;
@@ -12,14 +16,29 @@ const expires = 15;
 ** It generates and returns an access token and throws an error if something goes wrong
 */
 export function generateAccessToken(payload: any) {
-    return new Promise((resolve, reject) => {
-        //get access token secret from env
-        const secret = process.env.ACCESS_TOKEN_SECRET as string;
+    return new Promise(async (resolve, reject) => {
+        let secret = "";
+
+        //check if secret token is in cache and use it, else retrieve it from secrets manager
+        if(cache["ACCESS_TOKEN_SECRET"]) {
+            secret = cache["ACCESS_TOKEN_SECRET"];
+        }
+        else {
+            const result =  await getSecret("access-token-secret");
+            secret = result["ACCESS_TOKEN_SECRET"];
+
+            //store refresh token key in cache
+            cache["ACCESS_TOKEN_SECRET"] = result["ACCESS_TOKEN_SECRET"];
+        }
 
         //prepare and sign access token
         const options = { expiresIn: `${expires}m`, issuer: "traderapp.finance" };
         JWT.sign(payload, secret, options, (err, token) => {
-            if(err) reject(err);
+            if(err) {
+                reject(err);
+                return;
+            }
+
             resolve(token);
         })
     });
@@ -29,14 +48,29 @@ export function generateAccessToken(payload: any) {
 ** It generates and returns a refresh token and throws an error if something goes wrong. 
 */
 export function generateRefreshToken(payload: any) {
-    return new Promise((resolve, reject) => {
-        //get refresh token secret from env
-        const secret = process.env.REFRESH_TOKEN_SECRET as string;
+    return new Promise(async (resolve, reject) => {
+        let secret = "";
+        
+        //check if secret token is in cache and use it, else retrieve it from secrets manager
+        if(cache["REFRESH_TOKEN_SECRET"]) {
+            secret = cache["REFRESH_TOKEN_SECRET"];
+        }
+        else {
+            const result =  await getSecret("refresh-token-secret");
+            secret = result["REFRESH_TOKEN_SECRET"];
+
+            //store refresh token key in cache
+            cache["REFRESH_TOKEN_SECRET"] = result["REFRESH_TOKEN_SECRET"];
+        }
 
         //prepare and sign refresh token
         const options = { expiresIn: "30d", issuer: "traderapp" };
         JWT.sign(payload, secret, options, (err, token) => {
-            if(err) reject(err);
+            if(err) {
+                reject(err);
+                return;
+            }
+
             resolve(token);
         })
     });
@@ -44,8 +78,20 @@ export function generateRefreshToken(payload: any) {
 
 // A function to verify refresh token
 export function verifyRefreshToken(refreshToken: string) {
-    return new Promise((resolve, reject) => {
-        const secret = process.env.REFRESH_TOKEN_SECRET as string;
+    return new Promise(async (resolve, reject) => {
+        let secret = "";
+        
+        //check if secret token is in cache and use it, else retrieve it from secrets manager
+        if(cache["REFRESH_TOKEN_SECRET"]) {
+            secret = cache["REFRESH_TOKEN_SECRET"];
+        }
+        else {
+            const result =  await getSecret("refresh-token-secret");
+            secret = result["REFRESH_TOKEN_SECRET"];
+
+            //store refresh token key in cache
+            cache["REFRESH_TOKEN_SECRET"] = result["REFRESH_TOKEN_SECRET"];
+        }
 
         JWT.verify(refreshToken, secret, (err, payload) => {
             //throw error if error
@@ -53,6 +99,7 @@ export function verifyRefreshToken(refreshToken: string) {
                 err.name = "Unauthorized";
                 err.message = "Invalid Token";
                 reject(err);
+                return;
             }
 
             //return payload

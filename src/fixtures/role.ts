@@ -1,5 +1,5 @@
-import Role from "../src/models/Role";
-import { IRole } from "../src/types";
+import Role from "../models/Role";
+import { IRole } from "../types";
 
 async function role() {
     const insertRoles: IRole[] = [];
@@ -15,7 +15,8 @@ async function role() {
         console.log("roles inserted");
     }
     catch(err: any) {
-        console.log(err.message)
+        console.log(err.message);
+        throw err;
     }
 }
 

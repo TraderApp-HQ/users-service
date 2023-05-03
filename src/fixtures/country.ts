@@ -1,8 +1,8 @@
 import axios from "axios";
-import Country from "../src/models/Country";
-import { ICountry } from "../src/types";
+import Country from "../models/Country";
+import { ICountry } from "../types";
 
-export async function getCountries() {
+async function getCountries() {
     const countries: ICountry [] = [];
 
     try {
@@ -48,6 +48,9 @@ export async function getCountries() {
     }
     catch(err: any) {
         console.log(err.message);
+        throw err;
     }
     
 }
+
+export default getCountries;
