@@ -1,0 +1,76 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  deploy-demo:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+
+      - name: Get latest launch template version for demo
+        id: get_latest_demo
+        run: |
+          Latest=$(aws ec2 describe-launch-template-versions --launch-template-name users-service-launch-template --query 'sort_by(LaunchTemplateVersions, &VersionNumber)[-1].VersionNumber' --output text)
+          echo "::set-output name=latest_template::$Latest"
+
+      - name: Update Auto Scaling Group for demo
+        run: |
+          aws autoscaling update-auto-scaling-group \
+          --auto-scaling-group-name "users-service-auto-scaling-group" \
+          --launch-template "LaunchTemplateName=users-service-launch-template,Version=${{ steps.get_latest_demo.outputs.latest_template }}"
+
+  # deploy-production:
+  #   needs: build-and-test
+  #   runs-on: ubuntu-latest
+  #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: Install AWS CLI
+  #       run: |
+  #         sudo apt-get update
+  #         sudo apt-get install -y awscli
+
+  #     - name: Configure AWS credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_PRODUCTION }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_PRODUCTION }}
+  #         aws-region: us-east-1
+
+  #     - name: Get latest launch template version for production
+  #       id: get_latest_production
+  #       run: |
+  #         Latest=$(aws ec2 describe-launch-template-versions --launch-template-name my-launch-template-production --query 'sort_by(LaunchTemplateVersions, &VersionNumber)[-1].VersionNumber' --output text)
+  #         echo "::set-output name=latest_template::$Latest"
+
+  #     - name: Update Auto Scaling Group for production
+  #       run: |
+  #         aws autoscaling update-auto-scaling-group \
+  #         --auto-scaling-group-name "my-auto-scaling-group-production" \
+  #         --launch-template "LaunchTemplateName=my-launch-template-production,Version=${{ steps.get_latest_production.outputs.latest_template }}"
