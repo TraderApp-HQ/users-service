@@ -28,7 +28,7 @@ jobs:
       # - this uses the build script in the script file
         run: npm run build
 
-        
+
   docker_build_then_push_to_ecr_and_ecs:
     runs-on: ubuntu-latest
 
@@ -57,7 +57,6 @@ jobs:
         IMAGE_TAG: ${{github.run_id}}
         ECS_CLUSTER: users-service-cluster-test   # Amazon ECS cluster name
         ECS_SERVICE: users_srvc-service # Your Amazon ECS service name
-        CONTAINER_NAME: users_service_container0
 
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -76,7 +75,7 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
-        container-name: ${{ env.CONTAINER_NAME }}
+        container-name: ${{ secrets.CONTAINER_NAME }}
         image: ${{ steps.builder_pusher.outputs.built_image }}
 
     - name: Deploy the ECS task definition
