@@ -89,20 +89,19 @@ jobs:
         IMAGE_TAG: ${{github.run_id}}
         ECS_CLUSTER: users-service-cluster-test   # Amazon ECS cluster name
         ECS_SERVICE: users_srvc-service # Your Amazon ECS service name
-        CONTAINER_NAME: user_service_container0
+        CONTAINER_NAME: users_service_container0
         
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 #end of CI
-#start CD:
+#start CD: first is to download the task definition.json file from ECS.
     - name: Download task definition
       run: |
           aws ecs describe-task-definition --task-definition ${{ secrets.ECS_TASK_DEF_ARN }} \
           --query taskDefinition > task-definition.json
 
-    # start cd: right after push to ecr
     - name: Put the newly built image into the ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
