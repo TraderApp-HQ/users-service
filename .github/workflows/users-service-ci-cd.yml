@@ -90,6 +90,7 @@ jobs:
         ECS_CLUSTER: users-service-cluster-test   # Amazon ECS cluster name
         ECS_SERVICE: users_srvc-service # Your Amazon ECS service name
         CONTAINER_NAME: users_service_container0
+        ECS_TASK_DEF_ARN: arn:aws:ecs:eu-central-1:575439814610:task-definition/task-definition:3
         
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -99,7 +100,7 @@ jobs:
 #start CD: first is to download the task definition.json file from ECS.
     - name: Download task definition
       run: |
-          aws ecs describe-task-definition --task-definition ${{ secrets.ECS_TASK_DEF_ARN }} \
+          aws ecs describe-task-definition --task-definition ${{ env.ECS_TASK_DEF_ARN }} \
           --query taskDefinition > task-definition.json
 
     - name: Put the newly built image into the ECS task definition
