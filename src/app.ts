@@ -2,6 +2,9 @@ import express, { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import { AuthRoutes, CountryRoutes, VerificationRoutes } from "./routes";
+import { config } from "dotenv";
+
+config();
 
 import { getCountries, insertRoles } from "./fixtures";
 
@@ -10,7 +13,7 @@ import { getSecret } from "./aws";
 const app = express();
 
 (async function() {
-    const port = 8000;
+    const port = process.env.PORT || 8001;
 
     //get mongodb credentials from aws secrets manager
     const secret: any = await getSecret("mongodb-credentials");
