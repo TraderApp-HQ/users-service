@@ -57,7 +57,7 @@ jobs:
         IMAGE_TAG: ${{github.run_id}}
         ECS_CLUSTER: users-service-cluster-test   # Amazon ECS cluster name
         ECS_SERVICE: userssrvc-ecs-service-test # Your Amazon ECS service name
-        USERS_SERVICE_TASK_DEF_ARN: arn:aws:ecs:eu-west-1:575439814610:task-definition/users-service-taskdef-test
+        USERS_SERVICE_TASK_DEF_ARN: arn:aws:ecs:eu-west-1:575439814610:task-definition/users-service-taskdef-test:1
 
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
