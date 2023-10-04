@@ -8,7 +8,7 @@ on:
   workflow_dispatch: # setting for manual runs of the pipeline.
 
 jobs:
-  build:   # this is the first job - to build the application first with npm
+  build:   # first job - to build the application first with npm.
     runs-on: ubuntu-latest
 
     steps:
