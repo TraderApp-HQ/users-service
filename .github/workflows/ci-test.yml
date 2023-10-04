@@ -8,11 +8,11 @@ on:
   workflow_dispatch: # setting for manual runs of the pipeline.
 
 jobs:
-  build:   # this is the first job - to build the application first with npm
+  build:   # first job to build the application first with npm.
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code # first step in this build JOB is to checkout code from branch
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Install Node.js    # second step is to set up environment for node build
@@ -47,7 +47,7 @@ jobs:
       id: ecr-login-id #this is an id for this step. So u can use the id to ref d step later in d workflow.
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build Docker Image, tag and push image to ECR
+    - name: Build The Docker Image - But no push.
       # THIS IS WHERE PROD VARS N TEST VARS ARE DEFINED N USED BASED ON BRANCH RUNNING FROM
       id: builder_pusher
       env:   # here we r creating env vars n assigning values to them.
@@ -59,7 +59,7 @@ jobs:
 
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        echo "Docker Image build is completed."
+        echo "Docker Image build is completed. No push to ECR specified."
 #       docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 #       echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
          
