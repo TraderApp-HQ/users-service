@@ -5,7 +5,7 @@ on:
      branches:
        - dev
 #       - pull_request
-  workflow_dispatch: # setting for manual runs of the pipeline.
+  workflow_dispatch: # manual runs of the pipeline.
 
 jobs:
   build:   # first job - to build the application first with npm
