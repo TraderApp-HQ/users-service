@@ -31,6 +31,7 @@ export function generateAccessToken(payload: any) {
             cache["ACCESS_TOKEN_SECRET"] = result["ACCESS_TOKEN_SECRET"];
         }
 
+        console.log(`access token secret ===== ${secret}`)
         //prepare and sign access token
         const options = { expiresIn: `${expires}m`, issuer: "traderapp.finance" };
         JWT.sign(payload, secret, options, (err, token) => {
