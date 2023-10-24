@@ -1,14 +1,14 @@
 import express, { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import { AuthRoutes, CountryRoutes, VerificationRoutes } from "./routes";
+import { AuthRoutes, CountryRoutes, VerificationRoutes } from "@/routes";
 import { config } from "dotenv";
 
 config();
 
-import { getCountries, insertRoles } from "./fixtures";
+import { getCountries, insertRoles } from "@/fixtures";
 
-import { getSecret } from "./aws";
+// import { getSecret } from "./aws";
 
 const app = express();
 
@@ -16,10 +16,10 @@ const app = express();
     const port = process.env.PORT || 8001;
 
     //get mongodb credentials from aws secrets manager
-    const secret: any = await getSecret("mongodb-credentials");
+    // const secret: any = await getSecret("mongodb-credentials");
 
     //initialize mongodb url with username and password
-    const dbUrl = `mongodb+srv://${secret["MONGO_USERNAME"]}:${secret["MONGO_PASSWORD"]}@cluster0.z6zfix6.mongodb.net/traderapp-users?retryWrites=true&w=majority`;
+    const dbUrl = process.env.MONGO_DB_URL_DEV || '';
 
     //connect to mongodb
     mongoose.connect(dbUrl).then(() => {
