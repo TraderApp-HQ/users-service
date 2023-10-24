@@ -1,6 +1,6 @@
 import { Router } from "express";
-import {countriesHandler, countryHandler } from "../controllers/CountryController";
-import { validateGetCountryRequest } from "../middlewares/CountryMiddleware";
+import {countriesHandler, countryHandler } from "@/controllers/CountryController";
+import { validateGetCountryRequest } from "@/middlewares/CountryMiddleware";
 
 const router = Router();
 

@@ -1,7 +1,7 @@
 import JWT from "jsonwebtoken"; 
 import dotenv from "dotenv";
-import { Payload } from "../types";
-import { getSecret } from "../aws";
+import { Payload } from "@/types";
+import { getSecret } from "@/aws";
 
 //init env variables
 dotenv.config();

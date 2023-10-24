@@ -4,7 +4,7 @@ import {
     sendPhoneVerificationCodeHandler,
     confirmEmailVerificationCodeHandler,
     confirmPhoneVerificationCodeHandler
-} from "../controllers/VerificationController";
+} from "@/controllers/VerificationController";
 
 const router = Router();
 
