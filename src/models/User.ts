@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema, Model } from "mongoose";
 import bcrypt from "bcrypt";
 import { IUser } from "../types";
-import { Roles } from "../utils/RolesEnum";
+import { Roles } from "../config/enums";
 
 export interface IUserModel extends IUser, Document {};
 
