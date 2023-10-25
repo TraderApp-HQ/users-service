@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { ResetToken } from "../types";
+import { ResetToken } from "@/types";
 
 interface PasswordResetTokenModel extends ResetToken, Document {};
 
