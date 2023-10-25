@@ -9,17 +9,6 @@
     "dev": "npx nodemon src/app.ts",
     "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ekidhaja/traderapp-users.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ekidhaja/traderapp-users/issues"
-  },
-  "homepage": "https://github.com/ekidhaja/traderapp-users#readme",
   "dependencies": {
     "@aws-sdk/client-secrets-manager": "^3.321.1",
     "axios": "^1.1.3",

@@ -8,7 +8,7 @@ import {
     generateRefreshToken, 
     issueTokenResponse, 
     generateResetToken 
-} from "@/utils/tokens";
+} from "@/utils/token-functions";
 
 async function buildResponse(data: any) {
     const user = {
