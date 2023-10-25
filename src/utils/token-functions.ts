@@ -1,7 +1,6 @@
 import JWT from "jsonwebtoken"; 
 import dotenv from "dotenv";
 import { Payload } from "../types";
-import { getSecret } from "../aws";
 
 //init env variables
 dotenv.config();
@@ -17,21 +16,7 @@ const expires = 15;
 */
 export function generateAccessToken(payload: any) {
     return new Promise(async (resolve, reject) => {
-        let secret = "";
-
-        //check if secret token is in cache and use it, else retrieve it from secrets manager
-        if(cache["ACCESS_TOKEN_SECRET"]) {
-            secret = cache["ACCESS_TOKEN_SECRET"];
-        }
-        else {
-            const result =  await getSecret("access-token-secret");
-            secret = result["ACCESS_TOKEN_SECRET"];
-
-            //store refresh token key in cache
-            cache["ACCESS_TOKEN_SECRET"] = result["ACCESS_TOKEN_SECRET"];
-        }
-
-        console.log(`access token secret ===== ${secret}`)
+        let secret = process.env.ACCESS_TOKEN_SECRET || '';
         //prepare and sign access token
         const options = { expiresIn: `${expires}m`, issuer: "traderapp.finance" };
         JWT.sign(payload, secret, options, (err, token) => {
@@ -50,19 +35,7 @@ export function generateAccessToken(payload: any) {
 */
 export function generateRefreshToken(payload: any) {
     return new Promise(async (resolve, reject) => {
-        let secret = "";
-        
-        //check if secret token is in cache and use it, else retrieve it from secrets manager
-        if(cache["REFRESH_TOKEN_SECRET"]) {
-            secret = cache["REFRESH_TOKEN_SECRET"];
-        }
-        else {
-            const result =  await getSecret("refresh-token-secret");
-            secret = result["REFRESH_TOKEN_SECRET"];
-
-            //store refresh token key in cache
-            cache["REFRESH_TOKEN_SECRET"] = result["REFRESH_TOKEN_SECRET"];
-        }
+        let secret = process.env.REFRESH_TOKEN_SECRET || '';
 
         //prepare and sign refresh token
         const options = { expiresIn: "30d", issuer: "traderapp" };
@@ -80,19 +53,7 @@ export function generateRefreshToken(payload: any) {
 // A function to verify refresh token
 export function verifyRefreshToken(refreshToken: string) {
     return new Promise(async (resolve, reject) => {
-        let secret = "";
-        
-        //check if secret token is in cache and use it, else retrieve it from secrets manager
-        if(cache["REFRESH_TOKEN_SECRET"]) {
-            secret = cache["REFRESH_TOKEN_SECRET"];
-        }
-        else {
-            const result =  await getSecret("refresh-token-secret");
-            secret = result["REFRESH_TOKEN_SECRET"];
-
-            //store refresh token key in cache
-            cache["REFRESH_TOKEN_SECRET"] = result["REFRESH_TOKEN_SECRET"];
-        }
+        let secret = process.env.REFRESH_TOKEN_SECRET || '';
 
         JWT.verify(refreshToken, secret, (err, payload) => {
             //throw error if error

@@ -8,19 +8,15 @@ config();
 
 import { getCountries, insertRoles } from "./fixtures";
 
-import { getSecret } from "./aws";
+import initSecrets from "./config/initialize-secrets";
 
 const app = express();
 
 (async function() {
+    // initialize secrets
+    await initSecrets();
     const port = process.env.PORT || 8001;
-
-    //get mongodb credentials from aws secrets manager
-    const secret: any = await getSecret("mongodb-credentials");
-
-    //initialize mongodb url with username and password
-    const dbUrl = `mongodb+srv://${secret["MONGO_USERNAME"]}:${secret["MONGO_PASSWORD"]}@cluster0.z6zfix6.mongodb.net/traderapp-users?retryWrites=true&w=majority`;
-
+    const dbUrl = process.env.USERS_SERVICE_DB_URL || ''
     //connect to mongodb
     mongoose.connect(dbUrl).then(() => {
         app.listen(port, () => {
@@ -74,7 +70,7 @@ function startServer() {
     //handle errors
     app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
         const status = "ERROR";
-        let error = err.name;
+        let error_name = err.name;
         let error_message = err.message;
         let statusCode;
 
@@ -84,12 +80,12 @@ function startServer() {
         else if(err.name === "NotFound") statusCode = 404;
         else {
             statusCode = 500;
-            error = "InternalServerError";
+            error_name = "InternalServerError";
             error_message = "Something went wrong. Please try again after a while.";
             console.log("Error name: ", err.name, "Error message: ", err.message);
         }
 
-        res.status(statusCode).json({ status, error, error_message }); 
+        res.status(statusCode).json({ status, error_name, error_message }); 
     });
 }
 

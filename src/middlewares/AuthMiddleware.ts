@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import Joi from "joi";
 import bcrypt from "bcrypt";
-import { verifyRefreshToken } from "../utils/tokens";
+import { verifyRefreshToken } from "../utils/token-functions";
 import Token from "../models/RefreshToken";
 import User from "../models/User";
 import PasswordResetToken from "../models/PasswordResetToken";
