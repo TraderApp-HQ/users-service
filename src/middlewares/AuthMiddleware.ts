@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import Joi from "joi";
 import bcrypt from "bcrypt";
-import { verifyRefreshToken } from "../utils/token-functions";
-import Token from "../models/RefreshToken";
-import User from "../models/User";
-import PasswordResetToken from "../models/PasswordResetToken";
+import { verifyRefreshToken } from "@/utils/token-functions";
+import Token from "@/models/RefreshToken";
+import User from "@/models/User";
+import PasswordResetToken from "@/models/PasswordResetToken";
 
 export async function validateLoginRequest(req: Request, res: Response, next: NextFunction) {
     //get params from request body
@@ -35,7 +35,16 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
         first_name: Joi.string().required().label("First Name"),
         last_name: Joi.string().required().label("Last Name"),
         email: Joi.string().email().required().label("Email"),
-        password: Joi.string().min(8).required().label("Password"),
+        password: Joi.string()
+			.min(8)
+			.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_#]).+$/)
+			.required()
+			.messages({
+				"string.min": "The password must be at least 8 characters long.",
+				"string.pattern.base":
+					"The password should contain at least one upper case, one number, one lower case character, and one special character.",
+			})
+			.label("Password"),
         dob: Joi.string().required().label("Date of Birth"),
         country_id: Joi.number().required().label("Country Id")
     })

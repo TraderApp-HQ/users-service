@@ -9,12 +9,6 @@ import { ENVIRONMENTS } from "./constants";
 const client = new SecretsManagerClient({ region: "eu-west-1" });
 const env = process.env.NODE_ENV || 'development';
 let suffix = ENVIRONMENTS[process.env.NODE_ENV?.toUpperCase() || ''].toLowerCase();
-// if (env === "development") suffix = ENVIRONMENTS.DEVELOPMENT;
-// else if (env === "staging") suffix = ENVIRONMENTS.STAGING;
-// else if (env === "production") suffix = ENVIRONMENTS.PRODUCTION;
-// else {
-//     throw Error("Invalid environment");
-// }
 const secretNames = [
   'common-secrets',
   'users-service-secrets'

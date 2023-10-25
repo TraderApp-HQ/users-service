@@ -1,15 +1,10 @@
 import JWT from "jsonwebtoken"; 
 import dotenv from "dotenv";
 import { Payload } from "../types";
+import { TOKEN_ATTRIBUTES } from "@/config/constants";
 
 //init env variables
 dotenv.config();
-
-//cache to store token secrets in memory
-const cache: { [k:string]: string } = {};
-
-//access token expiration time in minutes
-const expires = 15;
 
 /* A function to generate access token.
 ** It generates and returns an access token and throws an error if something goes wrong
@@ -17,8 +12,9 @@ const expires = 15;
 export function generateAccessToken(payload: any) {
     return new Promise(async (resolve, reject) => {
         let secret = process.env.ACCESS_TOKEN_SECRET || '';
+        
         //prepare and sign access token
-        const options = { expiresIn: `${expires}m`, issuer: "traderapp.finance" };
+        const options = { expiresIn: TOKEN_ATTRIBUTES.ACCESS_TOKEN_EXPIRES, issuer: TOKEN_ATTRIBUTES.TOKEN_ISSUER };
         JWT.sign(payload, secret, options, (err, token) => {
             if(err) {
                 reject(err);
@@ -38,7 +34,7 @@ export function generateRefreshToken(payload: any) {
         let secret = process.env.REFRESH_TOKEN_SECRET || '';
 
         //prepare and sign refresh token
-        const options = { expiresIn: "30d", issuer: "traderapp" };
+        const options = { expiresIn: TOKEN_ATTRIBUTES.REFRESH_TOKEN_EXPIRES, issuer: TOKEN_ATTRIBUTES.TOKEN_ISSUER };
         JWT.sign(payload, secret, options, (err, token) => {
             if(err) {
                 reject(err);
@@ -77,7 +73,7 @@ export function issueTokenResponse(access_token: string, refresh_token: string) 
         access_token,
         refresh_token,
         token_type: "bearer",
-        expires: expires * 60
+        expires: TOKEN_ATTRIBUTES.EXPIRES_TIMESTAMP
     }
 }
 

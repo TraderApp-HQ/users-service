@@ -1,12 +1,12 @@
 import express, { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import { AuthRoutes, CountryRoutes, VerificationRoutes } from "./routes";
+import { AuthRoutes, CountryRoutes, VerificationRoutes } from "@/routes";
 import { config } from "dotenv";
 
 config();
 
-import { getCountries, insertRoles } from "./fixtures";
+import { getCountries, insertRoles } from "@/fixtures";
 
 import initSecrets from "./config/initialize-secrets";
 
