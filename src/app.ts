@@ -6,8 +6,8 @@ import { config } from "dotenv";
 
 import { getCountries, insertRoles } from "@/fixtures";
 
-import initSecrets from "./config/initialize-secrets";
-import logger from "./logger/logger";
+import initSecrets from "@/config/initialize-secrets";
+import logger from "@/logger/logger";
 
 config();
 
@@ -16,8 +16,7 @@ const app = express();
 (async function() {
     // initialize secrets
     await initSecrets();
-    // const port = process.env.PORT || 8001;
-    const port = 8001;
+    const port = process.env.PORT || 8001;
     const dbUrl = process.env.USERS_SERVICE_DB_URL || ''
     //connect to mongodb
     mongoose.connect(dbUrl).then(() => {
