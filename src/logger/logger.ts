@@ -7,7 +7,7 @@ dotenv.config();
 
 const { format } = require("winston");
 const { combine, timestamp, label, printf } = format;
-const SERVICE = process.env.service || '';
+const SERVICE = process.env.SERVICE || '';
 const ENVIRONMENT = process.env.NODE_ENV || 'development';
 
 const transports = {
@@ -16,13 +16,13 @@ const transports = {
   cloudWatch: new winston.transports.Http({ host: 'localhost', port:8080 })
 };
 
-// const customFormat = printf(({ level, label, message, timestamp }) => {
-//     return `[${label}] ${ENVIRONMENT} ${timestamp}  ${level}: ${message}`;
-//   });
+const customFormat = printf(({ level, message, timestamp }: { level: string, message: string, timestamp: string}) => {
+    return `${level}: ${message} [${SERVICE}] ${ENVIRONMENT} ${timestamp}`;
+  });
 
 
   winston.loggers.add('grafana', {
-    format: combine(label({ label: SERVICE }), timestamp(), format.json()),
+    format: combine(winston.format.colorize(), format.errors({ stack: true }), timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), customFormat),
     transports: [
         transports.console,
         transports.grafana
@@ -36,7 +36,7 @@ const transports = {
     format: combine(
       label({ label: SERVICE }),
       timestamp(),
-      format.json()
+      customFormat
     ),
     transports: [
         transports.console,
@@ -50,13 +50,16 @@ const transports = {
   class logger {
 
     grafana: winston.Logger;
+    cloudWatch: winston.Logger;
     constructor() {
       this.grafana = winston.loggers.get('grafana');
+      this.cloudWatch = winston.loggers.get('cloudWatch');
     }
 
     info(message: any){
         transports.console.level = transports.grafana.level ="info"
         this.grafana.info(message)
+        this.cloudWatch.info(message)
     }
 
     warn(message: any):void{
