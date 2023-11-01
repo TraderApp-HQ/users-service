@@ -6,7 +6,7 @@ import { config } from "dotenv";
 
 import { getCountries, insertRoles } from "@/fixtures";
 
-import apiResponse from "@/config/constants";
+import apiResponse from "@/utils/response-handler";
 import { ResponseType } from "@/config/constants";
 
 import initSecrets from "@/config/initialize-secrets";

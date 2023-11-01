@@ -9,7 +9,7 @@ import {
     issueTokenResponse, 
     generateResetToken 
 } from "@/utils/token-functions";
-import apiResponse from "@/config/constants";
+import apiResponse from "@/utils/response-handler";
 import { ResponseMessage } from "@/config/constants";
 
 async function buildResponse(data: any) {
