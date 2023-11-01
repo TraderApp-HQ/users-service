@@ -8,7 +8,7 @@ import { ENVIRONMENTS } from "./constants";
 
 const client = new SecretsManagerClient({ region: "eu-west-1" });
 const env = process.env.NODE_ENV || 'development';
-let suffix = ENVIRONMENTS[process.env.NODE_ENV?.toUpperCase() || ''].toLowerCase();
+let suffix = ENVIRONMENTS[env].toLowerCase();
 const secretNames = [
   'common-secrets',
   'users-service-secrets'
