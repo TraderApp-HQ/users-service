@@ -91,7 +91,6 @@ function startServer() {
 
         res.status(statusCode).json(apiResponse({
             type: ResponseType.ERROR,
-            // object: err,
             message: error_message
         }))
     });
