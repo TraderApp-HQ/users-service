@@ -6,13 +6,15 @@ import { config } from "dotenv";
 
 import { getCountries, insertRoles } from "@/fixtures";
 
+import apiResponse from "@/utils/response-handler";
+import { ResponseType } from "@/config/constants";
+
 import initSecrets from "@/config/initialize-secrets";
 import logger from "@/logger/logger";
 
 config();
 
 const app = express();
-
 (async function() {
     // initialize secrets
     await initSecrets();
@@ -87,7 +89,10 @@ function startServer() {
             console.log("Error name: ", err.name, "Error message: ", err.message);
         }
 
-        res.status(statusCode).json({ status, error_name, error_message }); 
+        res.status(statusCode).json(apiResponse({
+            type: ResponseType.ERROR,
+            message: error_message
+        }))
     });
 }
 

@@ -9,6 +9,8 @@ import {
     issueTokenResponse, 
     generateResetToken 
 } from "@/utils/token-functions";
+import apiResponse from "@/utils/response-handler";
+import { ResponseMessage } from "@/config/constants";
 
 async function buildResponse(data: any) {
     const user = {
@@ -72,9 +74,12 @@ export async function loginHandler(req: Request, res: Response, next: NextFuncti
             error.name = "NotFound"
             throw error;
         }
-
+9
         const tokenRes =  await buildResponse(data);
-        res.status(200).json(tokenRes);
+        res.status(200).json(apiResponse({
+            object: tokenRes,
+            message: ResponseMessage.LOGIN
+        }))
 
     }
     catch(err: any) {
