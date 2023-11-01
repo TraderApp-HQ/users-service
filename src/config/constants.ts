@@ -10,3 +10,12 @@ export const TOKEN_ATTRIBUTES = {
 	EXPIRES_TIMESTAMP: 15 * 60,
 	TOKEN_ISSUER: "traderapp.finance"
 }
+
+export const ResponseType = {
+  SUCCESS: 'success',
+  ERROR: 'error'
+}
+
+export const ResponseMessage = {
+  LOGIN: 'Login was successful'
+}
