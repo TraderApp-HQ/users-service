@@ -4,29 +4,31 @@ import cors from "cors";
 import { AuthRoutes, CountryRoutes, VerificationRoutes } from "@/routes";
 import { config } from "dotenv";
 
-config();
 import { getCountries, insertRoles } from "@/fixtures";
 
-import initSecrets from "./config/initialize-secrets";
 import apiResponse from "./utils/response-handler";
 import { ResponseType } from "./utils/response-template";
+
+import initSecrets from "@/config/initialize-secrets";
+import logger from "@/logger/logger";
+
+config();
 
 const app = express();
 (async function() {
     // initialize secrets
     await initSecrets();
-    // const port = process.env.PORT || 8001;
-    const port = 8001;
+    const port = process.env.PORT || 8001;
     const dbUrl = process.env.USERS_SERVICE_DB_URL || ''
     //connect to mongodb
     mongoose.connect(dbUrl).then(() => {
         app.listen(port, () => {
-            console.log(`Server listening at port ${port}`);
+            logger.log(`Server listening at port ${port}`);
             startServer();
         })
     })
     .catch((err) => {
-        console.log("Unable to connect to mongodb")
+        logger.error("Unable to connect to mongodb")
     });
 })();
 
@@ -59,6 +61,7 @@ function startServer() {
 
             res.status(200).send({ message: "pong" });
         } catch (error) {
+            logger.error(error)
             next(error);
         }
     })
