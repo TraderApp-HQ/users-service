@@ -9,7 +9,8 @@ import {
     issueTokenResponse, 
     generateResetToken 
 } from "@/utils/token-functions";
-import apiResponse from "@/utils/response-handler";
+import apiResponse from "@/config/constants";
+import { ResponseMessage } from "@/config/constants";
 
 async function buildResponse(data: any) {
     const user = {
@@ -75,11 +76,9 @@ export async function loginHandler(req: Request, res: Response, next: NextFuncti
         }
 9
         const tokenRes =  await buildResponse(data);
-        // res.json(responseSuccess(tokenRes, "Login was successful"))
         res.status(200).json(apiResponse({
-            // type: 'success',
             object: tokenRes,
-            // message: "Login was successful"
+            message: ResponseMessage.LOGIN
         }))
 
     }
