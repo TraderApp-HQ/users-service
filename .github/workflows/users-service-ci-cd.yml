@@ -55,14 +55,14 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         ECR_REGISTRY: ${{ steps.ecr-login-id.outputs.registry }}
         ECR_REPOSITORY: users-service-test
-        IMAGE_TAG: ${{github.run_id}}
+        IMAGE_TAG: ${{github.run_id}}:latest
         TEMPORARY_CONTAINER: ${{github.run_id}}container
         ECS_CLUSTER: traderapp_dev   # Amazon ECS cluster name
         ECS_SERVICE: userssrvc-ecs-service-test # Your Amazon ECS service name
         CONTAINER_STATE: 0
 
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG:latest .
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         if docker run -d --name $TEMPORARY_CONTAINER -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -p 80:80 $IMAGE_TAG:latest; then
           CONTAINER_STATE=1
           echo "Container state is: "$CONTAINER_STATE." Proceeding with the workflow..."
