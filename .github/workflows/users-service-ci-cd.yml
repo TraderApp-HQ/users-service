@@ -59,17 +59,22 @@ jobs:
         TEMPORARY_CONTAINER: ${{github.run_id}}container
         ECS_CLUSTER: traderapp_dev   # Amazon ECS cluster name
         ECS_SERVICE: userssrvc-ecs-service-test # Your Amazon ECS service name
+        CONTAINER_STATE: 0
 
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        if docker run -d --name $TEMPORARY_CONTAINER -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -p 80:80 $IMAGE_TAG; then
-          echo "Container started successfully. Proceeding with the workflow..."
-        else
+        
+        if: docker run -d --name $TEMPORARY_CONTAINER -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -p 80:80 $IMAGE_TAG; then
+        run: |
+          $CONTAINER_STATE == 1
+          echo "Container state is: "$CONTAINER_STATE." Proceeding with the workflow..."
+        if: $CONTAINER_STATE !== 1
+        run: |
           echo "Failed to start the container. Check Container logs below."
           echo "Stopping the entire workflow now..."
           docker logs $TEMPORARY_CONTAINER
           exit 1
-                        
+            
         docker stop $TEMPORARY_CONTAINER
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       #  echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
