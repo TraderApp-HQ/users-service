@@ -10,7 +10,6 @@ export async function countriesHandler(req: Request, res: Response, next: NextFu
         res.status(200).json(apiResponse({
             object: data,
         }))
-        // .json({ status, data })
     }
     catch(err: any) {
         err.message = "Something went wrong fetching countries";

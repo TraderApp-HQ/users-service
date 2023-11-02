@@ -142,7 +142,7 @@ export async function sendPasswordResetLinkHandler(req: Request, res: Response, 
         }
 
         res.status(200).json(apiResponse({
-            message: ResponseMessage.PASSWORDRESETSENT
+            message: ResponseMessage.PASSWORD_RESET_SENT
         }));
     }
     catch(err) {
@@ -176,7 +176,7 @@ export async function passwordResetHandler(req: Request, res: Response, next: Ne
 
         //send response
         res.status(200).json(apiResponse({
-            message: ResponseMessage.PASSWORDRESET
+            message: ResponseMessage.PASSWORD_RESET
         }));
 
     }
