@@ -62,12 +62,12 @@ jobs:
 
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        echo "Spinning up $TEMPORARY_CONTAINER to test the newly built image..."
+        echo $TEMPORARY_CONTAINER "is the the new container name"
 
     # test the newly build image in a new server
     - name: Test the new image in a new container/server
       run: |
-        if ! docker run -d --name $TEMPORARY_CONTAINER -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -p 80:80 $IMAGE_TAG; then
+        if docker run -d --name $TEMPORARY_CONTAINER -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -p 80:80 $IMAGE_TAG; then
           docker logs $TEMPORARY_CONTAINER
           echo "Failed to start the container. Stopping the workflow..."
           exit 1  # Set a non-zero exit code to stop the workflow
