@@ -17,5 +17,9 @@ export const ResponseType = {
 }
 
 export const ResponseMessage = {
-  LOGIN: 'Login was successful'
+  LOGIN: 'Login was successful',
+	SIGNUP: 'Signup was successful',
+	PASSWORDRESETSENT: 'Password rest link has been sent',
+	PASSWORDRESET: 'Password was reset successfully!',
+
 }
