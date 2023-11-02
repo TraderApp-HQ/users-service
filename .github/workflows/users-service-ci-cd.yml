@@ -72,7 +72,7 @@ jobs:
                         
         docker stop $TEMPORARY_CONTAINER
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+      #  echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 #end of CI
 
 #start CD: first is to download the task definition.json file from ECS.
