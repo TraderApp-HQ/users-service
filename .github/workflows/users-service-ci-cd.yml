@@ -69,8 +69,8 @@ jobs:
           echo "Container started successfully. Proceeding with the workflow..."
         
         if CONTAINER_STATE=0; then
-          echo "Container state is: "$CONTAINER_STATE." 
-          echo "Failed to start the container. So, I'll stop the entire workflow..."
+          echo "Container state is: "$CONTAINER_STATE." So, I'll stop the entire workflow..."
+          echo "Failed to start the container."
           echo "Check Container logs below:"
           docker logs $TEMPORARY_CONTAINER
           exit 1
