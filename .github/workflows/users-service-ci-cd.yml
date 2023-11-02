@@ -56,7 +56,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.ecr-login-id.outputs.registry }}
         ECR_REPOSITORY: users-service-test
         IMAGE_TAG: ${{github.run_id}}
-        TEMPORARY_CONTAINER: container-${{github.run_id}}
+        TEMPORARY_CONTAINER: ${{github.run_id}}container
         ECS_CLUSTER: traderapp_dev   # Amazon ECS cluster name
         ECS_SERVICE: userssrvc-ecs-service-test # Your Amazon ECS service name
 
@@ -73,7 +73,6 @@ jobs:
           exit 1  # Set a non-zero exit code to stop the workflow
         else
           echo "Container started successfully. Proceeding with the workflow..."
-          echo "our temporary container name is : $TEMPORARY_CONTAINER
                         
         docker stop $TEMPORARY_CONTAINER
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
