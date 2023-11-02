@@ -69,10 +69,10 @@ jobs:
       run: |
         if docker run -d --name $TEMPORARY_CONTAINER -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -p 80:80 $IMAGE_TAG; then
           docker logs $TEMPORARY_CONTAINER
-          echo "Failed to start the container. Stopping the workflow..."
-          exit 1  # Set a non-zero exit code to stop the workflow
-        else
           echo "Container started successfully. Proceeding with the workflow..."
+        else
+          echo "Failed to start the container. Stopping the entire workflow now..."
+          exit 1
                         
         docker stop $TEMPORARY_CONTAINER
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
