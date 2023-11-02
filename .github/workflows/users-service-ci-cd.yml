@@ -62,11 +62,9 @@ jobs:
 
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        
-        #now lets start the container to run the image built above.........
         echo "our temporary container name is : $TEMPORARY_CONTAINER
+        
         if ! docker run -d --name $TEMPORARY_CONTAINER -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -p 80:80 $IMAGE_TAG; then
-          # Now let's display the logs of the running container
           docker logs $TEMPORARY_CONTAINER
           echo "Failed to start the container. Stopping the workflow..."
           exit 1  # Set a non-zero exit code to stop the workflow
@@ -74,10 +72,7 @@ jobs:
         else
           echo "Container started successfully. Proceeding with the workflow..."  
           
-        #now lets stop the server/container
-        run: docker stop $TEMPORARY_CONTAINER
-
-        #its time to push the image to ECR:
+        docker stop $TEMPORARY_CONTAINER
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 #end of CI
