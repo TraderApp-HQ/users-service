@@ -60,7 +60,7 @@ jobs:
         ECS_SERVICE: userssrvc-ecs-service-test # Your Amazon ECS service name
         
       run: |
-        docker build -t $IMAGE_TAG:latest .
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 #end of CI
