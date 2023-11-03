@@ -5,7 +5,8 @@
   "compilerOptions": {
     "target": "ES6", 
     "module": "commonjs", 
-     "outDir": "build/",
+     "outDir": "./src",
+     "rootDir": "./src",
     "esModuleInterop": true, 
     "forceConsistentCasingInFileNames": true,          
     "strict": true, 

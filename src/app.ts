@@ -4,8 +4,6 @@ import cors from "cors";
 import { AuthRoutes, CountryRoutes, VerificationRoutes } from "@/routes";
 import { config } from "dotenv";
 
-import { getCountries, insertRoles } from "@/fixtures";
-
 import initSecrets from "@/config/initialize-secrets";
 import logger from "@/logger/logger";
 
@@ -16,7 +14,7 @@ const app = express();
 (async function() {
     // initialize secrets
     await initSecrets();
-    const port = process.env.PORT || 8001;
+    const port = process.env.PORT;
     const dbUrl = process.env.USERS_SERVICE_DB_URL || ''
     //connect to mongodb
     mongoose.connect(dbUrl).then(() => {
@@ -47,22 +45,6 @@ function startServer() {
     app.use("/auth", AuthRoutes);
     app.use("/verify", VerificationRoutes);
     app.use("/countries", CountryRoutes);
-
-    //route to populate db with countries and roles data
-    app.post("/fixtures", async (req, res, next) => {
-        try {
-            //get all countries and fill db countries collection
-            await getCountries();
-
-            //populate roles collection
-            await insertRoles();
-
-            res.status(200).send({ message: "pong" });
-        } catch (error) {
-            logger.error(error)
-            next(error);
-        }
-    })
 
     //health check
     app.get("/ping", async (req, res, next) => {
