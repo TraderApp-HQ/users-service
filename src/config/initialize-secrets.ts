@@ -14,8 +14,10 @@ const secretNames = [
   'users-service-secrets'
 ];
 
+
 async function initSecrets() {
     console.debug(`Getting secrets for ${env} and ${suffix} environment`);
+    console.log(`aws secret ==== ${process.env.AWS_ACCESS_KEY_ID}`)
     try {
         const secretsJsonList: Record<string, boolean> = secretsJson;
         const secrets = await Promise.all(secretNames.map(async (secretName) => {
@@ -29,6 +31,7 @@ async function initSecrets() {
                 const isNeeded = secretsJsonList[item[0]];
                 if(isNeeded) {
                     process.env[item[0]] = item[1] as string;
+                    console.log(`${item[0]} ==== ${process.env[item[0]]}`)
                 }
             })
         });
