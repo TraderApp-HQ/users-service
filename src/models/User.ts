@@ -10,6 +10,33 @@ interface UserModel extends Model<IUserModel> {
 }
 // exprt the enums, roles, mongodb URL
 
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    CreateLoginInput:
+ *      type: object
+ *      required:
+ *        - email
+ *        - password
+ *      properties:
+ *        email:
+ *          type: string
+ *          default: ekidhaja@gmail.com
+ *        password:
+ *          type: string
+ *          default: Test12345@
+ *    CreateLoginResponse:
+ *      type: object
+ *      properties:
+ *        data:
+ *          type: object
+ *        error:
+ *          type: string
+ *          default: null
+ *        message:
+ *          type: string
+ */
 const UserSchema = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },

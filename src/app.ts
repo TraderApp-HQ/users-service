@@ -12,6 +12,9 @@ import { ResponseType } from "@/config/constants";
 import initSecrets from "@/config/initialize-secrets";
 import logger from "@/logger/logger";
 
+import swaggerUi from "swagger-ui-express"
+import specs from "./utils/swagger";
+
 config();
 
 const app = express();
@@ -25,6 +28,8 @@ const app = express();
         app.listen(port, () => {
             logger.log(`Server listening at port ${port}`);
             startServer();
+            app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+            logger.log(`Docs available at localhost:${port}/api-docs`);
         })
     })
     .catch((err) => {
@@ -95,4 +100,3 @@ function startServer() {
         }))
     });
 }
-
