@@ -56,7 +56,10 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
     try {
         const data = await User.create(req.body);
         const tokenRes = await buildResponse(data);
-        res.status(200).json(tokenRes);
+        res.status(200).json(apiResponse({
+            object: tokenRes,
+            message: ResponseMessage.SIGNUP
+        }))
     }
     catch(err) {
         next(err);
@@ -92,7 +95,7 @@ export async function logoutHandler(req: Request, res: Response, next: NextFunct
 
     try {
         await Token.deleteOne({ _id });
-        res.status(204).json({});
+        res.status(204).json(apiResponse());
     }
     catch(err) {
         next(err);
@@ -105,7 +108,9 @@ export async function refreshTokenHandler(req: Request, res: Response, next: Nex
     try {
         const data = await User.findOne({ _id });
         const tokenRes = await buildResponse(data);
-        res.status(200).json(tokenRes);
+        res.status(200).json(apiResponse({
+            object: tokenRes,
+        }));
     }
     catch(err) {
         next(err);
@@ -136,7 +141,9 @@ export async function sendPasswordResetLinkHandler(req: Request, res: Response, 
             console.log("stored hashed is : ", hashed);
         }
 
-        res.status(200).json("Password rest link has been sent");
+        res.status(200).json(apiResponse({
+            message: ResponseMessage.PASSWORD_RESET_SENT
+        }));
     }
     catch(err) {
         next(err);
@@ -168,7 +175,9 @@ export async function passwordResetHandler(req: Request, res: Response, next: Ne
 
 
         //send response
-        res.status(200).json("Password was reset successfully!");
+        res.status(200).json(apiResponse({
+            message: ResponseMessage.PASSWORD_RESET
+        }));
 
     }
     catch(err) {
