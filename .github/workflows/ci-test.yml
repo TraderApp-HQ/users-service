@@ -62,6 +62,8 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           echo "Docker Image build is completed. No push to ECR specified."
 
+      - name: Run Docker Container
+        run: docker run -d -p 8080 $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 #       docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 #       echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
