@@ -1,5 +1,6 @@
 import swaggerJsdoc from 'swagger-jsdoc';
 import { version } from "../../package.json"
+import { createAuthLogin, createAuthLoginBody, createAuthLogout, createAuthLogoutBody, createAuthPasswordLinkReset, createAuthPasswordLinkResetBody, createAuthPasswordReset, createAuthPasswordResetBody, createAuthRefreshToken, createAuthRefreshTokenBody, createAuthSignup, createAuthSignupBody,  } from '@/swagger';
 
 const options: swaggerJsdoc.Options = {
   swaggerDefinition: {
@@ -17,12 +18,41 @@ const options: swaggerJsdoc.Options = {
           bearerFormat: "JWT",
         }
       },
+      schemas: {
+        createAuthLoginBody,
+        createAuthSignupBody,
+        createAuthLogoutBody,
+        createAuthPasswordResetBody,
+        createAuthPasswordLinkResetBody,
+        createAuthRefreshTokenBody,
+        
+      },
     },
     security: [
       {
         bearerAuth: [],
       }
-    ]
+    ],
+    paths: {
+      '/auth/login': {
+        post: createAuthLogin,
+      },
+      '/auth/signup': {
+        post: createAuthSignup
+      },
+      '/auth/logout': {
+        delete: createAuthLogout,
+      },
+      '/auth/refresh-token': {
+        post: createAuthRefreshToken
+      },
+      '/auth/password-reset': {
+        post: createAuthPasswordReset
+      },
+      '/auth/password-reset/:email': {
+        get: createAuthPasswordLinkReset
+      }
+    },
   },
   apis: ['./src/routes/*.ts', './src/models/*.ts'], // Point to your route files
 };
