@@ -1,6 +1,6 @@
 import swaggerJsdoc from 'swagger-jsdoc';
 import { version } from "../../package.json"
-import { createAuthLogin, createAuthLoginBody, createAuthLogout, createAuthLogoutBody, createAuthPasswordLinkReset, createAuthPasswordLinkResetBody, createAuthPasswordReset, createAuthPasswordResetBody, createAuthRefreshToken, createAuthRefreshTokenBody, createAuthSignup, createAuthSignupBody,  } from '@/swagger';
+import { createAuthLogin, createAuthLoginBody, createAuthLogout, createAuthLogoutBody, createAuthPasswordLinkReset, createAuthPasswordLinkResetBody, createAuthPasswordReset, createAuthPasswordResetBody, createAuthRefreshToken, createAuthRefreshTokenBody, createAuthSignup, createAuthSignupBody,  } from '../swagger';
 
 const options: swaggerJsdoc.Options = {
   swaggerDefinition: {
