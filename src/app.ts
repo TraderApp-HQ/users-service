@@ -5,7 +5,6 @@ import { AuthRoutes, CountryRoutes, VerificationRoutes } from "./routes";
 import { config } from "dotenv";
 import initSecrets from "./config/initialize-secrets";
 import logger from "./logger/logger";
-import { getCountries, insertRoles } from "@/fixtures";
 
 import apiResponse from "./utils/response-handler";
 import { ResponseType } from "./config/constants";

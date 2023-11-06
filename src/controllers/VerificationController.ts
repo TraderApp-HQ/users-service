@@ -1,4 +1,4 @@
-import apiResponse from "@/utils/response-handler";
+import apiResponse from "../utils/response-handler";
 import { Request, Response, NextFunction, json } from "express";
 
 export async function sendEmailVerificationCodeHandler(req: Request, res: Response, next: NextFunction) {
