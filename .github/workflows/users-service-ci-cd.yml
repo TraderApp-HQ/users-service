@@ -2,37 +2,38 @@ name: users-service-cicd-pipeline
 
 on:
   push:
-     branches:
-       - dev
-#       - pull_request
+    branches:
+      - dev
+  #       - pull_request
   workflow_dispatch: # manual runs of the pipeline.
 
 jobs:
-  build:   # first job - to build the application first with npm
+  build: # first job - to build the application first with npm
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code # first step in this build JOB is to checkout code from branch
         uses: actions/checkout@v2
 
-      - name: Install Node.js    # second step is to set up environment for node build
+      - name: Install Node.js # second step is to set up environment for node build
         uses: actions/setup-node@v2
         with:
           node-version: 16.15
 
-      - name: Install dependencies  # third step is to install dependencies
+      - name: Install dependencies # third step is to install dependencies
         run: npm install
 
-      - name: Build      # fourth step is to test by trying to build node 
-      # - this uses the build script in the script file
+      - name: Build # fourth step is to test by trying to build node
+        # - this uses the build script in the script file
         run: npm run build
-
 
   docker_build_then_push_to_ecr_and_ecs:
     runs-on: ubuntu-latest
 
     steps:
-
+      - name: Check out code
+        uses: actions/checkout@v2
+        
     - name: Check out code
       uses: actions/checkout@v2
     
@@ -56,21 +57,13 @@ jobs:
         ECR_REGISTRY: ${{ steps.ecr-login-id.outputs.registry }}
         ECR_REPOSITORY: users-service-test
         IMAGE_TAG: ${{github.run_id}}
-        TEMPORARY_CONTAINER: ${{github.run_id}}container
         ECS_CLUSTER: traderapp_dev   # Amazon ECS cluster name
         ECS_SERVICE: userssrvc-ecs-service-test # Your Amazon ECS service name
-        CONTAINER_STATE: 0
-
+        
       run: |
-        docker build -t $IMAGE_TAG:latest .
-        if ! docker run -d --name $TEMPORARY_CONTAINER -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -p 80:80 $IMAGE_TAG; then
-          CONTAINER_STATE=1
-          echo "Container state is: "$CONTAINER_STATE." Proceeding with the workflow..."
-          echo "Container started successfully. Proceeding with the workflow..."
-            
-        docker stop $TEMPORARY_CONTAINER
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-      #  echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 #end of CI
 
 #start CD: first is to download the task definition.json file from ECS.
@@ -79,18 +72,18 @@ jobs:
           aws ecs describe-task-definition --task-definition ${{ secrets.USERS_SERVICE_TASK_DEF_ARN }} \
           --query taskDefinition > task-definition.json
 
-    - name: Put the newly built image into the ECS task definition
-      id: task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: task-definition.json
-        container-name: ${{ secrets.USERS_SRVC_CONTAINER_NAME }}
-        image: ${{ steps.builder_pusher.outputs.built_image }}
+      - name: Put the newly built image into the ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: ${{ secrets.USERS_SRVC_CONTAINER_NAME }}
+          image: ${{ steps.builder_pusher.outputs.built_image }}
 
-    - name: Deploy the ECS task definition
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: ${{ env.ECS_SERVICE }}
-        cluster: ${{ env.ECS_CLUSTER }}
-        wait-for-service-stability: true
+      - name: Deploy the ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true

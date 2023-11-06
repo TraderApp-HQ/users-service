@@ -1,4 +1,4 @@
-import { getCountries } from "@/fixtures";
+import { getCountries } from "../fixtures";
 import mongoose from "mongoose";
 import "dotenv/config"
 

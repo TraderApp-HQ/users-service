@@ -7,8 +7,9 @@
     "build": "concurrently \"rm -rf build/\" \"npx tsc\"",
     "start": "node build/app.js",
     "dev": "npx nodemon src/app.ts",
-    "test": "jest",
-    "init-countries": "npx ts-node scripts/get-countries-script"
+    "test": "npx jest",
+    "init-countries": "npx ts-node src/scripts/get-countries-script",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@aws-sdk/client-secrets-manager": "^3.321.1",

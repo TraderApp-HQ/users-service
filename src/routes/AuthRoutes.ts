@@ -6,7 +6,7 @@ import {
     logoutHandler,
     passwordResetHandler,
     sendPasswordResetLinkHandler 
-} from "@/controllers/AuthController";
+} from "../controllers/AuthController";
 import { 
     validateSignupRequest, 
     validateLoginRequest, 
@@ -14,7 +14,8 @@ import {
     validateLogoutRequest,
     validateSendPasswordResetLinkRequest,
     validatePasswordResetRequest
-} from "@/middlewares/AuthMiddleware"; 
+} from "../middlewares/AuthMiddleware"; 
+
 const router = Router();
 
 router.post("/signup", validateSignupRequest, signupHandler);

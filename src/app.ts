@@ -1,29 +1,24 @@
 import express, { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import { AuthRoutes, CountryRoutes, VerificationRoutes } from "@/routes";
+import { AuthRoutes, CountryRoutes, VerificationRoutes } from "./routes";
 import { config } from "dotenv";
+import initSecrets from "./config/initialize-secrets";
+import logger from "./logger/logger";
 
-import { getCountries, insertRoles } from "@/fixtures";
-
-import apiResponse from "@/utils/response-handler";
-import { ResponseType } from "@/config/constants";
-
-import initSecrets from "@/config/initialize-secrets";
-import logger from "@/logger/logger";
+import apiResponse from "./utils/response-handler";
+import { ResponseType } from "./config/constants";
 
 import swaggerUi from "swagger-ui-express"
 import specs from "./utils/swagger";
 
 config();
-
 const app = express();
 (async function() {
-    // initialize secrets
     await initSecrets();
-    const port = process.env.PORT || 8001;
+    const port = process.env.PORT;
     const dbUrl = process.env.USERS_SERVICE_DB_URL || ''
-    //connect to mongodb
+    // connect to mongodb
     mongoose.connect(dbUrl).then(() => {
         app.listen(port, () => {
             logger.log(`Server listening at port ${port}`);
@@ -38,7 +33,7 @@ const app = express();
 })();
 
 function startServer() {
-    //cors
+    // cors
     app.use(
         cors({  
           origin: "*",
@@ -46,37 +41,21 @@ function startServer() {
         })
     );
     
-    //parse incoming requests
+    // parse incoming requests
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
 
-    //api routes
+    // api routes
     app.use("/auth", AuthRoutes);
     app.use("/verify", VerificationRoutes);
     app.use("/countries", CountryRoutes);
 
-    //route to populate db with countries and roles data
-    app.post("/fixtures", async (req, res, next) => {
-        try {
-            //get all countries and fill db countries collection
-            await getCountries();
-
-            //populate roles collection
-            await insertRoles();
-
-            res.status(200).send({ message: "pong" });
-        } catch (error) {
-            logger.error(error)
-            next(error);
-        }
-    })
-
-    //health check
+    // health check
     app.get("/ping", async (req, res, next) => {
         res.status(200).send({ message: "pong" });
     });
 
-    //handle errors
+    // handle errors
     app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
         const status = "ERROR";
         let error_name = err.name;

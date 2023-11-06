@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { ICountry } from "@/types";
+import { ICountry } from "../types";
 
 export interface ICountryModel extends ICountry {};
 

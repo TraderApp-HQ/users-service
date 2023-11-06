@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import Country from "@/models/Country";
-import apiResponse from "@/utils/response-handler";
+import Country from "../models/Country";
+import apiResponse from "../utils/response-handler";
 
 const status = "SUCCESS";
 

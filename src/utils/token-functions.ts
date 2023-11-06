@@ -1,7 +1,7 @@
 import JWT from "jsonwebtoken"; 
 import dotenv from "dotenv";
 import { Payload } from "../types";
-import { TOKEN_ATTRIBUTES } from "@/config/constants";
+import { TOKEN_ATTRIBUTES } from "../config/constants";
 
 //init env variables
 dotenv.config();

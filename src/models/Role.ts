@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { IRole } from "@/types";
+import { IRole } from "../types";
 
 const CountrySchema = new Schema({
     _id: Number,
