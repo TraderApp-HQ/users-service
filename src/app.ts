@@ -3,13 +3,15 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { AuthRoutes, CountryRoutes, VerificationRoutes } from "./routes";
 import { config } from "dotenv";
-
 import initSecrets from "./config/initialize-secrets";
 import logger from "./logger/logger";
+import { getCountries, insertRoles } from "@/fixtures";
+
+import apiResponse from "./utils/response-handler";
+import { ResponseType } from "./config/constants";
 
 config();
 const app = express();
-
 (async function() {
     await initSecrets();
     const port = process.env.PORT;
@@ -67,7 +69,10 @@ function startServer() {
             console.log("Error name: ", err.name, "Error message: ", err.message);
         }
 
-        res.status(statusCode).json({ status, error_name, error_message }); 
+        res.status(statusCode).json(apiResponse({
+            type: ResponseType.ERROR,
+            message: error_message
+        }))
     });
 }
 
