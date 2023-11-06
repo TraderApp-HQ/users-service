@@ -1,5 +1,5 @@
-import Role from "@/models/Role";
-import { IRole } from "@/types";
+import Role from "../models/Role";
+import { IRole } from "../types";
 
 async function role() {
     const insertRoles: IRole[] = [];

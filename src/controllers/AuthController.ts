@@ -1,14 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 import bcrypt from "bcrypt";
-import User from "@/models/User";
-import Token from "@/models/RefreshToken";
-import PasswordResetToken from "@/models/PasswordResetToken";
+import User from "../models/User";
+import Token from "../models/RefreshToken";
+import PasswordResetToken from "../models/PasswordResetToken";
 import { 
     generateAccessToken, 
     generateRefreshToken, 
     issueTokenResponse, 
     generateResetToken 
-} from "@/utils/token-functions";
+} from "../utils/token-functions";
 
 async function buildResponse(data: any) {
     const user = {

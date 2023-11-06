@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import Country from "@/models/Country";
+import Country from "../models/Country";
 
 const status = "SUCCESS";
 
