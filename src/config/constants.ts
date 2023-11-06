@@ -1,7 +1,7 @@
 export const ENVIRONMENTS: Record<string, string> = Object.freeze({
-	DEVELOPMENT: "DEV",
-	STAGING: "STAGING",
-	PRODUCTION: "PROD",
+	development: "dev",
+	staging: "staging",
+	production: "prod",
 });
 
 export const TOKEN_ATTRIBUTES = {

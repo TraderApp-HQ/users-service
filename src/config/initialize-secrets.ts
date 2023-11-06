@@ -7,12 +7,13 @@ import secretsJson from '../env.json'
 import { ENVIRONMENTS } from "./constants";
 
 const client = new SecretsManagerClient({ region: "eu-west-1" });
-const env = process.env.NODE_ENV || 'development';
-let suffix = ENVIRONMENTS[env].toLowerCase();
+const env = process.env.NODE_ENV ?? 'development';
+let suffix = ENVIRONMENTS[env];
 const secretNames = [
   'common-secrets',
   'users-service-secrets'
 ];
+
 
 async function initSecrets() {
     console.debug(`Getting secrets for ${env} and ${suffix} environment`);
