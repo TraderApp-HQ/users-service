@@ -7,11 +7,15 @@ on:
   pull_request:
   workflow_dispatch: # setting for manual runs of the pipeline.
   
+  
 env: # values of env vars the app will need to launch r defined here
   NODE_ENV: development
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS-REGION: eu-west-1 #pipeline needs this to use d keys above
 # NPM_TOKEN
+
+
 jobs:
   build: # first job to build the application first with npm.
     runs-on: ubuntu-latest
@@ -20,15 +24,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Node.js # second step is to set up environment for node build
+      - name: Install Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 16.15
 
-      - name: Install dependencies # third step is to install dependencies
+      - name: Install dependencies # force a reinstallation of all dependencies in package.json
         run: npm install --force
 
-      - name: Assign Environment variables # run the build 
+      - name: Run the build # run the build 
         run: npm run build
 
       - name: Start #  start the server
