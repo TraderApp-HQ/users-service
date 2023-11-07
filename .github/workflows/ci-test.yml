@@ -6,7 +6,12 @@ on:
   #     - dev
   pull_request:
   workflow_dispatch: # setting for manual runs of the pipeline.
-
+  
+env: # values of env vars the app will need to launch r defined here
+  NODE_ENV: development
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+# NPM_TOKEN
 jobs:
   build: # first job to build the application first with npm.
     runs-on: ubuntu-latest
@@ -23,18 +28,10 @@ jobs:
       - name: Install dependencies # third step is to install dependencies
         run: npm install --force
 
-      - name: Build # fourth step is to test by trying to build node
-        # - this uses the build script in the script file
+      - name: Assign Environment variables # run the build 
         run: npm run build
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-1
-
-      - name: Start # fifth step is to test by trying to start server
+      - name: Start #  start the server
               # - this uses the startscript in the script file
         run: npm run start &
 
@@ -42,16 +39,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-1
-
       - name: Login to Amazon ECR
         id: ecr-login-id #this is an id for this step. So u can use the id to ref d step later in d workflow.
         uses: aws-actions/amazon-ecr-login@v1
@@ -64,7 +51,7 @@ jobs:
           ECR_REPOSITORY: users-service-test
           IMAGE_TAG: ${{github.run_id}}
           ECS_CLUSTER: traderapp_dev # Amazon ECS cluster name
-          ECS_SERVICE: signalssrvc-ecs-service-test # Your Amazon ECS service name
+          ECS_SERVICE: users-service-test # Your Amazon ECS service name
 
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
