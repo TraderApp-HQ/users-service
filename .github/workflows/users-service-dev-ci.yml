@@ -1,4 +1,4 @@
-name: users-service-ci-test
+name: dev-ci
 
 on:
   #  push:
