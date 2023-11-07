@@ -23,7 +23,6 @@ const app = express();
         app.listen(port, () => {
             logger.log(`Server listening at port ${port}`);
             startServer();
-            app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
             logger.log(`Docs available at localhost:${port}/api-docs`);
         })
     })
@@ -40,6 +39,9 @@ function startServer() {
           methods: "GET, HEAD, PUT, PATCH, POST, DELETE"
         })
     );
+    
+    //documentation
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
     
     // parse incoming requests
     app.use(express.urlencoded({ extended: true }));
