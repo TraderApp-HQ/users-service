@@ -40,29 +40,37 @@ jobs:
         run: npm run start &
 
   Test_if_the_update_can_build_into_an_image:
-    runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Login to Amazon ECR
-        id: ecr-login-id #this is an id for this step. So u can use the id to ref d step later in d workflow.
-        uses: aws-actions/amazon-ecr-login@v1
+        steps:
+            - name: Check out code
+              uses: actions/checkout@v2
 
-      - name: Build The Docker Image - But no push.
-        # THIS IS WHERE PROD VARS N TEST VARS ARE DEFINED N USED BASED ON BRANCH RUNNING FROM
-        id: builder_pusher
-        env: # here we r creating env vars n assigning values to them.
-          ECR_REGISTRY: ${{ steps.ecr-login-id.outputs.registry }}
-          ECR_REPOSITORY: users-service-test
-          IMAGE_TAG: ${{github.run_id}}
-          ECS_CLUSTER: traderapp_dev # Amazon ECS cluster name
-          ECS_SERVICE: users-service-test # Your Amazon ECS service name
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: eu-west-1
 
-        run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          echo "Docker Image build is completed. No push to ECR specified."
+            - name: Login to Amazon ECR
+              id: ecr-login-id #this is an id for this step. So u can use the id to ref d step later in d workflow.
+              uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Run Docker Container
-        run: docker run -d -p 8080 $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+            - name: Build The Docker Image - But no push.
+              # THIS IS WHERE PROD VARS N TEST VARS ARE DEFINED N USED BASED ON BRANCH RUNNING FROM
+              id: builder_pusher
+              env: # here we r creating env vars n assigning values to them.
+                  ECR_REGISTRY: ${{ steps.ecr-login-id.outputs.registry }}
+                  ECR_REPOSITORY: signals-service-test
+                  IMAGE_TAG: ${{github.run_id}}
+                  ECS_CLUSTER: traderapp_dev # Amazon ECS cluster name
+                  ECS_SERVICE: users-service-test # Your Amazon ECS service name
+
+              run: |
+                  docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+                  echo "Docker Image build is completed. No push to ECR specified."
+
 #       docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 #       echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
