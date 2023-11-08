@@ -77,7 +77,7 @@ jobs:
           echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 #end of CI
 
-#start CD: first is to download the task definition.json file from ECS.
+#start CD: download the task definition.json template & create a new task definition.
       - name: Download task definition
         run: |
           aws ecs describe-task-definition --task-definition ${{ secrets.USERS_SERVICE_TASK_DEF_ARN }} \
