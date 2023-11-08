@@ -11,6 +11,7 @@ import {
 } from "../utils/token-functions";
 import apiResponse from "../utils/response-handler";
 import { ResponseMessage } from "../config/constants";
+import { clearRefreshTokenCookie, getRefreshTokenCookie, saveRefreshTokenCookie } from "~/utils/cookie-handler";
 
 async function buildResponse(data: any) {
     const user = {
@@ -79,6 +80,7 @@ export async function loginHandler(req: Request, res: Response, next: NextFuncti
         }
 9
         const tokenRes =  await buildResponse(data);
+        saveRefreshTokenCookie(res, tokenRes.refresh_token)
         res.status(200).json(apiResponse({
             object: tokenRes,
             message: ResponseMessage.LOGIN
@@ -95,6 +97,7 @@ export async function logoutHandler(req: Request, res: Response, next: NextFunct
 
     try {
         await Token.deleteOne({ _id });
+        clearRefreshTokenCookie(res)
         res.status(204).json(apiResponse());
     }
     catch(err) {

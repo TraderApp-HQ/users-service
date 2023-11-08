@@ -5,6 +5,7 @@ import { verifyRefreshToken } from "../utils/token-functions";
 import Token from "../models/RefreshToken";
 import User from "../models/User";
 import PasswordResetToken from "../models/PasswordResetToken";
+import { getRefreshTokenCookie } from "~/utils/cookie-handler";
 
 export async function validateLoginRequest(req: Request, res: Response, next: NextFunction) {
     //get params from request body
@@ -80,7 +81,8 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
 
 export async function validateRefreshTokenRequest(req: Request, res: Response, next: NextFunction) {
     //get refresh token from request body
-    const { refresh_token } = req.body;
+    const refresh_token = getRefreshTokenCookie(req);
+    console.log(refresh_token, 'refresh')
 
     //define validation schema
     const schema = Joi.object({
@@ -127,8 +129,8 @@ export async function validateRefreshTokenRequest(req: Request, res: Response, n
 
 export async function validateLogoutRequest(req: Request, res: Response, next: NextFunction) {
     //get refresh token from request body
-    const { refresh_token } = req.body;
-
+    const refresh_token = getRefreshTokenCookie(req);
+    console.log(refresh_token, 'refresh')
     //define validation schema
     const schema = Joi.object({
         refresh_token: Joi.string().required().label("Refresh Token")

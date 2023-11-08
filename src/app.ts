@@ -8,6 +8,7 @@ import logger from "./logger/logger";
 
 import apiResponse from "./utils/response-handler";
 import { ResponseType } from "./config/constants";
+import cookies from "cookie-parser";
 
 config();
 const app = express();
@@ -39,6 +40,7 @@ function startServer() {
     // parse incoming requests
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
+    app.use(cookies())
 
     // api routes
     app.use("/auth", AuthRoutes);
