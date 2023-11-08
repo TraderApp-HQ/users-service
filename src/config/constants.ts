@@ -26,7 +26,19 @@ export const ResponseMessage = {
 
 }
 
-export const RESPONSE_TAGS = { auth: 'Auth', verification: 'Verification', country: 'Country'}
+export const RESPONSE_TAGS = { 
+	auth: 'Auth', 
+	verification: 'Verification', 
+	country: 'Country'
+}
+
+export const RESPONSE_CODES = {
+	ok: "200",
+	created: "201",
+	badrequest: "400",
+	unauthorized: "401",
+	servererror: '500'
+}
 
 export const DOC_RESPONSE = {
   SERVERERROR: generateResponseObject('Internal Server Error'),

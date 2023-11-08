@@ -1,4 +1,4 @@
-import { DOC_RESPONSE, RESPONSE_TAGS } from "../../config/constants"
+import { DOC_RESPONSE, RESPONSE_CODES, RESPONSE_TAGS } from "../../config/constants"
 
 const createAuthLogoutBody = {
   type: 'object',
@@ -25,11 +25,11 @@ const createAuthLogout = {
     required: true,
   },
   responses: {
-    "200": DOC_RESPONSE.SUCCESS,
-    '201': DOC_RESPONSE.LOGOUT_SUCCESS,
-    "400": DOC_RESPONSE.BADREQUEST,
-    '401': DOC_RESPONSE.UNAUTHORIZED,
-    '500': DOC_RESPONSE.SERVERERROR
+    [RESPONSE_CODES.ok]: DOC_RESPONSE.SUCCESS,
+    [RESPONSE_CODES.created]: DOC_RESPONSE.LOGOUT_SUCCESS,
+    [RESPONSE_CODES.badrequest]: DOC_RESPONSE.BADREQUEST,
+    [RESPONSE_CODES.unauthorized]: DOC_RESPONSE.UNAUTHORIZED,
+    [RESPONSE_CODES.servererror]: DOC_RESPONSE.SERVERERROR
   },
 };
 
