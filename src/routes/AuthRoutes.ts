@@ -15,14 +15,15 @@ import {
     validateSendPasswordResetLinkRequest,
     validatePasswordResetRequest
 } from "../middlewares/AuthMiddleware"; 
+import { ROUTES } from "~/config/constants";
 
 const router = Router();
 
-router.post("/signup", validateSignupRequest, signupHandler);
-router.post("/login", validateLoginRequest, loginHandler);
-router.delete("/logout", validateLogoutRequest, logoutHandler);
-router.post("/refresh-token", validateRefreshTokenRequest, refreshTokenHandler);
-router.post("/password-reset", validatePasswordResetRequest, passwordResetHandler);
-router.get("/password-reset/:email", validateSendPasswordResetLinkRequest, sendPasswordResetLinkHandler);
+router.post(ROUTES.signup, validateSignupRequest, signupHandler);
+router.post(ROUTES.login, validateLoginRequest, loginHandler);
+router.delete(ROUTES.logout, validateLogoutRequest, logoutHandler);
+router.post(ROUTES.refresh_token, validateRefreshTokenRequest, refreshTokenHandler);
+router.post(ROUTES.password_reset, validatePasswordResetRequest, passwordResetHandler);
+router.get(ROUTES.password_reset_link, validateSendPasswordResetLinkRequest, sendPasswordResetLinkHandler);
 
 export default router;

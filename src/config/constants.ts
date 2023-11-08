@@ -1,3 +1,5 @@
+import { generateResponseObject } from "~/utils/swagger-response";
+
 export const ENVIRONMENTS: Record<string, string> = Object.freeze({
 	development: "dev",
 	staging: "staging",
@@ -23,144 +25,26 @@ export const ResponseMessage = {
 	PASSWORD_RESET: 'Password was reset successfully!',
 
 }
-interface IDocResponse {
-	description: string,
-	properties: object
+
+export const RESPONSE_TAGS = { auth: 'Auth', verification: 'Verification', country: 'Country'}
+
+export const DOC_RESPONSE = {
+  SERVERERROR: generateResponseObject('Internal Server Error'),
+  UNAUTHORIZED: generateResponseObject('Error: Unauthorized'),
+  BADREQUEST: generateResponseObject('Error: Bad Request'),
+  SUCCESS: generateResponseObject('Success'),
+  LOGOUT_SUCCESS: generateResponseObject('User Logged out successfully!'),
+  LOGIN_SUCCESS: generateResponseObject('User Logged in successfully!'),
+  PASSWORD_RESET_LINK_SUCCESS: generateResponseObject('Password Resetted in successfully!'),
+  REFRESH_TOKEN_SUCCESS: generateResponseObject('Refresh Token requested successfully!'),
+  REGISTER_SUCCESS: generateResponseObject('User created successfully!'),
 }
 
-const docResponseBody = (responseObj: IDocResponse) => {
-	return {
-		description: responseObj.description,
-		content: {
-			'application/json': {
-				schema: {
-					type: 'object',
-					properties: responseObj.properties
-				},
-			},
-		},
-	}
-}
-export const DOCRESPONSE = {
-	SERVERERROR: docResponseBody({
-		description: 'Internal Server Error',
-		properties: {
-			message: {
-				type: 'string',
-				example: 'Internal Server Error',
-			},
-		}
-	}),
-	UNAUTHORIZED: docResponseBody({
-		description: 'Error: Unauthorized',
-		properties: {
-			message: {
-				type: 'string',
-				example: "Invalid Token",
-			},
-		}
-	}),
-	BADREQUEST: docResponseBody({
-		description: 'Error: Bad Request',
-		properties: {
-			message: {
-				type: 'string',
-				example: "Bad Request",
-			},
-		}
-	}),
-	SUCCESS: docResponseBody({
-		description: 'Success',
-		properties: {
-			message: {
-				type: 'string',
-				example: "Request was successful",
-			},
-		}
-	}),
-	LOGOUTSUCCESS: docResponseBody({
-		description: 'User Logged out successfully!',
-		properties: {
-			data: {
-				type: 'object',
-				example: {},
-			},
-			error: {
-				type: 'string',
-				example: null,
-			},
-			message: {
-				type: 'string',
-				example: 'Response is successful',
-			},
-		}
-	}),
-	LOGINSUCCESS: docResponseBody({
-		description: 'User Logged in successfully!',
-		properties: {
-			data: {
-				type: 'object',
-				example: {},
-			},
-			error: {
-				type: 'string',
-				example: null,
-			},
-			message: {
-				type: 'string',
-				example: 'Response is successful',
-			},
-		}
-	}),
-	PASSWORDRESETLINKSUCCESS: docResponseBody({
-		description: 'Password Resetted in successfully!',
-		properties: {
-			data: {
-				type: 'object',
-				example: {},
-			},
-			error: {
-				type: 'string',
-				example: null,
-			},
-			message: {
-				type: 'string',
-				example: 'Response is successful',
-			},
-		}
-	}),
-	REFRESHTOKENSUCCESS: docResponseBody({
-		description: 'Refresh Token requested successfully!',
-		properties: {
-			data: {
-				type: 'object',
-				example: {},
-			},
-			error: {
-				type: 'string',
-				example: null,
-			},
-			message: {
-				type: 'string',
-				example: 'Response is successful',
-			},
-		}
-	}),
-	REGISTERSUCCESS: docResponseBody({
-		description: 'User created successfully!',
-		properties: {
-			data: {
-				type: 'object',
-				example: {},
-			},
-			error: {
-				type: 'string',
-				example: null,
-			},
-			message: {
-				type: 'string',
-				example: 'Response is successful',
-			},
-		}
-	}),
+export const ROUTES = {
+	login: '/login',
+	signup: '/signup',
+	logout: '/logout',
+	refresh_token: '/refresh-token',
+	password_reset: '/password-reset',
+	password_reset_link: '/password-reset/:email'
 }

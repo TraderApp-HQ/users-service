@@ -1,4 +1,4 @@
-import { DOCRESPONSE } from "~/config/constants";
+import { DOC_RESPONSE, RESPONSE_TAGS } from "~/config/constants";
 
 const createAuthRefreshTokenBody = {
   type: 'object',
@@ -12,7 +12,7 @@ const createAuthRefreshTokenBody = {
 };
 
 const createAuthRefreshToken = {
-  tags: ['Auth'],
+  tags: [RESPONSE_TAGS.auth],
   description: 'Request Refresh Token in the system',
   requestBody: {
     content: {
@@ -25,11 +25,11 @@ const createAuthRefreshToken = {
     required: true,
   },
   responses: {
-    "200": DOCRESPONSE.SUCCESS,
-    '201': DOCRESPONSE.REFRESHTOKENSUCCESS,
-    "400": DOCRESPONSE.BADREQUEST,
-    '401': DOCRESPONSE.UNAUTHORIZED,
-    '500': DOCRESPONSE.SERVERERROR
+    "200": DOC_RESPONSE.SUCCESS,
+    '201': DOC_RESPONSE.REFRESH_TOKEN_SUCCESS,
+    "400": DOC_RESPONSE.BADREQUEST,
+    '401': DOC_RESPONSE.UNAUTHORIZED,
+    '500': DOC_RESPONSE.SERVERERROR
   },
 };
 

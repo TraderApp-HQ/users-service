@@ -1,6 +1,6 @@
 import swaggerJsdoc from 'swagger-jsdoc';
 import { version } from "../../package.json"
-import { createAuthLogin, createAuthLoginBody, createAuthLogout, createAuthLogoutBody, createAuthPasswordLinkReset, createAuthPasswordLinkResetBody, createAuthPasswordReset, createAuthPasswordResetBody, createAuthRefreshToken, createAuthRefreshTokenBody, createAuthSignup, createAuthSignupBody,  } from '../documentation';
+import { createAuthLogin, createAuthLoginBody, createAuthLogout, createAuthLogoutBody, createAuthPasswordLinkReset, createAuthPasswordLinkResetBody, createAuthPasswordReset, createAuthPasswordResetBody, createAuthRefreshToken, createAuthRefreshTokenBody, createAuthSignup, createAuthSignupBody,  } from '../documentation/auth';
 
 const options: swaggerJsdoc.Options = {
   swaggerDefinition: {
@@ -8,7 +8,7 @@ const options: swaggerJsdoc.Options = {
     info: {
       title: 'User Service API',
       version,
-      description: 'API documentation for your Node.js/Express API',
+      description: 'API documentation for User Service Trader App',
     },
     components: {
       securitySchemas: {
