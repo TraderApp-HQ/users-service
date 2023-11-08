@@ -57,6 +57,7 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
     try {
         const data = await User.create(req.body);
         const tokenRes = await buildResponse(data);
+        saveRefreshTokenCookie(res, tokenRes.refresh_token)
         res.status(200).json(apiResponse({
             object: tokenRes,
             message: ResponseMessage.SIGNUP
@@ -111,6 +112,7 @@ export async function refreshTokenHandler(req: Request, res: Response, next: Nex
     try {
         const data = await User.findOne({ _id });
         const tokenRes = await buildResponse(data);
+        saveRefreshTokenCookie(res, tokenRes.refresh_token)
         res.status(200).json(apiResponse({
             object: tokenRes,
         }));
