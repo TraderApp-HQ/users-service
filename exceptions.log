@@ -1,0 +1,244 @@
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m34[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'badrequest' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'badRequest'?
+
+[7m34[0m     [RESPONSE_CODES.badrequest]: DOC_RESPONSE.BADREQUEST,
+[7m  [0m [91m                    ~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m38[0m:[93m2[0m
+    [7m38[0m  badRequest: "400",
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'badRequest' is declared here.
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m36[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'servererror' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'serverError'?
+
+[7m36[0m     [RESPONSE_CODES.servererror]: DOC_RESPONSE.SERVERERROR
+[7m  [0m [91m                    ~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m40[0m:[93m2[0m
+    [7m40[0m  serverError: '500'
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~~[0m
+    'serverError' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m34[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'badrequest' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'badRequest'?
+
+[7m34[0m     [RESPONSE_CODES.badrequest]: DOC_RESPONSE.BADREQUEST,
+[7m  [0m [91m                    ~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m38[0m:[93m2[0m
+    [7m38[0m  badRequest: "400",
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'badRequest' is declared here.
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m36[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'servererror' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'serverError'?
+
+[7m36[0m     [RESPONSE_CODES.servererror]: DOC_RESPONSE.SERVERERROR
+[7m  [0m [91m                    ~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m40[0m:[93m2[0m
+    [7m40[0m  serverError: '500'
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~~[0m
+    'serverError' is declared here.
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [] development 2023-11-08 17:49:25
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m34[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'badrequest' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'badRequest'?
+
+[7m34[0m     [RESPONSE_CODES.badrequest]: DOC_RESPONSE.BADREQUEST,
+[7m  [0m [91m                    ~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m38[0m:[93m2[0m
+    [7m38[0m  badRequest: "400",
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'badRequest' is declared here.
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m36[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'servererror' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'serverError'?
+
+[7m36[0m     [RESPONSE_CODES.servererror]: DOC_RESPONSE.SERVERERROR
+[7m  [0m [91m                    ~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m40[0m:[93m2[0m
+    [7m40[0m  serverError: '500'
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~~[0m
+    'serverError' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m34[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'badrequest' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'badRequest'?
+
+[7m34[0m     [RESPONSE_CODES.badrequest]: DOC_RESPONSE.BADREQUEST,
+[7m  [0m [91m                    ~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m38[0m:[93m2[0m
+    [7m38[0m  badRequest: "400",
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'badRequest' is declared here.
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m36[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'servererror' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'serverError'?
+
+[7m36[0m     [RESPONSE_CODES.servererror]: DOC_RESPONSE.SERVERERROR
+[7m  [0m [91m                    ~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m40[0m:[93m2[0m
+    [7m40[0m  serverError: '500'
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~~[0m
+    'serverError' is declared here.
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [] development 2023-11-08T16:49:25.466Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m34[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'badrequest' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'badRequest'?
+
+[7m34[0m     [RESPONSE_CODES.badrequest]: DOC_RESPONSE.BADREQUEST,
+[7m  [0m [91m                    ~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m38[0m:[93m2[0m
+    [7m38[0m  badRequest: "400",
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'badRequest' is declared here.
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m36[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'servererror' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'serverError'?
+
+[7m36[0m     [RESPONSE_CODES.servererror]: DOC_RESPONSE.SERVERERROR
+[7m  [0m [91m                    ~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m40[0m:[93m2[0m
+    [7m40[0m  serverError: '500'
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~~[0m
+    'serverError' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m34[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'badrequest' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'badRequest'?
+
+[7m34[0m     [RESPONSE_CODES.badrequest]: DOC_RESPONSE.BADREQUEST,
+[7m  [0m [91m                    ~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m38[0m:[93m2[0m
+    [7m38[0m  badRequest: "400",
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'badRequest' is declared here.
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m36[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'servererror' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'serverError'?
+
+[7m36[0m     [RESPONSE_CODES.servererror]: DOC_RESPONSE.SERVERERROR
+[7m  [0m [91m                    ~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m40[0m:[93m2[0m
+    [7m40[0m  serverError: '500'
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~~[0m
+    'serverError' is declared here.
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [] development 2023-11-08 17:49:42
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m34[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'badrequest' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'badRequest'?
+
+[7m34[0m     [RESPONSE_CODES.badrequest]: DOC_RESPONSE.BADREQUEST,
+[7m  [0m [91m                    ~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m38[0m:[93m2[0m
+    [7m38[0m  badRequest: "400",
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'badRequest' is declared here.
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m36[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'servererror' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'serverError'?
+
+[7m36[0m     [RESPONSE_CODES.servererror]: DOC_RESPONSE.SERVERERROR
+[7m  [0m [91m                    ~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m40[0m:[93m2[0m
+    [7m40[0m  serverError: '500'
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~~[0m
+    'serverError' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m34[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'badrequest' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'badRequest'?
+
+[7m34[0m     [RESPONSE_CODES.badrequest]: DOC_RESPONSE.BADREQUEST,
+[7m  [0m [91m                    ~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m38[0m:[93m2[0m
+    [7m38[0m  badRequest: "400",
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'badRequest' is declared here.
+[96msrc/documentation/auth/auth-login.docs.ts[0m:[93m36[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'servererror' does not exist on type '{ ok: string; created: string; badRequest: string; unauthorized: string; serverError: string; }'. Did you mean 'serverError'?
+
+[7m36[0m     [RESPONSE_CODES.servererror]: DOC_RESPONSE.SERVERERROR
+[7m  [0m [91m                    ~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m40[0m:[93m2[0m
+    [7m40[0m  serverError: '500'
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~~[0m
+    'serverError' is declared here.
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [] development 2023-11-08T16:49:42.258Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m4[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../config/constants' or its corresponding type declarations.
+
+[7m4[0m import { ROUTES } from '../../config/constants';
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m4[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../config/constants' or its corresponding type declarations.
+
+[7m4[0m import { ROUTES } from '../../config/constants';
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [] development 2023-11-08 17:52:43
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m4[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../config/constants' or its corresponding type declarations.
+
+[7m4[0m import { ROUTES } from '../../config/constants';
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m4[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../config/constants' or its corresponding type declarations.
+
+[7m4[0m import { ROUTES } from '../../config/constants';
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [] development 2023-11-08T16:52:43.916Z

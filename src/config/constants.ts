@@ -1,4 +1,4 @@
-import { generateResponseObject } from "~/utils/swagger-response";
+import { generateResponseObject } from "../utils/swagger-response";
 
 export const ENVIRONMENTS: Record<string, string> = Object.freeze({
 	development: "dev",
@@ -35,9 +35,9 @@ export const RESPONSE_TAGS = {
 export const RESPONSE_CODES = {
 	ok: "200",
 	created: "201",
-	badrequest: "400",
+	badRequest: "400",
 	unauthorized: "401",
-	servererror: '500'
+	serverError: '500'
 }
 
 export const DOC_RESPONSE = {

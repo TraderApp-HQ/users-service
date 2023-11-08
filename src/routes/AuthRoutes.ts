@@ -15,7 +15,7 @@ import {
     validateSendPasswordResetLinkRequest,
     validatePasswordResetRequest
 } from "../middlewares/AuthMiddleware"; 
-import { ROUTES } from "~/config/constants";
+import { ROUTES } from "../config/constants";
 
 const router = Router();
 

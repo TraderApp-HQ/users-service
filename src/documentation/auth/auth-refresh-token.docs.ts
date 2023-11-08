@@ -1,4 +1,4 @@
-import { DOC_RESPONSE, RESPONSE_CODES, RESPONSE_TAGS } from "~/config/constants";
+import { DOC_RESPONSE, RESPONSE_CODES, RESPONSE_TAGS } from "../../config/constants";
 
 const createAuthRefreshTokenBody = {
   type: 'object',
@@ -27,9 +27,9 @@ const createAuthRefreshToken = {
   responses: {
     [RESPONSE_CODES.ok]: DOC_RESPONSE.SUCCESS,
     [RESPONSE_CODES.created]: DOC_RESPONSE.REFRESH_TOKEN_SUCCESS,
-    [RESPONSE_CODES.badrequest]: DOC_RESPONSE.BADREQUEST,
+    [RESPONSE_CODES.badRequest]: DOC_RESPONSE.BADREQUEST,
     [RESPONSE_CODES.unauthorized]: DOC_RESPONSE.UNAUTHORIZED,
-    [RESPONSE_CODES.servererror]: DOC_RESPONSE.SERVERERROR
+    [RESPONSE_CODES.serverError]: DOC_RESPONSE.SERVERERROR
   },
 };
 
