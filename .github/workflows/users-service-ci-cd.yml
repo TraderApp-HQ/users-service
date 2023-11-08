@@ -1,9 +1,9 @@
 name: users-service-cicd-pipeline
 
 on:
-  push:
-    branches:
-      - dev
+  #push:
+  #  branches:
+  #   - dev
   #       - pull_request
   workflow_dispatch: # manual runs of the pipeline.
 
