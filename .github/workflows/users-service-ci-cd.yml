@@ -83,7 +83,7 @@ jobs:
           aws ecs describe-task-definition --task-definition ${{ secrets.USERS_SERVICE_TASK_DEF_ARN }} \
           --query taskDefinition > task-definition.json
 
-      - name: Put the newly built image into the ECS task definition
+      - name: Put the newly built image into the new ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
