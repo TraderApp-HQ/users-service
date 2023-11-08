@@ -23,12 +23,12 @@ export const ResponseMessage = {
 	PASSWORD_RESET: 'Password was reset successfully!',
 
 }
-interface docResponseInterface {
+interface IDocResponse {
 	description: string,
 	properties: object
 }
 
-const docResponseBody = (responseObj: docResponseInterface) => {
+const docResponseBody = (responseObj: IDocResponse) => {
 	return {
 		description: responseObj.description,
 		content: {

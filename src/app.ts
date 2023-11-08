@@ -40,13 +40,13 @@ function startServer() {
         })
     );
     
-    //documentation
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
-    
     // parse incoming requests
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
 
+    //documentation
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+    
     // api routes
     app.use("/auth", AuthRoutes);
     app.use("/verify", VerificationRoutes);
