@@ -11,9 +11,9 @@ import {
 } from "../utils/token-functions";
 import apiResponse from "../utils/response-handler";
 import { ResponseMessage } from "../config/constants";
-import { clearRefreshTokenCookie, getRefreshTokenCookie, saveRefreshTokenCookie } from "~/utils/cookie-handler";
+import { cookieOptions } from "../config/constants";
 
-async function buildResponse(data: any) {
+async function buildResponse(res: Response, data: any) {
     const user = {
         id: data._id,
         first_name: data.first_name,
@@ -48,16 +48,18 @@ async function buildResponse(data: any) {
     }
 
     //format json response
-    const res = issueTokenResponse(access_token, refresh_token);
+    // const res = issueTokenResponse(access_token, refresh_token);
+    const response = issueTokenResponse(access_token);
+    res.cookie('refreshToken', refresh_token, cookieOptions);
 
-    return res;
+    return response;
 }
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
     try {
         const data = await User.create(req.body);
-        const tokenRes = await buildResponse(data);
-        saveRefreshTokenCookie(res, tokenRes.refresh_token)
+        const tokenRes = await buildResponse(res, data);
+        // saveRefreshTokenCookie(res, tokenRes.refresh_token)
         res.status(200).json(apiResponse({
             object: tokenRes,
             message: ResponseMessage.SIGNUP
@@ -80,8 +82,8 @@ export async function loginHandler(req: Request, res: Response, next: NextFuncti
             throw error;
         }
 9
-        const tokenRes =  await buildResponse(data);
-        saveRefreshTokenCookie(res, tokenRes.refresh_token)
+        const tokenRes =  await buildResponse(res, data);
+        // saveRefreshTokenCookie(res, tokenRes.refresh_token)
         res.status(200).json(apiResponse({
             object: tokenRes,
             message: ResponseMessage.LOGIN
@@ -98,7 +100,7 @@ export async function logoutHandler(req: Request, res: Response, next: NextFunct
 
     try {
         await Token.deleteOne({ _id });
-        clearRefreshTokenCookie(res)
+        res.cookie('refreshToken', "", {maxAge: 0})
         res.status(204).json(apiResponse());
     }
     catch(err) {
@@ -111,8 +113,7 @@ export async function refreshTokenHandler(req: Request, res: Response, next: Nex
 
     try {
         const data = await User.findOne({ _id });
-        const tokenRes = await buildResponse(data);
-        saveRefreshTokenCookie(res, tokenRes.refresh_token)
+        const tokenRes = await buildResponse(res, data);
         res.status(200).json(apiResponse({
             object: tokenRes,
         }));
