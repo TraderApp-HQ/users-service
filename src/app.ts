@@ -40,7 +40,7 @@ function startServer() {
     // parse incoming requests
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
-    app.use(cookies())
+    app.use(cookies(process.env.COOKIE_SECRET_KEY))
 
     // api routes
     app.use("/auth", AuthRoutes);

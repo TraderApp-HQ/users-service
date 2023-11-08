@@ -5,6 +5,7 @@ export function saveRefreshTokenCookie( res: Response, refreshToken: string) {
   const cookieOptions = {
     httpOnly: true,
     secure: true,
+    signed: true,
     maxAge: 7 * 24 * 60 * 60 * 1000, // Cookie will expire in 7 days
     };
 
@@ -12,7 +13,7 @@ export function saveRefreshTokenCookie( res: Response, refreshToken: string) {
 }
 
 export function getRefreshTokenCookie( req: Request ) {
-  const {refreshToken} = req.cookies
+  const {refreshToken} = req.signedCookies
   return refreshToken;
 }
 
