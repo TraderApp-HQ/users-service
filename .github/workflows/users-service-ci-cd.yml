@@ -2,9 +2,10 @@ name: users-service-cicd-pipeline
 
 on:
   #push:
-  #  branches:
+  #   branches:
   #   - dev
-  #       - pull_request
+  #    - pull_request
+  pull_request:  #for PRs against dev
   workflow_dispatch: # manual runs of the pipeline.
 
 env: # values of env vars the app will need to launch r defined here
