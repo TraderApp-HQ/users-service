@@ -8,7 +8,6 @@ export interface IUserModel extends IUser, Document {};
 interface UserModel extends Model<IUserModel> {
     login: any
 }
-// exprt the enums, roles, mongodb URL
 
 const UserSchema = new Schema({
     email: { type: String, required: true, unique: true },

@@ -9,6 +9,9 @@ import logger from "./logger/logger";
 import apiResponse from "./utils/response-handler";
 import { ResponseType } from "./config/constants";
 
+import swaggerUi from "swagger-ui-express"
+import specs from "./utils/swagger";
+
 config();
 const app = express();
 (async function() {
@@ -20,6 +23,7 @@ const app = express();
         app.listen(port, () => {
             logger.log(`Server listening at port ${port}`);
             startServer();
+            logger.log(`Docs available at localhost:${port}/api-docs`);
         })
     })
     .catch((err) => {
@@ -40,6 +44,9 @@ function startServer() {
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
 
+    //documentation
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+    
     // api routes
     app.use("/auth", AuthRoutes);
     app.use("/verify", VerificationRoutes);
@@ -74,4 +81,3 @@ function startServer() {
         }))
     });
 }
-
