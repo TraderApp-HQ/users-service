@@ -80,7 +80,7 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
 
 export async function validateRefreshTokenRequest(req: Request, res: Response, next: NextFunction) {
     //get refresh token from request body
-    const { refresh_token } = req.body;
+    const refresh_token = req.signedCookies.refreshToken;
 
     //define validation schema
     const schema = Joi.object({
@@ -127,8 +127,7 @@ export async function validateRefreshTokenRequest(req: Request, res: Response, n
 
 export async function validateLogoutRequest(req: Request, res: Response, next: NextFunction) {
     //get refresh token from request body
-    const { refresh_token } = req.body;
-
+    const refresh_token = req.signedCookies.refreshToken;
     //define validation schema
     const schema = Joi.object({
         refresh_token: Joi.string().required().label("Refresh Token")

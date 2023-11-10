@@ -68,10 +68,9 @@ export function verifyRefreshToken(refreshToken: string) {
 }
 
 // a function to format response for token issued
-export function issueTokenResponse(access_token: string, refresh_token: string) {
+export function issueTokenResponse(access_token: string) {
     return {
         access_token,
-        refresh_token,
         token_type: "bearer",
         expires: TOKEN_ATTRIBUTES.EXPIRES_TIMESTAMP
     }
