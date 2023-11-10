@@ -1,10 +1,11 @@
 name: users-service-cicd-pipeline
 
 on:
-  push:
-    branches:
-      - dev
-  #       - pull_request
+  #push:
+  #   branches:
+  #   - dev
+  #    - pull_request
+  pull_request:  #for PRs against dev
   workflow_dispatch: # manual runs of the pipeline.
 
 env: # values of env vars the app will need to launch r defined here
@@ -35,17 +36,6 @@ jobs:
         run: npm run build
 
       - name: Start #  start the server
-              # - this uses the startscript in the script file
-        run: npm run start & 
-
-      - name: Configure AWS credentials 
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-1
-
-      - name: Start # step to test by trying to start server
               # - this uses the startscript in the script file
         run: npm run start &
 
@@ -88,13 +78,13 @@ jobs:
           echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 #end of CI
 
-#start CD: first is to download the task definition.json file from ECS.
-      - name: Download task definition
+#start CD: download the task definition.json template & create a new task definition.
+      - name: Create ECS Task Definition
         run: |
           aws ecs describe-task-definition --task-definition ${{ secrets.USERS_SERVICE_TASK_DEF_ARN }} \
           --query taskDefinition > task-definition.json
 
-      - name: Put the newly built image into the ECS task definition
+      - name: Put the newly built image into the new ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
