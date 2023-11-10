@@ -1,5 +1,4 @@
 import swaggerJsdoc from 'swagger-jsdoc';
-import { version } from "../../package.json"
 import { createAuthLogin, createAuthLoginBody, createAuthLogout, createAuthLogoutBody, createAuthPasswordLinkReset, createAuthPasswordLinkResetBody, createAuthPasswordReset, createAuthPasswordResetBody, createAuthRefreshToken, createAuthRefreshTokenBody, createAuthSignup, createAuthSignupBody,  } from '../documentation/auth';
 import { ROUTES } from '../config/constants';
 
@@ -8,7 +7,7 @@ const options: swaggerJsdoc.Options = {
     openapi: '3.0.0',
     info: {
       title: 'User Service API',
-      version,
+      version: "1.0.0",
       description: 'API documentation for User Service Trader App',
     },
     components: {
