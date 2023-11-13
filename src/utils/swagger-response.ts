@@ -20,7 +20,7 @@ export const generateResponseObject = (description: string) => {
             },
             message: {
               type: 'string',
-              example: 'Response is successful',
+              example: description,
             },
           }
 				},
