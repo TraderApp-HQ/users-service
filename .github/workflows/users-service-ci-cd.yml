@@ -33,6 +33,9 @@ jobs:
       - name: Start #  start the server
               # - this uses the startscript in the script file
         run: npm run start &
+
+      - name: Display Environment Variables
+        run: env
         
 
   docker_build_then_push_to_ecr_and_ecs:
