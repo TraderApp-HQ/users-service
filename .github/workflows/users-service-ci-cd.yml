@@ -33,9 +33,6 @@ jobs:
       - name: Start #  start the server
               # - this uses the startscript in the script file
         run: npm run start &
-
-      - name: Display Environment Variables
-        run: env
         
 
   docker_build_then_push_to_ecr_and_ecs:
@@ -55,7 +52,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{env.AWS_REGION}}
+          aws-region: ${{vars.AWS_REGION}}
 
       - name: Login to Amazon ECR
         id: ecr-login-id #this is an id for this step. So u can use the id to ref d step later in d workflow.
@@ -77,7 +74,7 @@ jobs:
 #start CD: download the task definition.json template & create a new task definition.
       - name: Create ECS Task Definition
         run: |
-          aws ecs describe-task-definition --task-definition ${{ env.USERS_SERVICE_TASK_DEF_ARN_DEV }} \
+          aws ecs describe-task-definition --task-definition ${{ vars.USERS_SERVICE_TASK_DEF_ARN_DEV }} \
           --query taskDefinition > task-definition.json
 
       - name: Put the newly built image into the new ECS task definition
@@ -85,14 +82,14 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: ${{ env.USERS_SRVC_CONTAINER_NAME_DEV }}
+          container-name: ${{ vars.USERS_SRVC_CONTAINER_NAME_DEV }}
           image: ${{ steps.builder_pusher.outputs.built_image }}
 
       - name: Deploy the ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ env.ECS_SERVICE }}
-          cluster: ${{ env.ECS_CLUSTER }}
+          service: ${{ vars.ECS_SERVICE }}
+          cluster: ${{ vars.ECS_CLUSTER }}
           wait-for-service-stability: true
 #end of CD
