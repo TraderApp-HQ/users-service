@@ -11,6 +11,8 @@ on:
 jobs:
   build: # first job - to build the application first with npm
     runs-on: ubuntu-latest
+    environment:
+      name: development
 
     steps:
       - name: Checkout code # first step in this build JOB is to checkout code from branch
@@ -35,6 +37,8 @@ jobs:
 
   docker_build_then_push_to_ecr_and_ecs:
     runs-on: ubuntu-latest
+    environment:
+      name: development
 
     steps:
       - name: Check out code
@@ -48,7 +52,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-1
+          aws-region: ${{env.AWS_REGION}}
 
       - name: Login to Amazon ECR
         id: ecr-login-id #this is an id for this step. So u can use the id to ref d step later in d workflow.
