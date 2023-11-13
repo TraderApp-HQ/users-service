@@ -1,12 +1,11 @@
-name: users-service-cicd-pipeline
+name: users-service-ci-dev
 
 on:
-  #push:
-  #   branches:
-  #   - dev
-  #    - pull_request
-  # pull_request:  #for PRs against dev
-  workflow_dispatch: # manual runs of the pipeline.
+  #  push:
+  #     branches:
+  #     - dev
+  pull_request:
+  workflow_dispatch: # setting for manual runs of the pipeline.
 
 jobs:
   build: # first job - to build the application first with npm
@@ -33,9 +32,9 @@ jobs:
       - name: Start #  start the server
               # - this uses the startscript in the script file
         run: npm run start &
-        
 
-  docker_build_then_push_to_ecr_and_ecs:
+
+  Test_if_the_update_can_build_into_an_image:
     runs-on: ubuntu-latest
     environment:
       name: development
@@ -43,10 +42,10 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-        
+
       - name: Check out code
         uses: actions/checkout@v2
-    
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -58,7 +57,7 @@ jobs:
         id: ecr-login-id #this is an id for this step. So u can use the id to ref d step later in d workflow.
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build Docker Image, tag and push image to ECR
+      - name: Build The Docker Image, But No Push Needed
       # THIS IS WHERE PROD VARS N TEST VARS ARE DEFINED N USED BASED ON BRANCH RUNNING FROM
         id: builder_pusher
         env:   # here we r creating env vars n assigning values to them.
@@ -67,29 +66,5 @@ jobs:
           ECR_REPOSITORY: ${{vars.ECR_REPOSITORY}}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          echo "Docker Image build is completed. No push to ECR specified."
 #end of CI
-
-#start CD: download the task definition.json template & create a new task definition.
-      - name: Create ECS Task Definition for new Release
-        run: |
-          aws ecs describe-task-definition --task-definition ${{ vars.USERS_SERVICE_TASK_DEF_ARN_DEV }} \
-          --query taskDefinition > task-definition.json
-
-      - name: Put the newly built image into the new ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: task-definition.json
-          container-name: ${{ vars.USERS_SRVC_CONTAINER_NAME_DEV }}
-          image: ${{ steps.builder_pusher.outputs.built_image }}
-
-      - name: Deploy the ECS task definition's Service as new Release
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ vars.ECS_SERVICE }}
-          cluster: ${{ vars.ECS_CLUSTER }}
-          wait-for-service-stability: true
-#end of CD
