@@ -1,6 +1,7 @@
 import mongoose, { Document, Schema, Model } from "mongoose";
 import bcrypt from "bcrypt";
 import { IUser } from "../types";
+import { Roles } from "../config/enums";
 
 export interface IUserModel extends IUser, Document {};
 
@@ -19,13 +20,14 @@ const UserSchema = new Schema({
     isEmailVerified: { type: Boolean, default: false },
     isPhoneVerified: { type: Boolean, default: false },
     isIdVerified: { type: Boolean, default: false },
-    role: { type: Number, default: 1, ref: "role" }
+    role: { type: String, enum: Roles, default: Roles.USER }
 }, { versionKey: false, timestamps: true });
 
 UserSchema.pre("save", async function(next) {
     try {
         let salt = await bcrypt.genSalt(10);
-        this.password = await bcrypt.hash(this.password, salt);
+        let tempPass = this.password || '';
+        this.password = await bcrypt.hash(tempPass, salt) as unknown as string;
         next();
     }
     catch(err: any) {

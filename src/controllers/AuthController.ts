@@ -8,9 +8,12 @@ import {
     generateRefreshToken, 
     issueTokenResponse, 
     generateResetToken 
-} from "../utils/tokens";
+} from "../utils/token-functions";
+import apiResponse from "../utils/response-handler";
+import { ResponseMessage } from "../config/constants";
+import { cookieOptions } from "../config/constants";
 
-async function buildResponse(data: any) {
+async function buildResponse(res: Response, data: any) {
     const user = {
         id: data._id,
         first_name: data.first_name,
@@ -45,16 +48,22 @@ async function buildResponse(data: any) {
     }
 
     //format json response
-    const res = issueTokenResponse(access_token, refresh_token);
+    // const res = issueTokenResponse(access_token, refresh_token);
+    const response = issueTokenResponse(access_token);
+    res.cookie('refreshToken', refresh_token, cookieOptions);
 
-    return res;
+    return response;
 }
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
     try {
         const data = await User.create(req.body);
-        const tokenRes = await buildResponse(data);
-        res.status(200).json(tokenRes);
+        const tokenRes = await buildResponse(res, data);
+        // saveRefreshTokenCookie(res, tokenRes.refresh_token)
+        res.status(200).json(apiResponse({
+            object: tokenRes,
+            message: ResponseMessage.SIGNUP
+        }))
     }
     catch(err) {
         next(err);
@@ -72,9 +81,13 @@ export async function loginHandler(req: Request, res: Response, next: NextFuncti
             error.name = "NotFound"
             throw error;
         }
-
-        const tokenRes =  await buildResponse(data);
-        res.status(200).json(tokenRes);
+9
+        const tokenRes =  await buildResponse(res, data);
+        // saveRefreshTokenCookie(res, tokenRes.refresh_token)
+        res.status(200).json(apiResponse({
+            object: tokenRes,
+            message: ResponseMessage.LOGIN
+        }))
 
     }
     catch(err: any) {
@@ -87,7 +100,8 @@ export async function logoutHandler(req: Request, res: Response, next: NextFunct
 
     try {
         await Token.deleteOne({ _id });
-        res.status(204).json({});
+        res.cookie('refreshToken', "", {maxAge: 0})
+        res.status(204).json(apiResponse());
     }
     catch(err) {
         next(err);
@@ -99,8 +113,10 @@ export async function refreshTokenHandler(req: Request, res: Response, next: Nex
 
     try {
         const data = await User.findOne({ _id });
-        const tokenRes = await buildResponse(data);
-        res.status(200).json(tokenRes);
+        const tokenRes = await buildResponse(res, data);
+        res.status(200).json(apiResponse({
+            object: tokenRes,
+        }));
     }
     catch(err) {
         next(err);
@@ -131,7 +147,9 @@ export async function sendPasswordResetLinkHandler(req: Request, res: Response, 
             console.log("stored hashed is : ", hashed);
         }
 
-        res.status(200).json("Password rest link has been sent");
+        res.status(200).json(apiResponse({
+            message: ResponseMessage.PASSWORD_RESET_SENT
+        }));
     }
     catch(err) {
         next(err);
@@ -163,7 +181,9 @@ export async function passwordResetHandler(req: Request, res: Response, next: Ne
 
 
         //send response
-        res.status(200).json("Password was reset successfully!");
+        res.status(200).json(apiResponse({
+            message: ResponseMessage.PASSWORD_RESET
+        }));
 
     }
     catch(err) {
