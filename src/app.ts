@@ -3,20 +3,29 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { AuthRoutes, CountryRoutes, VerificationRoutes } from "./routes";
 import { config } from "dotenv";
-import initSecrets from "./config/initialize-secrets";
-import logger from "./logger/logger";
+import { apiResponseHandler, logger, initSecrets } from "@traderapp/shared-resources";
 
-import apiResponse from "./utils/response-handler";
-import { ResponseType } from "./config/constants";
+import { ResponseType, ENVIRONMENTS } from "./config/constants";
 import cookies from "cookie-parser";
 
 import swaggerUi from "swagger-ui-express";
 import specs from "./utils/swagger";
 
+import secretsJson from "./env.json";
+
 config();
 const app = express();
+
+const env = process.env.NODE_ENV ?? "development";
+const suffix = ENVIRONMENTS[env];
+const secretNames = ["common-secrets", "users-service-secrets"];
+
 (async function () {
-	await initSecrets();
+	await initSecrets({
+		env: suffix,
+		secretNames,
+		secretsJson,
+	});
 	const port = process.env.PORT;
 	const dbUrl = process.env.USERS_SERVICE_DB_URL ?? "";
 	// connect to mongodb
@@ -79,7 +88,7 @@ function startServer() {
 		}
 
 		res.status(statusCode).json(
-			apiResponse({
+			apiResponseHandler({
 				type: ResponseType.ERROR,
 				message: errorMessage,
 			}),

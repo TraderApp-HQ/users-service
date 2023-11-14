@@ -9,9 +9,8 @@ import {
     issueTokenResponse, 
     generateResetToken 
 } from "../utils/token-functions";
-import apiResponse from "../utils/response-handler";
-import { ResponseMessage } from "../config/constants";
-import { cookieOptions } from "../config/constants";
+import { ResponseMessage, cookieOptions } from "../config/constants";
+import { apiResponseHandler } from "@traderapp/shared-resources";
 
 async function buildResponse(res: Response, data: any) {
     const user = {
@@ -60,7 +59,7 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
         const data = await User.create(req.body);
         const tokenRes = await buildResponse(res, data);
         // saveRefreshTokenCookie(res, tokenRes.refresh_token)
-        res.status(200).json(apiResponse({
+        res.status(200).json(apiResponseHandler({
             object: tokenRes,
             message: ResponseMessage.SIGNUP
         }))
@@ -84,7 +83,7 @@ export async function loginHandler(req: Request, res: Response, next: NextFuncti
 9
         const tokenRes =  await buildResponse(res, data);
         // saveRefreshTokenCookie(res, tokenRes.refresh_token)
-        res.status(200).json(apiResponse({
+        res.status(200).json(apiResponseHandler({
             object: tokenRes,
             message: ResponseMessage.LOGIN
         }))
@@ -101,7 +100,7 @@ export async function logoutHandler(req: Request, res: Response, next: NextFunct
     try {
         await Token.deleteOne({ _id });
         res.cookie('refreshToken', "", {maxAge: 0})
-        res.status(204).json(apiResponse());
+        res.status(204).json(apiResponseHandler());
     }
     catch(err) {
         next(err);
@@ -114,7 +113,7 @@ export async function refreshTokenHandler(req: Request, res: Response, next: Nex
     try {
         const data = await User.findOne({ _id });
         const tokenRes = await buildResponse(res, data);
-        res.status(200).json(apiResponse({
+        res.status(200).json(apiResponseHandler({
             object: tokenRes,
         }));
     }
@@ -147,7 +146,7 @@ export async function sendPasswordResetLinkHandler(req: Request, res: Response, 
             console.log("stored hashed is : ", hashed);
         }
 
-        res.status(200).json(apiResponse({
+        res.status(200).json(apiResponseHandler({
             message: ResponseMessage.PASSWORD_RESET_SENT
         }));
     }
@@ -181,7 +180,7 @@ export async function passwordResetHandler(req: Request, res: Response, next: Ne
 
 
         //send response
-        res.status(200).json(apiResponse({
+        res.status(200).json(apiResponseHandler({
             message: ResponseMessage.PASSWORD_RESET
         }));
 
