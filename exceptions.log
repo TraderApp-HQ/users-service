@@ -662,3 +662,211 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:981:32)
     at Function.Module._load (node:internal/modules/cjs/loader:822:12)
     at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15T13:59:17.441Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/Users/Osaro/Documents/GitHub/users-service/src/utils/response-handler.ts' is not a module.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/Users/Osaro/Documents/GitHub/users-service/src/utils/response-handler.ts' is not a module.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15 15:01:46
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/Users/Osaro/Documents/GitHub/users-service/src/utils/response-handler.ts' is not a module.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2306: [0mFile '/Users/Osaro/Documents/GitHub/users-service/src/utils/response-handler.ts' is not a module.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15T14:01:46.803Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m12[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'paginate' does not exist on type 'UserModel'.
+
+[7m12[0m     const users = await User.paginate({}, options);
+[7m  [0m [91m                             ~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m12[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'paginate' does not exist on type 'UserModel'.
+
+[7m12[0m     const users = await User.paginate({}, options);
+[7m  [0m [91m                             ~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15 15:11:01
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m12[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'paginate' does not exist on type 'UserModel'.
+
+[7m12[0m     const users = await User.paginate({}, options);
+[7m  [0m [91m                             ~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m12[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'paginate' does not exist on type 'UserModel'.
+
+[7m12[0m     const users = await User.paginate({}, options);
+[7m  [0m [91m                             ~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15T14:11:01.963Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m10[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'page'.
+
+[7m10[0m       page: page || 1,
+[7m  [0m [91m            ~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m11[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'size'.
+
+[7m11[0m       limit: size || 10,
+[7m  [0m [91m             ~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m13[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'paginate' does not exist on type 'UserModel'.
+
+[7m13[0m     const users = await User.paginate({}, options);
+[7m  [0m [91m                             ~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m10[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'page'.
+
+[7m10[0m       page: page || 1,
+[7m  [0m [91m            ~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m11[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'size'.
+
+[7m11[0m       limit: size || 10,
+[7m  [0m [91m             ~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m13[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'paginate' does not exist on type 'UserModel'.
+
+[7m13[0m     const users = await User.paginate({}, options);
+[7m  [0m [91m                             ~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15 15:11:34
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m10[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'page'.
+
+[7m10[0m       page: page || 1,
+[7m  [0m [91m            ~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m11[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'size'.
+
+[7m11[0m       limit: size || 10,
+[7m  [0m [91m             ~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m13[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'paginate' does not exist on type 'UserModel'.
+
+[7m13[0m     const users = await User.paginate({}, options);
+[7m  [0m [91m                             ~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m10[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'page'.
+
+[7m10[0m       page: page || 1,
+[7m  [0m [91m            ~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m11[0m:[93m14[0m - [91merror[0m[90m TS2304: [0mCannot find name 'size'.
+
+[7m11[0m       limit: size || 10,
+[7m  [0m [91m             ~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m13[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'paginate' does not exist on type 'UserModel'.
+
+[7m13[0m     const users = await User.paginate({}, options);
+[7m  [0m [91m                             ~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15T14:11:34.589Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m14[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'paginate' does not exist on type 'UserModel'.
+
+[7m14[0m     const users = await User.paginate({}, options);
+[7m  [0m [91m                             ~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m14[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'paginate' does not exist on type 'UserModel'.
+
+[7m14[0m     const users = await User.paginate({}, options);
+[7m  [0m [91m                             ~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15 15:13:18
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m14[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'paginate' does not exist on type 'UserModel'.
+
+[7m14[0m     const users = await User.paginate({}, options);
+[7m  [0m [91m                             ~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m14[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'paginate' does not exist on type 'UserModel'.
+
+[7m14[0m     const users = await User.paginate({}, options);
+[7m  [0m [91m                             ~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15T14:13:18.465Z

@@ -3,10 +3,13 @@ import bcrypt from "bcrypt";
 import { IUser } from "../types";
 import { Roles } from "../config/enums";
 
+const mongoosePaginate = require('mongoose-paginate-v2');
+
 export interface IUserModel extends IUser, Document {};
 
 interface UserModel extends Model<IUserModel> {
-    login: any
+    login: any,
+    paginate: any,
 }
 
 const UserSchema = new Schema({
@@ -23,6 +26,7 @@ const UserSchema = new Schema({
     role: { type: String, enum: Roles, default: Roles.USER }
 }, { versionKey: false, timestamps: true });
 
+UserSchema.plugin(mongoosePaginate);
 UserSchema.pre("save", async function(next) {
     try {
         let salt = await bcrypt.genSalt(10);

@@ -6,7 +6,12 @@ import { ResponseMessage } from "~/config/constants";
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
   try {
     // add access authentication
-    const users = await User.find();
+    const { page, size } = req.body
+    const options = {
+      page: page || 1,
+      limit: size || 10,
+    }
+    const users = await User.paginate({}, options);
      res.status(200).json(apiResponse({
       object: users,
       message: ResponseMessage.GETUSERS
