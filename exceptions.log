@@ -242,3 +242,423 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:981:32)
     at Function.Module._load (node:internal/modules/cjs/loader:822:12)
     at Module.require (node:internal/modules/cjs/loader:1005:19) [] development 2023-11-08T16:52:43.916Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15 14:46:49
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15T13:46:49.656Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15 14:53:44
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15T13:53:44.170Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/UserRoutes.ts[0m:[93m9[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'get_all_users' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m9[0m router.post(ROUTES.get_all_users, getAllUsers);
+[7m [0m [91m                   ~~~~~~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m10[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'get_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m10[0m router.get(ROUTES.get_user, getUserById);
+[7m  [0m [91m                  ~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m11[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'update_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m11[0m router.post(ROUTES.update_user, updateUserById);
+[7m  [0m [91m                   ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/UserRoutes.ts[0m:[93m9[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'get_all_users' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m9[0m router.post(ROUTES.get_all_users, getAllUsers);
+[7m [0m [91m                   ~~~~~~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m10[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'get_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m10[0m router.get(ROUTES.get_user, getUserById);
+[7m  [0m [91m                  ~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m11[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'update_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m11[0m router.post(ROUTES.update_user, updateUserById);
+[7m  [0m [91m                   ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15 14:54:12
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/UserRoutes.ts[0m:[93m9[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'get_all_users' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m9[0m router.post(ROUTES.get_all_users, getAllUsers);
+[7m [0m [91m                   ~~~~~~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m10[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'get_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m10[0m router.get(ROUTES.get_user, getUserById);
+[7m  [0m [91m                  ~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m11[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'update_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m11[0m router.post(ROUTES.update_user, updateUserById);
+[7m  [0m [91m                   ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/UserRoutes.ts[0m:[93m9[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'get_all_users' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m9[0m router.post(ROUTES.get_all_users, getAllUsers);
+[7m [0m [91m                   ~~~~~~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m10[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'get_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m10[0m router.get(ROUTES.get_user, getUserById);
+[7m  [0m [91m                  ~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m11[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'update_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m11[0m router.post(ROUTES.update_user, updateUserById);
+[7m  [0m [91m                   ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15T13:54:12.676Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/UserRoutes.ts[0m:[93m9[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'get_all_users' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m9[0m router.post(ROUTES.get_all_users, getAllUsers);
+[7m [0m [91m                   ~~~~~~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m10[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'get_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m10[0m router.get(ROUTES.get_user, getUserById);
+[7m  [0m [91m                  ~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m11[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'update_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m11[0m router.post(ROUTES.update_user, updateUserById);
+[7m  [0m [91m                   ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/UserRoutes.ts[0m:[93m9[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'get_all_users' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m9[0m router.post(ROUTES.get_all_users, getAllUsers);
+[7m [0m [91m                   ~~~~~~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m10[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'get_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m10[0m router.get(ROUTES.get_user, getUserById);
+[7m  [0m [91m                  ~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m11[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'update_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m11[0m router.post(ROUTES.update_user, updateUserById);
+[7m  [0m [91m                   ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15 14:54:36
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/UserRoutes.ts[0m:[93m9[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'get_all_users' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m9[0m router.post(ROUTES.get_all_users, getAllUsers);
+[7m [0m [91m                   ~~~~~~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m10[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'get_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m10[0m router.get(ROUTES.get_user, getUserById);
+[7m  [0m [91m                  ~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m11[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'update_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m11[0m router.post(ROUTES.update_user, updateUserById);
+[7m  [0m [91m                   ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/UserRoutes.ts[0m:[93m9[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'get_all_users' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m9[0m router.post(ROUTES.get_all_users, getAllUsers);
+[7m [0m [91m                   ~~~~~~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m10[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'get_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m10[0m router.get(ROUTES.get_user, getUserById);
+[7m  [0m [91m                  ~~~~~~~~[0m
+[96msrc/routes/UserRoutes.ts[0m:[93m11[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'update_user' does not exist on type '{ login: string; signup: string; logout: string; refresh_token: string; password_reset: string; password_reset_link: string; }'.
+
+[7m11[0m router.post(ROUTES.update_user, updateUserById);
+[7m  [0m [91m                   ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15T13:54:36.970Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m12[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'GETUSERS' does not exist on type '{ LOGIN: string; SIGNUP: string; PASSWORD_RESET_SENT: string; PASSWORD_RESET: string; }'.
+
+[7m12[0m       message: ResponseMessage.GETUSERS
+[7m  [0m [91m                               ~~~~~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m26[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'GETUSER' does not exist on type '{ LOGIN: string; SIGNUP: string; PASSWORD_RESET_SENT: string; PASSWORD_RESET: string; }'.
+
+[7m26[0m       message: ResponseMessage.GETUSER
+[7m  [0m [91m                               ~~~~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m40[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'UPDATEUSER' does not exist on type '{ LOGIN: string; SIGNUP: string; PASSWORD_RESET_SENT: string; PASSWORD_RESET: string; }'.
+
+[7m40[0m       message: ResponseMessage.UPDATEUSER
+[7m  [0m [91m                               ~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m12[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'GETUSERS' does not exist on type '{ LOGIN: string; SIGNUP: string; PASSWORD_RESET_SENT: string; PASSWORD_RESET: string; }'.
+
+[7m12[0m       message: ResponseMessage.GETUSERS
+[7m  [0m [91m                               ~~~~~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m26[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'GETUSER' does not exist on type '{ LOGIN: string; SIGNUP: string; PASSWORD_RESET_SENT: string; PASSWORD_RESET: string; }'.
+
+[7m26[0m       message: ResponseMessage.GETUSER
+[7m  [0m [91m                               ~~~~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m40[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'UPDATEUSER' does not exist on type '{ LOGIN: string; SIGNUP: string; PASSWORD_RESET_SENT: string; PASSWORD_RESET: string; }'.
+
+[7m40[0m       message: ResponseMessage.UPDATEUSER
+[7m  [0m [91m                               ~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15 14:55:06
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m12[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'GETUSERS' does not exist on type '{ LOGIN: string; SIGNUP: string; PASSWORD_RESET_SENT: string; PASSWORD_RESET: string; }'.
+
+[7m12[0m       message: ResponseMessage.GETUSERS
+[7m  [0m [91m                               ~~~~~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m26[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'GETUSER' does not exist on type '{ LOGIN: string; SIGNUP: string; PASSWORD_RESET_SENT: string; PASSWORD_RESET: string; }'.
+
+[7m26[0m       message: ResponseMessage.GETUSER
+[7m  [0m [91m                               ~~~~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m40[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'UPDATEUSER' does not exist on type '{ LOGIN: string; SIGNUP: string; PASSWORD_RESET_SENT: string; PASSWORD_RESET: string; }'.
+
+[7m40[0m       message: ResponseMessage.UPDATEUSER
+[7m  [0m [91m                               ~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m12[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'GETUSERS' does not exist on type '{ LOGIN: string; SIGNUP: string; PASSWORD_RESET_SENT: string; PASSWORD_RESET: string; }'.
+
+[7m12[0m       message: ResponseMessage.GETUSERS
+[7m  [0m [91m                               ~~~~~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m26[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'GETUSER' does not exist on type '{ LOGIN: string; SIGNUP: string; PASSWORD_RESET_SENT: string; PASSWORD_RESET: string; }'.
+
+[7m26[0m       message: ResponseMessage.GETUSER
+[7m  [0m [91m                               ~~~~~~~[0m
+[96msrc/controllers/UserController.ts[0m:[93m40[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'UPDATEUSER' does not exist on type '{ LOGIN: string; SIGNUP: string; PASSWORD_RESET_SENT: string; PASSWORD_RESET: string; }'.
+
+[7m40[0m       message: ResponseMessage.UPDATEUSER
+[7m  [0m [91m                               ~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15T13:55:06.098Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15 14:58:54
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15T13:58:54.874Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15 14:59:17
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController.ts[0m:[93m3[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '../utils/response-handler' or its corresponding type declarations.
+
+[7m3[0m import apiResponse from "../utils/response-handler";
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15T13:59:17.441Z

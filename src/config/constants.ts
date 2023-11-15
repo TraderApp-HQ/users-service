@@ -23,7 +23,9 @@ export const ResponseMessage = {
 	SIGNUP: 'Signup was successful',
 	PASSWORD_RESET_SENT: 'Password rest link has been sent',
 	PASSWORD_RESET: 'Password was reset successfully!',
-
+	GETUSERS: "Users Fetched successfully",
+	GETUSER: "User Fetched successfully",
+	UPDATEUSER: "User Updated successfullt",
 }
 
 export const cookieOptions = {
@@ -65,5 +67,8 @@ export const ROUTES = {
 	logout: '/logout',
 	refresh_token: '/refresh-token',
 	password_reset: '/password-reset',
-	password_reset_link: '/password-reset/:email'
+	password_reset_link: '/password-reset/:email',
+  get_user: '/get/:id',
+  get_all_users: '/get-all',
+  update_user: '/update'
 }
