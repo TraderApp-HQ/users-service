@@ -1,0 +1,18 @@
+[31merror[39m: uncaughtException: Secrets Manager can't find the specified secret.
+ResourceNotFoundException: Secrets Manager can't find the specified secret.
+    at de_ResourceNotFoundExceptionRes (/Users/barry/Desktop/traderapp/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:1237:23)
+    at de_GetSecretValueCommandError (/Users/barry/Desktop/traderapp/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:504:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async /Users/barry/Desktop/traderapp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-serde/dist-cjs/deserializerMiddleware.js:7:24
+    at async /Users/barry/Desktop/traderapp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-signing/dist-cjs/middleware.js:14:20
+    at async /Users/barry/Desktop/traderapp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-retry/dist-cjs/retryMiddleware.js:27:46
+    at async /Users/barry/Desktop/traderapp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js:7:26 [] development 2023-11-07 08:13:01
+error: uncaughtException: Secrets Manager can't find the specified secret.
+ResourceNotFoundException: Secrets Manager can't find the specified secret.
+    at de_ResourceNotFoundExceptionRes (/Users/barry/Desktop/traderapp/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:1237:23)
+    at de_GetSecretValueCommandError (/Users/barry/Desktop/traderapp/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:504:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async /Users/barry/Desktop/traderapp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-serde/dist-cjs/deserializerMiddleware.js:7:24
+    at async /Users/barry/Desktop/traderapp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-signing/dist-cjs/middleware.js:14:20
+    at async /Users/barry/Desktop/traderapp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-retry/dist-cjs/retryMiddleware.js:27:46
+    at async /Users/barry/Desktop/traderapp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js:7:26 [] development 2023-11-07T07:13:01.128Z

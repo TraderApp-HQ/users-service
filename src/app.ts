@@ -19,6 +19,7 @@ const app = express();
     mongoose.connect(dbUrl).then(() => {
         app.listen(port, () => {
             logger.log(`Server listening at port ${port}`);
+            logger.warn(`Warning message listening at port ${port}`);
             startServer();
         })
     })
