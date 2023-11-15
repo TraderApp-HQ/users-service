@@ -1,11 +1,9 @@
 name: users-service-cicd-pipeline
 
 on:
-  #push:
-  #   branches:
-  #   - dev
-  #    - pull_request
-  # pull_request:  #for PRs against dev
+  push:
+     branches:
+       - dev
   workflow_dispatch: # manual runs of the pipeline.
 
 jobs:
