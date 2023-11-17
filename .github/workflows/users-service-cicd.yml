@@ -13,7 +13,7 @@ jobs:
       name: staging
 
     steps:
-      - name: Checkout code # first step in this build JOB is to checkout code from branch
+      - name: Checkout code # 1st step in this build JOB is to checkout code from branch
         uses: actions/checkout@v2
 
       - name: Install Node.js # second step is to set up environment for node build
