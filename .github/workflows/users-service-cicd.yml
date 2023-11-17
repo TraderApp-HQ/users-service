@@ -3,7 +3,7 @@ name: users-service-cicd-pipeline
 on:
   push:
      branches:
-       - dev
+       - staging
   workflow_dispatch: # manual runs of the pipeline.
 
 jobs:
