@@ -9,8 +9,9 @@ import {
 	issueTokenResponse,
 	generateResetToken,
 } from "../utils/token-functions";
-import { ResponseMessage, cookieOptions } from "../config/constants";
+import { ErrorMessage, ResponseMessage, cookieOptions } from "../config/constants";
 import { apiResponseHandler } from "@traderapp/shared-resources";
+import { HttpStatusCode } from "axios";
 
 async function buildResponse(res: Response, data: any) {
 	const user = {
@@ -76,8 +77,8 @@ export async function loginHandler(req: Request, res: Response, next: NextFuncti
 		const data = await User.login(email, password);
 
 		if (!data) {
-			const error = new Error("Invalid login credentials!");
-			error.name = "NotFound";
+			const error = new Error(ErrorMessage.INVALID_LOGIN);
+			error.name = ErrorMessage.NOTFOUND;
 			throw error;
 		}
 		const tokenRes = await buildResponse(res, data);

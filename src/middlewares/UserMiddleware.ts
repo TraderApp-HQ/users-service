@@ -1,72 +1,38 @@
-import { Request, Response, NextFunction } from "express";
-import User from "../models/User";
-import apiResponse from "../utils/response-handler";
-import { ResponseMessage } from "~/config/constants";
-import { validateGetAllUser, validateUpdateUser } from "~/utils/validation-handler";
-import { restrictAccess } from "~/utils/token-functions";
+import { NextFunction } from "express";
+import Joi from "joi";
 
-export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
-	try {
-		await validateGetAllUser(req.body, next);
+export async function validateUpdateUser(data: any, next: NextFunction) {
+	const schema = Joi.object({
+		id: Joi.string().required().label("id"),
+		email: Joi.string().label("Email"),
+		first_name: Joi.string().label("First Name"),
+		last_name: Joi.string().label("Last Name"),
+		phone: Joi.string().label("Phone"),
+		dob: Joi.string().label("Date of Birth"),
+		country_id: Joi.number().label("Country Id"),
+	});
+	// validate request
+	const { error } = schema.validate(data);
 
-		const { id } = req.body;
-		const accessToken = (req.headers.authorization as string)?.split(" ")[1] ?? "";
-		restrictAccess({ token: accessToken, userId: id ?? "" }, next);
-		// add access authentication
-		const { page, size } = req.body;
-		const options = {
-			page: page || 1,
-			limit: size || 10,
-		};
-		const users = await User.paginate({}, options);
-		res.status(200).json(
-			apiResponse({
-				object: users,
-				message: ResponseMessage.GETUSERS,
-			}),
-		);
-	} catch (err) {
-		next(err);
+	if (error != null) {
+		// strip string of double quotes
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
 	}
 }
 
-export async function getUserById(req: Request, res: Response, next: NextFunction) {
-	try {
-		// add access authentication
-		const { id } = req.params;
+export async function validateGetAllUser(data: any, next: NextFunction) {
+	const schema = Joi.object({
+		id: Joi.string().label("id"),
+		page: Joi.string().label("Page"),
+		size: Joi.string().label("Size"),
+	});
+	// validate request
+	const { error } = schema.validate(data);
 
-		const accessToken = (req.headers.authorization as string)?.split(" ")[1] ?? "";
-		restrictAccess({ token: accessToken, userId: id ?? "" }, next);
-
-		const user = await User.findById(id);
-		res.status(200).json(
-			apiResponse({
-				object: user,
-				message: ResponseMessage.GETUSER,
-			}),
-		);
-	} catch (err) {
-		next(err);
-	}
-}
-
-export async function updateUserById(req: Request, res: Response, next: NextFunction) {
-	try {
-		// update validation
-		await validateUpdateUser(req.body, next);
-		// restrict access
-		const { id } = req.body;
-		const accessToken = (req.headers.authorization as string)?.split(" ")[1] ?? "";
-		restrictAccess({ token: accessToken, userId: id ?? "" }, next);
-
-		const user = await User.findByIdAndUpdate(id, req.body, { new: true });
-		res.status(200).json(
-			apiResponse({
-				object: user,
-				message: ResponseMessage.UPDATEUSER,
-			}),
-		);
-	} catch (err) {
-		next(err);
+	if (error != null) {
+		// strip string of double quotes
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
 	}
 }

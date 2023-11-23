@@ -894,3 +894,25 @@ TypeError: Cannot destructure property 'id' of 'payload' as it is undefined.
     at new Promise (<anonymous>)
     at __awaiter (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:27:12)
     at restrictAccess (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:134:12) [unkown-service] development 2023-11-23T06:52:40.863Z
+[31merror[39m: uncaughtException: Cannot find module '../utils/validation-handler'
+Require stack:
+- /Users/Osaro/Documents/GitHub/users-service/src/controllers/UserController.ts
+- /Users/Osaro/Documents/GitHub/users-service/src/routes/UserRoutes.ts
+- /Users/Osaro/Documents/GitHub/users-service/src/routes/index.ts
+- /Users/Osaro/Documents/GitHub/users-service/src/app.ts
+Error: Cannot find module '../utils/validation-handler'
+Require stack:
+- /Users/Osaro/Documents/GitHub/users-service/src/controllers/UserController.ts
+- /Users/Osaro/Documents/GitHub/users-service/src/routes/UserRoutes.ts
+- /Users/Osaro/Documents/GitHub/users-service/src/routes/index.ts
+- /Users/Osaro/Documents/GitHub/users-service/src/app.ts
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue (/Users/Osaro/Documents/GitHub/users-service/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at Function.Module._resolveFilename (/Users/Osaro/Documents/GitHub/users-service/node_modules/tsconfig-paths/src/register.ts:115:36)
+    at Function.Module._load (node:internal/modules/cjs/loader:778:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/Users/Osaro/Documents/GitHub/users-service/src/controllers/UserController.ts:5:1)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10) [unkown-service] development 2023-11-23 18:00:51

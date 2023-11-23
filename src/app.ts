@@ -64,7 +64,7 @@ function startServer() {
 	app.use("/auth", AuthRoutes);
 	app.use("/verify", VerificationRoutes);
 	app.use("/countries", CountryRoutes);
-    app.use("/user", UserRoutes);
+	app.use("/users", UserRoutes);
 
 	// health check
 	app.get("/ping", async (req, res, next) => {

@@ -1,78 +1,83 @@
-import { generateResponseObject } from '../utils/swagger-response';
+import { generateResponseObject } from "../utils/swagger-response";
 
 export const ENVIRONMENTS: Record<string, string> = Object.freeze({
-  development: 'dev',
-  staging: 'staging',
-  production: 'prod',
+	development: "dev",
+	staging: "staging",
+	production: "prod",
 });
 
 export const TOKEN_ATTRIBUTES = {
-  ACCESS_TOKEN_EXPIRES: '15m',
-  REFRESH_TOKEN_EXPIRES: '30d',
-  EXPIRES_TIMESTAMP: 15 * 60,
-  TOKEN_ISSUER: 'traderapp.finance',
+	ACCESS_TOKEN_EXPIRES: "15m",
+	REFRESH_TOKEN_EXPIRES: "30d",
+	EXPIRES_TIMESTAMP: 15 * 60,
+	TOKEN_ISSUER: "traderapp.finance",
 };
 
 export const ResponseType = {
-  SUCCESS: 'success',
-  ERROR: 'error',
+	SUCCESS: "success",
+	ERROR: "error",
 };
 
 export const ResponseMessage = {
-  LOGIN: 'Login was successful',
-  SIGNUP: 'Signup was successful',
-  PASSWORD_RESET_SENT: 'Password rest link has been sent',
-  PASSWORD_RESET: 'Password was reset successfully!',
-  GETUSERS: 'Users Fetched successfully',
-  GETUSER: 'User Fetched successfully',
-  UPDATEUSER: 'User Updated successfully',
+	LOGIN: "Login was successful",
+	SIGNUP: "Signup was successful",
+	PASSWORD_RESET_SENT: "Password rest link has been sent",
+	PASSWORD_RESET: "Password was reset successfully!",
+	GET_USERS: "Users Fetched successfully",
+	GET_USER: "User Fetched successfully",
+	UPDATE_USER: "User Updated successfully",
+};
+
+export const ErrorMessage = {
+	INVALID_LOGIN: "Invalid login credentials!",
+	NOTFOUND: "NotFound",
 };
 
 export const cookieOptions = {
-  httpOnly: true,
-  secure: true,
-  signed: true,
-  maxAge: 7 * 24 * 60 * 60 * 1000, // Cookie will expire in 7 days
+	httpOnly: true,
+	secure: true,
+	signed: true,
+	maxAge: 7 * 24 * 60 * 60 * 1000, // Cookie will expire in 7 days
 };
 
 export const RESPONSE_TAGS = {
-  auth: 'Auth',
-  verification: 'Verification',
-  country: 'Country',
+	auth: "Auth",
+	verification: "Verification",
+	country: "Country",
 };
 
 export const RESPONSE_CODES = {
-  ok: '200',
-  created: '201',
-  badRequest: '400',
-  unauthorized: '401',
-  serverError: '500',
+	ok: "200",
+	created: "201",
+	badRequest: "400",
+	unauthorized: "401",
+	serverError: "500",
+	notFound: "404",
+	forbidden: "403",
+	request_timeout: "408",
+	conflict: "409",
 };
 
 export const DOC_RESPONSE = {
-  SERVERERROR: generateResponseObject('Internal Server Error'),
-  UNAUTHORIZED: generateResponseObject('Error: Unauthorized'),
-  BADREQUEST: generateResponseObject('Error: Bad Request'),
-  SUCCESS: generateResponseObject('Success'),
-  LOGOUT_SUCCESS: generateResponseObject('User Logged out successfully!'),
-  LOGIN_SUCCESS: generateResponseObject('User Logged in successfully!'),
-  PASSWORD_RESET_LINK_SUCCESS: generateResponseObject(
-    'Password Resetted in successfully!'
-  ),
-  REFRESH_TOKEN_SUCCESS: generateResponseObject(
-    'Refresh Token requested successfully!'
-  ),
-  REGISTER_SUCCESS: generateResponseObject('User created successfully!'),
+	SERVERERROR: generateResponseObject("Internal Server Error"),
+	UNAUTHORIZED: generateResponseObject("Error: Unauthorized"),
+	BADREQUEST: generateResponseObject("Error: Bad Request"),
+	SUCCESS: generateResponseObject("Success"),
+	LOGOUT_SUCCESS: generateResponseObject("User Logged out successfully!"),
+	LOGIN_SUCCESS: generateResponseObject("User Logged in successfully!"),
+	PASSWORD_RESET_LINK_SUCCESS: generateResponseObject("Password Resetted in successfully!"),
+	REFRESH_TOKEN_SUCCESS: generateResponseObject("Refresh Token requested successfully!"),
+	REGISTER_SUCCESS: generateResponseObject("User created successfully!"),
 };
 
 export const ROUTES = {
-  login: '/login',
-  signup: '/signup',
-  logout: '/logout',
-  refresh_token: '/refresh-token',
-  password_reset: '/password-reset',
-  password_reset_link: '/password-reset/:email',
-  get_user: '/get/:id',
-  get_all_users: '/get-all',
-  update_user: '/update',
+	login: "/login",
+	signup: "/signup",
+	logout: "/logout",
+	refresh_token: "/refresh-token",
+	password_reset: "/password-reset",
+	password_reset_link: "/password-reset/:email",
+	get_user: "/:id",
+	get_all_users: "/all",
+	update_user: "/:id",
 };
