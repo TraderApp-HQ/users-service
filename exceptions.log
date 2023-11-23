@@ -870,3 +870,27 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:981:32)
     at Function.Module._load (node:internal/modules/cjs/loader:822:12)
     at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-15T14:13:18.465Z
+[31merror[39m: uncaughtException: Cannot destructure property 'id' of 'payload' as it is undefined.
+TypeError: Cannot destructure property 'id' of 'payload' as it is undefined.
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:115:11
+    at /Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:152:16
+    at getSecret (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:90:14)
+    at Object.module.exports [as verify] (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:94:10)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:107:6
+    at Generator.next (<anonymous>)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:27:12)
+    at restrictAccess (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:134:12) [unkown-service] development 2023-11-23 07:52:40
+error: uncaughtException: Cannot destructure property 'id' of 'payload' as it is undefined.
+TypeError: Cannot destructure property 'id' of 'payload' as it is undefined.
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:115:11
+    at /Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:152:16
+    at getSecret (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:90:14)
+    at Object.module.exports [as verify] (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:94:10)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:107:6
+    at Generator.next (<anonymous>)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:27:12)
+    at restrictAccess (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:134:12) [unkown-service] development 2023-11-23T06:52:40.863Z

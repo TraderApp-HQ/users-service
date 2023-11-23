@@ -10,7 +10,7 @@ export async function getAllUsers(req: Request, res: Response, next: NextFunctio
 		await validateGetAllUser(req.body, next);
 
 		const { id } = req.body;
-		const accessToken = (req.headers["x-api-token"] ?? "") as string;
+		const accessToken = (req.headers.authorization as string)?.split(" ")[1] ?? "";
 		restrictAccess({ token: accessToken, userId: id ?? "" }, next);
 		// add access authentication
 		const { page, size } = req.body;
@@ -35,7 +35,7 @@ export async function getUserById(req: Request, res: Response, next: NextFunctio
 		// add access authentication
 		const { id } = req.params;
 
-		const accessToken = (req.headers["x-api-token"] ?? "") as string;
+		const accessToken = (req.headers.authorization as string)?.split(" ")[1] ?? "";
 		restrictAccess({ token: accessToken, userId: id ?? "" }, next);
 
 		const user = await User.findById(id);
@@ -55,9 +55,8 @@ export async function updateUserById(req: Request, res: Response, next: NextFunc
 		// update validation
 		await validateUpdateUser(req.body, next);
 		// restrict access
-
 		const { id } = req.body;
-		const accessToken = (req.headers["x-api-token"] ?? "") as string;
+		const accessToken = (req.headers.authorization as string)?.split(" ")[1] ?? "";
 		restrictAccess({ token: accessToken, userId: id ?? "" }, next);
 
 		const user = await User.findByIdAndUpdate(id, req.body, { new: true });

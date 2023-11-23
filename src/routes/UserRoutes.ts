@@ -1,10 +1,6 @@
-import { Router } from 'express';
-import {
-  getAllUsers,
-  getUserById,
-  updateUserById,
-} from '../controllers/UserController';
-import { ROUTES } from '../config/constants';
+import { Router } from "express";
+import { getAllUsers, getUserById, updateUserById } from "../middlewares/UserMiddleware";
+import { ROUTES } from "../config/constants";
 
 const router = Router();
 
