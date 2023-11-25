@@ -916,3 +916,207 @@ Require stack:
     at Module._compile (node:internal/modules/cjs/loader:1105:14)
     at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1618:23)
     at Module._extensions..js (node:internal/modules/cjs/loader:1159:10) [unkown-service] development 2023-11-23 18:00:51
+[31merror[39m: uncaughtException: Cannot destructure property 'id' of 'payload' as it is undefined.
+TypeError: Cannot destructure property 'id' of 'payload' as it is undefined.
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:116:12
+    at /Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:152:16
+    at getSecret (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:90:14)
+    at Object.module.exports [as verify] (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:94:10)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:108:7
+    at Generator.next (<anonymous>)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:27:12)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:104:53 [unkown-service] development 2023-11-25 11:17:17
+error: uncaughtException: Cannot destructure property 'id' of 'payload' as it is undefined.
+TypeError: Cannot destructure property 'id' of 'payload' as it is undefined.
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:116:12
+    at /Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:152:16
+    at getSecret (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:90:14)
+    at Object.module.exports [as verify] (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:94:10)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:108:7
+    at Generator.next (<anonymous>)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:27:12)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:104:53 [unkown-service] development 2023-11-25T10:17:17.044Z
+[31merror[39m: uncaughtException: Cannot destructure property 'id' of 'payload' as it is undefined.
+TypeError: Cannot destructure property 'id' of 'payload' as it is undefined.
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:116:12
+    at /Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:152:16
+    at getSecret (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:90:14)
+    at Object.module.exports [as verify] (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:94:10)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:108:7
+    at Generator.next (<anonymous>)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:27:12)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:104:53 [unkown-service] development 2023-11-25 11:17:51
+error: uncaughtException: Cannot destructure property 'id' of 'payload' as it is undefined.
+TypeError: Cannot destructure property 'id' of 'payload' as it is undefined.
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:116:12
+    at /Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:152:16
+    at getSecret (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:90:14)
+    at Object.module.exports [as verify] (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:94:10)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:108:7
+    at Generator.next (<anonymous>)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:27:12)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:104:53 [unkown-service] development 2023-11-25T10:17:51.891Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m71[0m:[93m1[0m - [91merror[0m[90m TS1005: [0m'{' expected.
+
+[7m71[0m }
+[7m  [0m [91m~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m71[0m:[93m1[0m - [91merror[0m[90m TS1005: [0m'{' expected.
+
+[7m71[0m }
+[7m  [0m [91m~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-25 11:20:55
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m71[0m:[93m1[0m - [91merror[0m[90m TS1005: [0m'{' expected.
+
+[7m71[0m }
+[7m  [0m [91m~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m71[0m:[93m1[0m - [91merror[0m[90m TS1005: [0m'{' expected.
+
+[7m71[0m }
+[7m  [0m [91m~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-25T10:20:55.626Z
+[31merror[39m: uncaughtException: Cannot destructure property 'id' of 'payload' as it is undefined.
+TypeError: Cannot destructure property 'id' of 'payload' as it is undefined.
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:116:12
+    at /Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:152:16
+    at getSecret (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:90:14)
+    at Object.module.exports [as verify] (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:94:10)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:108:7
+    at Generator.next (<anonymous>)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:27:12)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:104:53 [unkown-service] development 2023-11-25 11:22:16
+error: uncaughtException: Cannot destructure property 'id' of 'payload' as it is undefined.
+TypeError: Cannot destructure property 'id' of 'payload' as it is undefined.
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:116:12
+    at /Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:152:16
+    at getSecret (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:90:14)
+    at Object.module.exports [as verify] (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:94:10)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:108:7
+    at Generator.next (<anonymous>)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:27:12)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:104:53 [unkown-service] development 2023-11-25T10:22:16.536Z
+[31merror[39m: uncaughtException: Invalid Token
+Unauthorized: Invalid Token
+    at /Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:152:21
+    at getSecret (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:90:14)
+    at Object.module.exports [as verify] (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:94:10)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:108:7
+    at Generator.next (<anonymous>)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:27:12)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:104:53
+    at new Promise (<anonymous>) [unkown-service] development 2023-11-25 11:24:28
+error: uncaughtException: Invalid Token
+Unauthorized: Invalid Token
+    at /Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:152:21
+    at getSecret (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:90:14)
+    at Object.module.exports [as verify] (/Users/Osaro/Documents/GitHub/users-service/node_modules/jsonwebtoken/verify.js:94:10)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:108:7
+    at Generator.next (<anonymous>)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:27:12)
+    at /Users/Osaro/Documents/GitHub/users-service/src/utils/token-functions.ts:104:53
+    at new Promise (<anonymous>) [unkown-service] development 2023-11-25T10:24:28.316Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m51[0m:[93m46[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ token: string; "": any; }' is not assignable to parameter of type 'IData'.
+  Object literal may only specify known properties, and '""' does not exist in type 'IData'.
+
+[7m51[0m   await restrictAccess({ token: accessToken, "" });
+[7m  [0m [91m                                             ~~[0m
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m51[0m:[93m49[0m - [91merror[0m[90m TS1005: [0m':' expected.
+
+[7m51[0m   await restrictAccess({ token: accessToken, "" });
+[7m  [0m [91m                                                ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m51[0m:[93m46[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ token: string; "": any; }' is not assignable to parameter of type 'IData'.
+  Object literal may only specify known properties, and '""' does not exist in type 'IData'.
+
+[7m51[0m   await restrictAccess({ token: accessToken, "" });
+[7m  [0m [91m                                             ~~[0m
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m51[0m:[93m49[0m - [91merror[0m[90m TS1005: [0m':' expected.
+
+[7m51[0m   await restrictAccess({ token: accessToken, "" });
+[7m  [0m [91m                                                ~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-25 11:35:39
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m51[0m:[93m46[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ token: string; "": any; }' is not assignable to parameter of type 'IData'.
+  Object literal may only specify known properties, and '""' does not exist in type 'IData'.
+
+[7m51[0m   await restrictAccess({ token: accessToken, "" });
+[7m  [0m [91m                                             ~~[0m
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m51[0m:[93m49[0m - [91merror[0m[90m TS1005: [0m':' expected.
+
+[7m51[0m   await restrictAccess({ token: accessToken, "" });
+[7m  [0m [91m                                                ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m51[0m:[93m46[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ token: string; "": any; }' is not assignable to parameter of type 'IData'.
+  Object literal may only specify known properties, and '""' does not exist in type 'IData'.
+
+[7m51[0m   await restrictAccess({ token: accessToken, "" });
+[7m  [0m [91m                                             ~~[0m
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m51[0m:[93m49[0m - [91merror[0m[90m TS1005: [0m':' expected.
+
+[7m51[0m   await restrictAccess({ token: accessToken, "" });
+[7m  [0m [91m                                                ~[0m
+
+    at createTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/Osaro/Documents/GitHub/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-25T10:35:39.041Z

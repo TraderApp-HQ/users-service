@@ -30,7 +30,10 @@ export const ResponseMessage = {
 
 export const ErrorMessage = {
 	INVALID_LOGIN: "Invalid login credentials!",
+	INVALID_TOKEN: "Invalid Token",
+	INVALID_USER: "Invalid User",
 	NOTFOUND: "NotFound",
+	UNAUTHORIZED: "Unauthorized",
 };
 
 export const cookieOptions = {

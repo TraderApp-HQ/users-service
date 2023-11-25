@@ -1,7 +1,7 @@
 import JWT from "jsonwebtoken";
 import dotenv from "dotenv";
 import { Payload } from "../types";
-import { TOKEN_ATTRIBUTES } from "../config/constants";
+import { ErrorMessage, TOKEN_ATTRIBUTES } from "../config/constants";
 import { NextFunction } from "express";
 
 // init env variables
@@ -61,8 +61,8 @@ export async function verifyRefreshToken(refreshToken: string) {
 		JWT.verify(refreshToken, secret, (err, payload) => {
 			// throw error if error
 			if (err) {
-				err.name = "Unauthorized";
-				err.message = "Invalid Token";
+				err.name = ErrorMessage.UNAUTHORIZED;
+				err.message = ErrorMessage.INVALID_TOKEN;
 				reject(err);
 				return;
 			}
@@ -100,28 +100,31 @@ interface IData {
 	token: string;
 	userId: string;
 }
-export async function restrictAccess(data: IData, next: NextFunction) {
-	const { token, userId } = data;
-	const secret = process.env.ACCESS_TOKEN_SECRET ?? "";
+export async function restrictAccess(data: IData) {
+	return await new Promise(async (resolve, reject) => {
+		const { token, userId } = data;
+		const secret = process.env.ACCESS_TOKEN_SECRET ?? "";
 
-	JWT.verify(token, secret, (err, payload) => {
-		// throw error if error
-		if (err) {
-			err.name = "Unauthorized";
-			err.message = "Invalid Token";
-			next(err);
-		}
-
-		const { id, role } = payload as IPayload;
-		if (role !== "SUPER_ADMIN") {
-			if (userId !== id) {
-				const error = {
-					name: "Unauthorized",
-					message: "Invalid User",
-				};
-				next(error);
+		JWT.verify(token, secret, (err, payload) => {
+			// throw error if error
+			if (err) {
+				err.name = ErrorMessage.UNAUTHORIZED;
+				err.message = ErrorMessage.INVALID_TOKEN;
+				reject(err);
+				return;
 			}
-		}
+
+			const { id, role } = payload as IPayload;
+			if (role !== "SUPER_ADMIN") {
+				if (userId !== id) {
+					const error = {
+						name: ErrorMessage.UNAUTHORIZED,
+						message: ErrorMessage.INVALID_USER,
+					};
+					reject(error);
+				}
+			}
+			resolve(token);
+		});
 	});
-	return true;
 }
