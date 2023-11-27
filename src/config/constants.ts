@@ -81,6 +81,6 @@ export const ROUTES = {
 	password_reset: "/password-reset",
 	password_reset_link: "/password-reset/:email",
 	get_user: "/:id",
-	get_all_users: "/all",
+	get_all_users: "/",
 	update_user: "/:id",
 };

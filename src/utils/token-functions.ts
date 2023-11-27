@@ -2,7 +2,7 @@ import JWT from "jsonwebtoken";
 import dotenv from "dotenv";
 import { Payload } from "../types";
 import { ErrorMessage, TOKEN_ATTRIBUTES } from "../config/constants";
-import { NextFunction } from "express";
+import { NextFunction, Request } from "express";
 
 // init env variables
 dotenv.config();
@@ -100,9 +100,14 @@ interface IData {
 	token: string;
 	userId: string;
 }
-export async function restrictAccess(data: IData) {
+export async function checkUser(req: Request) {
+	// get id and bearer token
+	const { id } = req.params;
+	const token = (req.headers.authorization as string)?.split(" ")[1] ?? "";
+	const userId = id;
+
+	// verify token
 	return await new Promise(async (resolve, reject) => {
-		const { token, userId } = data;
 		const secret = process.env.ACCESS_TOKEN_SECRET ?? "";
 
 		JWT.verify(token, secret, (err, payload) => {
@@ -114,6 +119,7 @@ export async function restrictAccess(data: IData) {
 				return;
 			}
 
+			// compare passed in Id with the Id in token
 			const { id, role } = payload as IPayload;
 			if (role !== "SUPER_ADMIN") {
 				if (userId !== id) {
