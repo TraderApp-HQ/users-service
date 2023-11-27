@@ -5,7 +5,7 @@ import {
 	validateGetAllUsers,
 	validateGetUser,
 	validateUpdateUser,
-} from "~/middlewares/UserMiddleware";
+} from "../middlewares/UserMiddleware";
 
 const router = Router();
 
