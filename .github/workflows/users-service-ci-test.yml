@@ -22,7 +22,6 @@ jobs:
             - name: Determine Branch
               run: |
                    echo "Current Branch is ${{ github.ref }}"
-                   echo "Current Environment is: ${{ env.ENVIRONMENT_NAME }}"
 
             - name: Install Node.js # second step is to set up environment for node build
               uses: actions/setup-node@v2
