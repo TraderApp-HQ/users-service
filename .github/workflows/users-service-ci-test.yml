@@ -48,6 +48,10 @@ jobs:
 
     Test_if_the_update_can_build_into_an_image:
         runs-on: ubuntu-latest
+        environment:
+          name: ${{ github.ref_name == 'refs/heads/main' && 'production' ||
+               github.ref_name == 'refs/heads/staging' && 'staging' ||
+               github.ref_name == 'refs/heads/dev' && 'development' }}
 
         steps:
             - name: Check out code
