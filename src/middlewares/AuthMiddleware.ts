@@ -46,6 +46,7 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
 			.label("Password"),
 		dob: Joi.string().required().label("Date of Birth"),
 		country_id: Joi.number().required().label("Country Id"),
+		country_name: Joi.string().required().label("Country Name"),
 	});
 
 	// validate request

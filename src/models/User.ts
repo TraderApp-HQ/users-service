@@ -15,6 +15,7 @@ interface UserModel extends Model<IUserModel> {
 
 const UserSchema = new Schema(
 	{
+		id: { type: String, unique: true },
 		email: { type: String, required: true, unique: true },
 		password: { type: String, required: true },
 		first_name: { type: String, required: true },
@@ -37,6 +38,7 @@ UserSchema.pre("save", async function (next) {
 		const salt = await bcrypt.genSalt(10);
 		const tempPass = this.password || "";
 		this.password = (await bcrypt.hash(tempPass, salt)) as unknown as string;
+		this.id = this._id;
 		next();
 	} catch (err: any) {
 		next(err);

@@ -7,6 +7,7 @@ export async function validateUpdateUser(req: Request, res: Response, next: Next
 		await checkUser(req);
 		// define validation schemda
 		const schema = Joi.object({
+			id: Joi.string().label("User id"),
 			first_name: Joi.string().label("First Name"),
 			last_name: Joi.string().label("Last Name"),
 			phone: Joi.string().label("Phone"),

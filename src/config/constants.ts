@@ -84,7 +84,7 @@ export const ROUTES = {
 	password_reset_link: "/password-reset/:email",
 	get_user: "/:id",
 	get_all_users: "/",
-	update_user: "/:id",
+	update_user: "/update",
 };
 
 export const PAGINATION = {
@@ -94,4 +94,8 @@ export const PAGINATION = {
 
 export const ROLES = {
 	SUPER_ADMIN: "SUPER_ADMIN",
+};
+
+export const EXCLUDE_FIELDS = {
+	USER: "-_id -password",
 };
