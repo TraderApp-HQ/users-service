@@ -10,7 +10,10 @@ on:
 jobs:
     build: # this is the first job - to build the application first with npm
         runs-on: ubuntu-latest
-        environment: ${{ github.ref_name == 'main' && 'production' || github.ref_name == 'staging' && 'staging' || github.ref_name == 'development' && 'development'}}
+        environment:
+          name: ${{ github.ref_name == 'refs/heads/main' && 'production' ||
+               github.ref_name == 'refs/heads/staging' && 'staging' ||
+               github.ref_name == 'refs/heads/dev' && 'development' }}
                            
         steps:
             - name: Checkout code # first step in this build JOB is to checkout code from branch
