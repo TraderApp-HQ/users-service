@@ -1,4 +1,4 @@
-name: users-service-cicd-pipeline
+name: users-service-main-cicd-pipeline
 
 on:
   push:
@@ -7,14 +7,19 @@ on:
   workflow_dispatch: # manual runs of the pipeline.
 
 jobs:
-  build: # first job - to build the application first with npm
-    runs-on: ubuntu-latest
-    environment:
-      name: staging
+    build: # this is the first job - to build the application first with npm
+        runs-on: ubuntu-latest
+        environment:
+          name: ${{ github.ref_name == 'refs/heads/main' && 'production' ||
+               github.ref_name == 'refs/heads/staging' && 'staging' ||
+               github.ref_name == 'refs/heads/dev' && 'development' }}
 
     steps:
       - name: Checkout code # 1st step in this build JOB is to checkout code from branch
         uses: actions/checkout@v2
+
+      - name: Determine Branch
+        run: echo "Current Branch is ${{ github.ref }}"
 
       - name: Install Node.js # second step is to set up environment for node build
         uses: actions/setup-node@v2
