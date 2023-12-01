@@ -1,7 +1,7 @@
 import JWT from "jsonwebtoken";
 import dotenv from "dotenv";
 import { Payload } from "../types";
-import { ErrorMessage, TOKEN_ATTRIBUTES } from "../config/constants";
+import { ErrorMessage, TOKEN_ATTRIBUTES, ROLES } from "../config/constants";
 import { NextFunction, Request } from "express";
 
 // init env variables
@@ -121,7 +121,7 @@ export async function checkUser(req: Request) {
 
 			// compare passed in Id with the Id in token
 			const { id, role } = payload as IPayload;
-			if (role !== "SUPER_ADMIN") {
+			if (role === ROLES.SUPER_ADMIN) {
 				if (userId !== id) {
 					const error = {
 						name: ErrorMessage.UNAUTHORIZED,

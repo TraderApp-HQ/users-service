@@ -22,6 +22,7 @@ const UserSchema = new Schema(
 		phone: { type: String, default: "" },
 		dob: { type: String, required: true },
 		country_id: { type: Number, required: true, ref: "country" },
+		country_name: { type: String, required: false },
 		isEmailVerified: { type: Boolean, default: false },
 		isPhoneVerified: { type: Boolean, default: false },
 		isIdVerified: { type: Boolean, default: false },

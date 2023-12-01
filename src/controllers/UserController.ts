@@ -1,18 +1,18 @@
 import { Request, Response, NextFunction } from "express";
 import User from "../models/User";
-import apiResponse from "../utils/response-handler";
-import { ResponseMessage } from "../config/constants";
+import { apiResponseHandler } from "@traderapp/shared-resources";
+import { ResponseMessage, PAGINATION } from "../config/constants";
 
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
 	try {
 		const { page, size } = req.body;
 		const options = {
-			page: page || 1,
-			limit: size || 10,
+			page: page || PAGINATION.PAGE,
+			limit: size || PAGINATION.LIMIT,
 		};
 		const users = await User.paginate({}, options);
 		res.status(200).json(
-			apiResponse({
+			apiResponseHandler({
 				object: users,
 				message: ResponseMessage.GET_USERS,
 			}),
@@ -27,7 +27,7 @@ export async function getUserById(req: Request, res: Response, next: NextFunctio
 		const { id } = req.params;
 		const user = await User.findById(id);
 		res.status(200).json(
-			apiResponse({
+			apiResponseHandler({
 				object: user,
 				message: ResponseMessage.GET_USER,
 			}),
@@ -42,7 +42,7 @@ export async function updateUserById(req: Request, res: Response, next: NextFunc
 		const { id } = req.body;
 		const user = await User.findByIdAndUpdate(id, req.body, { new: true });
 		res.status(200).json(
-			apiResponse({
+			apiResponseHandler({
 				object: user,
 				message: ResponseMessage.UPDATE_USER,
 			}),

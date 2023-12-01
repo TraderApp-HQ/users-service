@@ -1,4 +1,4 @@
-import { generateResponseObject } from "../utils/swagger-response";
+import { apiDocumentationResponseObject } from "@traderapp/shared-resources";
 
 export const ENVIRONMENTS: Record<string, string> = Object.freeze({
 	development: "dev",
@@ -62,15 +62,17 @@ export const RESPONSE_CODES = {
 };
 
 export const DOC_RESPONSE = {
-	SERVERERROR: generateResponseObject("Internal Server Error"),
-	UNAUTHORIZED: generateResponseObject("Error: Unauthorized"),
-	BADREQUEST: generateResponseObject("Error: Bad Request"),
-	SUCCESS: generateResponseObject("Success"),
-	LOGOUT_SUCCESS: generateResponseObject("User Logged out successfully!"),
-	LOGIN_SUCCESS: generateResponseObject("User Logged in successfully!"),
-	PASSWORD_RESET_LINK_SUCCESS: generateResponseObject("Password Resetted in successfully!"),
-	REFRESH_TOKEN_SUCCESS: generateResponseObject("Refresh Token requested successfully!"),
-	REGISTER_SUCCESS: generateResponseObject("User created successfully!"),
+	SERVERERROR: apiDocumentationResponseObject("Internal Server Error"),
+	UNAUTHORIZED: apiDocumentationResponseObject("Error: Unauthorized"),
+	BADREQUEST: apiDocumentationResponseObject("Error: Bad Request"),
+	SUCCESS: apiDocumentationResponseObject("Success"),
+	LOGOUT_SUCCESS: apiDocumentationResponseObject("User Logged out successfully!"),
+	LOGIN_SUCCESS: apiDocumentationResponseObject("User Logged in successfully!"),
+	PASSWORD_RESET_LINK_SUCCESS: apiDocumentationResponseObject(
+		"Password Resetted in successfully!",
+	),
+	REFRESH_TOKEN_SUCCESS: apiDocumentationResponseObject("Refresh Token requested successfully!"),
+	REGISTER_SUCCESS: apiDocumentationResponseObject("User created successfully!"),
 };
 
 export const ROUTES = {
@@ -83,4 +85,13 @@ export const ROUTES = {
 	get_user: "/:id",
 	get_all_users: "/",
 	update_user: "/:id",
+};
+
+export const PAGINATION = {
+	PAGE: 1,
+	LIMIT: 10,
+};
+
+export const ROLES = {
+	SUPER_ADMIN: "SUPER_ADMIN",
 };
