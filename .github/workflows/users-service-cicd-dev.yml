@@ -12,16 +12,14 @@ jobs:
     build: # this is the first job - to build the application first with npm
       runs-on: ubuntu-latest
       environment:
-        name: ${{ github.ref_name == 'refs/heads/main' && 'production' ||
-               github.ref_name == 'refs/heads/staging' && 'staging' ||
-               github.ref_name == 'refs/heads/dev' && 'development' }}
+        name: ${{ github.ref_name }}
 
       steps:
-        - name: Checkout code # 1st step in this build JOB is to checkout code from branch
+        - name: Checkout code from branch  # 1st step in this build JOB - to see if the app will build.
           uses: actions/checkout@v2
 
-        - name: Determine Branch
-          run: echo "Current Branch is ${{ github.ref }}"
+        - name: Confirm Current Branch and Environment
+          run: echo "Current Branch and Environment is:" " ${{ github.ref_name }}"
 
         - name: Install Node.js # second step is to set up environment for node build
           uses: actions/setup-node@v2
@@ -42,16 +40,14 @@ jobs:
     docker_build_then_push_to_ecr_and_ecs:
       runs-on: ubuntu-latest
       environment:
-        name: ${{ github.ref_name == 'refs/heads/main' && 'production' ||
-               github.ref_name == 'refs/heads/staging' && 'staging' ||
-               github.ref_name == 'refs/heads/dev' && 'development' }}
+        name: ${{ github.ref_name }}
 
       steps:
-        - name: Check out code
+        - name: Check out code from branch again to build into Docker image
           uses: actions/checkout@v2
 
-        - name: Check out code
-          uses: actions/checkout@v2
+        - name: Reconfirm Current Branch and Environment
+          run: echo "Current Branch and Environment is:" " ${{ github.ref_name }}"
 
         - name: Configure AWS credentials
           uses: aws-actions/configure-aws-credentials@v1
