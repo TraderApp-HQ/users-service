@@ -18,10 +18,13 @@ jobs:
               uses: actions/checkout@v2
               
             - name: Echo Current Environment
-              run: echo "Current Environment:"" ${{ github.ref_name }}"
+              run: echo "Current Branch is:" " ${{ github.ref_name }}"
       
             - name: Extract Branch Name
-              run: echo "Branch Name:"" ${{ github.ref#refs/heads/ }}"
+              run: echo "Branch Name:"" ${{ github.head_ref }}"
+
+            - name: Extract Branch Name
+              run: echo "Branch Name:"" ${{ github.ref }}"
 
             - name: Install Node.js # second step is to set up environment for node build
               uses: actions/setup-node@v2
