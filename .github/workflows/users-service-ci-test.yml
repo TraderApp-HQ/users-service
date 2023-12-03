@@ -67,14 +67,13 @@ jobs:
               uses: aws-actions/amazon-ecr-login@v1
 
             - name: Build The Docker Image - But no push.
-              # THIS IS WHERE PROD VARS N TEST VARS ARE DEFINED N USED BASED ON BRANCH RUNNING FROM
               id: builder_pusher
               env: # here we r creating env vars n assigning values to them.
                   ECR_REGISTRY: ${{ steps.ecr-login-id.outputs.registry }}
-                  ECR_REPOSITORY: signals-service-test
+                  ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
                   IMAGE_TAG: ${{github.run_id}}
-                  ECS_CLUSTER: traderapp_dev # Amazon ECS cluster name
-                  ECS_SERVICE: signalssrvc-ecs-service-test # Your Amazon ECS service name
+                  ECS_CLUSTER:  ${{ vars.ECS_CLUSTER }}
+                  ECS_SERVICE: ${{ vars.ECS_SERVICE }}
 
               run: |
                   docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
