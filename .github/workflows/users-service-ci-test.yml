@@ -18,13 +18,7 @@ jobs:
               uses: actions/checkout@v2
               
             - name: Echo Current Environment
-              run: echo "Current Branch is:" " ${{ github.ref_name }}"
-      
-            - name: Extract Branch Name
-              run: echo "Branch Name:"" ${{ github.head_ref }}"
-
-            - name: Extract Branch Name
-              run: echo "Branch Name:"" ${{ github.ref }}"
+              run: echo "Current Branch is:" " ${{ github.ref_name }}
 
             - name: Install Node.js # second step is to set up environment for node build
               uses: actions/setup-node@v2
@@ -52,9 +46,7 @@ jobs:
     Test_if_the_update_can_build_into_an_image:
         runs-on: ubuntu-latest
         environment:
-          name: ${{ github.ref_name == 'refs/heads/main' && 'production' ||
-               github.ref_name == 'refs/heads/staging' && 'staging' ||
-               github.ref_name == 'refs/heads/dev' && 'development' }}
+          name: ${{ github.ref_name }}
 
         steps:
             - name: Check out code
