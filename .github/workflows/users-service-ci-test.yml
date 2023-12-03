@@ -70,10 +70,10 @@ jobs:
               id: builder_pusher
               env: # here we r creating env vars n assigning values to them.
                   ECR_REGISTRY: ${{ steps.ecr-login-id.outputs.registry }}
-                  ECR_REPOSITORY: users-service-dev
+                  ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
                   IMAGE_TAG: ${{github.run_id}}
-                  ECS_CLUSTER: traderapp_dev
-                  ECS_SERVICE: deploy_users_service_dev
+                  ECS_CLUSTER:  ${{ vars.ECS_CLUSTER }}
+                  ECS_SERVICE: ${{ vars.ECS_SERVICE }}
 
               run: |
                   docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
