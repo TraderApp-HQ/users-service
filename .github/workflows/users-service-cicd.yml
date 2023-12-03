@@ -61,7 +61,6 @@ jobs:
           uses: aws-actions/amazon-ecr-login@v1
 
         - name: Build Docker Image, tag and push image to ECR
-        # THIS IS WHERE PROD VARS N TEST VARS ARE DEFINED N USED BASED ON BRANCH RUNNING FROM
           id: builder_pusher
           env:   # here we r creating env vars n assigning values to them.
             ECR_REGISTRY: ${{ steps.ecr-login-id.outputs.registry }}
@@ -85,7 +84,7 @@ jobs:
           uses: aws-actions/amazon-ecs-render-task-definition@v1
           with:
             task-definition: task-definition.json
-            container-name: ${{ vars.USERS_SRVC_CONTAINER_NAME }}
+            container-name: ${{ vars.USERS_SERVICE_CONTAINER_NAME }}
             image: ${{ steps.builder_pusher.outputs.built_image }}
 
         - name: Deploy the ECS task definition's Service as new Release
