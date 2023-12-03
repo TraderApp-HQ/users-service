@@ -14,11 +14,11 @@ jobs:
           name: ${{ github.ref_name }}
                            
         steps:
-            - name: Checkout code # first step in this build JOB is to checkout code from branch
+            - name: Checkout code from branch  # 1st step in this build JOB - to see if the app will build.
               uses: actions/checkout@v2
               
-            - name: Echo Current Environment
-              run: echo "Current Branch is:" " ${{ github.ref_name }}"
+            - name: Confirm Current Branch and Environment
+              run: echo "Current Branch and Environment is:" " ${{ github.ref_name }}"
 
             - name: Install Node.js # second step is to set up environment for node build
               uses: actions/setup-node@v2
@@ -49,8 +49,11 @@ jobs:
           name: ${{ github.ref_name }}
 
         steps:
-            - name: Check out code
+            - name: Check out code from branch again to build into Docker image
               uses: actions/checkout@v2
+
+            - name: Reconfirm Current Branch and Environment
+              run: echo "Current Branch and Environment is:" " ${{ github.ref_name }}"
 
             - name: Configure AWS credentials
               uses: aws-actions/configure-aws-credentials@v1
