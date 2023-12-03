@@ -18,7 +18,7 @@ jobs:
               uses: actions/checkout@v2
               
             - name: Echo Current Environment
-              run: echo "Current Branch is:" " ${{ github.ref_name }}
+              run: echo "Current Branch is:" " ${{ github.ref_name }}"
 
             - name: Install Node.js # second step is to set up environment for node build
               uses: actions/setup-node@v2
