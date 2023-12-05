@@ -71,3 +71,23 @@ export async function validateGetUser(req: Request, res: Response, next: NextFun
 		next(err);
 	}
 }
+
+export async function validateSearchUser(req: Request, res: Response, next: NextFunction) {
+	try {
+		const schema = Joi.object({
+			searchQuery: Joi.string().label("Search Query"),
+		});
+		// validate request
+		const { error } = schema.validate(req.body);
+
+		if (error) {
+			// strip string of double quotes
+			error.message = error.message.replace(/\"/g, "");
+			next(error);
+			return;
+		}
+		next();
+	} catch (err: any) {
+		next(err);
+	}
+}

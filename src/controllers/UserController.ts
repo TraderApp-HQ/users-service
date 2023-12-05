@@ -25,6 +25,48 @@ export async function getAllUsers(req: Request, res: Response, next: NextFunctio
 	}
 }
 
+export async function searchUser(req: Request, res: Response, next: NextFunction) {
+	try {
+		const { searchQuery } = req.body;
+		const users = await User.find({
+			$or: [
+				{
+					first_name: {
+						$regex: searchQuery,
+						$options: "i",
+					},
+				},
+				{
+					last_name: {
+						$regex: searchQuery,
+						$options: "i",
+					},
+				},
+				{
+					email: {
+						$regex: searchQuery,
+						$options: "i",
+					},
+				},
+				{
+					country_name: {
+						$regex: searchQuery,
+						$options: "i",
+					},
+				},
+			],
+		}).select(EXCLUDE_FIELDS.USER);
+		res.status(200).json(
+			apiResponseHandler({
+				object: users,
+				message: ResponseMessage.SEARCH_USERS,
+			}),
+		);
+	} catch (err) {
+		next(err);
+	}
+}
+
 export async function getUserById(req: Request, res: Response, next: NextFunction) {
 	try {
 		const { id } = req.params;
