@@ -48,17 +48,14 @@ export async function searchUser(req: Request, res: Response, next: NextFunction
 						$options: "i",
 					},
 				},
-				{
-					country_name: {
-						$regex: searchQuery,
-						$options: "i",
-					},
-				},
 			],
 		}).select(EXCLUDE_FIELDS.USER);
 		res.status(200).json(
 			apiResponseHandler({
-				object: users,
+				object: {
+					users,
+					searchQuery,
+				},
 				message: ResponseMessage.SEARCH_USERS,
 			}),
 		);
