@@ -21,15 +21,15 @@ jobs:
         - name: Confirm Current Branch and Environment
           run: echo "Current Branch and Environment is:" ${{ github.ref_name }}
 
-        - name: Install Node.js # second step is to set up environment for node build
+        - name: Install Node.js # set up environment for node build
           uses: actions/setup-node@v2
           with:
             node-version: 16.15
 
-        - name: Install dependencies # third step is to install dependencies
+        - name: Install dependencies # install dependencies by force
           run: npm install
 
-        - name: Build # fourth step is to test by trying to build node
+        - name: Build # try to build node
           # - this uses the build script in the script file
           run: npm run build
 
