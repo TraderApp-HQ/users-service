@@ -75,7 +75,7 @@ export async function validateGetUser(req: Request, res: Response, next: NextFun
 export async function validateSearchUser(req: Request, res: Response, next: NextFunction) {
 	try {
 		const schema = Joi.object({
-			searchQuery: Joi.string().required().label("Search Query"),
+			searchQuery: Joi.string().required().label("Search Query").allow(""),
 		});
 		// validate request
 		const { error } = schema.validate(req.body);
