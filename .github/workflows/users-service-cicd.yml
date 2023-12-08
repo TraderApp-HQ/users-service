@@ -57,7 +57,7 @@ jobs:
             aws-region: ${{vars.AWS_REGION}}
 
         - name: Login to Amazon ECR
-          id: ecr-login-id #this is an id for this step. So u can use the id to ref d step later in d workflow.
+          id: ecr-login-id #this is the id for this step. So u can use the id to ref d step later in d workflow.
           uses: aws-actions/amazon-ecr-login@v1
 
         - name: Build Docker Image, tag and push image to ECR
