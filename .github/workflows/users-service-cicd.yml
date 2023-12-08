@@ -40,7 +40,7 @@ jobs:
     docker_build_then_push_to_ecr_and_ecs:
       runs-on: ubuntu-latest
       environment:
-        name: ${{ github.ref_name }}
+        name: ${{ github.event_name == 'pull_request' && 'dev' || github.ref_name }}
 
       steps:
         - name: Check out code from branch again to build into Docker image
