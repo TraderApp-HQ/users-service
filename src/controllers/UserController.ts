@@ -5,58 +5,24 @@ import { ResponseMessage, PAGINATION, EXCLUDE_FIELDS } from "../config/constants
 
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
 	try {
-		const { page, size } = req.body;
+		const { page, size, query } = req.query;
 		const options = {
-			page: page || PAGINATION.PAGE,
-			limit: size || PAGINATION.LIMIT,
-			lean: true,
-			leanWithId: true,
+			page: page ?? PAGINATION.PAGE,
+			limit: size ?? PAGINATION.LIMIT,
 			select: EXCLUDE_FIELDS.USER,
 		};
-		const users = await User.paginate({}, options);
+		const queryParams = {
+			$or: [
+				{ first_name: { $regex: query, $options: "i" } },
+				{ last_name: { $regex: query, $options: "i" } },
+				{ email: { $regex: query, $options: "i" } },
+			],
+		};
+		const users = await User.paginate(queryParams, options);
 		res.status(200).json(
 			apiResponseHandler({
 				object: users,
 				message: ResponseMessage.GET_USERS,
-			}),
-		);
-	} catch (err) {
-		next(err);
-	}
-}
-
-export async function searchUser(req: Request, res: Response, next: NextFunction) {
-	try {
-		const { searchQuery } = req.body;
-		const users = await User.find({
-			$or: [
-				{
-					first_name: {
-						$regex: searchQuery,
-						$options: "i",
-					},
-				},
-				{
-					last_name: {
-						$regex: searchQuery,
-						$options: "i",
-					},
-				},
-				{
-					email: {
-						$regex: searchQuery,
-						$options: "i",
-					},
-				},
-			],
-		}).select(EXCLUDE_FIELDS.USER);
-		res.status(200).json(
-			apiResponseHandler({
-				object: {
-					users,
-					searchQuery,
-				},
-				message: ResponseMessage.SEARCH_USERS,
 			}),
 		);
 	} catch (err) {

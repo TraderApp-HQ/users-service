@@ -33,11 +33,12 @@ export async function validateGetAllUsers(req: Request, res: Response, next: Nex
 	try {
 		await checkUser(req);
 		const schema = Joi.object({
-			page: Joi.string().label("Page"),
-			size: Joi.string().label("Size"),
+			page: Joi.string().required().label("Page"),
+			size: Joi.string().required().label("Size"),
+			query: Joi.string().required().label("Query").allow(""),
 		});
 		// validate request
-		const { error } = schema.validate(req.params); // change to params
+		const { error } = schema.validate(req.query); // change to query
 
 		if (error) {
 			// strip string of double quotes
@@ -59,26 +60,6 @@ export async function validateGetUser(req: Request, res: Response, next: NextFun
 		});
 		// validate request
 		const { error } = schema.validate(req.params);
-
-		if (error) {
-			// strip string of double quotes
-			error.message = error.message.replace(/\"/g, "");
-			next(error);
-			return;
-		}
-		next();
-	} catch (err: any) {
-		next(err);
-	}
-}
-
-export async function validateSearchUser(req: Request, res: Response, next: NextFunction) {
-	try {
-		const schema = Joi.object({
-			searchQuery: Joi.string().required().label("Search Query").allow(""),
-		});
-		// validate request
-		const { error } = schema.validate(req.body);
 
 		if (error) {
 			// strip string of double quotes
