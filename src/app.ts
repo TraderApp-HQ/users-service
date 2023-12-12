@@ -15,6 +15,7 @@ import secretsJson from "./env.json";
 
 config();
 const app = express();
+let server = null;
 
 const env = process.env.NODE_ENV ?? "development";
 const suffix = ENVIRONMENTS[env];
@@ -32,7 +33,7 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 	mongoose
 		.connect(dbUrl)
 		.then(() => {
-			app.listen(port, () => {
+			server = app.listen(port, () => {
 				logger.log(`Server listening at port ${port}`);
 				startServer();
 				logger.log(`Docs available at http://localhost:${port}/api-docs`);
@@ -96,3 +97,5 @@ function startServer() {
 		);
 	});
 }
+
+module.exports = server;

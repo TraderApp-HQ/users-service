@@ -1,8 +1,11 @@
 {
 	"env": {
 		"es2021": true,
-		"node": true
+		"node": true,
+		"jest/globals": true,
+		"browser": true
 	},
+	"plugins": ["jest"],
 	"extends": ["standard-with-typescript", "prettier"],
 	"parserOptions": {
 		"ecmaVersion": "latest",
@@ -20,6 +23,12 @@
 		"@typescript-eslint/no-unused-vars": "off",
 		"no-useless-escape": "off",
 		"@typescript-eslint/no-non-null-assertion": "off",
-		"no-async-promise-executor": "off"
+		"no-async-promise-executor": "off",
+		"import/extensions": [
+			"error",
+			{
+				"js": "ignorePackages"
+			}
+		]
 	}
 }
