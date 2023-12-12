@@ -46,7 +46,11 @@ jobs:
         - name: Check out code from branch again to build into Docker image
           uses: actions/checkout@v2
 
+
         - name: Reconfirm Current Branch and Current Environment
+
+        - name: Reconfirm Current Branch and Environment
+
           run: echo "Current Branch and Environment is:" ${{ github.ref_name }}
 
         - name: Configure AWS credentials

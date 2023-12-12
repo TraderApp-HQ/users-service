@@ -25,7 +25,11 @@ jobs:
               with:
                   node-version: 16.15
 
+
             - name: Install dependencies # install dependencies by force!
+
+            - name: Install dependencies # install dependencies by force
+
               run: npm install --force
 
             - name: Build # try to build node
