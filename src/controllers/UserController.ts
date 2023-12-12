@@ -5,17 +5,18 @@ import { ResponseMessage, PAGINATION, EXCLUDE_FIELDS } from "../config/constants
 
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
 	try {
-		const { page, size, query } = req.query;
+		const { page, size, searchKeyword } = req.query;
 		const options = {
 			page: page ?? PAGINATION.PAGE,
 			limit: size ?? PAGINATION.LIMIT,
 			select: EXCLUDE_FIELDS.USER,
 		};
+		const searchQuery = searchKeyword ?? "";
 		const queryParams = {
 			$or: [
-				{ first_name: { $regex: query, $options: "i" } },
-				{ last_name: { $regex: query, $options: "i" } },
-				{ email: { $regex: query, $options: "i" } },
+				{ first_name: { $regex: searchQuery, $options: "i" } },
+				{ last_name: { $regex: searchQuery, $options: "i" } },
+				{ email: { $regex: searchQuery, $options: "i" } },
 			],
 		};
 		const users = await User.paginate(queryParams, options);

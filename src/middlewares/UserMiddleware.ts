@@ -33,9 +33,9 @@ export async function validateGetAllUsers(req: Request, res: Response, next: Nex
 	try {
 		await checkUser(req);
 		const schema = Joi.object({
-			page: Joi.string().required().label("Page"),
-			size: Joi.string().required().label("Size"),
-			query: Joi.string().required().label("Query").allow(""),
+			page: Joi.string().label("Page"),
+			size: Joi.string().label("Size"),
+			searchKeyword: Joi.string().label("searchKeyword"),
 		});
 		// validate request
 		const { error } = schema.validate(req.query); // change to query
