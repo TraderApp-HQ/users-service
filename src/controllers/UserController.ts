@@ -22,10 +22,7 @@ export async function getAllUsers(req: Request, res: Response, next: NextFunctio
 		const users = await User.paginate(queryParams, options);
 		res.status(200).json(
 			apiResponseHandler({
-				object: {
-					users,
-					searchKeyword,
-				},
+				object: { ...users, searchKeyword },
 				message: ResponseMessage.GET_USERS,
 			}),
 		);
