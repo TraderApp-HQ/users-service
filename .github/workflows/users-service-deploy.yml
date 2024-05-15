@@ -19,10 +19,15 @@ jobs:
                   aws-region: eu-west-1
 
             - name: Create codedeploy deployment
+              run: |
+                  zip -r project.zip . -x node_modules\* dist\* .git\*
+                  aws s3 cp project.zip s3://traderapp-microservices-bucket/user-service.zip
+
+            - name: Create codedeploy deployment
               id: Deploy
               run: |
                   aws deploy create-deployment \
                   --application-name user-service \
                   --deployment-group-name user-service-dg \
                   --deployment-config-name CodeDeployDefault.OneAtATime \
-                  --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+                  --s3-location bucket=traderapp-microservices-bucket,bundleType=zip,key=user-service.zip
