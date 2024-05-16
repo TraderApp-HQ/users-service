@@ -5,8 +5,6 @@ IMAGE_NAME="user-service"
 CONTAINER_NAME="user-service"
 DOCKERFILE_PATH="."
 
-cd /home/ubuntu/app
-
 # Stop and remove the container if it exists
 if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
     echo "Stopping existing container: $CONTAINER_NAME"

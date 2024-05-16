@@ -5,9 +5,9 @@ files:
   destination: /home/ubuntu/app
 hooks:
   BeforeInstall:
-    - location: scripts/unzip-and-build-docker-image.sh
+    - location: /home/ubuntu/app/scripts/unzip-and-build-docker-image.sh
   ApplicationStart:
-    - location: scripts/start-docker-container.sh
+    - location: /home/ubuntu/app/scripts/start-docker-container.sh
   ValidateService:
-    - location: scripts/check-service.sh
+    - location: /home/ubuntu/app/scripts/check-service.sh
       timeout: 3600
