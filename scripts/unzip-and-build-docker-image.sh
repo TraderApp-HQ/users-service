@@ -1,3 +1,3 @@
 #! /bin/bash
 
-echo "Build docker application";
+echo "Remove Old docker image & Build docker application";
