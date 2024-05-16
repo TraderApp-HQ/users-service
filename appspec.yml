@@ -6,11 +6,8 @@ files:
 hooks:
   BeforeInstall:
     - location: scripts/unzip-and-build-docker-image.sh
-      runas: ubuntu
   ApplicationStart:
     - location: scripts/start-docker-container.sh
-      runas: ubuntu
   ValidateService:
     - location: scripts/check-service.sh
       timeout: 3600
-      runas: ubuntu
