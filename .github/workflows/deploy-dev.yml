@@ -52,11 +52,6 @@ jobs:
             - name: Check out code from branch
               uses: actions/checkout@v2
 
-            - name: Set environment variables
-              run: |
-                  echo "NODE_ENV=${{ vars.NODE_ENV }}" >> $GITHUB_ENV
-                  echo "SERVICE=${{ vars.SERVICE }}" >> $GITHUB_ENV
-
             - name: Configure AWS credentials
               uses: aws-actions/configure-aws-credentials@v1
               with:
