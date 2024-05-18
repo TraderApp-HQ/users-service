@@ -31,7 +31,7 @@ jobs:
               with:
                   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  aws-region: ${{ vars.AWS_REGION }}
+                  aws-region: ${{ env.AWS_REGION }}
 
             - name: Start
               run: npm run start &
@@ -52,7 +52,7 @@ jobs:
               with:
                   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  aws-region: ${{ vars.AWS_REGION }}
+                  aws-region: ${{ env.AWS_REGION }}
 
             - name: Login to Amazon ECR
               id: ecr-login
@@ -62,7 +62,7 @@ jobs:
               id: build-image
               env:
                   ECR_REGISTRY: ${{ steps.ecr-login.outputs.registry }}
-                  ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+                  ECR_REPOSITORY: ${{ env.ECR_REPOSITORY }}
                   IMAGE_TAG: ${{ github.run_id }}
               run: |
                   docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .

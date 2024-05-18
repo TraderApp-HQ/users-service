@@ -33,7 +33,7 @@ jobs:
               with:
                   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  aws-region: ${{ vars.AWS_REGION }}
+                  aws-region: ${{ env.AWS_REGION }}
 
             - name: Start
               run: npm run start &
@@ -54,7 +54,7 @@ jobs:
               with:
                   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  aws-region: ${{ vars.AWS_REGION }}
+                  aws-region: ${{ env.AWS_REGION }}
 
             - name: Login to Amazon ECR
               id: ecr-login
@@ -64,7 +64,7 @@ jobs:
               id: build-image
               env:
                   ECR_REGISTRY: ${{ steps.ecr-login.outputs.registry }}
-                  ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+                  ECR_REPOSITORY: ${{ env.ECR_REPOSITORY }}
                   IMAGE_TAG: ${{ github.run_id }}
               run: |
                   docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -86,13 +86,13 @@ jobs:
     #       with:
     #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
     #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #         aws-region: ${{ vars.AWS_REGION }}
+    #         aws-region: ${{ env.AWS_REGION }}
 
     #     - name: Trigger CodeDeploy
     #       run: |
     #         aws deploy create-deployment \
-    #           --application-name ${{ vars.CODEDEPLOY_APPLICATION_NAME }} \
-    #           --deployment-group-name ${{ vars.CODEDEPLOY_DEPLOYMENT_GROUP_NAME }} \
+    #           --application-name ${{ env.CODEDEPLOY_APPLICATION_NAME }} \
+    #           --deployment-group-name ${{ env.CODEDEPLOY_DEPLOYMENT_GROUP_NAME }} \
     #           --github-location repository=${{ github.repository }},commitId=${{ github.sha }} \
     #           --description "Deploying ${{ github.sha }} to dev environment"
     #         echo "Deployment triggered in CodeDeploy."
