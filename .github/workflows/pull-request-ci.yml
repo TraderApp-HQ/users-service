@@ -7,7 +7,8 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-
+        environment:
+            name: ${{ github.event_name == 'pull_request' && github.base_ref || github.ref_name }}
         steps:
             - name: Checkout code from branch
               uses: actions/checkout@v2
@@ -38,6 +39,8 @@ jobs:
 
     build-docker-image:
         runs-on: ubuntu-latest
+        environment:
+            name: ${{ github.event_name == 'pull_request' && github.base_ref || github.ref_name }}
         needs: build
 
         steps:
