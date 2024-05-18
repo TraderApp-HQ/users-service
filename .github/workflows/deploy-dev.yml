@@ -16,9 +16,7 @@ jobs:
             - name: Checkout code from branch
               uses: actions/checkout@v2
 
-            # - name: Confirm current environment and service
-            #   run: echo "Environment = $NODE_ENV, Service = $SERVICE"
-            - name: Set Node.js and Service environment
+            - name: Set environment variables
               run: |
                   echo "NODE_ENV=${{ vars.NODE_ENV }}" >> $GITHUB_ENV
                   echo "SERVICE=${{ vars.SERVICE }}" >> $GITHUB_ENV
@@ -42,14 +40,7 @@ jobs:
                   aws-region: ${{ vars.AWS_REGION }}
 
             - name: Start
-              run: |
-                  npm run start &
-                  sleep 10 # Wait for the application to start
-              continue-on-error: true
-
-            - name: Check for environment variable
-              if: ${{ failure() }}
-              run: exit 1 # Exit the job if the 'start' command fails
+              run: npm run start &
 
     push-docker-image:
         runs-on: ubuntu-latest
@@ -61,9 +52,7 @@ jobs:
             - name: Check out code from branch
               uses: actions/checkout@v2
 
-            # - name: Confirm current environment and service
-            #   run: echo "Environment = $NODE_ENV, Service = $SERVICE"
-            - name: Set Node.js and Service environment
+            - name: Set environment variables
               run: |
                   echo "NODE_ENV=${{ vars.NODE_ENV }}" >> $GITHUB_ENV
                   echo "SERVICE=${{ vars.SERVICE }}" >> $GITHUB_ENV
