@@ -62,7 +62,7 @@ jobs:
               id: build-image
               env:
                   ECR_REGISTRY: ${{ steps.ecr-login.outputs.registry }}
-                  ECR_REPOSITORY: ${{ env.ECR_REPOSITORY }}
+                  ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
                   IMAGE_TAG: ${{ github.run_id }}
               run: |
                   docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
