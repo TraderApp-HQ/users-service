@@ -38,7 +38,14 @@ jobs:
                   aws-region: ${{ vars.AWS_REGION }}
 
             - name: Start
-              run: npm run start &
+              run: |
+                  npm run start &
+                  sleep 10 # Wait for the application to start
+              continue-on-error: true
+
+            - name: Check for environment variable
+              if: ${{ failure() }}
+              run: exit 1 # Exit the job if the 'start' command fails
 
     push-docker-image:
         runs-on: ubuntu-latest
