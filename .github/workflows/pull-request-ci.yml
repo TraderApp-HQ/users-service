@@ -32,7 +32,7 @@ jobs:
               with:
                   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  aws-region: eu-west-1
+                  aws-region: ${{ vars.AWS_REGION }}
 
             - name: Start
               run: npm run start &
@@ -47,15 +47,15 @@ jobs:
             - name: Check out code from branch
               uses: actions/checkout@v2
 
-            - name: Reconfirm Current Branch
-              run: echo "Current Branch - ${{ github.ref_name }}"
+            - name: Reconfirm Current Environment
+              run: echo "Current environment - ${{ github.ref_name }}"
 
             - name: Configure AWS credentials
               uses: aws-actions/configure-aws-credentials@v1
               with:
                   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  aws-region: eu-west-1
+                  aws-region: ${{ vars.AWS_REGION }}
 
             - name: Login to Amazon ECR
               id: ecr-login
