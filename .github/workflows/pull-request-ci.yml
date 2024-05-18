@@ -13,8 +13,8 @@ jobs:
             - name: Checkout code from branch
               uses: actions/checkout@v2
 
-            - name: Confirm Current Branch
-              run: echo "Current Branch - ${{ github.ref_name }}"
+            - name: Confirm current environment
+              run: echo "Current environment - ${{ github.ref_name }}"
 
             - name: Install Node.js
               uses: actions/setup-node@v2
@@ -47,7 +47,7 @@ jobs:
             - name: Check out code from branch
               uses: actions/checkout@v2
 
-            - name: Reconfirm Current Environment
+            - name: Reconfirm current environment
               run: echo "Current environment - ${{ github.ref_name }}"
 
             - name: Configure AWS credentials

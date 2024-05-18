@@ -1120,3 +1120,21 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:981:32)
     at Function.Module._load (node:internal/modules/cjs/loader:822:12)
     at Module.require (node:internal/modules/cjs/loader:1005:19) [unkown-service] development 2023-11-25T10:35:39.041Z
+[31merror[39m: uncaughtException: Secrets Manager can't find the specified secret.
+ResourceNotFoundException: Secrets Manager can't find the specified secret.
+    at de_ResourceNotFoundExceptionRes (/Users/i/Documents/TraderApp codes/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:1240:23)
+    at de_GetSecretValueCommandError (/Users/i/Documents/TraderApp codes/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:504:25)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async /Users/i/Documents/TraderApp codes/users-service/node_modules/@smithy/middleware-serde/dist-cjs/deserializerMiddleware.js:7:24
+    at async /Users/i/Documents/TraderApp codes/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-signing/dist-cjs/awsAuthMiddleware.js:14:20
+    at async /Users/i/Documents/TraderApp codes/users-service/node_modules/@smithy/middleware-retry/dist-cjs/retryMiddleware.js:27:46
+    at async /Users/i/Documents/TraderApp codes/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js:7:26 [users-service] development 2024-05-18 21:09:40
+error: uncaughtException: Secrets Manager can't find the specified secret.
+ResourceNotFoundException: Secrets Manager can't find the specified secret.
+    at de_ResourceNotFoundExceptionRes (/Users/i/Documents/TraderApp codes/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:1240:23)
+    at de_GetSecretValueCommandError (/Users/i/Documents/TraderApp codes/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:504:25)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async /Users/i/Documents/TraderApp codes/users-service/node_modules/@smithy/middleware-serde/dist-cjs/deserializerMiddleware.js:7:24
+    at async /Users/i/Documents/TraderApp codes/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-signing/dist-cjs/awsAuthMiddleware.js:14:20
+    at async /Users/i/Documents/TraderApp codes/users-service/node_modules/@smithy/middleware-retry/dist-cjs/retryMiddleware.js:27:46
+    at async /Users/i/Documents/TraderApp codes/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js:7:26 [users-service] development 2024-05-18T20:09:40.425Z

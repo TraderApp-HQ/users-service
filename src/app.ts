@@ -16,7 +16,7 @@ import secretsJson from "./env.json";
 config();
 const app = express();
 
-const env = process.env.NODE_ENV ?? "development";
+const env = process.env.NODE_ENV ?? "";
 const suffix = ENVIRONMENTS[env];
 const secretNames = ["common-secrets", "users-service-secrets"];
 
