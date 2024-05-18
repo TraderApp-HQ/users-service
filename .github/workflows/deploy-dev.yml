@@ -11,13 +11,16 @@ jobs:
         runs-on: ubuntu-latest
         environment:
             name: ${{ github.event_name == 'pull_request' && github.base_ref || github.ref_name }}
+            variables:
+                NODE_ENV: ${{ vars.NODE_ENV }}
+                SERVICE: ${{ vars.SERVICE }}
 
         steps:
             - name: Checkout code from branch
               uses: actions/checkout@v2
 
-            - name: Confirm current environment
-              run: echo "Current environment - ${{ github.ref_name }}"
+            - name: Confirm current environment and service
+              run: echo "Environment = $NODE_ENV, Service = $SERVICE"
 
             - name: Install Node.js
               uses: actions/setup-node@v2
@@ -51,14 +54,17 @@ jobs:
         runs-on: ubuntu-latest
         environment:
             name: ${{ github.event_name == 'pull_request' && github.base_ref || github.ref_name }}
+            variables:
+                NODE_ENV: ${{ vars.NODE_ENV }}
+                SERVICE: ${{ vars.SERVICE }}
         needs: build
 
         steps:
             - name: Check out code from branch
               uses: actions/checkout@v2
 
-            - name: Reconfirm current environment
-              run: echo "Current environment - ${{ github.ref_name }}"
+            - name: Confirm current environment and service
+              run: echo "Environment = $NODE_ENV, Service = $SERVICE"
 
             - name: Configure AWS credentials
               uses: aws-actions/configure-aws-credentials@v1
