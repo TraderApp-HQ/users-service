@@ -1138,3 +1138,51 @@ ResourceNotFoundException: Secrets Manager can't find the specified secret.
     at async /Users/i/Documents/TraderApp codes/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-signing/dist-cjs/awsAuthMiddleware.js:14:20
     at async /Users/i/Documents/TraderApp codes/users-service/node_modules/@smithy/middleware-retry/dist-cjs/retryMiddleware.js:27:46
     at async /Users/i/Documents/TraderApp codes/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js:7:26 [users-service] development 2024-05-18T20:09:40.425Z
+[31merror[39m: uncaughtException: Environment variable not set
+Error: Environment variable not set
+    at Object.<anonymous> (/Users/i/Documents/TraderApp codes/users-service/src/app.ts:20:17)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+    at phase4 (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/bin.ts:649:14)
+    at bootstrap (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/bin.ts:95:10) [users-service] development 2024-05-18 21:15:27
+error: uncaughtException: Environment variable not set
+Error: Environment variable not set
+    at Object.<anonymous> (/Users/i/Documents/TraderApp codes/users-service/src/app.ts:20:17)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+    at phase4 (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/bin.ts:649:14)
+    at bootstrap (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/bin.ts:95:10) [users-service] development 2024-05-18T20:15:27.646Z
+[31merror[39m: uncaughtException: Environment variable not set
+Error: Environment variable not set
+    at Object.<anonymous> (/Users/i/Documents/TraderApp codes/users-service/src/app.ts:22:8)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+    at phase4 (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/bin.ts:649:14)
+    at bootstrap (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/bin.ts:95:10) [users-service] development 2024-05-18 21:17:37
+error: uncaughtException: Environment variable not set
+Error: Environment variable not set
+    at Object.<anonymous> (/Users/i/Documents/TraderApp codes/users-service/src/app.ts:22:8)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+    at phase4 (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/bin.ts:649:14)
+    at bootstrap (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/bin.ts:95:10) [users-service] development 2024-05-18T20:17:37.872Z

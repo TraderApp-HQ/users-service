@@ -16,7 +16,11 @@ import secretsJson from "./env.json";
 config();
 const app = express();
 
-const env = process.env.NODE_ENV ?? "";
+const env = process.env.NODE_ENV;
+if (!env) {
+	logger.error("Error: Environment variable not set");
+	throw new Error("Environment variable not set");
+}
 const suffix = ENVIRONMENTS[env];
 const secretNames = ["common-secrets", "users-service-secrets"];
 
