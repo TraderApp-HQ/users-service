@@ -1,0 +1,102 @@
+name: users-service-deploy
+
+on:
+    push:
+        branches:
+            - dev
+    workflow_dispatch: # Allow manual runs of the pipeline.
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        environment:
+            name: ${{ github.event_name == 'pull_request' && github.base_ref || github.ref_name }}
+
+        steps:
+            - name: Checkout code from branch
+              uses: actions/checkout@v2
+
+            - name: Confirm Current Branch
+              run: echo "Current Branch - ${{ github.ref_name }}"
+
+            - name: Install Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 16.15
+
+            - name: Install dependencies
+              run: npm install --force
+
+            - name: Build
+              run: npm run build
+
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: eu-west-1
+
+            - name: Start
+              run: npm run start &
+
+    push-docker-image:
+        runs-on: ubuntu-latest
+        environment:
+            name: ${{ github.event_name == 'pull_request' && github.base_ref || github.ref_name }}
+        needs: build
+
+        steps:
+            - name: Check out code from branch
+              uses: actions/checkout@v2
+
+            - name: Reconfirm Current Branch
+              run: echo "Current Branch - ${{ github.ref_name }}"
+
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: eu-west-1
+
+            - name: Login to Amazon ECR
+              id: ecr-login
+              uses: aws-actions/amazon-ecr-login@v1
+
+            - name: Build and Push Docker Image
+              id: build-image
+              env:
+                  ECR_REGISTRY: ${{ steps.ecr-login.outputs.registry }}
+                  ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+                  IMAGE_TAG: ${{ github.run_id }}
+              run: |
+                  docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+                  docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
+                  docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+                  docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+                  echo "Docker Image build and push is completed."
+
+    # deploy-dev:
+    #   runs-on: ubuntu-latest
+    #   needs: push-docker-image
+
+    #   steps:
+    #     - name: Checkout code from branch
+    #       uses: actions/checkout@v2
+
+    #     - name: Configure AWS credentials
+    #       uses: aws-actions/configure-aws-credentials@v1
+    #       with:
+    #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #         aws-region: eu-west-1
+
+    #     - name: Trigger CodeDeploy
+    #       run: |
+    #         aws deploy create-deployment \
+    #           --application-name ${{ vars.CODEDEPLOY_APPLICATION_NAME }} \
+    #           --deployment-group-name ${{ vars.CODEDEPLOY_DEPLOYMENT_GROUP_NAME }} \
+    #           --github-location repository=${{ github.repository }},commitId=${{ github.sha }} \
+    #           --description "Deploying ${{ github.sha }} to dev environment"
+    #         echo "Deployment triggered in CodeDeploy."
