@@ -1,4 +1,4 @@
-name: users-service-ci-test
+name: pull-request-ci
 
 on:
     pull_request:
