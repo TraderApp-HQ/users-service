@@ -86,10 +86,10 @@ jobs:
             - name: Checkout code from branch
               uses: actions/checkout@v2
 
-            - name: Copy deployment files
-              run: |
-                  cp deployment/dev/appspec.yml appspec.yml
-                  cp -R deployment/dev/scripts/ .
+            # - name: Copy deployment files
+            #   run: |
+            #       cp deployment/dev/appspec.yml appspec.yml
+            #       cp -R deployment/dev/scripts/ .
 
             - name: Configure AWS credentials
               uses: aws-actions/configure-aws-credentials@v1
