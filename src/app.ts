@@ -72,7 +72,7 @@ function startServer() {
 
 	// health check
 	app.get("/ping", async (req, res, next) => {
-		res.status(200).json(apiResponseHandler({ message: "pong again again" }));
+		res.status(200).json(apiResponseHandler({ message: "pong due to s3" }));
 	});
 
 	// handle errors

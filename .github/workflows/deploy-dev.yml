@@ -103,6 +103,5 @@ jobs:
                   aws deploy create-deployment \
                     --application-name ${{ vars.CODEDEPLOY_APPLICATION_NAME }} \
                     --deployment-group-name ${{ vars.CODEDEPLOY_DEPLOYMENT_GROUP_NAME }} \
-                    --github-location repository=${{ github.repository }},commitId=${{ github.sha }} \
-                    --description "Deploying ${{ github.sha }} to dev environment"
+                    --s3-location bucket=${{ vars.DEV_APPS_DEPLOYMENT_BUCKET }},bundleType=zip,key=dev-users-service.zip
                   echo "Deployment triggered in CodeDeploy."
