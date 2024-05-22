@@ -12,4 +12,4 @@ aws ecr get-login-password --region eu-west-1 | sudo docker login --username AWS
 sudo docker pull 575439814610.dkr.ecr.eu-west-1.amazonaws.com/users-service-dev:latest
 
 # Run the newly pulled image
-sudo docker run -d -p 80:8080 -e NODE_ENV=development -e SERVICE=dev-usersService 575439814610.dkr.ecr.eu-west-1.amazonaws.com/users-service-dev:latest
+sudo docker run -d -p 80:8080 -e NODE_ENV=development -e SERVICE=dev-usersService --log-driver=awslogs --log-opt awslogs-region=eu-west-1 --log-opt awslogs-group=/ecs/users-service --log-opt awslogs-create-group=true 575439814610.dkr.ecr.eu-west-1.amazonaws.com/users-service-dev:latest
