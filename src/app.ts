@@ -72,6 +72,7 @@ function startServer() {
 
 	// health check
 	app.get("/ping", async (req, res, next) => {
+		logger.cloudWatch.info("Someone pingged the server");
 		res.status(200).json(apiResponseHandler({ message: "pong due to s3" }));
 	});
 
