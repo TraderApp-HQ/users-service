@@ -98,5 +98,5 @@ jobs:
                   aws deploy create-deployment \
                     --application-name ${{ vars.CODEDEPLOY_APPLICATION_NAME }} \
                     --deployment-group-name ${{ vars.CODEDEPLOY_DEPLOYMENT_GROUP_NAME }} \
-                    --s3-location bucket=${{ vars.DEV_APPS_DEPLOYMENT_BUCKET }},bundleType=zip,key=dev-usersService-s3.zip
+                    --s3-location bucket=${{ vars.DEV_APPS_DEPLOYMENT_BUCKET }},bundleType=zip,key=dev-usersService-appspec.zip
                   echo "Deployment triggered in CodeDeploy."
