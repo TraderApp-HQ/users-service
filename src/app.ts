@@ -72,7 +72,9 @@ function startServer() {
 
 	// health check
 	app.get("/ping", async (req, res, next) => {
-		res.status(200).json(apiResponseHandler({ message: "Pong!!!" }));
+		res.status(200).json(
+			apiResponseHandler({ message: "Pong!!! Server is running and available." }),
+		);
 	});
 
 	// handle errors

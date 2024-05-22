@@ -86,11 +86,6 @@ jobs:
             - name: Checkout code from branch
               uses: actions/checkout@v2
 
-            # - name: Copy deployment files
-            #   run: |
-            #       cp deployment/dev/appspec.yml appspec.yml
-            #       cp -R deployment/dev/scripts/ .
-
             - name: Configure AWS credentials
               uses: aws-actions/configure-aws-credentials@v1
               with:
@@ -98,17 +93,10 @@ jobs:
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                   aws-region: ${{ vars.AWS_REGION }}
 
-            # - name: Trigger CodeDeploy
-            #   run: |
-            #       aws deploy create-deployment \
-            #         --application-name ${{ vars.CODEDEPLOY_APPLICATION_NAME }} \
-            #         --deployment-group-name ${{ vars.CODEDEPLOY_DEPLOYMENT_GROUP_NAME }} \
-            #         --s3-location bucket=${{ vars.DEV_APPS_DEPLOYMENT_BUCKET }},bundleType=zip,key=dev-users-service.zip
-            #       echo "Deployment triggered in CodeDeploy."
             - name: Trigger CodeDeploy
               run: |
                   aws deploy create-deployment \
-                    --application-name sample-usersService-app \
-                    --deployment-group-name sample-usersService-dg \
+                    --application-name ${{ vars.CODEDEPLOY_APPLICATION_NAME }} \
+                    --deployment-group-name ${{ vars.CODEDEPLOY_DEPLOYMENT_GROUP_NAME }} \
                     --s3-location bucket=${{ vars.DEV_APPS_DEPLOYMENT_BUCKET }},bundleType=zip,key=dev-usersService-s3.zip
                   echo "Deployment triggered in CodeDeploy."
