@@ -93,6 +93,15 @@ jobs:
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                   aws-region: ${{ vars.AWS_REGION }}
 
+            - name: Zip the deployment files
+              run: |
+                  cd deployment/dev/dev-usersService-appspec
+                  zip -r ../../dev-usersService-appspec.zip .
+
+            - name: Upload zip to S3
+              run: |
+                  aws s3 cp deployment/dev-usersService-appspec.zip s3://${{ vars.DEV_APPS_DEPLOYMENT_BUCKET }}/dev-usersService-appspec.zip
+
             - name: Trigger CodeDeploy
               run: |
                   aws deploy create-deployment \
