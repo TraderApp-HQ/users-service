@@ -1186,3 +1186,103 @@ Error: Environment variable not set
     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
     at phase4 (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/bin.ts:649:14)
     at bootstrap (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/bin.ts:95:10) [users-service] development 2024-05-18T20:17:37.872Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/AuthMiddleware.ts[0m:[93m112[0m:[93m19[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type 'TokenModel & { _id: ObjectId; }'. Did you mean 'refreshToken'?
+
+[7m112[0m   if (userSession.refresh_token !== refresh_token) {
+[7m   [0m [91m                  ~~~~~~~~~~~~~[0m
+
+  [96msrc/types.ts[0m:[93m45[0m:[93m2[0m
+    [7m45[0m  refreshToken: string;
+    [7m  [0m [96m ~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/middlewares/AuthMiddleware.ts[0m:[93m214[0m:[93m63[0m - [91merror[0m[90m TS2551: [0mProperty 'reset_token' does not exist on type 'PasswordResetTokenModel & { _id: ObjectId; }'. Did you mean 'resetToken'?
+
+[7m214[0m   const isTokenValid = await bcrypt.compare(reset_token, user.reset_token);
+[7m   [0m [91m                                                              ~~~~~~~~~~~[0m
+
+  [96msrc/types.ts[0m:[93m50[0m:[93m2[0m
+    [7m50[0m  resetToken: string;
+    [7m  [0m [96m ~~~~~~~~~~[0m
+    'resetToken' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/AuthMiddleware.ts[0m:[93m112[0m:[93m19[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type 'TokenModel & { _id: ObjectId; }'. Did you mean 'refreshToken'?
+
+[7m112[0m   if (userSession.refresh_token !== refresh_token) {
+[7m   [0m [91m                  ~~~~~~~~~~~~~[0m
+
+  [96msrc/types.ts[0m:[93m45[0m:[93m2[0m
+    [7m45[0m  refreshToken: string;
+    [7m  [0m [96m ~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/middlewares/AuthMiddleware.ts[0m:[93m214[0m:[93m63[0m - [91merror[0m[90m TS2551: [0mProperty 'reset_token' does not exist on type 'PasswordResetTokenModel & { _id: ObjectId; }'. Did you mean 'resetToken'?
+
+[7m214[0m   const isTokenValid = await bcrypt.compare(reset_token, user.reset_token);
+[7m   [0m [91m                                                              ~~~~~~~~~~~[0m
+
+  [96msrc/types.ts[0m:[93m50[0m:[93m2[0m
+    [7m50[0m  resetToken: string;
+    [7m  [0m [96m ~~~~~~~~~~[0m
+    'resetToken' is declared here.
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-05-27 01:59:34
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/AuthMiddleware.ts[0m:[93m112[0m:[93m19[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type 'TokenModel & { _id: ObjectId; }'. Did you mean 'refreshToken'?
+
+[7m112[0m   if (userSession.refresh_token !== refresh_token) {
+[7m   [0m [91m                  ~~~~~~~~~~~~~[0m
+
+  [96msrc/types.ts[0m:[93m45[0m:[93m2[0m
+    [7m45[0m  refreshToken: string;
+    [7m  [0m [96m ~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/middlewares/AuthMiddleware.ts[0m:[93m214[0m:[93m63[0m - [91merror[0m[90m TS2551: [0mProperty 'reset_token' does not exist on type 'PasswordResetTokenModel & { _id: ObjectId; }'. Did you mean 'resetToken'?
+
+[7m214[0m   const isTokenValid = await bcrypt.compare(reset_token, user.reset_token);
+[7m   [0m [91m                                                              ~~~~~~~~~~~[0m
+
+  [96msrc/types.ts[0m:[93m50[0m:[93m2[0m
+    [7m50[0m  resetToken: string;
+    [7m  [0m [96m ~~~~~~~~~~[0m
+    'resetToken' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/AuthMiddleware.ts[0m:[93m112[0m:[93m19[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type 'TokenModel & { _id: ObjectId; }'. Did you mean 'refreshToken'?
+
+[7m112[0m   if (userSession.refresh_token !== refresh_token) {
+[7m   [0m [91m                  ~~~~~~~~~~~~~[0m
+
+  [96msrc/types.ts[0m:[93m45[0m:[93m2[0m
+    [7m45[0m  refreshToken: string;
+    [7m  [0m [96m ~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/middlewares/AuthMiddleware.ts[0m:[93m214[0m:[93m63[0m - [91merror[0m[90m TS2551: [0mProperty 'reset_token' does not exist on type 'PasswordResetTokenModel & { _id: ObjectId; }'. Did you mean 'resetToken'?
+
+[7m214[0m   const isTokenValid = await bcrypt.compare(reset_token, user.reset_token);
+[7m   [0m [91m                                                              ~~~~~~~~~~~[0m
+
+  [96msrc/types.ts[0m:[93m50[0m:[93m2[0m
+    [7m50[0m  resetToken: string;
+    [7m  [0m [96m ~~~~~~~~~~[0m
+    'resetToken' is declared here.
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-05-27T00:59:34.891Z

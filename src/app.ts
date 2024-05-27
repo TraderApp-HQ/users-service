@@ -6,7 +6,7 @@ import { config } from "dotenv";
 import { apiResponseHandler, logger, initSecrets } from "@traderapp/shared-resources";
 
 import { ResponseType, ENVIRONMENTS } from "./config/constants";
-import cookies from "cookie-parser";
+import cookieParser from "cookie-parser";
 
 import swaggerUi from "swagger-ui-express";
 import specs from "./utils/swagger";
@@ -59,7 +59,7 @@ function startServer() {
 	// parse incoming requests
 	app.use(express.urlencoded({ extended: true }));
 	app.use(express.json());
-	app.use(cookies(process.env.COOKIE_SECRET_KEY));
+	app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 	// documentation
 	app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));

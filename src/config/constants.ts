@@ -38,7 +38,7 @@ export const ErrorMessage = {
 
 export const cookieOptions = {
 	httpOnly: true,
-	secure: true,
+	// secure: true,
 	signed: true,
 	maxAge: 7 * 24 * 60 * 60 * 1000, // Cookie will expire in 7 days
 };

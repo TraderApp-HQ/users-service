@@ -31,8 +31,8 @@ export async function validateLoginRequest(req: Request, res: Response, next: Ne
 export async function validateSignupRequest(req: Request, res: Response, next: NextFunction) {
 	// define validation schema
 	const schema = Joi.object({
-		first_name: Joi.string().required().label("First Name"),
-		last_name: Joi.string().required().label("Last Name"),
+		firstName: Joi.string().required().label("First Name"),
+		lastName: Joi.string().required().label("Last Name"),
 		email: Joi.string().email().required().label("Email"),
 		password: Joi.string()
 			.min(8)
@@ -44,9 +44,8 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
 					"The password should contain at least one upper case, one number, one lower case character, and one special character.",
 			})
 			.label("Password"),
-		dob: Joi.string().required().label("Date of Birth"),
-		country_id: Joi.number().required().label("Country Id"),
-		country_name: Joi.string().required().label("Country Name"),
+		countryId: Joi.number().required().label("Country Id"),
+		countryName: Joi.string().required().label("Country Name"),
 	});
 
 	// validate request
@@ -78,15 +77,16 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
 
 export async function validateRefreshTokenRequest(req: Request, res: Response, next: NextFunction) {
 	// get refresh token from request body
-	const refresh_token = req.signedCookies.refreshToken;
+	const refreshToken = req.signedCookies.refreshtoken;
+	console.log("refresh token", refreshToken, req.signedCookies);
 
 	// define validation schema
 	const schema = Joi.object({
-		refresh_token: Joi.string().required().label("Refresh Token"),
+		refreshToken: Joi.string().required().label("Refresh Token"),
 	});
 
 	// validate request
-	const { error } = schema.validate({ refresh_token });
+	const { error } = schema.validate({ refreshToken });
 
 	// check if error in request and throw error
 	if (error) {
@@ -101,7 +101,7 @@ export async function validateRefreshTokenRequest(req: Request, res: Response, n
 		err.name = "Unauthorized";
 
 		// verify refresh token and get user's id
-		const _id = await verifyRefreshToken(refresh_token);
+		const _id = await verifyRefreshToken(refreshToken);
 
 		// check if user has token in db and throw error if not
 		const userSession = await Token.findOne({ _id });
@@ -109,7 +109,7 @@ export async function validateRefreshTokenRequest(req: Request, res: Response, n
 
 		// check if token is not same as the one the user has in db
 		// throw unauthorized error and delete token from db
-		if (userSession.refresh_token !== refresh_token) {
+		if (userSession.refreshToken !== refreshToken) {
 			await Token.deleteOne({ _id });
 			throw err;
 		}
@@ -124,14 +124,14 @@ export async function validateRefreshTokenRequest(req: Request, res: Response, n
 
 export async function validateLogoutRequest(req: Request, res: Response, next: NextFunction) {
 	// get refresh token from request body
-	const refresh_token = req.signedCookies.refreshToken;
+	const refreshToken = req.signedCookies.refreshToken;
 	// define validation schema
 	const schema = Joi.object({
 		refresh_token: Joi.string().required().label("Refresh Token"),
 	});
 
 	// validate request
-	const { error } = schema.validate({ refresh_token });
+	const { error } = schema.validate({ refreshToken });
 
 	// throw error if request is invalid
 	if (error) {
@@ -142,7 +142,7 @@ export async function validateLogoutRequest(req: Request, res: Response, next: N
 
 	try {
 		// verify refresh token and get user's id
-		const _id = await verifyRefreshToken(refresh_token);
+		const _id = await verifyRefreshToken(refreshToken);
 
 		// attach id to req body and continue;
 		req.body._id = _id;
@@ -183,7 +183,7 @@ export async function validatePasswordResetRequest(
 	res: Response,
 	next: NextFunction,
 ) {
-	const { reset_token, password, user_id } = req.body;
+	const { resetToken, password, user_id } = req.body;
 
 	const schema = Joi.object({
 		reset_token: Joi.string().required().label("Reset Token"),
@@ -191,7 +191,7 @@ export async function validatePasswordResetRequest(
 		user_id: Joi.string().required().label("User Id"),
 	});
 
-	const { error } = schema.validate({ reset_token, password, user_id });
+	const { error } = schema.validate({ resetToken, password, user_id });
 
 	if (error) {
 		error.message = error.message.replace(/\"/g, "");
@@ -211,7 +211,7 @@ export async function validatePasswordResetRequest(
 		}
 
 		// compare reset token to see if they match
-		const isTokenValid = await bcrypt.compare(reset_token, user.reset_token);
+		const isTokenValid = await bcrypt.compare(resetToken, user.resetToken);
 
 		if (!isTokenValid) {
 			errorFlag = 2;

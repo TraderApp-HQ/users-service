@@ -16,11 +16,9 @@ import { HttpStatusCode } from "axios";
 async function buildResponse(res: Response, data: any) {
 	const user = {
 		id: data._id,
-		first_name: data.first_name,
-		last_name: data.last_name,
-		phone: data.phone,
+		firstName: data.firstName,
+		lastName: data.lastName,
 		email: data.email,
-		dob: data.dob,
 		isPhoneVerified: data.isPhoneVerified,
 		isEmailVerified: data.isEmailVerified,
 		isIdVerified: data.isIdVerified,
@@ -28,8 +26,8 @@ async function buildResponse(res: Response, data: any) {
 	};
 
 	// generate access and refreh tokens
-	const access_token = (await generateAccessToken(user)) as string;
-	const refresh_token = (await generateRefreshToken({ id: user.id })) as string;
+	const accessToken = (await generateAccessToken(user)) as string;
+	const refreshToken = (await generateRefreshToken({ id: user.id })) as string;
 
 	// set time for refreshToken expiry
 	const expireAt = new Date();
@@ -41,15 +39,15 @@ async function buildResponse(res: Response, data: any) {
 
 	// update refresh_token if true, else insert one
 	if (isUserToken) {
-		await Token.updateOne({ _id: user.id }, { $set: { refresh_token, expireAt } });
+		await Token.updateOne({ _id: user.id }, { $set: { refreshToken, expireAt } });
 	} else {
-		await Token.create({ _id: user.id, refresh_token, expireAt });
+		await Token.create({ _id: user.id, refreshToken, expireAt });
 	}
 
 	// format json response
 	// const res = issueTokenResponse(access_token, refresh_token);
-	const response = issueTokenResponse(access_token);
-	res.cookie("refreshToken", refresh_token, cookieOptions);
+	const response = issueTokenResponse(accessToken);
+	res.cookie("refreshtoken", refreshToken, cookieOptions);
 
 	return response;
 }
@@ -82,7 +80,6 @@ export async function loginHandler(req: Request, res: Response, next: NextFuncti
 			throw error;
 		}
 		const tokenRes = await buildResponse(res, data);
-		// saveRefreshTokenCookie(res, tokenRes.refresh_token)
 		res.status(200).json(
 			apiResponseHandler({
 				object: tokenRes,

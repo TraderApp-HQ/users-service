@@ -2,10 +2,15 @@ import JWT from "jsonwebtoken";
 import dotenv from "dotenv";
 import { Payload } from "../types";
 import { ErrorMessage, TOKEN_ATTRIBUTES, ROLES } from "../config/constants";
-import { NextFunction, Request } from "express";
+import { Request } from "express";
 
 // init env variables
 dotenv.config();
+
+interface IPayload {
+	id: string;
+	role: string;
+}
 
 /* A function to generate access token.
  ** It generates and returns an access token and throws an error if something goes wrong
@@ -75,10 +80,10 @@ export async function verifyRefreshToken(refreshToken: string) {
 }
 
 // a function to format response for token issued
-export function issueTokenResponse(access_token: string) {
+export function issueTokenResponse(accessToken: string) {
 	return {
-		access_token,
-		token_type: "bearer",
+		accessToken,
+		tokenType: "bearer",
 		expires: TOKEN_ATTRIBUTES.EXPIRES_TIMESTAMP,
 	};
 }
@@ -92,14 +97,6 @@ export async function generateResetToken() {
 	return buf.toString("hex");
 }
 
-interface IPayload {
-	id: string;
-	role: string;
-}
-interface IData {
-	token: string;
-	userId: string;
-}
 export async function checkUser(req: Request) {
 	// get id and bearer token
 	const { id } = req.params;
