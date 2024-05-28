@@ -24,6 +24,7 @@ export const ResponseMessage = {
 	PASSWORD_RESET_SENT: "Password rest link has been sent",
 	PASSWORD_RESET: "Password was reset successfully!",
 	GET_USERS: "Users Fetched successfully",
+	SEARCH_USERS: "Users Searched successfully",
 	GET_USER: "User Fetched successfully",
 	UPDATE_USER: "User Updated successfully",
 };
@@ -85,6 +86,7 @@ export const ROUTES = {
 	get_user: "/:id",
 	get_all_users: "/",
 	update_user: "/update",
+	search_user: "/search",
 };
 
 export const PAGINATION = {

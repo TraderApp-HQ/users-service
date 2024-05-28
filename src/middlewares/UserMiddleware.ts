@@ -35,9 +35,10 @@ export async function validateGetAllUsers(req: Request, res: Response, next: Nex
 		const schema = Joi.object({
 			page: Joi.string().label("Page"),
 			size: Joi.string().label("Size"),
+			searchKeyword: Joi.string().label("searchKeyword").allow(""),
 		});
 		// validate request
-		const { error } = schema.validate(req.params); // change to params
+		const { error } = schema.validate(req.query); // change to query
 
 		if (error) {
 			// strip string of double quotes
