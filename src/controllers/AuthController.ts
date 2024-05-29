@@ -93,11 +93,10 @@ export async function loginHandler(req: Request, res: Response, next: NextFuncti
 
 export async function logoutHandler(req: Request, res: Response, next: NextFunction) {
 	const { _id } = req.body;
-
 	try {
 		await Token.deleteOne({ _id });
-		res.cookie("refreshToken", "", { maxAge: 0 });
-		res.status(204).json(apiResponseHandler());
+		res.cookie("refreshtoken", "", { maxAge: 0 });
+		res.status(204).json();
 	} catch (err) {
 		next(err);
 	}
