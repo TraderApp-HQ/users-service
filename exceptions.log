@@ -1286,3 +1286,1163 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1119:32)
     at Function.Module._load (node:internal/modules/cjs/loader:960:12)
     at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-05-27T00:59:34.891Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-09 06:32:04
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-09T05:32:04.709Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-09 06:32:27
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-09T05:32:27.201Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-09 06:32:52
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-09T05:32:52.250Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-09 06:34:05
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m40[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'refresh_token' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'refreshToken'?
+
+[7m40[0m       [`/auth${ROUTES.refresh_token}`]: { post: createAuthRefreshToken },
+[7m  [0m [91m                      ~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m103[0m:[93m2[0m
+    [7m103[0m  refreshToken: "/refresh-token",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'refreshToken' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordReset'?
+
+[7m41[0m       [`/auth${ROUTES.password_reset}`]: { post: createAuthPasswordReset },
+[7m  [0m [91m                      ~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m104[0m:[93m2[0m
+    [7m104[0m  passwordReset: "/password-reset",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordReset' is declared here.
+[96msrc/utils/swagger.ts[0m:[93m42[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'password_reset_link' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getUser: string; getAllUsers: string; updateUser: string; searchUser: string; }'. Did you mean 'passwordResetLink'?
+
+[7m42[0m       [`/auth${ROUTES.password_reset_link}`]: { get: createAuthPasswordLinkReset }
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/constants.ts[0m:[93m105[0m:[93m2[0m
+    [7m105[0m  passwordResetLink: "/password-reset/:email",
+    [7m   [0m [96m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'passwordResetLink' is declared here.
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-09T05:34:05.574Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/helpers.ts[0m:[93m6[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"./AuthController/config"' has no exported member 'IVerifyOtp'.
+
+[7m6[0m import { IVerifyOtp } from "./AuthController/config";
+[7m [0m [91m         ~~~~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m28[0m:[93m29[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m28[0m  const channels = data.map((otpData) => otpData.channel);
+[7m  [0m [91m                            ~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m43[0m:[93m16[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m43[0m  data.forEach((otpData) => {
+[7m  [0m [91m               ~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/helpers.ts[0m:[93m6[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"./AuthController/config"' has no exported member 'IVerifyOtp'.
+
+[7m6[0m import { IVerifyOtp } from "./AuthController/config";
+[7m [0m [91m         ~~~~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m28[0m:[93m29[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m28[0m  const channels = data.map((otpData) => otpData.channel);
+[7m  [0m [91m                            ~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m43[0m:[93m16[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m43[0m  data.forEach((otpData) => {
+[7m  [0m [91m               ~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-11 05:50:02
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/helpers.ts[0m:[93m6[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"./AuthController/config"' has no exported member 'IVerifyOtp'.
+
+[7m6[0m import { IVerifyOtp } from "./AuthController/config";
+[7m [0m [91m         ~~~~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m28[0m:[93m29[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m28[0m  const channels = data.map((otpData) => otpData.channel);
+[7m  [0m [91m                            ~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m43[0m:[93m16[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m43[0m  data.forEach((otpData) => {
+[7m  [0m [91m               ~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/helpers.ts[0m:[93m6[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"./AuthController/config"' has no exported member 'IVerifyOtp'.
+
+[7m6[0m import { IVerifyOtp } from "./AuthController/config";
+[7m [0m [91m         ~~~~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m28[0m:[93m29[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m28[0m  const channels = data.map((otpData) => otpData.channel);
+[7m  [0m [91m                            ~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m43[0m:[93m16[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m43[0m  data.forEach((otpData) => {
+[7m  [0m [91m               ~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-11T04:50:02.168Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/helpers.ts[0m:[93m6[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"./AuthController/config"' has no exported member 'IVerifyOtp'.
+
+[7m6[0m import { IVerifyOtp } from "./AuthController/config";
+[7m [0m [91m         ~~~~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m28[0m:[93m29[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m28[0m  const channels = data.map((otpData) => otpData.channel);
+[7m  [0m [91m                            ~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m43[0m:[93m16[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m43[0m  data.forEach((otpData) => {
+[7m  [0m [91m               ~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m59[0m:[93m55[0m - [91merror[0m[90m TS2304: [0mCannot find name 'IDeleteOtpInput'.
+
+[7m59[0m export async function deleteOtp({ userId, channels }: IDeleteOtpInput): Promise<void> {
+[7m  [0m [91m                                                      ~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/helpers.ts[0m:[93m6[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"./AuthController/config"' has no exported member 'IVerifyOtp'.
+
+[7m6[0m import { IVerifyOtp } from "./AuthController/config";
+[7m [0m [91m         ~~~~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m28[0m:[93m29[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m28[0m  const channels = data.map((otpData) => otpData.channel);
+[7m  [0m [91m                            ~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m43[0m:[93m16[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m43[0m  data.forEach((otpData) => {
+[7m  [0m [91m               ~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m59[0m:[93m55[0m - [91merror[0m[90m TS2304: [0mCannot find name 'IDeleteOtpInput'.
+
+[7m59[0m export async function deleteOtp({ userId, channels }: IDeleteOtpInput): Promise<void> {
+[7m  [0m [91m                                                      ~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-11 05:52:27
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/helpers.ts[0m:[93m6[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"./AuthController/config"' has no exported member 'IVerifyOtp'.
+
+[7m6[0m import { IVerifyOtp } from "./AuthController/config";
+[7m [0m [91m         ~~~~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m28[0m:[93m29[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m28[0m  const channels = data.map((otpData) => otpData.channel);
+[7m  [0m [91m                            ~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m43[0m:[93m16[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m43[0m  data.forEach((otpData) => {
+[7m  [0m [91m               ~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m59[0m:[93m55[0m - [91merror[0m[90m TS2304: [0mCannot find name 'IDeleteOtpInput'.
+
+[7m59[0m export async function deleteOtp({ userId, channels }: IDeleteOtpInput): Promise<void> {
+[7m  [0m [91m                                                      ~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/helpers.ts[0m:[93m6[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"./AuthController/config"' has no exported member 'IVerifyOtp'.
+
+[7m6[0m import { IVerifyOtp } from "./AuthController/config";
+[7m [0m [91m         ~~~~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m28[0m:[93m29[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m28[0m  const channels = data.map((otpData) => otpData.channel);
+[7m  [0m [91m                            ~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m43[0m:[93m16[0m - [91merror[0m[90m TS7006: [0mParameter 'otpData' implicitly has an 'any' type.
+
+[7m43[0m  data.forEach((otpData) => {
+[7m  [0m [91m               ~~~~~~~[0m
+[96msrc/controllers/helpers.ts[0m:[93m59[0m:[93m55[0m - [91merror[0m[90m TS2304: [0mCannot find name 'IDeleteOtpInput'.
+
+[7m59[0m export async function deleteOtp({ userId, channels }: IDeleteOtpInput): Promise<void> {
+[7m  [0m [91m                                                      ~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-11T04:52:27.317Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/helpers.ts[0m:[93m59[0m:[93m55[0m - [91merror[0m[90m TS2304: [0mCannot find name 'IDeleteOtpInput'.
+
+[7m59[0m export async function deleteOtp({ userId, channels }: IDeleteOtpInput): Promise<void> {
+[7m  [0m [91m                                                      ~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/helpers.ts[0m:[93m59[0m:[93m55[0m - [91merror[0m[90m TS2304: [0mCannot find name 'IDeleteOtpInput'.
+
+[7m59[0m export async function deleteOtp({ userId, channels }: IDeleteOtpInput): Promise<void> {
+[7m  [0m [91m                                                      ~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-11 05:53:38
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/helpers.ts[0m:[93m59[0m:[93m55[0m - [91merror[0m[90m TS2304: [0mCannot find name 'IDeleteOtpInput'.
+
+[7m59[0m export async function deleteOtp({ userId, channels }: IDeleteOtpInput): Promise<void> {
+[7m  [0m [91m                                                      ~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/helpers.ts[0m:[93m59[0m:[93m55[0m - [91merror[0m[90m TS2304: [0mCannot find name 'IDeleteOtpInput'.
+
+[7m59[0m export async function deleteOtp({ userId, channels }: IDeleteOtpInput): Promise<void> {
+[7m  [0m [91m                                                      ~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-11T04:53:38.382Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/token-functions.ts[0m:[93m7[0m:[93m30[0m - [91merror[0m[90m TS2306: [0mFile '/Users/i/Documents/TraderApp codes/users-service/src/config/interfaces.ts' is not a module.
+
+[7m7[0m import { IAccessToken } from "../config/interfaces";
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/token-functions.ts[0m:[93m7[0m:[93m30[0m - [91merror[0m[90m TS2306: [0mFile '/Users/i/Documents/TraderApp codes/users-service/src/config/interfaces.ts' is not a module.
+
+[7m7[0m import { IAccessToken } from "../config/interfaces";
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-12 21:03:17
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/token-functions.ts[0m:[93m7[0m:[93m30[0m - [91merror[0m[90m TS2306: [0mFile '/Users/i/Documents/TraderApp codes/users-service/src/config/interfaces.ts' is not a module.
+
+[7m7[0m import { IAccessToken } from "../config/interfaces";
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/token-functions.ts[0m:[93m7[0m:[93m30[0m - [91merror[0m[90m TS2306: [0mFile '/Users/i/Documents/TraderApp codes/users-service/src/config/interfaces.ts' is not a module.
+
+[7m7[0m import { IAccessToken } from "../config/interfaces";
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-12T20:03:17.997Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/token-functions.ts[0m:[93m7[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../config/interfaces' or its corresponding type declarations.
+
+[7m7[0m import { IAccessToken } from "../config/interfaces";
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/token-functions.ts[0m:[93m7[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../config/interfaces' or its corresponding type declarations.
+
+[7m7[0m import { IAccessToken } from "../config/interfaces";
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-12 21:03:35
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/token-functions.ts[0m:[93m7[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../config/interfaces' or its corresponding type declarations.
+
+[7m7[0m import { IAccessToken } from "../config/interfaces";
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/token-functions.ts[0m:[93m7[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '../config/interfaces' or its corresponding type declarations.
+
+[7m7[0m import { IAccessToken } from "../config/interfaces";
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-12T20:03:35.749Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/token-functions.ts[0m:[93m7[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../config/interfaces"' has no exported member 'IAccessToken'.
+
+[7m7[0m import { IAccessToken } from "../config/interfaces";
+[7m [0m [91m         ~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/token-functions.ts[0m:[93m7[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../config/interfaces"' has no exported member 'IAccessToken'.
+
+[7m7[0m import { IAccessToken } from "../config/interfaces";
+[7m [0m [91m         ~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-12 21:03:47
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/token-functions.ts[0m:[93m7[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../config/interfaces"' has no exported member 'IAccessToken'.
+
+[7m7[0m import { IAccessToken } from "../config/interfaces";
+[7m [0m [91m         ~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/token-functions.ts[0m:[93m7[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../config/interfaces"' has no exported member 'IAccessToken'.
+
+[7m7[0m import { IAccessToken } from "../config/interfaces";
+[7m [0m [91m         ~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-12T20:03:47.957Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../helpers/tokens"' has no exported member 'checkUser'.
+
+[7m3[0m import { checkUser } from "../helpers/tokens";
+[7m [0m [91m         ~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../helpers/tokens"' has no exported member 'checkUser'.
+
+[7m3[0m import { checkUser } from "../helpers/tokens";
+[7m [0m [91m         ~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-12 21:16:13
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../helpers/tokens"' has no exported member 'checkUser'.
+
+[7m3[0m import { checkUser } from "../helpers/tokens";
+[7m [0m [91m         ~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../helpers/tokens"' has no exported member 'checkUser'.
+
+[7m3[0m import { checkUser } from "../helpers/tokens";
+[7m [0m [91m         ~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-12T20:16:13.314Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../helpers/tokens"' has no exported member 'checkUser'.
+
+[7m3[0m import { checkUser } from "../helpers/tokens";
+[7m [0m [91m         ~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../helpers/tokens"' has no exported member 'checkUser'.
+
+[7m3[0m import { checkUser } from "../helpers/tokens";
+[7m [0m [91m         ~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-12 21:18:19
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../helpers/tokens"' has no exported member 'checkUser'.
+
+[7m3[0m import { checkUser } from "../helpers/tokens";
+[7m [0m [91m         ~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/middlewares/UserMiddleware.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../helpers/tokens"' has no exported member 'checkUser'.
+
+[7m3[0m import { checkUser } from "../helpers/tokens";
+[7m [0m [91m         ~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19) [users-service] development 2024-06-12T20:18:19.835Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/tokens/index.ts[0m:[93m122[0m:[93m68[0m - [91merror[0m[90m TS2339: [0mProperty 'resetToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'.
+
+[7m122[0m  const isTokenValid = await bcrypt.compare(verificationToken, user.resetToken);
+[7m   [0m [91m                                                                   ~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/tokens/index.ts[0m:[93m122[0m:[93m68[0m - [91merror[0m[90m TS2339: [0mProperty 'resetToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'.
+
+[7m122[0m  const isTokenValid = await bcrypt.compare(verificationToken, user.resetToken);
+[7m   [0m [91m                                                                   ~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-06-17 02:05:08
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/tokens/index.ts[0m:[93m122[0m:[93m68[0m - [91merror[0m[90m TS2339: [0mProperty 'resetToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'.
+
+[7m122[0m  const isTokenValid = await bcrypt.compare(verificationToken, user.resetToken);
+[7m   [0m [91m                                                                   ~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/tokens/index.ts[0m:[93m122[0m:[93m68[0m - [91merror[0m[90m TS2339: [0mProperty 'resetToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'.
+
+[7m122[0m  const isTokenValid = await bcrypt.compare(verificationToken, user.resetToken);
+[7m   [0m [91m                                                                   ~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-06-17T01:05:08.088Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/tokens/index.ts[0m:[93m122[0m:[93m68[0m - [91merror[0m[90m TS2339: [0mProperty 'resetToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'.
+
+[7m122[0m  const isTokenValid = await bcrypt.compare(verificationToken, user.resetToken);
+[7m   [0m [91m                                                                   ~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/tokens/index.ts[0m:[93m122[0m:[93m68[0m - [91merror[0m[90m TS2339: [0mProperty 'resetToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'.
+
+[7m122[0m  const isTokenValid = await bcrypt.compare(verificationToken, user.resetToken);
+[7m   [0m [91m                                                                   ~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-06-17 02:05:23
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/tokens/index.ts[0m:[93m122[0m:[93m68[0m - [91merror[0m[90m TS2339: [0mProperty 'resetToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'.
+
+[7m122[0m  const isTokenValid = await bcrypt.compare(verificationToken, user.resetToken);
+[7m   [0m [91m                                                                   ~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/tokens/index.ts[0m:[93m122[0m:[93m68[0m - [91merror[0m[90m TS2339: [0mProperty 'resetToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'.
+
+[7m122[0m  const isTokenValid = await bcrypt.compare(verificationToken, user.resetToken);
+[7m   [0m [91m                                                                   ~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-06-17T01:05:23.025Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/controllers/index.ts[0m:[93m106[0m:[93m15[0m - [91merror[0m[90m TS2352: [0mConversion of type '{ id: any; firstName: string; lastName: string; email: string; isPhoneVerified: boolean | undefined; isEmailVerified: boolean | undefined; isIdVerified: boolean | undefined; role: Role[]; }' to type 'IAccessToken' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property 'role' are incompatible.
+    Type 'Role[]' is not comparable to type 'Role'.
+
+[7m106[0m  const user = getUserObject(data) as IAccessToken;
+[7m   [0m [91m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/controllers/index.ts[0m:[93m106[0m:[93m15[0m - [91merror[0m[90m TS2352: [0mConversion of type '{ id: any; firstName: string; lastName: string; email: string; isPhoneVerified: boolean | undefined; isEmailVerified: boolean | undefined; isIdVerified: boolean | undefined; role: Role[]; }' to type 'IAccessToken' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property 'role' are incompatible.
+    Type 'Role[]' is not comparable to type 'Role'.
+
+[7m106[0m  const user = getUserObject(data) as IAccessToken;
+[7m   [0m [91m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-06-17 02:07:18
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/controllers/index.ts[0m:[93m106[0m:[93m15[0m - [91merror[0m[90m TS2352: [0mConversion of type '{ id: any; firstName: string; lastName: string; email: string; isPhoneVerified: boolean | undefined; isEmailVerified: boolean | undefined; isIdVerified: boolean | undefined; role: Role[]; }' to type 'IAccessToken' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property 'role' are incompatible.
+    Type 'Role[]' is not comparable to type 'Role'.
+
+[7m106[0m  const user = getUserObject(data) as IAccessToken;
+[7m   [0m [91m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/controllers/index.ts[0m:[93m106[0m:[93m15[0m - [91merror[0m[90m TS2352: [0mConversion of type '{ id: any; firstName: string; lastName: string; email: string; isPhoneVerified: boolean | undefined; isEmailVerified: boolean | undefined; isIdVerified: boolean | undefined; role: Role[]; }' to type 'IAccessToken' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property 'role' are incompatible.
+    Type 'Role[]' is not comparable to type 'Role'.
+
+[7m106[0m  const user = getUserObject(data) as IAccessToken;
+[7m   [0m [91m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-06-17T01:07:18.535Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/middlewares/index.ts[0m:[93m25[0m:[93m22[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Role[]' is not assignable to parameter of type 'Role'.
+
+[7m25[0m  if (!roles.includes(role)) {
+[7m  [0m [91m                     ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/middlewares/index.ts[0m:[93m25[0m:[93m22[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Role[]' is not assignable to parameter of type 'Role'.
+
+[7m25[0m  if (!roles.includes(role)) {
+[7m  [0m [91m                     ~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-06-17 02:07:45
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/middlewares/index.ts[0m:[93m25[0m:[93m22[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Role[]' is not assignable to parameter of type 'Role'.
+
+[7m25[0m  if (!roles.includes(role)) {
+[7m  [0m [91m                     ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/middlewares/index.ts[0m:[93m25[0m:[93m22[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Role[]' is not assignable to parameter of type 'Role'.
+
+[7m25[0m  if (!roles.includes(role)) {
+[7m  [0m [91m                     ~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-06-17T01:07:45.094Z

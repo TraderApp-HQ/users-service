@@ -1,15 +1,17 @@
+import { NotificationChannel, Role } from "./enums";
+
 export interface IUser {
 	email: string;
 	password: string;
 	phone?: string;
-	first_name: string;
-	last_name: string;
-	country_id: number;
+	firstName: string;
+	lastName: string;
+	countryId: number;
 	dob: string;
 	isEmailVerified?: boolean;
 	isPhoneVerified?: boolean;
 	isIdVerified?: boolean;
-	role?: number;
+	role: Role[];
 }
 
 export interface ICountry {
@@ -23,22 +25,16 @@ export interface ICountry {
 	continent: string;
 }
 
-export interface IRole {
-	_id: number;
-	description: string;
-}
-
 export interface Payload {
 	id: string;
 	firstName: string;
 	lastName: string;
-	phone: string;
 	email: string;
 	dob: string;
 	isPhoneVerified: boolean;
 	isEmailVerified: boolean;
 	isIdVerified: boolean;
-	role: number;
+	role: Role;
 }
 
 export interface RefreshToken {
@@ -46,7 +42,25 @@ export interface RefreshToken {
 	expireAt: Date;
 }
 
-export interface ResetToken {
-	resetToken: string;
+export interface VerificationToken {
+	verificatonToken: string;
 	expireAt: Date;
+}
+
+export interface OneTimePassword {
+	otp: string;
+	verificationToken: string;
+	expireAt: Date;
+	channel: NotificationChannel;
+}
+
+export interface IAccessToken {
+	id: string;
+	firstName: string;
+	lastName: string;
+	email: string;
+	isPhoneVerified: boolean;
+	isEmailVerified: boolean;
+	isIdVerified: boolean;
+	role: Role[];
 }

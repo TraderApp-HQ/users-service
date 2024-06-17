@@ -9,8 +9,8 @@ import {
 
 const router = Router();
 
-router.get(ROUTES.get_all_users, validateGetAllUsers, getAllUsers);
-router.get(ROUTES.get_user, validateGetUser, getUserById);
-router.patch(ROUTES.update_user, validateUpdateUser, updateUserById);
+router.get(ROUTES.getAllUsers, validateGetAllUsers, getAllUsers);
+router.get(ROUTES.getUser, validateGetUser, getUserById);
+router.patch(ROUTES.updateUser, validateUpdateUser, updateUserById);
 
 export default router;

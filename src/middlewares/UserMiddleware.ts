@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
-import { checkUser } from "../utils/token-functions";
+import { checkUser } from "../helpers/middlewares";
 
 export async function validateUpdateUser(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -15,7 +15,6 @@ export async function validateUpdateUser(req: Request, res: Response, next: Next
 		});
 		// validate request
 		const { error } = schema.validate(req.body);
-
 		if (error) {
 			// strip string of double quotes
 			error.message = error.message.replace(/\"/g, "");
@@ -38,8 +37,7 @@ export async function validateGetAllUsers(req: Request, res: Response, next: Nex
 			searchKeyword: Joi.string().label("searchKeyword").allow(""),
 		});
 		// validate request
-		const { error } = schema.validate(req.query); // change to query
-
+		const { error } = schema.validate(req.query);
 		if (error) {
 			// strip string of double quotes
 			error.message = error.message.replace(/\"/g, "");
@@ -54,19 +52,8 @@ export async function validateGetAllUsers(req: Request, res: Response, next: Nex
 
 export async function validateGetUser(req: Request, res: Response, next: NextFunction) {
 	try {
-		await checkUser(req);
-		const schema = Joi.object({
-			id: Joi.string().label("id"),
-		});
-		// validate request
-		const { error } = schema.validate(req.params);
-
-		if (error) {
-			// strip string of double quotes
-			error.message = error.message.replace(/\"/g, "");
-			next(error);
-			return;
-		}
+		const { id } = await checkUser(req);
+		req.params.id = id;
 		next();
 	} catch (err: any) {
 		next(err);

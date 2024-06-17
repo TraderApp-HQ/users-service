@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { apiDocumentationResponseObject } from "@traderapp/shared-resources";
 
 export const ENVIRONMENTS: Record<string, string> = Object.freeze({
@@ -7,7 +8,7 @@ export const ENVIRONMENTS: Record<string, string> = Object.freeze({
 });
 
 export const TOKEN_ATTRIBUTES = {
-	ACCESS_TOKEN_EXPIRES: "15m",
+	ACCESS_TOKEN_EXPIRES: "2m",
 	REFRESH_TOKEN_EXPIRES: "30d",
 	EXPIRES_TIMESTAMP: 15 * 60,
 	TOKEN_ISSUER: "traderapp.finance",
@@ -38,11 +39,21 @@ export const ErrorMessage = {
 	UNAUTHORIZED: "Unauthorized",
 };
 
-export const cookieOptions = {
+export const REFRESH_TOKEN_EXPIRES = 7 * 24 * 60 * 60; // 7 days
+export const VERIFICATION_TOKEN_EXPIRES = 1 * 24 * 60 * 60; // 1 day
+export const OTP_EXPIRES = 60 * 10; // 10 minutes
+
+export const refreshTokenCookieOptions = {
 	httpOnly: true,
-	// secure: true,
+	secure: process.env.NODE_ENV === "production",
 	signed: true,
-	maxAge: 7 * 24 * 60 * 60 * 1000, // Cookie will expire in 7 days
+	maxAge: REFRESH_TOKEN_EXPIRES * 1000,
+};
+
+export const accessTokenCookieOptions = {
+	secure: process.env.NODE_ENV === "production",
+	signed: true,
+	maxAge: 15 * 60 * 1000, // Cookie will expire in 15 minutes
 };
 
 export const RESPONSE_TAGS = {
@@ -63,6 +74,13 @@ export const RESPONSE_CODES = {
 	conflict: "409",
 };
 
+export const RESPONSE_FLAGS = {
+	unauthorized: "Unauthorized",
+	validationError: "ValidationError",
+	forbidden: "Forbidden",
+	notfound: "NotFound",
+};
+
 export const DOC_RESPONSE = {
 	SERVERERROR: apiDocumentationResponseObject("Internal Server Error"),
 	UNAUTHORIZED: apiDocumentationResponseObject("Error: Unauthorized"),
@@ -81,22 +99,19 @@ export const ROUTES = {
 	login: "/login",
 	signup: "/signup",
 	logout: "/logout",
-	refresh_token: "/refresh-token",
-	password_reset: "/password-reset",
-	password_reset_link: "/password-reset/:email",
-	get_user: "/:id",
-	get_all_users: "/",
-	update_user: "/update",
-	search_user: "/search",
+	refreshToken: "/refresh-token",
+	passwordReset: "/password-reset",
+	passwordResetLink: "/password-reset/:email",
+	getUser: "/me",
+	getAllUsers: "/all",
+	updateUser: "/update",
+	searchUser: "/search",
+	verifyOtp: "/verify-otp",
 };
 
 export const PAGINATION = {
 	PAGE: 1,
 	LIMIT: 10,
-};
-
-export const ROLES = {
-	SUPER_ADMIN: "SUPER_ADMIN",
 };
 
 export const EXCLUDE_FIELDS = {

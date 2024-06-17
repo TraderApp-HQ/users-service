@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import Country from "../models/Country";
+import Country from "../../models/Country";
 import { apiResponseHandler } from "@traderapp/shared-resources";
 
 const status = "SUCCESS";

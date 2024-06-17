@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { ICountry } from "../types";
+import { ICountry } from "../config/interfaces";
 
 export interface ICountryModel extends ICountry {}
 
