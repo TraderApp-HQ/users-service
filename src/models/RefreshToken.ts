@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { RefreshToken } from "../types";
+import { RefreshToken } from "../config/interfaces";
 
 interface TokenModel extends RefreshToken, Document {}
 

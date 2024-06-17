@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import User from "../models/User";
+import User from "../../models/User";
 import { apiResponseHandler } from "@traderapp/shared-resources";
-import { ResponseMessage, PAGINATION, EXCLUDE_FIELDS } from "../config/constants";
+import { ResponseMessage, PAGINATION, EXCLUDE_FIELDS } from "../../config/constants";
 
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
 	try {

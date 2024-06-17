@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import mongoose, { Document, Schema, Model } from "mongoose";
-import bcrypt from "bcrypt";
-import { IUser } from "../types";
-import { Roles } from "../config/enums";
-
 import mongoosePaginate from "mongoose-paginate-v2";
+import bcrypt from "bcrypt";
+import { IUser } from "../config/interfaces";
+import { Role } from "../config/enums";
 
 export interface IUserModel extends IUser, Document {}
 
@@ -27,7 +26,7 @@ const UserSchema = new Schema(
 		isEmailVerified: { type: Boolean, default: false },
 		isPhoneVerified: { type: Boolean, default: false },
 		isIdVerified: { type: Boolean, default: false },
-		role: { type: String, enum: Roles, default: Roles.USER },
+		role: { type: [String], enum: Role, default: [Role.USER] },
 	},
 	{ versionKey: false, timestamps: true },
 );

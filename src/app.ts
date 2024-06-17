@@ -5,7 +5,7 @@ import { AuthRoutes, CountryRoutes, VerificationRoutes, UserRoutes } from "./rou
 import { config } from "dotenv";
 import { apiResponseHandler, logger, initSecrets } from "@traderapp/shared-resources";
 
-import { ResponseType, ENVIRONMENTS } from "./config/constants";
+import { ResponseType, ENVIRONMENTS, RESPONSE_FLAGS } from "./config/constants";
 import cookieParser from "cookie-parser";
 
 import swaggerUi from "swagger-ui-express";
@@ -49,12 +49,30 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 
 function startServer() {
 	// cors
-	app.use(
-		cors({
-			origin: "*",
-			methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
-		}),
-	);
+	// Define an array of allowed origins
+	const allowedOrigins = [
+		"http://localhost:8788",
+		"https://users-dashboard-dev.traderapp.finance/",
+		"https://users-dashboard-staging.traderapp.finance/",
+	];
+
+	const corsOptions = {
+		origin: (
+			origin: string | undefined,
+			callback: (error: Error | null, allow?: boolean) => void,
+		) => {
+			// Allow requests with no origin (like mobile apps or curl requests)
+			if (!origin) return callback(null, true);
+			if (allowedOrigins.includes(origin)) {
+				return callback(null, true);
+			} else {
+				return callback(new Error("Not allowed by CORS"));
+			}
+		},
+		methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
+		credentials: true, // Allow credentials
+	};
+	app.use(cors(corsOptions));
 
 	// parse incoming requests
 	app.use(express.urlencoded({ extended: true }));
@@ -72,19 +90,21 @@ function startServer() {
 
 	// health check
 	app.get("/ping", async (req, res, next) => {
-		res.status(200).json(apiResponseHandler({ message: "Pong!!! Server is running fine..." }));
+		res.status(200).json(
+			apiResponseHandler({ message: "Pong!!! Users service is running fine..." }),
+		);
 	});
 
 	// handle errors
 	app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
 		let errorName = err.name;
 		let errorMessage = err.message;
-		let statusCode;
+		let statusCode: number;
 
-		if (err.name === "ValidationError") statusCode = 400;
-		else if (err.name === "Unauthorized") statusCode = 401;
-		else if (err.name === "Forbidden") statusCode = 403;
-		else if (err.name === "NotFound") statusCode = 404;
+		if (err.name === RESPONSE_FLAGS.validationError) statusCode = 400;
+		else if (err.name === RESPONSE_FLAGS.unauthorized) statusCode = 401;
+		else if (err.name === RESPONSE_FLAGS.forbidden) statusCode = 403;
+		else if (err.name === RESPONSE_FLAGS.notfound) statusCode = 404;
 		else {
 			statusCode = 500;
 			errorName = "InternalServerError";
@@ -96,6 +116,11 @@ function startServer() {
 			apiResponseHandler({
 				type: ResponseType.ERROR,
 				message: errorMessage,
+				object: {
+					statusCode,
+					errorName,
+					errorMessage,
+				},
 			}),
 		);
 	});

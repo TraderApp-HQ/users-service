@@ -1,10 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import Joi from "joi";
-import bcrypt from "bcrypt";
-import { verifyRefreshToken } from "../utils/token-functions";
+import { validateUserVerificationToken, verifyRefreshToken } from "../helpers/tokens";
 import Token from "../models/RefreshToken";
 import User from "../models/User";
-import PasswordResetToken from "../models/PasswordResetToken";
+import { RESPONSE_FLAGS } from "../config/constants";
+import { NotificationChannel } from "../config/enums";
+import { IVerifyOtp, VerificationType } from "../controllers/AuthController/config";
 
 export async function validateLoginRequest(req: Request, res: Response, next: NextFunction) {
 	// get params from request body
@@ -64,7 +65,7 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
 			const isUser = await User.findOne({ email });
 			if (isUser) {
 				const err = new Error("This Email address is already in use!");
-				err.name = "Forbidden";
+				err.name = RESPONSE_FLAGS.forbidden;
 				throw err;
 			}
 
@@ -77,7 +78,7 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
 
 export async function validateRefreshTokenRequest(req: Request, res: Response, next: NextFunction) {
 	// get refresh token from request body
-	const refreshToken = req.signedCookies.refreshtoken;
+	const refreshToken = req.signedCookies.refreshToken;
 
 	// define validation schema
 	const schema = Joi.object({
@@ -96,8 +97,8 @@ export async function validateRefreshTokenRequest(req: Request, res: Response, n
 
 	try {
 		// create error object
-		const err = new Error("Invalid Token");
-		err.name = "Unauthorized";
+		const err = new Error("No valid session found!");
+		err.name = RESPONSE_FLAGS.forbidden;
 
 		// verify refresh token and get user's id
 		const _id = await verifyRefreshToken(refreshToken);
@@ -123,8 +124,7 @@ export async function validateRefreshTokenRequest(req: Request, res: Response, n
 
 export async function validateLogoutRequest(req: Request, res: Response, next: NextFunction) {
 	// get refresh token from request body
-	const refreshToken = req.signedCookies.refreshtoken;
-	console.log("refresh token", refreshToken, req.signedCookies);
+	const refreshToken = req.signedCookies.refreshToken;
 	// define validation schema
 	const schema = Joi.object({
 		refreshToken: Joi.string().required().label("Refresh Token"),
@@ -175,7 +175,9 @@ export async function validateSendPasswordResetLinkRequest(
 		const user = await User.findOne({ email });
 		req.body._id = user?._id;
 		next();
-	} catch (err) {}
+	} catch (err) {
+		next(err);
+	}
 }
 
 export async function validatePasswordResetRequest(
@@ -183,15 +185,15 @@ export async function validatePasswordResetRequest(
 	res: Response,
 	next: NextFunction,
 ) {
-	const { resetToken, password, user_id } = req.body;
+	const { verificationToken, password, userId } = req.body;
 
 	const schema = Joi.object({
-		reset_token: Joi.string().required().label("Reset Token"),
+		verificationToken: Joi.string().required().label("Verification Token"),
 		password: Joi.string().min(8).required().label("Password"),
-		user_id: Joi.string().required().label("User Id"),
+		userId: Joi.string().required().label("User Id"),
 	});
 
-	const { error } = schema.validate({ resetToken, password, user_id });
+	const { error } = schema.validate({ verificationToken, password, userId });
 
 	if (error) {
 		error.message = error.message.replace(/\"/g, "");
@@ -199,30 +201,38 @@ export async function validatePasswordResetRequest(
 		return;
 	}
 
-	let errorFlag = 0;
-
 	try {
-		// check if reset token in db
-		const user = await PasswordResetToken.findOne({ _id: user_id });
-
-		if (!user) {
-			errorFlag = 1;
-			throw Error("Invalid request");
-		}
-
-		// compare reset token to see if they match
-		const isTokenValid = await bcrypt.compare(resetToken, user.resetToken);
-
-		if (!isTokenValid) {
-			errorFlag = 2;
-			await PasswordResetToken.deleteOne({ _id: user_id });
-			throw Error("Invalid Token");
-		}
-
+		validateUserVerificationToken({ userId, verificationToken });
 		next();
 	} catch (err: any) {
-		if (errorFlag === 1) err.name = "Forbidden";
-		else if (errorFlag === 2) err.name = "Unauthorized";
+		err.name = RESPONSE_FLAGS.forbidden;
 		next(err);
 	}
+}
+
+export async function validateVerifyOTPRequest(req: Request, res: Response, next: NextFunction) {
+	const { userId, data, verificationType } = req.body as IVerifyOtp;
+
+	const dataSchema = Joi.object({
+		otp: Joi.string().required(),
+		channel: Joi.string()
+			.valid(...Object.values(NotificationChannel))
+			.required(),
+	});
+	const verificationTypeSchema = Joi.string().valid(...Object.values(VerificationType));
+	const schema = Joi.object({
+		userId: Joi.string().required(),
+		data: Joi.array().items(dataSchema).min(1).required(),
+		verificationType: Joi.array().items(verificationTypeSchema).min(1),
+	});
+
+	const { error } = schema.validate({ userId, data, verificationType });
+
+	if (error) {
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
+		return;
+	}
+
+	next();
 }
