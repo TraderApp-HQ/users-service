@@ -52,8 +52,8 @@ function startServer() {
 	// Define an array of allowed origins
 	const allowedOrigins = [
 		"http://localhost:8788",
-		"https://users-dashboard-dev.traderapp.finance/",
-		"https://users-dashboard-staging.traderapp.finance/",
+		"https://users-dashboard-dev.traderapp.finance",
+		"https://users-dashboard-staging.traderapp.finance",
 	];
 
 	const corsOptions = {
