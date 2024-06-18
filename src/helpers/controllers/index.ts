@@ -1,5 +1,6 @@
 import { logger } from "@traderapp/shared-resources";
 import { Response } from "express";
+import "dotenv/config";
 import { NotificationChannel } from "../../config/enums";
 import OneTimePassword from "../../models/OneTimePassword";
 import { IUserModel } from "../../models/User";
@@ -11,6 +12,7 @@ import {
 } from "../tokens";
 import { IVerifyOtp } from "../../controllers/AuthController/config";
 import {
+	ENVIRONMENTS,
 	REFRESH_TOKEN_EXPIRES,
 	accessTokenCookieOptions,
 	refreshTokenCookieOptions,
@@ -132,4 +134,8 @@ export async function buildResponse(res: Response, data: IUserModel) {
 	res.cookie("accessToken", accessToken, accessTokenCookieOptions);
 
 	return response;
+}
+
+export function getFrontendUrl() {
+	return ENVIRONMENTS[process.env.NODE_ENV ?? "development"].frontendUrl;
 }

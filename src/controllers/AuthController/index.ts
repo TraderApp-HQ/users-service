@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import bcrypt from "bcrypt";
+import "dotenv/config";
 import User from "../../models/User";
 import Token from "../../models/RefreshToken";
 import VerificationToken from "../../models/VerificationToken";
@@ -10,6 +11,7 @@ import { NotificationChannel } from "../../config/enums";
 import {
 	buildResponse,
 	deleteOtp,
+	getFrontendUrl,
 	getUserObject,
 	sendOTP,
 	verifyOTP,
@@ -106,9 +108,10 @@ export async function sendPasswordResetLinkHandler(
 	try {
 		if (_id) {
 			const verificationToken = await generateUserVerificationToken(_id);
+			const frontendUrl = getFrontendUrl();
 
 			// TODO: send email  by calling sqs
-			const url = `http://localhost:8788/auth/password/reset?token=${verificationToken}&id=${_id}`;
+			const url = `${frontendUrl}/auth/password/reset?token=${verificationToken}&id=${_id}`;
 			console.log("Password reset token: ", verificationToken);
 		}
 

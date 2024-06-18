@@ -1,10 +1,24 @@
 import "dotenv/config";
 import { apiDocumentationResponseObject } from "@traderapp/shared-resources";
 
-export const ENVIRONMENTS: Record<string, string> = Object.freeze({
-	development: "dev",
-	staging: "staging",
-	production: "prod",
+interface EnvProperty {
+	slug: string;
+	frontendUrl: string;
+}
+
+export const ENVIRONMENTS: Record<string, EnvProperty> = Object.freeze({
+	development: {
+		slug: "dev",
+		frontendUrl: "https://users-dashboard-dev.traderapp.finance",
+	},
+	staging: {
+		slug: "staging",
+		frontendUrl: "https://users-dashboard-staging.traderapp.finance",
+	},
+	production: {
+		slug: "prod",
+		frontendUrl: "https://dashboard.traderapp.finance",
+	},
 });
 
 export const TOKEN_ATTRIBUTES = {

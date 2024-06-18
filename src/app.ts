@@ -21,7 +21,7 @@ if (!env) {
 	logger.error("Error: Environment variable not set");
 	process.exit(1);
 }
-const suffix = ENVIRONMENTS[env];
+const suffix = ENVIRONMENTS[env].slug;
 const secretNames = ["common-secrets", "users-service-secrets"];
 
 (async function () {
