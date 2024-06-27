@@ -17,6 +17,8 @@ import {
 	verifyOTP,
 } from "../../helpers/controllers";
 import { IVerifyOtp, VerificationType } from "./config";
+import { generatePassword } from "../../utils/generatePassword";
+import { sendEmail } from "../../helpers/mail";
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -34,6 +36,39 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 			apiResponseHandler({
 				object: resObj,
 				message: "A one time password has been sent to your email!",
+			}),
+		);
+	} catch (err) {
+		next(err);
+	}
+}
+
+export async function createUserHandler(req: Request, res: Response, next: NextFunction) {
+	try {
+		const defaultPassword = generatePassword();
+		req.body.password = defaultPassword;
+		const data = await User.create(req.body);
+		logger.debug(`New user created , ${JSON.stringify(data)}`);
+		const { email, role, _id } = data;
+		const frontendUrl = getFrontendUrl();
+		const link = `${frontendUrl}/auth/password/reset?id=${_id}`;
+		const payload = { email, role, link };
+
+		// TODO: use nodemailer for test
+		if (process.env.EMAIL_ENV === "TEST") {
+			await sendEmail({
+				mailType: "newuser",
+				payload,
+				subject: "Welcome to trade App",
+				recipientEmails: [data.email],
+			});
+		}
+
+		const resObj = getUserObject(data);
+		res.status(200).json(
+			apiResponseHandler({
+				object: resObj,
+				message: "New User Account created!",
 			}),
 		);
 	} catch (err) {

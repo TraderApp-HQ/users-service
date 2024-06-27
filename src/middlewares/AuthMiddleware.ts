@@ -76,6 +76,43 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
 	}
 }
 
+export async function validateCreateUserRequest(req: Request, res: Response, next: NextFunction) {
+	// define validation schema
+	const schema = Joi.object({
+		firstName: Joi.string().required().label("First Name"),
+		lastName: Joi.string().required().label("Last Name"),
+		email: Joi.string().email().required().label("Email"),
+		countryId: Joi.number().required().label("Country Id"),
+		countryName: Joi.string().required().label("Country Name"),
+	});
+
+	// validate request
+	const { error } = schema.validate(req.body);
+
+	if (error) {
+		// strip string of quotes
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
+	} else {
+		// get email from request body
+		const { email } = req.body;
+
+		try {
+			// check if email already in use and throw error if true
+			const isUser = await User.findOne({ email });
+			if (isUser) {
+				const err = new Error("This Email address is already in use!");
+				err.name = RESPONSE_FLAGS.forbidden;
+				throw err;
+			}
+
+			next();
+		} catch (err: any) {
+			next(err);
+		}
+	}
+}
+
 export async function validateRefreshTokenRequest(req: Request, res: Response, next: NextFunction) {
 	// get refresh token from request body
 	const refreshToken = req.signedCookies.refreshToken;

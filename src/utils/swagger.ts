@@ -12,6 +12,8 @@ import {
 	createAuthRefreshTokenBody,
 	createAuthSignup,
 	createAuthSignupBody,
+	createAuthCreateUser,
+	createAuthCreateUserBody,
 } from "../documentation/auth";
 import { ROUTES } from "../config/constants";
 
@@ -34,6 +36,7 @@ const options: swaggerJsdoc.Options = {
 			schemas: {
 				createAuthLoginBody,
 				createAuthSignupBody,
+				createAuthCreateUserBody,
 				createAuthLogoutBody,
 				createAuthPasswordResetBody,
 				createAuthPasswordLinkResetBody,
@@ -48,6 +51,7 @@ const options: swaggerJsdoc.Options = {
 		paths: {
 			[`/auth${ROUTES.login}`]: { post: createAuthLogin },
 			[`/auth${ROUTES.signup}`]: { post: createAuthSignup },
+			[`/auth${ROUTES.createUser}`]: { post: createAuthCreateUser },
 			[`/auth${ROUTES.logout}`]: { delete: createAuthLogout },
 			[`/auth${ROUTES.refreshToken}`]: { post: createAuthRefreshToken },
 			[`/auth${ROUTES.passwordReset}`]: { post: createAuthPasswordReset },
