@@ -23,7 +23,7 @@ export async function getAccessTokenPayload(req: Request) {
 // A function to get accessToken from headers, verify it and check if user is admin
 export async function checkAdmin(req: Request) {
 	const user = await getAccessTokenPayload(req);
-	if (!user.role.includes(Role.ADMIN) || !user.role.includes(Role.SUPER_ADMIN)) {
+	if (!user.role.includes(Role.ADMIN) && !user.role.includes(Role.SUPER_ADMIN)) {
 		const error = new Error(
 			"You don't have the necessary permission to perform this operation.",
 		);
