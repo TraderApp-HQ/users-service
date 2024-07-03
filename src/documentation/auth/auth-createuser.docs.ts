@@ -2,21 +2,23 @@ import { DOC_RESPONSE, RESPONSE_CODES, RESPONSE_TAGS } from "../../config/consta
 
 const createAuthCreateUserBody = {
 	type: "object",
-	required: ["first_name", "last_name", "email", "country_id"],
+	required: ["firstName", "lastName", "role", "email", "countryId"],
 	properties: {
 		firstName: {
 			type: "string",
 			example: "Test",
-			required: false,
 		},
 		lastName: {
 			type: "string",
 			example: "123",
-			required: true,
 		},
 		email: {
 			type: "string",
 			example: "Test123@gmail.com",
+		},
+		role: {
+			type: "array",
+			example: ["USER"],
 		},
 		countryId: {
 			type: "number",

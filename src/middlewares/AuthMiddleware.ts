@@ -4,7 +4,7 @@ import { validateUserVerificationToken, verifyRefreshToken } from "../helpers/to
 import Token from "../models/RefreshToken";
 import User from "../models/User";
 import { RESPONSE_FLAGS } from "../config/constants";
-import { NotificationChannel } from "../config/enums";
+import { NotificationChannel, Role } from "../config/enums";
 import { IVerifyOtp, VerificationType } from "../controllers/AuthController/config";
 
 export async function validateLoginRequest(req: Request, res: Response, next: NextFunction) {
@@ -78,10 +78,13 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
 
 export async function validateCreateUserRequest(req: Request, res: Response, next: NextFunction) {
 	// define validation schema
+	const roleSchema = Joi.string().valid(...Object.values(Role));
+
 	const schema = Joi.object({
 		firstName: Joi.string().required().label("First Name"),
 		lastName: Joi.string().required().label("Last Name"),
 		email: Joi.string().email().required().label("Email"),
+		role: Joi.array().items(roleSchema).min(1).required(),
 		countryId: Joi.number().required().label("Country Id"),
 		countryName: Joi.string().required().label("Country Name"),
 	});

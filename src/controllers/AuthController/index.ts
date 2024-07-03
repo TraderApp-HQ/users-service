@@ -4,21 +4,19 @@ import "dotenv/config";
 import User from "../../models/User";
 import Token from "../../models/RefreshToken";
 import VerificationToken from "../../models/VerificationToken";
-import { generateUserVerificationToken } from "../../helpers/tokens";
+import { generateResetUrl } from "../../helpers/tokens";
 import { ErrorMessage, ResponseMessage, RESPONSE_FLAGS } from "../../config/constants";
 import { apiResponseHandler, logger } from "@traderapp/shared-resources";
 import { NotificationChannel } from "../../config/enums";
 import {
 	buildResponse,
 	deleteOtp,
-	getFrontendUrl,
 	getUserObject,
 	sendOTP,
 	verifyOTP,
 } from "../../helpers/controllers";
 import { IVerifyOtp, VerificationType } from "./config";
 import { generatePassword } from "../../utils/generatePassword";
-import { sendEmail } from "../../helpers/mail";
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -49,20 +47,11 @@ export async function createUserHandler(req: Request, res: Response, next: NextF
 		req.body.password = defaultPassword;
 		const data = await User.create(req.body);
 		logger.debug(`New user created , ${JSON.stringify(data)}`);
-		const { email, role, _id } = data;
-		const frontendUrl = getFrontendUrl();
-		const link = `${frontendUrl}/auth/password/reset?id=${_id}`;
-		const payload = { email, role, link };
+		const { _id } = data;
 
-		// TODO: use nodemailer for test
-		if (process.env.EMAIL_ENV === "TEST") {
-			await sendEmail({
-				mailType: "newuser",
-				payload,
-				subject: "Welcome to trade App",
-				recipientEmails: [data.email],
-			});
-		}
+		// TODO: send email  by calling sqs
+		const url = await generateResetUrl(_id);
+		console.log("Password reset URL: ", url);
 
 		const resObj = getUserObject(data);
 		res.status(200).json(
@@ -142,12 +131,9 @@ export async function sendPasswordResetLinkHandler(
 
 	try {
 		if (_id) {
-			const verificationToken = await generateUserVerificationToken(_id);
-			const frontendUrl = getFrontendUrl();
-
 			// TODO: send email  by calling sqs
-			const url = `${frontendUrl}/auth/password/reset?token=${verificationToken}&id=${_id}`;
-			console.log("Password reset token: ", verificationToken);
+			const url = await generateResetUrl(_id);
+			console.log("Password reset token: ", url);
 		}
 
 		res.status(200).json(
@@ -190,6 +176,7 @@ export async function passwordResetHandler(req: Request, res: Response, next: Ne
 			}),
 		);
 	} catch (err) {
+		console.log(err);
 		next(err);
 	}
 }

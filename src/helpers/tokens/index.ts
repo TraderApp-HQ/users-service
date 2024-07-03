@@ -5,6 +5,7 @@ import "dotenv/config";
 import { IAccessToken } from "../../config/interfaces";
 import { ErrorMessage, TOKEN_ATTRIBUTES } from "../../config/constants";
 import VerificationToken from "../../models/VerificationToken";
+import { getFrontendUrl } from "../controllers";
 
 interface IValidateUserVerificationToken {
 	userId: string;
@@ -98,7 +99,6 @@ export async function generateUserVerificationToken(userId: string) {
 	// check if user already has a reset_token and delete it
 	const isToken = await VerificationToken.findOne({ _id: userId });
 	if (isToken) await VerificationToken.deleteOne({ _id: userId });
-
 	const token = await generateToken();
 
 	// // hash reset_token
@@ -106,7 +106,7 @@ export async function generateUserVerificationToken(userId: string) {
 	const hashedToken = await bcrypt.hash(token, salt);
 
 	// insert reset_token in db
-	await VerificationToken.create({ _id: userId, resetToken: hashedToken });
+	await VerificationToken.create({ _id: userId, verificationToken: hashedToken });
 	return token;
 }
 
@@ -158,4 +158,13 @@ export async function verifyAccessToken(accessToken: string) {
 			resolve(payload);
 		});
 	});
+}
+
+export async function generateResetUrl(_id: string): Promise<string> {
+	const frontendUrl = getFrontendUrl();
+	const verificationToken = await generateUserVerificationToken(_id);
+
+	// TODO: send email  by calling sqs
+	const url = `${frontendUrl}/auth/password/reset?token=${verificationToken}&id=${_id}`;
+	return url;
 }
