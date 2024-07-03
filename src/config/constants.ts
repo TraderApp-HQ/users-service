@@ -114,6 +114,7 @@ export const DOC_RESPONSE = {
 export const ROUTES = {
 	login: "/login",
 	signup: "/signup",
+	createUser: "/createuser",
 	logout: "/logout",
 	refreshToken: "/refresh-token",
 	passwordReset: "/password-reset",

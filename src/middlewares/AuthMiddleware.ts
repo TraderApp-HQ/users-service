@@ -4,7 +4,7 @@ import { validateUserVerificationToken, verifyRefreshToken } from "../helpers/to
 import Token from "../models/RefreshToken";
 import User from "../models/User";
 import { RESPONSE_FLAGS } from "../config/constants";
-import { NotificationChannel } from "../config/enums";
+import { NotificationChannel, Role } from "../config/enums";
 import { IVerifyOtp, VerificationType } from "../controllers/AuthController/config";
 
 export async function validateLoginRequest(req: Request, res: Response, next: NextFunction) {
@@ -45,6 +45,46 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
 					"The password should contain at least one upper case, one number, one lower case character, and one special character.",
 			})
 			.label("Password"),
+		countryId: Joi.number().required().label("Country Id"),
+		countryName: Joi.string().required().label("Country Name"),
+	});
+
+	// validate request
+	const { error } = schema.validate(req.body);
+
+	if (error) {
+		// strip string of quotes
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
+	} else {
+		// get email from request body
+		const { email } = req.body;
+
+		try {
+			// check if email already in use and throw error if true
+			const isUser = await User.findOne({ email });
+			if (isUser) {
+				const err = new Error("This Email address is already in use!");
+				err.name = RESPONSE_FLAGS.forbidden;
+				throw err;
+			}
+
+			next();
+		} catch (err: any) {
+			next(err);
+		}
+	}
+}
+
+export async function validateCreateUserRequest(req: Request, res: Response, next: NextFunction) {
+	// define validation schema
+	const roleSchema = Joi.string().valid(...Object.values(Role));
+
+	const schema = Joi.object({
+		firstName: Joi.string().required().label("First Name"),
+		lastName: Joi.string().required().label("Last Name"),
+		email: Joi.string().email().required().label("Email"),
+		role: Joi.array().items(roleSchema).min(1).required(),
 		countryId: Joi.number().required().label("Country Id"),
 		countryName: Joi.string().required().label("Country Name"),
 	});
@@ -202,7 +242,10 @@ export async function validatePasswordResetRequest(
 	}
 
 	try {
-		validateUserVerificationToken({ userId, verificationToken });
+		const valid = await validateUserVerificationToken({ userId, verificationToken });
+		if (!valid) {
+			throw Error("Invalid credentials");
+		}
 		next();
 	} catch (err: any) {
 		err.name = RESPONSE_FLAGS.forbidden;
