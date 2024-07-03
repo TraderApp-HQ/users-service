@@ -43,7 +43,7 @@ export interface RefreshToken {
 }
 
 export interface VerificationToken {
-	verificatonToken: string;
+	verificationToken: string;
 	expireAt: Date;
 }
 

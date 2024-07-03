@@ -51,6 +51,7 @@ function startServer() {
 	// cors
 	// Define an array of allowed origins
 	const allowedOrigins = [
+		"http://localhost:8080",
 		"http://localhost:8788",
 		"https://users-dashboard-dev.traderapp.finance",
 		"https://users-dashboard-staging.traderapp.finance",
@@ -66,7 +67,7 @@ function startServer() {
 			if (allowedOrigins.includes(origin)) {
 				return callback(null, true);
 			} else {
-				return callback(new Error("Not allowed by CORS"));
+				return callback(new Error(`Not allowed by CORS: ${origin}`));
 			}
 		},
 		methods: "GET, HEAD, PUT, PATCH, POST, DELETE",

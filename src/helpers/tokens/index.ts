@@ -5,6 +5,7 @@ import "dotenv/config";
 import { IAccessToken } from "../../config/interfaces";
 import { ErrorMessage, TOKEN_ATTRIBUTES } from "../../config/constants";
 import VerificationToken from "../../models/VerificationToken";
+import { getFrontendUrl } from "../controllers";
 
 interface IValidateUserVerificationToken {
 	userId: string;
@@ -98,7 +99,6 @@ export async function generateUserVerificationToken(userId: string) {
 	// check if user already has a reset_token and delete it
 	const isToken = await VerificationToken.findOne({ _id: userId });
 	if (isToken) await VerificationToken.deleteOne({ _id: userId });
-
 	const token = await generateToken();
 
 	// // hash reset_token
@@ -106,7 +106,7 @@ export async function generateUserVerificationToken(userId: string) {
 	const hashedToken = await bcrypt.hash(token, salt);
 
 	// insert reset_token in db
-	await VerificationToken.create({ _id: userId, resetToken: hashedToken });
+	await VerificationToken.create({ _id: userId, verificationToken: hashedToken });
 	return token;
 }
 
@@ -114,15 +114,28 @@ export async function validateUserVerificationToken({
 	userId,
 	verificationToken,
 }: IValidateUserVerificationToken) {
-	// check if reset token in db
-	const user = await VerificationToken.findOne({ _id: userId });
-	if (!user) throw Error("Invalid request");
+	try {
+		// check if reset token in db
+		const user = await VerificationToken.findOne({ _id: userId });
+		if (!user) throw Error("Invalid request");
 
-	// compare reset token to see if they match
-	const isTokenValid = await bcrypt.compare(verificationToken, user.verificatonToken);
-	if (!isTokenValid) {
-		await VerificationToken.deleteOne({ _id: userId });
-		throw Error("Invalid Token");
+		// Ensure verificationToken is defined
+		if (!verificationToken || !user.verificationToken) {
+			throw new Error("Missing token data");
+		}
+
+		// compare reset token to see if they match
+		const isTokenValid = await bcrypt.compare(verificationToken, user.verificationToken);
+		if (!isTokenValid) {
+			await VerificationToken.deleteOne({ _id: userId });
+			throw Error("Invalid Token");
+		}
+		// Return true if the token is valid
+		return true;
+	} catch (err) {
+		console.log(err);
+		// Return false if any error occurs
+		return false;
 	}
 }
 
@@ -158,4 +171,13 @@ export async function verifyAccessToken(accessToken: string) {
 			resolve(payload);
 		});
 	});
+}
+
+export async function generateResetUrl(_id: string): Promise<string> {
+	const frontendUrl = getFrontendUrl();
+	const verificationToken = await generateUserVerificationToken(_id);
+
+	// TODO: send email  by calling sqs
+	const url = `${frontendUrl}/auth/password/reset?token=${verificationToken}&id=${_id}`;
+	return url;
 }

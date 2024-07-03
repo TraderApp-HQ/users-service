@@ -2446,3 +2446,47 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1119:32)
     at Function.Module._load (node:internal/modules/cjs/loader:960:12)
     at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-06-17T01:07:45.094Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/mail/index.ts[0m:[93m67[0m:[93m41[0m - [91merror[0m[90m TS18046: [0m'err' is of type 'unknown'.
+
+[7m67[0m         logger.error(`Email not sent: ${err.message}`);
+[7m  [0m [91m                                        ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/mail/index.ts[0m:[93m67[0m:[93m41[0m - [91merror[0m[90m TS18046: [0m'err' is of type 'unknown'.
+
+[7m67[0m         logger.error(`Email not sent: ${err.message}`);
+[7m  [0m [91m                                        ~~~[0m
+
+    at createTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-06-27 23:16:54
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/mail/index.ts[0m:[93m67[0m:[93m41[0m - [91merror[0m[90m TS18046: [0m'err' is of type 'unknown'.
+
+[7m67[0m         logger.error(`Email not sent: ${err.message}`);
+[7m  [0m [91m                                        ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/mail/index.ts[0m:[93m67[0m:[93m41[0m - [91merror[0m[90m TS18046: [0m'err' is of type 'unknown'.
+
+[7m67[0m         logger.error(`Email not sent: ${err.message}`);
+[7m  [0m [91m                                        ~~~[0m
+
+    at createTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-06-27T22:16:54.915Z
