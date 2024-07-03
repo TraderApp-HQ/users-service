@@ -6,6 +6,7 @@ import { IAccessToken } from "../../config/interfaces";
 import { ErrorMessage, TOKEN_ATTRIBUTES } from "../../config/constants";
 import VerificationToken from "../../models/VerificationToken";
 import { getFrontendUrl } from "../controllers";
+import { logger } from "@traderapp/shared-resources";
 
 interface IValidateUserVerificationToken {
 	userId: string;
@@ -114,15 +115,19 @@ export async function validateUserVerificationToken({
 	userId,
 	verificationToken,
 }: IValidateUserVerificationToken) {
-	// check if reset token in db
-	const user = await VerificationToken.findOne({ _id: userId });
-	if (!user) throw Error("Invalid request");
+	try {
+		// check if reset token in db
+		const user = await VerificationToken.findOne({ _id: userId });
+		if (!user) throw Error("User token not found");
 
-	// compare reset token to see if they match
-	const isTokenValid = await bcrypt.compare(verificationToken, user.verificatonToken);
-	if (!isTokenValid) {
-		await VerificationToken.deleteOne({ _id: userId });
-		throw Error("Invalid Token");
+		// compare reset token to see if they match
+		const isTokenValid = await bcrypt.compare(verificationToken, user.verificatonToken);
+		if (!isTokenValid) {
+			await VerificationToken.deleteOne({ _id: userId });
+			throw Error("Invalid Token");
+		}
+	} catch (err) {
+		logger.info(err);
 	}
 }
 
