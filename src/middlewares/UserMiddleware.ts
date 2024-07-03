@@ -52,8 +52,16 @@ export async function validateGetAllUsers(req: Request, res: Response, next: Nex
 
 export async function validateGetUser(req: Request, res: Response, next: NextFunction) {
 	try {
-		const { id } = await checkUser(req);
-		req.params.id = id;
+		let userId;
+		const { id } = req.query;
+		if (id) {
+			await checkAdmin(req);
+			userId = id;
+		} else {
+			const { id } = await checkUser(req);
+			userId = id;
+		}
+		req.query.id = userId;
 		next();
 	} catch (err: any) {
 		next(err);
