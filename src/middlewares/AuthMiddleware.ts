@@ -242,7 +242,10 @@ export async function validatePasswordResetRequest(
 	}
 
 	try {
-		validateUserVerificationToken({ userId, verificationToken });
+		const valid = await validateUserVerificationToken({ userId, verificationToken });
+		if (!valid) {
+			throw Error("Invalid credentials");
+		}
 		next();
 	} catch (err: any) {
 		err.name = RESPONSE_FLAGS.forbidden;
