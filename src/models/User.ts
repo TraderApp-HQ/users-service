@@ -8,7 +8,7 @@ import { Role } from "../config/enums";
 export interface IUserModel extends IUser, Document {}
 
 interface UserModel extends Model<IUserModel> {
-	login: any;
+	login: (email: string, password: string) => Promise<IUserModel>;
 	paginate: any;
 }
 
@@ -45,7 +45,7 @@ UserSchema.pre("save", async function (next) {
 });
 
 UserSchema.statics.login = async function (email, password) {
-	const user = await this.findOne({ email });
+	const user: IUserModel = await this.findOne({ email });
 
 	if (user) {
 		const isPasswordCorrect = await bcrypt.compare(password, user.password);

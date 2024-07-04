@@ -2446,3 +2446,289 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1119:32)
     at Function.Module._load (node:internal/modules/cjs/loader:960:12)
     at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-06-17T01:07:45.094Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:108:26) [users-service] development 2024-07-01 20:57:31
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:108:26) [users-service] development 2024-07-01T19:57:31.787Z
+[31merror[39m: uncaughtException: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+    at model.Query.exec (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:4921:21)
+    at model.Query.Query.then (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:5020:15)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02 03:07:57
+error: uncaughtException: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+    at model.Query.exec (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:4921:21)
+    at model.Query.Query.then (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:5020:15)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02T02:07:57.560Z
+[31merror[39m: uncaughtException: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+    at model.Query.exec (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:4921:21)
+    at model.Query.Query.then (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:5020:15)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02 03:10:45
+error: uncaughtException: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+    at model.Query.exec (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:4921:21)
+    at model.Query.Query.then (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:5020:15)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02T02:10:45.837Z
+[31merror[39m: uncaughtException: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+    at model.Query.exec (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:4921:21)
+    at model.Query.Query.then (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:5020:15)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02 03:13:41
+error: uncaughtException: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+    at model.Query.exec (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:4921:21)
+    at model.Query.Query.then (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:5020:15)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02T02:13:41.606Z
+[31merror[39m: uncaughtException: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+    at model.Query.exec (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:4921:21)
+    at model.Query.Query.then (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:5020:15)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02 03:16:51
+error: uncaughtException: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"
+    at model.Query.exec (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:4921:21)
+    at model.Query.Query.then (/Users/i/Documents/TraderApp codes/users-service/node_modules/mongoose/lib/query.js:5020:15)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02T02:16:51.266Z
+[31merror[39m: uncaughtException: data and hash arguments required
+Error: data and hash arguments required
+    at Object.compare (/Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/bcrypt.js:208:17)
+    at /Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/promises.js:29:12
+    at new Promise (<anonymous>)
+    at Object.module.exports.promise (/Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/promises.js:20:12)
+    at Object.compare (/Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/bcrypt.js:204:25)
+    at /Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:124:36
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:28:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02 03:19:00
+error: uncaughtException: data and hash arguments required
+Error: data and hash arguments required
+    at Object.compare (/Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/bcrypt.js:208:17)
+    at /Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/promises.js:29:12
+    at new Promise (<anonymous>)
+    at Object.module.exports.promise (/Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/promises.js:20:12)
+    at Object.compare (/Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/bcrypt.js:204:25)
+    at /Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:124:36
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:28:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02T02:19:00.124Z
+[31merror[39m: uncaughtException: data and hash arguments required
+Error: data and hash arguments required
+    at Object.compare (/Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/bcrypt.js:208:17)
+    at /Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/promises.js:29:12
+    at new Promise (<anonymous>)
+    at Object.module.exports.promise (/Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/promises.js:20:12)
+    at Object.compare (/Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/bcrypt.js:204:25)
+    at /Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:125:36
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:28:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02 03:20:27
+error: uncaughtException: data and hash arguments required
+Error: data and hash arguments required
+    at Object.compare (/Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/bcrypt.js:208:17)
+    at /Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/promises.js:29:12
+    at new Promise (<anonymous>)
+    at Object.module.exports.promise (/Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/promises.js:20:12)
+    at Object.compare (/Users/i/Documents/TraderApp codes/users-service/node_modules/bcrypt/bcrypt.js:204:25)
+    at /Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:125:36
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:28:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02T02:20:27.107Z
+[31merror[39m: uncaughtException: Invalid Token
+Error: Invalid Token
+    at /Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:128:9
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:28:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02 03:23:05
+error: uncaughtException: Invalid Token
+Error: Invalid Token
+    at /Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:128:9
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:28:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02T02:23:05.330Z
+[31merror[39m: uncaughtException: Invalid Token
+Error: Invalid Token
+    at /Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:127:9
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:28:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02 03:25:25
+error: uncaughtException: Invalid Token
+Error: Invalid Token
+    at /Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:127:9
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/i/Documents/TraderApp codes/users-service/src/helpers/tokens/index.ts:28:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02T02:25:25.916Z
+[31merror[39m: uncaughtException: Cannot assign to read only property 'name' of object 'CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"'
+TypeError: Cannot assign to read only property 'name' of object 'CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"'
+    at /Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:210:11
+    at Generator.throw (<anonymous>)
+    at rejected (/Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:6:65)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02 03:28:23
+error: uncaughtException: Cannot assign to read only property 'name' of object 'CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"'
+TypeError: Cannot assign to read only property 'name' of object 'CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"'
+    at /Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:210:11
+    at Generator.throw (<anonymous>)
+    at rejected (/Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:6:65)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02T02:28:23.432Z
+[31merror[39m: uncaughtException: Cannot assign to read only property 'name' of object 'CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"'
+TypeError: Cannot assign to read only property 'name' of object 'CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"'
+    at /Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:210:11
+    at Generator.throw (<anonymous>)
+    at rejected (/Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:6:65)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02 03:28:57
+error: uncaughtException: Cannot assign to read only property 'name' of object 'CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"'
+TypeError: Cannot assign to read only property 'name' of object 'CastError: Cast to ObjectId failed for value "userid" (type string) at path "_id" for model "verification-token"'
+    at /Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:210:11
+    at Generator.throw (<anonymous>)
+    at rejected (/Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:6:65)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [users-service] development 2024-07-02T02:28:57.225Z
+[31merror[39m: uncaughtException: User Id is an invalid format
+ValidationError: User Id is an invalid format
+    at /Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:206:15
+    at Generator.next (<anonymous>)
+    at /Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:4:12)
+    at validatePasswordResetRequest (/Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:187:12)
+    at Layer.handle [as handle_request] (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/layer.js:95:5) [users-service] development 2024-07-02 03:37:20
+error: uncaughtException: User Id is an invalid format
+ValidationError: User Id is an invalid format
+    at /Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:206:15
+    at Generator.next (<anonymous>)
+    at /Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:4:12)
+    at validatePasswordResetRequest (/Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:187:12)
+    at Layer.handle [as handle_request] (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/layer.js:95:5) [users-service] development 2024-07-02T02:37:20.920Z
+[31merror[39m: uncaughtException: User Id is an invalid format
+ValidationError: User Id is an invalid format
+    at /Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:208:15
+    at Generator.next (<anonymous>)
+    at /Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:4:12)
+    at validatePasswordResetRequest (/Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:187:12)
+    at Layer.handle [as handle_request] (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/layer.js:95:5) [users-service] development 2024-07-02 03:38:49
+error: uncaughtException: User Id is an invalid format
+ValidationError: User Id is an invalid format
+    at /Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:208:15
+    at Generator.next (<anonymous>)
+    at /Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:4:12)
+    at validatePasswordResetRequest (/Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:187:12)
+    at Layer.handle [as handle_request] (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/layer.js:95:5) [users-service] development 2024-07-02T02:38:49.892Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/tokens/index.ts[0m:[93m123[0m:[93m59[0m - [91merror[0m[90m TS2551: [0mProperty 'verificatonToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'. Did you mean 'verificationToken'?
+
+[7m123[0m   console.log("data: ", verificationToken, "hash: ", user.verificatonToken);
+[7m   [0m [91m                                                          ~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/interfaces.ts[0m:[93m46[0m:[93m2[0m
+    [7m46[0m  verificationToken: string;
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'verificationToken' is declared here.
+[96msrc/helpers/tokens/index.ts[0m:[93m124[0m:[93m48[0m - [91merror[0m[90m TS2551: [0mProperty 'verificatonToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'. Did you mean 'verificationToken'?
+
+[7m124[0m   await bcrypt.compare(verificationToken, user.verificatonToken);
+[7m   [0m [91m                                               ~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/interfaces.ts[0m:[93m46[0m:[93m2[0m
+    [7m46[0m  verificationToken: string;
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'verificationToken' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/tokens/index.ts[0m:[93m123[0m:[93m59[0m - [91merror[0m[90m TS2551: [0mProperty 'verificatonToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'. Did you mean 'verificationToken'?
+
+[7m123[0m   console.log("data: ", verificationToken, "hash: ", user.verificatonToken);
+[7m   [0m [91m                                                          ~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/interfaces.ts[0m:[93m46[0m:[93m2[0m
+    [7m46[0m  verificationToken: string;
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'verificationToken' is declared here.
+[96msrc/helpers/tokens/index.ts[0m:[93m124[0m:[93m48[0m - [91merror[0m[90m TS2551: [0mProperty 'verificatonToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'. Did you mean 'verificationToken'?
+
+[7m124[0m   await bcrypt.compare(verificationToken, user.verificatonToken);
+[7m   [0m [91m                                               ~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/interfaces.ts[0m:[93m46[0m:[93m2[0m
+    [7m46[0m  verificationToken: string;
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'verificationToken' is declared here.
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-07-02 15:12:25
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/tokens/index.ts[0m:[93m123[0m:[93m59[0m - [91merror[0m[90m TS2551: [0mProperty 'verificatonToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'. Did you mean 'verificationToken'?
+
+[7m123[0m   console.log("data: ", verificationToken, "hash: ", user.verificatonToken);
+[7m   [0m [91m                                                          ~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/interfaces.ts[0m:[93m46[0m:[93m2[0m
+    [7m46[0m  verificationToken: string;
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'verificationToken' is declared here.
+[96msrc/helpers/tokens/index.ts[0m:[93m124[0m:[93m48[0m - [91merror[0m[90m TS2551: [0mProperty 'verificatonToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'. Did you mean 'verificationToken'?
+
+[7m124[0m   await bcrypt.compare(verificationToken, user.verificatonToken);
+[7m   [0m [91m                                               ~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/interfaces.ts[0m:[93m46[0m:[93m2[0m
+    [7m46[0m  verificationToken: string;
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'verificationToken' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/tokens/index.ts[0m:[93m123[0m:[93m59[0m - [91merror[0m[90m TS2551: [0mProperty 'verificatonToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'. Did you mean 'verificationToken'?
+
+[7m123[0m   console.log("data: ", verificationToken, "hash: ", user.verificatonToken);
+[7m   [0m [91m                                                          ~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/interfaces.ts[0m:[93m46[0m:[93m2[0m
+    [7m46[0m  verificationToken: string;
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'verificationToken' is declared here.
+[96msrc/helpers/tokens/index.ts[0m:[93m124[0m:[93m48[0m - [91merror[0m[90m TS2551: [0mProperty 'verificatonToken' does not exist on type 'VerificationTokenModel & { _id: ObjectId; }'. Did you mean 'verificationToken'?
+
+[7m124[0m   await bcrypt.compare(verificationToken, user.verificatonToken);
+[7m   [0m [91m                                               ~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/config/interfaces.ts[0m:[93m46[0m:[93m2[0m
+    [7m46[0m  verificationToken: string;
+    [7m  [0m [96m ~~~~~~~~~~~~~~~~~[0m
+    'verificationToken' is declared here.
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-07-02T14:12:25.619Z

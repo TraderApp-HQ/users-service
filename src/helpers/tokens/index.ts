@@ -1,5 +1,4 @@
 import JWT from "jsonwebtoken";
-import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 import "dotenv/config";
 import { IAccessToken } from "../../config/interfaces";
@@ -101,12 +100,12 @@ export async function generateUserVerificationToken(userId: string) {
 
 	const token = await generateToken();
 
-	// // hash reset_token
+	// // hash verificationToken
 	const salt = await bcrypt.genSalt(10);
 	const hashedToken = await bcrypt.hash(token, salt);
 
-	// insert reset_token in db
-	await VerificationToken.create({ _id: userId, resetToken: hashedToken });
+	// insert verificationToken in db
+	await VerificationToken.create({ _id: userId, verificationToken: hashedToken });
 	return token;
 }
 
@@ -114,15 +113,16 @@ export async function validateUserVerificationToken({
 	userId,
 	verificationToken,
 }: IValidateUserVerificationToken) {
-	// check if reset token in db
-	const user = await VerificationToken.findOne({ _id: userId });
-	if (!user) throw Error("Invalid request");
+	try {
+		// check if reset token in db
+		const user = await VerificationToken.findOne({ _id: userId });
+		if (!user) throw Error("Invalid request");
 
-	// compare reset token to see if they match
-	const isTokenValid = await bcrypt.compare(verificationToken, user.verificatonToken);
-	if (!isTokenValid) {
+		// compare reset token to see if they match
+		await bcrypt.compare(verificationToken, user.verificationToken);
+	} catch (error) {
 		await VerificationToken.deleteOne({ _id: userId });
-		throw Error("Invalid Token");
+		throw error;
 	}
 }
 

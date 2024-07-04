@@ -6,6 +6,7 @@ import User from "../models/User";
 import { RESPONSE_FLAGS } from "../config/constants";
 import { NotificationChannel } from "../config/enums";
 import { IVerifyOtp, VerificationType } from "../controllers/AuthController/config";
+import { isValidObjectId } from "mongoose";
 
 export async function validateLoginRequest(req: Request, res: Response, next: NextFunction) {
 	// get params from request body
@@ -157,7 +158,7 @@ export async function validateSendPasswordResetLinkRequest(
 	res: Response,
 	next: NextFunction,
 ) {
-	const { email } = req.params;
+	const { email } = req.body;
 
 	const schema = Joi.object({
 		email: Joi.string().email().required().label("Email"),
@@ -201,8 +202,15 @@ export async function validatePasswordResetRequest(
 		return;
 	}
 
+	if (!isValidObjectId(userId)) {
+		const err = new Error("User Id is an invalid format");
+		err.name = RESPONSE_FLAGS.validationError;
+		next(err);
+		return;
+	}
+
 	try {
-		validateUserVerificationToken({ userId, verificationToken });
+		await validateUserVerificationToken({ userId, verificationToken });
 		next();
 	} catch (err: any) {
 		err.name = RESPONSE_FLAGS.forbidden;

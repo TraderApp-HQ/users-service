@@ -26,7 +26,7 @@ router.post(ROUTES.login, validateLoginRequest, loginHandler);
 router.delete(ROUTES.logout, validateLogoutRequest, logoutHandler);
 router.post(ROUTES.refreshToken, validateRefreshTokenRequest, refreshTokenHandler);
 router.post(ROUTES.passwordReset, validatePasswordResetRequest, passwordResetHandler);
-router.get(
+router.post(
 	ROUTES.passwordResetLink,
 	validateSendPasswordResetLinkRequest,
 	sendPasswordResetLinkHandler,
