@@ -52,7 +52,7 @@ export async function sendOTP({ userData, channels }: ISendOtp) {
 				emailAddress: userData.email,
 			},
 			event: "OTP",
-			client: process.env.CLIENT ?? "da",
+			client: process.env.CLIENT ?? process.env.NODE_ENV ?? "",
 		};
 		return {
 			message,
