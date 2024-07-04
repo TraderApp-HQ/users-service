@@ -60,14 +60,14 @@ export const OTP_EXPIRES = 60 * 10; // 10 minutes
 export const refreshTokenCookieOptions = {
 	httpOnly: true,
 	// secure: process.env.NODE_ENV === "production",
-	// secure: true,
+	secure: false,
 	signed: true,
 	maxAge: REFRESH_TOKEN_EXPIRES * 1000,
 };
 
 export const accessTokenCookieOptions = {
-	// secure: process.env.NODE_ENV === "production",
-	// secure: true,
+	// secure: process.env.CLIENT ? true : false,
+	secure: false,
 	signed: true,
 	maxAge: 15 * 60 * 1000, // Cookie will expire in 15 minutes
 };
@@ -118,7 +118,7 @@ export const ROUTES = {
 	logout: "/logout",
 	refreshToken: "/refresh-token",
 	passwordReset: "/password-reset",
-	passwordResetLink: "/password-reset/:email",
+	passwordResetLink: "/password-reset-link",
 	getUser: "/me",
 	getAllUsers: "/all",
 	updateUser: "/update",

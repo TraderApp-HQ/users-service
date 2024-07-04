@@ -19,6 +19,9 @@ import {
 } from "../../config/constants";
 import Token from "../../models/RefreshToken";
 import { IAccessToken } from "../../config/interfaces";
+import { publishMessageToQueue } from "../../repositories/queue";
+import { IQueueMessage } from "../../utils/helpers/types";
+import { ChannelType, ChannelTypes } from "../../utils/helpers/config";
 
 interface ISendOtp {
 	userData: IUserModel;
@@ -39,9 +42,30 @@ export async function sendOTP({ userData, channels }: ISendOtp) {
 	}));
 	await OneTimePassword.create(insertData);
 
-	// TODO: publish message in parralel to notification-service to send email
-	insertData.forEach((data) => {
-		logger.info(`Generated OTP === ${data.otp}`);
+	// publish message in parralel to notification-service to send notification
+	const promises = insertData.map((data) => {
+		const message: IQueueMessage = {
+			channel: [data.channel],
+			messageObject: {
+				recipientName: userData.firstName,
+				messageBody: data.otp,
+				emailAddress: userData.email,
+			},
+			event: "OTP",
+			client: process.env.CLIENT ?? "da",
+		};
+		return {
+			message,
+			promise: publishMessageToQueue({
+				queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
+				message,
+				awsRegion: process.env.AWS_REGION,
+			}),
+		};
+	});
+	await Promise.allSettled(promises.map(async (promise) => promise.promise));
+	console.log("Published messages to queue", {
+		messages: promises.map((promise) => promise.message),
 	});
 }
 

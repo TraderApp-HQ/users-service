@@ -21,6 +21,7 @@
 		"no-useless-escape": "off",
 		"@typescript-eslint/no-non-null-assertion": "off",
 		"@typescript-eslint/no-confusing-void-expression": "off",
-		"no-async-promise-executor": "off"
+		"no-async-promise-executor": "off",
+		"@typescript-eslint/return-await": "off"
 	}
 }

@@ -24,7 +24,7 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 		logger.debug(`New user created , ${JSON.stringify(data)}`);
 
 		// TODO: replace with feature flag
-		const isOtpEnabled = false;
+		const isOtpEnabled = true;
 		if (isOtpEnabled) {
 			await sendOTP({ userData: data, channels: [NotificationChannel.EMAIL] });
 		}
@@ -77,7 +77,7 @@ export async function loginHandler(req: Request, res: Response, next: NextFuncti
 		}
 
 		// TODO: replace with feature flag
-		const isOtpEnabled = false;
+		const isOtpEnabled = true;
 		if (isOtpEnabled) {
 			await sendOTP({ userData: data, channels: [NotificationChannel.EMAIL] });
 		}
@@ -148,7 +148,6 @@ export async function sendPasswordResetLinkHandler(
 
 export async function passwordResetHandler(req: Request, res: Response, next: NextFunction) {
 	const { userId, password } = req.body;
-
 	try {
 		// hash password
 		const salt = await bcrypt.genSalt(10);
@@ -185,7 +184,7 @@ export async function verifyOtpHandler(req: Request, res: Response, next: NextFu
 	const { userId, data, verificationType } = req.body as IVerifyOtp;
 	try {
 		// TODO: replace with feature flag
-		const isOtpEnabled = false;
+		const isOtpEnabled = true;
 		if (isOtpEnabled) {
 			const isOtpVerified = await verifyOTP({ userId, data });
 			if (!isOtpVerified) {
