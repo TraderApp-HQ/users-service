@@ -3,3 +3,4 @@ build
 .env
 .prettierrc
 coverage
+exceptions.log

@@ -4,19 +4,19 @@ import "dotenv/config";
 import User from "../../models/User";
 import Token from "../../models/RefreshToken";
 import VerificationToken from "../../models/VerificationToken";
-import { generateUserVerificationToken } from "../../helpers/tokens";
+import { generateResetUrl } from "../../helpers/tokens";
 import { ErrorMessage, ResponseMessage, RESPONSE_FLAGS } from "../../config/constants";
 import { apiResponseHandler, logger } from "@traderapp/shared-resources";
 import { NotificationChannel } from "../../config/enums";
 import {
 	buildResponse,
 	deleteOtp,
-	getFrontendUrl,
 	getUserObject,
 	sendOTP,
 	verifyOTP,
 } from "../../helpers/controllers";
 import { IVerifyOtp, VerificationType } from "./config";
+import { generatePassword } from "../../utils/generatePassword";
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -34,6 +34,30 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 			apiResponseHandler({
 				object: resObj,
 				message: "A one time password has been sent to your email!",
+			}),
+		);
+	} catch (err) {
+		next(err);
+	}
+}
+
+export async function createUserHandler(req: Request, res: Response, next: NextFunction) {
+	try {
+		const defaultPassword = generatePassword();
+		req.body.password = defaultPassword;
+		const data = await User.create(req.body);
+		logger.debug(`New user created , ${JSON.stringify(data)}`);
+		const { _id } = data;
+
+		// TODO: send email  by calling sqs
+		const url = await generateResetUrl(_id);
+		console.log("Password reset URL: ", url);
+
+		const resObj = getUserObject(data);
+		res.status(200).json(
+			apiResponseHandler({
+				object: resObj,
+				message: "New User Account created!",
 			}),
 		);
 	} catch (err) {
@@ -107,11 +131,8 @@ export async function sendPasswordResetLinkHandler(
 
 	try {
 		if (_id) {
-			const verificationToken = await generateUserVerificationToken(_id);
-			const frontendUrl = getFrontendUrl();
-
 			// TODO: send email  by calling sqs
-			const url = `${frontendUrl}/auth/password/reset?token=${verificationToken}&id=${_id}`;
+			const url = await generateResetUrl(_id);
 			console.log("Password reset token: ", url);
 		}
 
@@ -154,6 +175,7 @@ export async function passwordResetHandler(req: Request, res: Response, next: Ne
 			}),
 		);
 	} catch (err) {
+		console.log(err);
 		next(err);
 	}
 }
