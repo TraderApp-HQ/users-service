@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
-import { checkUser } from "../helpers/middlewares";
+import { checkAdmin, checkUser } from "../helpers/middlewares";
 
 export async function validateUpdateUser(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -30,7 +30,7 @@ export async function validateUpdateUser(req: Request, res: Response, next: Next
 
 export async function validateGetAllUsers(req: Request, res: Response, next: NextFunction) {
 	try {
-		await checkUser(req);
+		await checkAdmin(req);
 		const schema = Joi.object({
 			page: Joi.string().label("Page"),
 			size: Joi.string().label("Size"),
@@ -52,8 +52,16 @@ export async function validateGetAllUsers(req: Request, res: Response, next: Nex
 
 export async function validateGetUser(req: Request, res: Response, next: NextFunction) {
 	try {
-		const { id } = await checkUser(req);
-		req.params.id = id;
+		let userId;
+		const { id } = req.query;
+		if (id) {
+			await checkAdmin(req);
+			userId = id;
+		} else {
+			const { id } = await checkUser(req);
+			userId = id;
+		}
+		req.query.id = userId;
 		next();
 	} catch (err: any) {
 		next(err);

@@ -2446,6 +2446,1710 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1119:32)
     at Function.Module._load (node:internal/modules/cjs/loader:960:12)
     at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-06-17T01:07:45.094Z
+
+[31merror[39m: uncaughtException: The security token included in the request is invalid.
+UnrecognizedClientException: The security token included in the request is invalid.
+    at throwDefaultError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/smithy-client/dist-cjs/default-error-handler.js:8:22)
+    at /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/smithy-client/dist-cjs/default-error-handler.js:18:39
+    at de_GetSecretValueCommandError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:507:20)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/middleware-serde/dist-cjs/deserializerMiddleware.js:7:24
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-signing/dist-cjs/awsAuthMiddleware.js:14:20
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/middleware-retry/dist-cjs/retryMiddleware.js:27:46
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js:7:26 [user-service] development 2024-06-25 10:25:17
+error: uncaughtException: The security token included in the request is invalid.
+UnrecognizedClientException: The security token included in the request is invalid.
+    at throwDefaultError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/smithy-client/dist-cjs/default-error-handler.js:8:22)
+    at /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/smithy-client/dist-cjs/default-error-handler.js:18:39
+    at de_GetSecretValueCommandError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:507:20)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/middleware-serde/dist-cjs/deserializerMiddleware.js:7:24
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-signing/dist-cjs/awsAuthMiddleware.js:14:20
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/middleware-retry/dist-cjs/retryMiddleware.js:27:46
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js:7:26 [user-service] development 2024-06-25T09:25:17.689Z
+[31merror[39m: uncaughtException: The security token included in the request is invalid.
+UnrecognizedClientException: The security token included in the request is invalid.
+    at throwDefaultError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/smithy-client/dist-cjs/default-error-handler.js:8:22)
+    at /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/smithy-client/dist-cjs/default-error-handler.js:18:39
+    at de_GetSecretValueCommandError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:507:20)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/middleware-serde/dist-cjs/deserializerMiddleware.js:7:24
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-signing/dist-cjs/awsAuthMiddleware.js:14:20
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/middleware-retry/dist-cjs/retryMiddleware.js:27:46
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js:7:26 [user-service] development 2024-06-25 11:33:11
+error: uncaughtException: The security token included in the request is invalid.
+UnrecognizedClientException: The security token included in the request is invalid.
+    at throwDefaultError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/smithy-client/dist-cjs/default-error-handler.js:8:22)
+    at /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/smithy-client/dist-cjs/default-error-handler.js:18:39
+    at de_GetSecretValueCommandError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:507:20)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/middleware-serde/dist-cjs/deserializerMiddleware.js:7:24
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-signing/dist-cjs/awsAuthMiddleware.js:14:20
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/middleware-retry/dist-cjs/retryMiddleware.js:27:46
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js:7:26 [user-service] development 2024-06-25T10:33:11.754Z
+[31merror[39m: uncaughtException: The security token included in the request is invalid.
+UnrecognizedClientException: The security token included in the request is invalid.
+    at throwDefaultError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/smithy-client/dist-cjs/default-error-handler.js:8:22)
+    at /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/smithy-client/dist-cjs/default-error-handler.js:18:39
+    at de_GetSecretValueCommandError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:507:20)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/middleware-serde/dist-cjs/deserializerMiddleware.js:7:24
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-signing/dist-cjs/awsAuthMiddleware.js:14:20
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/middleware-retry/dist-cjs/retryMiddleware.js:27:46
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js:7:26 [user-service] development 2024-06-25 11:44:41
+error: uncaughtException: The security token included in the request is invalid.
+UnrecognizedClientException: The security token included in the request is invalid.
+    at throwDefaultError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/smithy-client/dist-cjs/default-error-handler.js:8:22)
+    at /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/smithy-client/dist-cjs/default-error-handler.js:18:39
+    at de_GetSecretValueCommandError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/dist-cjs/protocols/Aws_json1_1.js:507:20)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/middleware-serde/dist-cjs/deserializerMiddleware.js:7:24
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-signing/dist-cjs/awsAuthMiddleware.js:14:20
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@smithy/middleware-retry/dist-cjs/retryMiddleware.js:27:46
+    at async /Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/@aws-sdk/client-secrets-manager/node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js:7:26 [user-service] development 2024-06-25T10:44:41.152Z
+[31merror[39m: uncaughtException: /Users/ndifeuchenna/Documents/traderApp/users-service/src/env.json: Expected double-quoted property name in JSON at position 64
+SyntaxError: /Users/ndifeuchenna/Documents/traderApp/users-service/src/env.json: Expected double-quoted property name in JSON at position 64
+    at parse (<anonymous>)
+    at Object.Module._extensions..json (node:internal/modules/cjs/loader:1310:39)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19)
+    at require (node:internal/modules/helpers:130:18)
+    at Object.<anonymous> (/Users/ndifeuchenna/Documents/traderApp/users-service/src/app.ts:14:1)
+    at Module._compile (node:internal/modules/cjs/loader:1241:14)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10) [user-service] development 2024-06-25 12:31:09
+error: uncaughtException: /Users/ndifeuchenna/Documents/traderApp/users-service/src/env.json: Expected double-quoted property name in JSON at position 64
+SyntaxError: /Users/ndifeuchenna/Documents/traderApp/users-service/src/env.json: Expected double-quoted property name in JSON at position 64
+    at parse (<anonymous>)
+    at Object.Module._extensions..json (node:internal/modules/cjs/loader:1310:39)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19)
+    at require (node:internal/modules/helpers:130:18)
+    at Object.<anonymous> (/Users/ndifeuchenna/Documents/traderApp/users-service/src/app.ts:14:1)
+    at Module._compile (node:internal/modules/cjs/loader:1241:14)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10) [user-service] development 2024-06-25T11:31:09.679Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [user-service] development 2024-06-25 13:27:35
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [user-service] development 2024-06-25T12:27:35.468Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/middlewares/index.ts[0m:[93m28[0m:[93m37[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m28[0m   !user.role.includes(Role.ADMIN)  !user.role.includes(Role.SUPER_ADMIN),
+[7m  [0m [91m                                    ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/middlewares/index.ts[0m:[93m28[0m:[93m37[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m28[0m   !user.role.includes(Role.ADMIN)  !user.role.includes(Role.SUPER_ADMIN),
+[7m  [0m [91m                                    ~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-27 12:08:08
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/middlewares/index.ts[0m:[93m28[0m:[93m37[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m28[0m   !user.role.includes(Role.ADMIN)  !user.role.includes(Role.SUPER_ADMIN),
+[7m  [0m [91m                                    ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/middlewares/index.ts[0m:[93m28[0m:[93m37[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m28[0m   !user.role.includes(Role.ADMIN)  !user.role.includes(Role.SUPER_ADMIN),
+[7m  [0m [91m                                    ~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-27T11:08:08.616Z
+[31merror[39m: uncaughtException: /Users/ndifeuchenna/Documents/traderApp/users-service/src/env.json: Expected double-quoted property name in JSON at position 64
+SyntaxError: /Users/ndifeuchenna/Documents/traderApp/users-service/src/env.json: Expected double-quoted property name in JSON at position 64
+    at parse (<anonymous>)
+    at Object.Module._extensions..json (node:internal/modules/cjs/loader:1310:39)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19)
+    at require (node:internal/modules/helpers:130:18)
+    at Object.<anonymous> (/Users/ndifeuchenna/Documents/traderApp/users-service/src/app.ts:14:1)
+    at Module._compile (node:internal/modules/cjs/loader:1241:14)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10) [user-service] development 2024-06-27 21:51:33
+error: uncaughtException: /Users/ndifeuchenna/Documents/traderApp/users-service/src/env.json: Expected double-quoted property name in JSON at position 64
+SyntaxError: /Users/ndifeuchenna/Documents/traderApp/users-service/src/env.json: Expected double-quoted property name in JSON at position 64
+    at parse (<anonymous>)
+    at Object.Module._extensions..json (node:internal/modules/cjs/loader:1310:39)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19)
+    at require (node:internal/modules/helpers:130:18)
+    at Object.<anonymous> (/Users/ndifeuchenna/Documents/traderApp/users-service/src/app.ts:14:1)
+    at Module._compile (node:internal/modules/cjs/loader:1241:14)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10) [user-service] development 2024-06-27T20:51:33.545Z
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m63[0m:[93m1[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m63[0m }
+[7m  [0m [91m~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m63[0m:[93m1[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m63[0m }
+[7m  [0m [91m~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:42:28.020Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m63[0m:[93m1[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m63[0m }
+[7m  [0m [91m~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m63[0m:[93m1[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m63[0m }
+[7m  [0m [91m~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:42:28
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:42:31
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:42:31.052Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.user) {
+[7m  [0m [91m                              ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.user) {
+[7m  [0m [91m                              ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:42:39
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.user) {
+[7m  [0m [91m                              ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.user) {
+[7m  [0m [91m                              ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:42:39.437Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req?.user) {
+[7m  [0m [91m                        ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req?.user) {
+[7m  [0m [91m                        ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:42:47
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req?.user) {
+[7m  [0m [91m                        ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req?.user) {
+[7m  [0m [91m                        ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:42:47.490Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:42:51
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:42:51.275Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:42:53
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:42:53.794Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req.) {
+[7m  [0m [91m                       ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req.) {
+[7m  [0m [91m                       ~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:43:00
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req.) {
+[7m  [0m [91m                       ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req.) {
+[7m  [0m [91m                       ~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:43:00.203Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:43:10
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:43:10.122Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:43:21
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:43:21.712Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'use' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.use) {
+[7m  [0m [91m                              ~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'use' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.use) {
+[7m  [0m [91m                              ~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:43:25
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'use' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.use) {
+[7m  [0m [91m                              ~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'use' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.use) {
+[7m  [0m [91m                              ~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:43:25.100Z
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'id' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.id) {
+[7m  [0m [91m                              ~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'id' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.id) {
+[7m  [0m [91m                              ~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:43:30.567Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'id' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.id) {
+[7m  [0m [91m                              ~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'id' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.id) {
+[7m  [0m [91m                              ~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:43:30
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'if' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.if) {
+[7m  [0m [91m                              ~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'if' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.if) {
+[7m  [0m [91m                              ~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:43:33
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'if' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.if) {
+[7m  [0m [91m                              ~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'if' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req && req.if) {
+[7m  [0m [91m                              ~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:43:33.511Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.) {
+[7m  [0m [91m                              ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.) {
+[7m  [0m [91m                              ~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:43:36
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.) {
+[7m  [0m [91m                              ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m31[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.) {
+[7m  [0m [91m                              ~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:43:36.353Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m36[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.body.) {
+[7m  [0m [91m                                   ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m36[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.body.) {
+[7m  [0m [91m                                   ~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:43:43
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m36[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.body.) {
+[7m  [0m [91m                                   ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m36[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.body.) {
+[7m  [0m [91m                                   ~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:43:43.681Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m38[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.params.) {
+[7m  [0m [91m                                     ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m38[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.params.) {
+[7m  [0m [91m                                     ~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:43:48
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m38[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.params.) {
+[7m  [0m [91m                                     ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m38[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.params.) {
+[7m  [0m [91m                                     ~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:43:48.890Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m37[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.query.) {
+[7m  [0m [91m                                    ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m37[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.query.) {
+[7m  [0m [91m                                    ~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:43:52
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m37[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.query.) {
+[7m  [0m [91m                                    ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m37[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.query.) {
+[7m  [0m [91m                                    ~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:43:52.772Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:43:55
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:43:55.846Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m38[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.params.) {
+[7m  [0m [91m                                     ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m38[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.params.) {
+[7m  [0m [91m                                     ~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:43:59
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m38[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.params.) {
+[7m  [0m [91m                                     ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m38[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m41[0m         } else if (req && req.params.) {
+[7m  [0m [91m                                     ~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:43:59.672Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:44:09
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/controllers/UserController/index.ts[0m:[93m41[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m41[0m         } else if (req.user) {
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m42[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'user' does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+[7m42[0m             user = await User.findById(req.user.id).select(EXCLUDE_FIELDS.USER);
+[7m  [0m [91m                                           ~~~~[0m
+[96msrc/controllers/UserController/index.ts[0m:[93m48[0m:[93m21[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ object: null; message: string; success: boolean; }' is not assignable to parameter of type 'APIResponseInput'.
+  Object literal may only specify known properties, and 'success' does not exist in type 'APIResponseInput'.
+
+[7m48[0m                     success: false
+[7m  [0m [91m                    ~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:44:09.206Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/UserRoutes.ts[0m:[93m13[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'getUser' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getCurrentUser: string; getAllUsers: string; updateUser: string; searchUser: string; verifyOtp: string; }'.
+
+[7m13[0m router.get(ROUTES.getUser, validateGetUser, getUserById);
+[7m  [0m [91m                  ~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/UserRoutes.ts[0m:[93m13[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'getUser' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getCurrentUser: string; getAllUsers: string; updateUser: string; searchUser: string; verifyOtp: string; }'.
+
+[7m13[0m router.get(ROUTES.getUser, validateGetUser, getUserById);
+[7m  [0m [91m                  ~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29 13:55:15
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/UserRoutes.ts[0m:[93m13[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'getUser' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getCurrentUser: string; getAllUsers: string; updateUser: string; searchUser: string; verifyOtp: string; }'.
+
+[7m13[0m router.get(ROUTES.getUser, validateGetUser, getUserById);
+[7m  [0m [91m                  ~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/UserRoutes.ts[0m:[93m13[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'getUser' does not exist on type '{ login: string; signup: string; logout: string; refreshToken: string; passwordReset: string; passwordResetLink: string; getCurrentUser: string; getAllUsers: string; updateUser: string; searchUser: string; verifyOtp: string; }'.
+
+[7m13[0m router.get(ROUTES.getUser, validateGetUser, getUserById);
+[7m  [0m [91m                  ~~~~~~~[0m
+
+    at createTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/ndifeuchenna/Documents/traderApp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:938:12)
+    at Module.require (node:internal/modules/cjs/loader:1115:19) [user-service] development 2024-06-29T12:55:15.755Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [user-service] development 2024-06-29 22:25:47
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [user-service] development 2024-06-29T21:25:47.862Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [user-service] development 2024-06-29 22:26:48
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [user-service] development 2024-06-29T21:26:48.321Z
+=======
 [31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
 [96msrc/helpers/mail/index.ts[0m:[93m67[0m:[93m41[0m - [91merror[0m[90m TS18046: [0m'err' is of type 'unknown'.
 

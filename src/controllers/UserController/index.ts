@@ -14,8 +14,8 @@ export async function getAllUsers(req: Request, res: Response, next: NextFunctio
 		const searchQuery = searchKeyword ?? "";
 		const queryParams = {
 			$or: [
-				{ first_name: { $regex: searchQuery, $options: "i" } },
-				{ last_name: { $regex: searchQuery, $options: "i" } },
+				{ firstName: { $regex: searchQuery, $options: "i" } },
+				{ lastName: { $regex: searchQuery, $options: "i" } },
 				{ email: { $regex: searchQuery, $options: "i" } },
 			],
 		};
@@ -33,7 +33,7 @@ export async function getAllUsers(req: Request, res: Response, next: NextFunctio
 
 export async function getUserById(req: Request, res: Response, next: NextFunction) {
 	try {
-		const { id } = req.params;
+		const { id } = req.query;
 		const user = await User.findById(id).select(EXCLUDE_FIELDS.USER);
 		res.status(200).json(
 			apiResponseHandler({
