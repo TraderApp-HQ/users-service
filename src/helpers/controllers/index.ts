@@ -63,11 +63,7 @@ export async function sendOTP({ userData, channels }: ISendOtp) {
 			}),
 		};
 	});
-	await Promise.all(
-		promises.map(async (promise) => {
-			return await promise.promise;
-		}),
-	);
+	await Promise.allSettled(promises.map(async (promise) => promise.promise));
 	console.log("Published messages to queue", {
 		messages: promises.map((promise) => promise.message),
 	});
