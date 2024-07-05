@@ -17,14 +17,15 @@ import {
 } from "../../helpers/controllers";
 import { IVerifyOtp, VerificationType } from "./config";
 import { generatePassword } from "../../utils/generatePassword";
+import { FeatureFlagManager } from "../../utils/helpers/SplitIOClient";
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
 	try {
 		const data = await User.create(req.body);
 		logger.debug(`New user created , ${JSON.stringify(data)}`);
 
-		// TODO: replace with feature flag
-		const isOtpEnabled = false;
+		const featureFlags = new FeatureFlagManager();
+		const isOtpEnabled = await featureFlags.checkToggleFlag("release-send-otp", data._id);
 		if (isOtpEnabled) {
 			await sendOTP({ userData: data, channels: [NotificationChannel.EMAIL] });
 		}
@@ -76,8 +77,10 @@ export async function loginHandler(req: Request, res: Response, next: NextFuncti
 			throw error;
 		}
 
-		// TODO: replace with feature flag
-		const isOtpEnabled = false;
+		const featureFlags = new FeatureFlagManager();
+		const isOtpEnabled = await featureFlags.checkToggleFlag("release-send-otp", data._id);
+		console.log("feature flag: ", isOtpEnabled);
+		// const isOtpEnabled = true;
 		if (isOtpEnabled) {
 			await sendOTP({ userData: data, channels: [NotificationChannel.EMAIL] });
 		}
@@ -183,8 +186,8 @@ export async function passwordResetHandler(req: Request, res: Response, next: Ne
 export async function verifyOtpHandler(req: Request, res: Response, next: NextFunction) {
 	const { userId, data, verificationType } = req.body as IVerifyOtp;
 	try {
-		// TODO: replace with feature flag
-		const isOtpEnabled = false;
+		const featureFlags = new FeatureFlagManager();
+		const isOtpEnabled = await featureFlags.checkToggleFlag("release-send-otp", userId);
 		if (isOtpEnabled) {
 			const isOtpVerified = await verifyOTP({ userId, data });
 			if (!isOtpVerified) {
