@@ -18,6 +18,8 @@ import {
 import { IVerifyOtp, VerificationType } from "./config";
 import { generatePassword } from "../../utils/generatePassword";
 import { FeatureFlagManager } from "../../utils/helpers/SplitIOClient";
+import { IQueueMessage } from "../../utils/helpers/types";
+import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -25,7 +27,10 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 		logger.debug(`New user created , ${JSON.stringify(data)}`);
 
 		const featureFlags = new FeatureFlagManager();
-		const isOtpEnabled = await featureFlags.checkToggleFlag("release-send-otp", data._id);
+		const isOtpEnabled = await featureFlags.checkToggleFlag(
+			"release-send-otp",
+			data._id.toString(),
+		);
 		if (isOtpEnabled) {
 			await sendOTP({ userData: data, channels: [NotificationChannel.EMAIL] });
 		}
@@ -50,9 +55,21 @@ export async function createUserHandler(req: Request, res: Response, next: NextF
 		logger.debug(`New user created , ${JSON.stringify(data)}`);
 		const { _id } = data;
 
-		// TODO: send email  by calling sqs
 		const url = await generateResetUrl(_id);
-		console.log("Password reset URL: ", url);
+		const message: IQueueMessage = {
+			channel: ["EMAIL"],
+			messageObject: {
+				recipientName: data.firstName,
+				messageBody: url,
+				emailAddress: data.email,
+			},
+			event: "RESET_PASSWORD",
+		};
+		await publishMessageToQueue({
+			queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
+			message,
+		});
+		logger.log(`Create new user published to queue: ${JSON.stringify(message)}`);
 
 		const resObj = getUserObject(data);
 		res.status(200).json(
@@ -78,9 +95,10 @@ export async function loginHandler(req: Request, res: Response, next: NextFuncti
 		}
 
 		const featureFlags = new FeatureFlagManager();
-		const isOtpEnabled = await featureFlags.checkToggleFlag("release-send-otp", data._id);
-		console.log("feature flag: ", isOtpEnabled);
-		// const isOtpEnabled = true;
+		const isOtpEnabled = await featureFlags.checkToggleFlag(
+			"release-send-otp",
+			data._id.toString(),
+		);
 		if (isOtpEnabled) {
 			await sendOTP({ userData: data, channels: [NotificationChannel.EMAIL] });
 		}
@@ -130,13 +148,25 @@ export async function sendPasswordResetLinkHandler(
 	res: Response,
 	next: NextFunction,
 ) {
-	const { _id } = req.body;
+	const { user } = req.body;
 
 	try {
-		if (_id) {
-			// TODO: send email  by calling sqs
-			const url = await generateResetUrl(_id);
-			console.log("Password reset token: ", url);
+		if (user._id) {
+			const url = await generateResetUrl(user._id);
+			const message: IQueueMessage = {
+				channel: ["EMAIL"],
+				messageObject: {
+					recipientName: user.firstName,
+					messageBody: url,
+					emailAddress: user.email,
+				},
+				event: "RESET_PASSWORD",
+			};
+			await publishMessageToQueue({
+				queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
+				message,
+			});
+			logger.log(`Reset password published to queue: ${JSON.stringify(message)}`);
 		}
 
 		res.status(200).json(

@@ -1,7 +1,7 @@
 import "dotenv/config";
-import { QueueService } from "../../utils/helpers/SQSClient";
+import { QueueService } from "..";
 import { logger } from "@traderapp/shared-resources";
-import { IQueueMessage, QueueMessage } from "../../utils/helpers/types";
+import { IQueueMessage, QueueMessage } from "../../types";
 
 interface QueueInput {
 	queueUrl: string;
@@ -47,7 +47,15 @@ export const publishMessageToQueue = async ({ message, queueUrl, awsRegion }: Qu
 	const sqsClient = new QueueService({ region, queueUrl });
 
 	try {
-		const processedBody = typeof message === "string" ? message : JSON.stringify(message);
+		let processedBody: string;
+		if (typeof message === "string") {
+			processedBody = message;
+		} else {
+			processedBody = JSON.stringify({
+				...message,
+				client: process.env.CLIENT ?? process.env.NODE_ENV ?? "",
+			});
+		}
 		await sqsClient.sendMessage(processedBody);
 	} catch (error) {
 		logger.error(`Error sending message to queue == ${JSON.stringify(error)}`);

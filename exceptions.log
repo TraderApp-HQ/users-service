@@ -4579,3 +4579,47 @@ Error: Feature flag configuration key is missing/not set.
     at Layer.handle [as handle_request] (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/layer.js:95:5)
     at next (/Users/i/Documents/TraderApp codes/users-service/node_modules/express/lib/router/route.js:144:13)
     at /Users/i/Documents/TraderApp codes/users-service/src/middlewares/AuthMiddleware.ts:285:2 [users-service] development 2024-07-05T04:30:22.654Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/helpers/SplitIOClient/index.ts[0m:[93m2[0m:[93m63[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../repositories/feature-flags' or its corresponding type declarations.
+
+[7m2[0m import { FEATURE_FLAG_CONFIG, FeatureFlag, TrafficType } from "../../../repositories/feature-flags";
+[7m [0m [91m                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/helpers/SplitIOClient/index.ts[0m:[93m2[0m:[93m63[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../repositories/feature-flags' or its corresponding type declarations.
+
+[7m2[0m import { FEATURE_FLAG_CONFIG, FeatureFlag, TrafficType } from "../../../repositories/feature-flags";
+[7m [0m [91m                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-07-07 04:23:35
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/helpers/SplitIOClient/index.ts[0m:[93m2[0m:[93m63[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../repositories/feature-flags' or its corresponding type declarations.
+
+[7m2[0m import { FEATURE_FLAG_CONFIG, FeatureFlag, TrafficType } from "../../../repositories/feature-flags";
+[7m [0m [91m                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/helpers/SplitIOClient/index.ts[0m:[93m2[0m:[93m63[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../repositories/feature-flags' or its corresponding type declarations.
+
+[7m2[0m import { FEATURE_FLAG_CONFIG, FeatureFlag, TrafficType } from "../../../repositories/feature-flags";
+[7m [0m [91m                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/i/Documents/TraderApp codes/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1119:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:960:12)
+    at Module.require (node:internal/modules/cjs/loader:1143:19) [users-service] development 2024-07-07T03:23:35.695Z

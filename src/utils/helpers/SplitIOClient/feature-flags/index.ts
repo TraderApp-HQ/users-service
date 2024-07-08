@@ -10,13 +10,10 @@ export enum TrafficType {
 }
 
 /** Add/revise feature flags here, and then fill out the configuration below. */
-export type FeatureFlag = "release-send-otp" | "release-announcement";
+export type FeatureFlag = "release-send-otp";
 
 export const FEATURE_FLAG_CONFIG: FeatureFlagConfig = {
 	"release-send-otp": {
-		level: TrafficType.USER,
-	},
-	"release-announcement": {
 		level: TrafficType.USER,
 	},
 };

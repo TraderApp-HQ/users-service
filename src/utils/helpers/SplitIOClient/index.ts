@@ -1,13 +1,15 @@
 import { SplitFactory } from "@splitsoftware/splitio";
-import { FEATURE_FLAG_CONFIG, FeatureFlag, TrafficType } from "../../../repositories/feature-flags";
+import { FEATURE_FLAG_CONFIG, FeatureFlag, TrafficType } from "./feature-flags";
 
 export class FeatureFlagManager {
 	private readonly factory: SplitIO.ISDK;
 	private readonly client: SplitIO.IClient;
 
 	constructor() {
-		if (!process.env.SPLIT_IO_CLIENT_KEY)
+		if (!process.env.SPLIT_IO_CLIENT_KEY) {
 			throw new Error("Feature flag configuration key is missing/not set.");
+		}
+
 		this.factory = SplitFactory({
 			core: {
 				authorizationKey: process.env.SPLIT_IO_CLIENT_KEY,
@@ -38,10 +40,8 @@ export class FeatureFlagManager {
 		console.log("split key: ", process.env.SPLIT_IO_CLIENT_KEY);
 		let treatment: SplitIO.Treatment;
 		if (featureFlagConfig.level === TrafficType.USER) {
-			console.log("inside user block");
 			await this.client.ready().catch((e) => console.error(e));
 			treatment = this.client.getTreatment(userId, flagName);
-			console.log("treatment: ", treatment);
 		}
 		// else if (featureFlagConfig.level === TrafficType.ORG) {
 		// 	// treatment = this.client.getTreatment(tenantId || "key", flagName);

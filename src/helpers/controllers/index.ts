@@ -19,9 +19,8 @@ import {
 } from "../../config/constants";
 import Token from "../../models/RefreshToken";
 import { IAccessToken } from "../../config/interfaces";
-import { publishMessageToQueue } from "../../repositories/queue";
+import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
 import { IQueueMessage } from "../../utils/helpers/types";
-import { ChannelType, ChannelTypes } from "../../utils/helpers/config";
 
 interface ISendOtp {
 	userData: IUserModel;
@@ -52,14 +51,12 @@ export async function sendOTP({ userData, channels }: ISendOtp) {
 				emailAddress: userData.email,
 			},
 			event: "OTP",
-			client: process.env.CLIENT ?? process.env.NODE_ENV ?? "",
 		};
 		return {
 			message,
 			promise: publishMessageToQueue({
 				queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
 				message,
-				awsRegion: process.env.AWS_REGION,
 			}),
 		};
 	});

@@ -22,8 +22,8 @@ export const ENVIRONMENTS: Record<string, EnvProperty> = Object.freeze({
 });
 
 export const TOKEN_ATTRIBUTES = {
-	ACCESS_TOKEN_EXPIRES: "2m",
-	REFRESH_TOKEN_EXPIRES: "30d",
+	ACCESS_TOKEN_EXPIRES: "15m",
+	REFRESH_TOKEN_EXPIRES: "7d",
 	EXPIRES_TIMESTAMP: 15 * 60,
 	TOKEN_ISSUER: "traderapp.finance",
 };
