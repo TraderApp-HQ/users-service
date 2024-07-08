@@ -214,7 +214,7 @@ export async function validateSendPasswordResetLinkRequest(
 
 	try {
 		const user = await User.findOne({ email });
-		req.body._id = user?._id;
+		req.body.user = user;
 		next();
 	} catch (err) {
 		next(err);

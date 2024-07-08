@@ -14,7 +14,7 @@ export interface IQueueMessage {
 	channel: ChannelType[];
 	messageObject: IMessageObject;
 	event: EventTemplate;
-	client: string;
+	client?: string;
 }
 
 export interface QueueMessage extends Omit<Message, "Body"> {
