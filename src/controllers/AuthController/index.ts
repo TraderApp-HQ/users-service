@@ -63,7 +63,7 @@ export async function createUserHandler(req: Request, res: Response, next: NextF
 				messageBody: url,
 				emailAddress: data.email,
 			},
-			event: "RESET_PASSWORD",
+			event: "CREATE_USER",
 		};
 		await publishMessageToQueue({
 			queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
