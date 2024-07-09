@@ -37,7 +37,7 @@ export class FeatureFlagManager {
 				`Feature configuration not found for ${flagName}. Results could be incorrect...`,
 			);
 		}
-		console.log("split key: ", process.env.SPLIT_IO_CLIENT_KEY);
+
 		let treatment: SplitIO.Treatment;
 		if (featureFlagConfig.level === TrafficType.USER) {
 			await this.client.ready().catch((e) => console.error(e));
