@@ -35,6 +35,20 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 			await sendOTP({ userData: data, channels: [NotificationChannel.EMAIL] });
 		}
 
+		const message: IQueueMessage = {
+			channel: ["EMAIL"],
+			messageObject: {
+				recipientName: data.firstName,
+				messageBody: "",
+				emailAddress: data.email,
+			},
+			event: "WELCOME",
+		};
+		await publishMessageToQueue({
+			queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
+			message,
+		});
+
 		const resObj = getUserObject(data);
 		res.status(200).json(
 			apiResponseHandler({
@@ -63,7 +77,7 @@ export async function createUserHandler(req: Request, res: Response, next: NextF
 				messageBody: url,
 				emailAddress: data.email,
 			},
-			event: "RESET_PASSWORD",
+			event: "CREATE_USER",
 		};
 		await publishMessageToQueue({
 			queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
