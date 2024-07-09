@@ -1,6 +1,6 @@
 import { DOC_RESPONSE, RESPONSE_CODES, RESPONSE_TAGS } from "../../config/constants";
 
-const deactivateUserBody = {
+const deactivateUserPath = {
 	type: "object",
 	required: ["userId"],
 	properties: {
@@ -13,16 +13,17 @@ const deactivateUserBody = {
 const deactivateUser = {
 	tags: [RESPONSE_TAGS.users],
 	description: "Deactivate/Activate User by an authorised admin",
-	requestBody: {
-		content: {
-			"application/json": {
-				schema: {
-					$ref: "#/components/schemas/deactivateUserBody",
-				},
+	parameters: [
+		{
+			in: "path",
+			name: "userId",
+			schema: {
+				type: "string",
 			},
+			required: true,
+			description: "User ID to deactivate/activate",
 		},
-		required: true,
-	},
+	],
 	responses: {
 		[RESPONSE_CODES.ok]: DOC_RESPONSE.SUCCESS,
 		[RESPONSE_CODES.created]: DOC_RESPONSE.REGISTER_SUCCESS,
@@ -32,4 +33,4 @@ const deactivateUser = {
 	},
 };
 
-export { deactivateUser, deactivateUserBody };
+export { deactivateUser, deactivateUserPath };

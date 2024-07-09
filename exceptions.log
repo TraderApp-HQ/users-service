@@ -1880,3 +1880,199 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1197:32)
     at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
     at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-07-09T02:16:56.836Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m19[0m:[93m26[0m - [91merror[0m[90m TS2724: [0m'"../documentation/users"' has no exported member named 'deactivateUserBody'. Did you mean 'deactivateUser'?
+
+[7m19[0m import { deactivateUser, deactivateUserBody } from "../documentation/users";
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m19[0m:[93m26[0m - [91merror[0m[90m TS2724: [0m'"../documentation/users"' has no exported member named 'deactivateUserBody'. Did you mean 'deactivateUser'?
+
+[7m19[0m import { deactivateUser, deactivateUserBody } from "../documentation/users";
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-07-09 04:01:25
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m19[0m:[93m26[0m - [91merror[0m[90m TS2724: [0m'"../documentation/users"' has no exported member named 'deactivateUserBody'. Did you mean 'deactivateUser'?
+
+[7m19[0m import { deactivateUser, deactivateUserBody } from "../documentation/users";
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m19[0m:[93m26[0m - [91merror[0m[90m TS2724: [0m'"../documentation/users"' has no exported member named 'deactivateUserBody'. Did you mean 'deactivateUser'?
+
+[7m19[0m import { deactivateUser, deactivateUserBody } from "../documentation/users";
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-07-09T03:01:25.063Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m19[0m:[93m26[0m - [91merror[0m[90m TS2724: [0m'"../documentation/users"' has no exported member named 'deactivateUserBody'. Did you mean 'deactivateUser'?
+
+[7m19[0m import { deactivateUser, deactivateUserBody } from "../documentation/users";
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m19[0m:[93m26[0m - [91merror[0m[90m TS2724: [0m'"../documentation/users"' has no exported member named 'deactivateUserBody'. Did you mean 'deactivateUser'?
+
+[7m19[0m import { deactivateUser, deactivateUserBody } from "../documentation/users";
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-07-09 04:01:29
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m19[0m:[93m26[0m - [91merror[0m[90m TS2724: [0m'"../documentation/users"' has no exported member named 'deactivateUserBody'. Did you mean 'deactivateUser'?
+
+[7m19[0m import { deactivateUser, deactivateUserBody } from "../documentation/users";
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m19[0m:[93m26[0m - [91merror[0m[90m TS2724: [0m'"../documentation/users"' has no exported member named 'deactivateUserBody'. Did you mean 'deactivateUser'?
+
+[7m19[0m import { deactivateUser, deactivateUserBody } from "../documentation/users";
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-07-09T03:01:29.616Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m45[0m:[93m5[0m - [91merror[0m[90m TS2552: [0mCannot find name 'deactivateUserBody'. Did you mean 'deactivateUser'?
+
+[7m45[0m     deactivateUserBody,
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m45[0m:[93m5[0m - [91merror[0m[90m TS2552: [0mCannot find name 'deactivateUserBody'. Did you mean 'deactivateUser'?
+
+[7m45[0m     deactivateUserBody,
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-07-09 04:01:43
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m45[0m:[93m5[0m - [91merror[0m[90m TS2552: [0mCannot find name 'deactivateUserBody'. Did you mean 'deactivateUser'?
+
+[7m45[0m     deactivateUserBody,
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/swagger.ts[0m:[93m45[0m:[93m5[0m - [91merror[0m[90m TS2552: [0mCannot find name 'deactivateUserBody'. Did you mean 'deactivateUser'?
+
+[7m45[0m     deactivateUserBody,
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-07-09T03:01:43.574Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/documentation/users/deactivateuser.docs.ts[0m:[93m36[0m:[93m26[0m - [91merror[0m[90m TS2552: [0mCannot find name 'deactivateUserPath'. Did you mean 'deactivateUserpath'?
+
+[7m36[0m export { deactivateUser, deactivateUserPath };
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/documentation/users/deactivateuser.docs.ts[0m:[93m3[0m:[93m7[0m
+    [7m3[0m const deactivateUserpath = {
+    [7m [0m [96m      ~~~~~~~~~~~~~~~~~~[0m
+    'deactivateUserpath' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/documentation/users/deactivateuser.docs.ts[0m:[93m36[0m:[93m26[0m - [91merror[0m[90m TS2552: [0mCannot find name 'deactivateUserPath'. Did you mean 'deactivateUserpath'?
+
+[7m36[0m export { deactivateUser, deactivateUserPath };
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/documentation/users/deactivateuser.docs.ts[0m:[93m3[0m:[93m7[0m
+    [7m3[0m const deactivateUserpath = {
+    [7m [0m [96m      ~~~~~~~~~~~~~~~~~~[0m
+    'deactivateUserpath' is declared here.
+
+    at createTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-07-09 04:01:49
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/documentation/users/deactivateuser.docs.ts[0m:[93m36[0m:[93m26[0m - [91merror[0m[90m TS2552: [0mCannot find name 'deactivateUserPath'. Did you mean 'deactivateUserpath'?
+
+[7m36[0m export { deactivateUser, deactivateUserPath };
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/documentation/users/deactivateuser.docs.ts[0m:[93m3[0m:[93m7[0m
+    [7m3[0m const deactivateUserpath = {
+    [7m [0m [96m      ~~~~~~~~~~~~~~~~~~[0m
+    'deactivateUserpath' is declared here.
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/documentation/users/deactivateuser.docs.ts[0m:[93m36[0m:[93m26[0m - [91merror[0m[90m TS2552: [0mCannot find name 'deactivateUserPath'. Did you mean 'deactivateUserpath'?
+
+[7m36[0m export { deactivateUser, deactivateUserPath };
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~[0m
+
+  [96msrc/documentation/users/deactivateuser.docs.ts[0m:[93m3[0m:[93m7[0m
+    [7m3[0m const deactivateUserpath = {
+    [7m [0m [96m      ~~~~~~~~~~~~~~~~~~[0m
+    'deactivateUserpath' is declared here.
+
+    at createTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/macbook/Desktop/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-07-09T03:01:49.361Z

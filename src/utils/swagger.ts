@@ -16,7 +16,7 @@ import {
 	createAuthCreateUserBody,
 } from "../documentation/auth";
 import { ROUTES } from "../config/constants";
-import { deactivateUser, deactivateUserBody } from "../documentation/users";
+import { deactivateUser, deactivateUserPath } from "../documentation/users";
 
 const options: swaggerJsdoc.Options = {
 	swaggerDefinition: {
@@ -42,7 +42,7 @@ const options: swaggerJsdoc.Options = {
 				createAuthPasswordResetBody,
 				createAuthPasswordLinkResetBody,
 				createAuthRefreshTokenBody,
-				deactivateUserBody,
+				deactivateUserPath,
 			},
 		},
 		security: [
