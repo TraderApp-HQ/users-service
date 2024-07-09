@@ -16,6 +16,7 @@ import {
 	createAuthCreateUserBody,
 } from "../documentation/auth";
 import { ROUTES } from "../config/constants";
+import { deactivateUser, deactivateUserBody } from "../documentation/users";
 
 const options: swaggerJsdoc.Options = {
 	swaggerDefinition: {
@@ -41,6 +42,7 @@ const options: swaggerJsdoc.Options = {
 				createAuthPasswordResetBody,
 				createAuthPasswordLinkResetBody,
 				createAuthRefreshTokenBody,
+				deactivateUserBody,
 			},
 		},
 		security: [
@@ -56,6 +58,7 @@ const options: swaggerJsdoc.Options = {
 			[`/auth${ROUTES.refreshToken}`]: { post: createAuthRefreshToken },
 			[`/auth${ROUTES.passwordReset}`]: { post: createAuthPasswordReset },
 			[`/auth${ROUTES.passwordResetLink}`]: { get: createAuthPasswordLinkReset },
+			[`/users${ROUTES.deactivateUser}`]: { patch: deactivateUser },
 		},
 	},
 	apis: ["./src/routes/*.ts", "./src/models/*.ts"], // Point to your route files

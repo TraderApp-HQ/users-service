@@ -12,6 +12,7 @@ export interface IUser {
 	isPhoneVerified?: boolean;
 	isIdVerified?: boolean;
 	role: Role[];
+	status: string;
 }
 
 export interface ICountry {

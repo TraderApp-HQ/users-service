@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import User from "../../models/User";
 import { apiResponseHandler } from "@traderapp/shared-resources";
 import { ResponseMessage, PAGINATION, EXCLUDE_FIELDS } from "../../config/constants";
+import { Status } from "../../config/enums";
 
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -56,6 +57,30 @@ export async function updateUserById(req: Request, res: Response, next: NextFunc
 			apiResponseHandler({
 				object: user,
 				message: ResponseMessage.UPDATE_USER,
+			}),
+		);
+	} catch (err) {
+		next(err);
+	}
+}
+
+export async function deactivateUserById(req: Request, res: Response, next: NextFunction) {
+	try {
+		const { id } = req.query;
+		const user = await User.findById(id);
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+		const userStatus = user.status === Status.ACTIVE;
+		user.status = userStatus ? Status.INACTIVE : Status.ACTIVE;
+		await user.save();
+
+		res.status(200).json(
+			apiResponseHandler({
+				object: user,
+				message: userStatus
+					? ResponseMessage.DEACTIVATE_USER
+					: ResponseMessage.ACTIVATE_USER,
 			}),
 		);
 	} catch (err) {
