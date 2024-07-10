@@ -222,7 +222,6 @@ export async function passwordResetHandler(req: Request, res: Response, next: Ne
 			}),
 		);
 	} catch (err) {
-		console.log(err);
 		next(err);
 	}
 }

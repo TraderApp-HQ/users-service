@@ -3,7 +3,7 @@ import mongoose, { Document, Schema, Model } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 import bcrypt from "bcrypt";
 import { IUser } from "../config/interfaces";
-import { Role } from "../config/enums";
+import { Role, Status } from "../config/enums";
 
 export interface IUserModel extends IUser, Document {}
 
@@ -27,6 +27,7 @@ const UserSchema = new Schema(
 		isPhoneVerified: { type: Boolean, default: false },
 		isIdVerified: { type: Boolean, default: false },
 		role: { type: [String], enum: Role, default: [Role.USER] },
+		status: { type: String, default: Status.ACTIVE },
 	},
 	{ versionKey: false, timestamps: true },
 );

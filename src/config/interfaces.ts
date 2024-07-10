@@ -1,4 +1,4 @@
-import { NotificationChannel, Role } from "./enums";
+import { NotificationChannel, Role, Status } from "./enums";
 
 export interface IUser {
 	email: string;
@@ -12,6 +12,7 @@ export interface IUser {
 	isPhoneVerified?: boolean;
 	isIdVerified?: boolean;
 	role: Role[];
+	status: Status;
 }
 
 export interface ICountry {

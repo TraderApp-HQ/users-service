@@ -10,3 +10,8 @@ export enum NotificationChannel {
 	SMS = "SMS",
 	WHATSAPP = "WHATSAPP",
 }
+
+export enum Status {
+	ACTIVE = "ACTIVE",
+	INACTIVE = "INACTIVE",
+}

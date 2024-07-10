@@ -43,6 +43,8 @@ export const ResponseMessage = {
 	SEARCH_USERS: "Users Searched successfully",
 	GET_USER: "User Fetched successfully",
 	UPDATE_USER: "User Updated successfully",
+	DEACTIVATE_USER: "User Deactivated successfully",
+	ACTIVATE_USER: "User Activated successfully",
 };
 
 export const ErrorMessage = {
@@ -74,6 +76,7 @@ export const accessTokenCookieOptions = {
 
 export const RESPONSE_TAGS = {
 	auth: "Auth",
+	users: "Users",
 	verification: "Verification",
 	country: "Country",
 };
@@ -122,6 +125,7 @@ export const ROUTES = {
 	getUser: "/me",
 	getAllUsers: "/all",
 	updateUser: "/update",
+	toggleuserActivation: "/toggle-activation",
 	searchUser: "/search",
 	verifyOtp: "/verify-otp",
 };
