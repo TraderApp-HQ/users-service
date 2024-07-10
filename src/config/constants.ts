@@ -125,7 +125,7 @@ export const ROUTES = {
 	getUser: "/me",
 	getAllUsers: "/all",
 	updateUser: "/update",
-	deactivateUser: "/deactivate",
+	toggleuserActivation: "/toggle-activation",
 	searchUser: "/search",
 	verifyOtp: "/verify-otp",
 };

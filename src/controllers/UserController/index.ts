@@ -64,7 +64,7 @@ export async function updateUserById(req: Request, res: Response, next: NextFunc
 	}
 }
 
-export async function deactivateUserById(req: Request, res: Response, next: NextFunction) {
+export async function toggleUserActivation(req: Request, res: Response, next: NextFunction) {
 	try {
 		const { id } = req.query;
 		const user = await User.findById(id);

@@ -58,7 +58,7 @@ const options: swaggerJsdoc.Options = {
 			[`/auth${ROUTES.refreshToken}`]: { post: createAuthRefreshToken },
 			[`/auth${ROUTES.passwordReset}`]: { post: createAuthPasswordReset },
 			[`/auth${ROUTES.passwordResetLink}`]: { get: createAuthPasswordLinkReset },
-			[`/users${ROUTES.deactivateUser}`]: { patch: deactivateUser },
+			[`/users${ROUTES.toggleuserActivation}`]: { patch: deactivateUser },
 		},
 	},
 	apis: ["./src/routes/*.ts", "./src/models/*.ts"], // Point to your route files

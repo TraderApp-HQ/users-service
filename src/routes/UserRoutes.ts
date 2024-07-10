@@ -1,8 +1,8 @@
 import { Router } from "express";
 import {
-	deactivateUserById,
 	getAllUsers,
 	getUserById,
+	toggleUserActivation,
 	updateUserById,
 } from "../controllers/UserController";
 import { ROUTES } from "../config/constants";
@@ -17,6 +17,6 @@ const router = Router();
 router.get(ROUTES.getAllUsers, validateGetAllUsers, getAllUsers);
 router.get(ROUTES.getUser, validateGetUser, getUserById);
 router.patch(ROUTES.updateUser, validateUpdateUser, updateUserById);
-router.patch(ROUTES.deactivateUser, validateGetUser, deactivateUserById);
+router.patch(ROUTES.toggleuserActivation, validateGetUser, toggleUserActivation);
 
 export default router;
