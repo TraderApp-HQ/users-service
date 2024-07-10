@@ -1,6 +1,6 @@
 import { DOC_RESPONSE, RESPONSE_CODES, RESPONSE_TAGS } from "../../config/constants";
 
-const deactivateUserPath = {
+const toggleUserActivationPath = {
 	type: "object",
 	required: ["userId"],
 	properties: {
@@ -10,7 +10,7 @@ const deactivateUserPath = {
 	},
 };
 
-const deactivateUser = {
+const toggleUserActivation = {
 	tags: [RESPONSE_TAGS.users],
 	description: "Deactivate/Activate User by an authorised admin",
 	parameters: [
@@ -33,4 +33,4 @@ const deactivateUser = {
 	},
 };
 
-export { deactivateUser, deactivateUserPath };
+export { toggleUserActivation, toggleUserActivationPath };

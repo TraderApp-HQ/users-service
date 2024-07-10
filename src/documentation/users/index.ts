@@ -1,1 +1,1 @@
-export * from "./deactivateuser.docs";
+export * from "./toggleuseractivation.docs";
