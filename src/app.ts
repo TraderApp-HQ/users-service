@@ -40,7 +40,7 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 		.connect(dbUrl)
 		.then(() => {
 			app.listen(port, () => {
-				loggers("Logging some object", someObject);
+				loggers("Logging some object", someObject, "third", "fourth");
 				loggers("Logging some object", { someObject });
 				logger.log(`Server listening at port ${port}`);
 				startServer();

@@ -101,7 +101,7 @@ const waitForLogger = async () => {
 };
 
 // Function to log an object with a message and a response object
-const loggers = async (message: string, response: any) => {
+const loggers = async (message: string, ...response: any) => {
 	await waitForLogger(); // Wait for the logger to be initialized
 	if (logger) {
 		const logMessage = {
