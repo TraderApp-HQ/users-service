@@ -106,7 +106,7 @@ const loggers = async (message: string, ...response: any) => {
 	if (logger) {
 		const logMessage = {
 			message,
-			response,
+			...response[0],
 		};
 		logger.log(logMessage);
 	} else {
