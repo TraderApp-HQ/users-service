@@ -11,6 +11,7 @@ declare module "aws-cloudwatch-log" {
 
 	export class Logger {
 		constructor(config: LoggerConfig);
+
 		log(...messages: any[]): void;
 	}
 }

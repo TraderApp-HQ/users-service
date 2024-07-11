@@ -45,7 +45,7 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 				// 	`aws-cloudwatch-log.`,
 				// 	`I can log many things at once, as well as objects as follow:`,
 				// );
-				loggers.log("Logging some object", someObject);
+				loggers("Logging some object", someObject);
 				logger.log(`Server listening at port ${port}`);
 				startServer();
 				logger.log(`Docs available at http://localhost:${port}/api-docs`);

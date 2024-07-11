@@ -12,7 +12,7 @@ const config = {
 	accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? "", // AWS access key ID, default to an empty string if not set
 	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? "", // AWS secret access key, default to an empty string if not set
 	uploadFreq: 10000, // Optional. Send logs to AWS LogStream in batches after 10 seconds intervals.
-	// local: false, // Optional. If set to true, the log will fall back to the standard 'console.log'.
+	local: false, // Optional. If set to true, the log will fall back to the standard 'console.log'.
 };
 
 // Initialize AWS CloudWatch Logs client with the provided configuration
@@ -70,14 +70,14 @@ async function ensureLogStreamExists(logStreamName: string) {
 }
 
 // Logger instance
-let loggers: Logger;
+let logger: Logger;
 
 // Function to initialize the logger
 async function initializeLogger(): Promise<void> {
 	const logStreamName = generateRandomLogStreamName();
 	await ensureLogStreamExists(logStreamName);
 	const dynamicConfig = { ...config, logStreamName };
-	loggers = new Logger(dynamicConfig); // Create a new Logger instance with the dynamic configuration
+	logger = new Logger(dynamicConfig); // Create a new Logger instance with the dynamic configuration
 	console.log(`Logger initialized with log stream: ${logStreamName}`);
 }
 
@@ -90,7 +90,7 @@ initializeLogger().catch((err) => {
 const waitForLogger = async () => {
 	return new Promise<void>((resolve) => {
 		const checkLogger = () => {
-			if (loggers) {
+			if (logger) {
 				resolve();
 			} else {
 				setTimeout(checkLogger, 100); // Check every 100ms
@@ -98,6 +98,20 @@ const waitForLogger = async () => {
 		};
 		checkLogger();
 	});
+};
+
+// Function to log an object with a message and a response object
+const loggers = async (message: string, response: any) => {
+	await waitForLogger(); // Wait for the logger to be initialized
+	if (logger) {
+		const logMessage = {
+			message,
+			response,
+		};
+		logger.log(logMessage);
+	} else {
+		console.error("Logger is not initialized.");
+	}
 };
 
 export { loggers, waitForLogger };
