@@ -12,6 +12,7 @@ import swaggerUi from "swagger-ui-express";
 import specs from "./utils/swagger";
 
 import secretsJson from "./env.json";
+import { loggers, waitForLogger } from "./utils/cloudwatchLogger";
 
 config();
 const app = express();
@@ -30,6 +31,7 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 		secretNames,
 		secretsJson,
 	});
+	await waitForLogger();
 	const port = process.env.PORT;
 	const dbUrl = process.env.USERS_SERVICE_DB_URL ?? "";
 	// connect to mongodb
@@ -37,6 +39,11 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 		.connect(dbUrl)
 		.then(() => {
 			app.listen(port, () => {
+				loggers.log(
+					`I'm`,
+					`aws-cloudwatch-log.`,
+					`I can log many things at once, as well as objects as follow:`,
+				);
 				logger.log(`Server listening at port ${port}`);
 				startServer();
 				logger.log(`Docs available at http://localhost:${port}/api-docs`);

@@ -12,6 +12,10 @@
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
 		"skipLibCheck": true,
+		"typeRoots": ["./node_modules/@types", "./src/types"],
+		"paths": {
+      "*": ["./src/types/*"]
+    },
 		// "baseUrl": "./src",
 		"resolveJsonModule": true
 		// "paths": {
@@ -20,5 +24,6 @@
 		//   ]
 		// }
 	},
+	// "include": ["src"],
 	"exclude": ["node_modules", "**/node_modules/*", "__tests__", "tests"]
 }
