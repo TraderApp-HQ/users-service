@@ -7,11 +7,11 @@ import { Logger } from "aws-cloudwatch-log";
 
 // Configuration object for AWS CloudWatch Logs
 const config = {
-	logGroupName: "/aws/ec2/dev-usersService", // The name of the log group in AWS CloudWatch
+	logGroupName: "/aws/ec2/cloudfare-log-testing", // The name of the log group in AWS CloudWatch
 	region: process.env.AWS_REGION ?? "", // AWS region, default to an empty string if not set
 	accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? "", // AWS access key ID, default to an empty string if not set
 	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? "", // AWS secret access key, default to an empty string if not set
-	// uploadFreq: 10000, // Optional. Send logs to AWS LogStream in batches after 10 seconds intervals.
+	uploadFreq: 10000, // Optional. Send logs to AWS LogStream in batches after 10 seconds intervals.
 	// local: false, // Optional. If set to true, the log will fall back to the standard 'console.log'.
 };
 
@@ -26,7 +26,7 @@ const cloudwatchlogsClient = new CloudWatchLogsClient({
 
 // Function to generate a random log stream name
 function generateRandomLogStreamName(): string {
-	return `dev-usersService-${Math.random().toString(36).substring(2, 15)}`;
+	return `cloudfare-log-testing-${Math.random().toString(36).substring(2, 15)}`;
 }
 
 // Function to ensure the log stream exists, creating it if necessary

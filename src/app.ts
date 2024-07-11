@@ -34,16 +34,18 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 	await waitForLogger();
 	const port = process.env.PORT;
 	const dbUrl = process.env.USERS_SERVICE_DB_URL ?? "";
+	const someObject = { name: "John doe", address: "Lagos Nigeria", age: 35, hasDegree: true };
 	// connect to mongodb
 	mongoose
 		.connect(dbUrl)
 		.then(() => {
 			app.listen(port, () => {
-				loggers.log(
-					`I'm`,
-					`aws-cloudwatch-log.`,
-					`I can log many things at once, as well as objects as follow:`,
-				);
+				// loggers.log(
+				// 	`I'm`,
+				// 	`aws-cloudwatch-log.`,
+				// 	`I can log many things at once, as well as objects as follow:`,
+				// );
+				loggers.log("Logging some object", someObject);
 				logger.log(`Server listening at port ${port}`);
 				startServer();
 				logger.log(`Docs available at http://localhost:${port}/api-docs`);
