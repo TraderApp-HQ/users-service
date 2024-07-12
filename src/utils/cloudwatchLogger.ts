@@ -12,7 +12,7 @@ const config = {
 	accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? "", // AWS access key ID, default to an empty string if not set
 	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? "", // AWS secret access key, default to an empty string if not set
 	uploadFreq: 10000, // Optional. Send logs to AWS LogStream in batches after 10 seconds intervals.
-	local: false, // Optional. If set to true, the log will fall back to the standard 'console.log'.
+	local: process.env.NODE_ENV === "development", // Optional. If set to true, the log will fall back to the standard 'console.log'.
 };
 
 // Initialize AWS CloudWatch Logs client with the provided configuration
@@ -101,12 +101,16 @@ const waitForLogger = async () => {
 };
 
 // Function to log an object with a message and a response object
-const loggers = async (message: string, ...response: any) => {
+const loggers = async (message: string, ...response: any[]) => {
 	await waitForLogger(); // Wait for the logger to be initialized
+
 	if (logger) {
 		const logMessage = {
 			message,
-			...response[0],
+			...response.reduce((acc, curr, index) => {
+				acc[`data${index + 1}`] = curr;
+				return acc;
+			}),
 		};
 		logger.log(logMessage);
 	} else {

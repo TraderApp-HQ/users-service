@@ -40,8 +40,7 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 		.connect(dbUrl)
 		.then(() => {
 			app.listen(port, () => {
-				loggers("Logging some object", someObject, "third", "fourth");
-				loggers("Logging some object", { someObject });
+				loggers("Logging more data", { someObject }, "Some string", 222222, true);
 				logger.log(`Server listening at port ${port}`);
 				startServer();
 				logger.log(`Docs available at http://localhost:${port}/api-docs`);
