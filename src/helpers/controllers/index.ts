@@ -39,7 +39,20 @@ export async function sendOTP({ userData, channels }: ISendOtp) {
 		otp: generateOTP(),
 		channel,
 	}));
-	await OneTimePassword.create(insertData);
+	const otpExist = await OneTimePassword.findOne({ _id: userData._id }).select("_id");
+	if (otpExist) {
+		await Promise.all(
+			channels.map(async (channel) => {
+				await OneTimePassword.updateOne(
+					{ _id: userData._id, channel },
+					{ otp: generateOTP() },
+					{ upsert: true },
+				);
+			}),
+		);
+	} else {
+		await OneTimePassword.create(insertData);
+	}
 
 	// publish message in parralel to notification-service to send notification
 	const promises = insertData.map((data) => {

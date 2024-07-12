@@ -72,8 +72,7 @@ export async function toggleUserActivation(req: Request, res: Response, next: Ne
 			return res.status(404).json({ error: "User not found" });
 		}
 		const userStatus = user.status === Status.ACTIVE;
-		user.status = userStatus ? Status.INACTIVE : Status.ACTIVE;
-		await user.save();
+		await User.updateOne({ id }, { status: userStatus ? Status.INACTIVE : Status.ACTIVE });
 
 		res.status(200).json(
 			apiResponseHandler({

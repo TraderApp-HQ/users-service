@@ -4,6 +4,7 @@ import mongoosePaginate from "mongoose-paginate-v2";
 import bcrypt from "bcrypt";
 import { IUser } from "../config/interfaces";
 import { Role, Status } from "../config/enums";
+import { ErrorMessage } from "../config/constants";
 
 export interface IUserModel extends IUser, Document {}
 
@@ -49,6 +50,11 @@ UserSchema.statics.login = async function (email, password) {
 	const user: IUserModel = await this.findOne({ email });
 
 	if (user) {
+		if (user.status === Status.INACTIVE) {
+			const error = new Error(ErrorMessage.DEACTIVATED);
+			error.name = ErrorMessage.NOTFOUND;
+			throw error;
+		}
 		const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
 		if (isPasswordCorrect) return user;
