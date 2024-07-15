@@ -8,7 +8,7 @@ import { format } from "date-fns";
 
 // Configuration object for AWS CloudWatch Logs
 const config = {
-	logGroupName: "/aws/ec2/cloudfare-log-testing", // The name of the log group in AWS CloudWatch
+	logGroupName: "/aws/ec2/dev-usersService", // The name of the log group in AWS CloudWatch
 	region: process.env.AWS_REGION ?? "", // AWS region, default to an empty string if not set
 	accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? "", // AWS access key ID, default to an empty string if not set
 	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? "", // AWS secret access key, default to an empty string if not set
