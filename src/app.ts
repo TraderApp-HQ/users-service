@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { AuthRoutes, CountryRoutes, VerificationRoutes, UserRoutes } from "./routes";
 import { config } from "dotenv";
-import { apiResponseHandler, logger, initSecrets } from "@traderapp/shared-resources";
+import { apiResponseHandler, initSecrets } from "@traderapp/shared-resources";
 
 import { ResponseType, ENVIRONMENTS, RESPONSE_FLAGS } from "./config/constants";
 import cookieParser from "cookie-parser";
@@ -12,6 +12,8 @@ import swaggerUi from "swagger-ui-express";
 import specs from "./utils/swagger";
 
 import secretsJson from "./env.json";
+import { initializeLogger, loggers as logger } from "./utils/cloudwatchLogger";
+import { LoggerConfig } from "aws-cloudwatch-log";
 
 config();
 const app = express();
@@ -30,8 +32,20 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 		secretNames,
 		secretsJson,
 	});
+
+	const config: LoggerConfig = {
+		logGroupName: process.env.CLOUDWATCH_LOG_GROUP_NAME ?? "",
+		region: process.env.AWS_REGION ?? "",
+		accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? "",
+		secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? "",
+		uploadFreq: 10000, // Optional
+		local: process.env.NODE_ENV === "localhost",
+	};
+	initializeLogger(config);
+
 	const port = process.env.PORT;
 	const dbUrl = process.env.USERS_SERVICE_DB_URL ?? "";
+
 	// connect to mongodb
 	mongoose
 		.connect(dbUrl)

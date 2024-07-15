@@ -7,6 +7,10 @@ interface EnvProperty {
 }
 
 export const ENVIRONMENTS: Record<string, EnvProperty> = Object.freeze({
+	localhost: {
+		slug: "dev",
+		frontendUrl: "http://localhost:8788",
+	},
 	development: {
 		slug: "dev",
 		frontendUrl: "https://users-dashboard-dev.traderapp.finance",
