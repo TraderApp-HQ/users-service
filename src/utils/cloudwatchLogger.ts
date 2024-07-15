@@ -101,8 +101,8 @@ const waitForLogger = async () => {
 	});
 };
 
-// Function to log an object with a message and a response object
-const loggers = async (message: string, ...response: any[]) => {
+// Private function to log a message with a specified level
+async function log(level: string, message: string, ...response: any[]) {
 	await waitForLogger(); // Wait for the logger to be initialized
 
 	if (logger) {
@@ -110,16 +110,39 @@ const loggers = async (message: string, ...response: any[]) => {
 		const logMessage = {
 			timestamp,
 			node_env: process.env.NODE_ENV,
+			level,
 			message,
 			...response.reduce((acc, curr, index) => {
 				acc[`data${index + 1}`] = curr;
 				return acc;
-			}),
+			}, {}),
 		};
 		logger.log(logMessage);
 	} else {
 		console.error("Logger is not initialized.");
 	}
+}
+
+// Log level methods
+const loggers = {
+	async info(message: string, ...response: any[]) {
+		await log("info", message, ...response);
+	},
+
+	async warn(message: string, ...response: any[]) {
+		await log("warn", message, ...response);
+	},
+
+	async error(message: string, ...response: any[]) {
+		await log("error", message, ...response);
+	},
+
+	async debug(message: string, ...response: any[]) {
+		await log("debug", message, ...response);
+	},
+	async log(message: string, ...response: any[]) {
+		await log("log", message, ...response);
+	},
 };
 
-export { loggers, waitForLogger };
+export { loggers };
