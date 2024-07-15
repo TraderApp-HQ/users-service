@@ -3,27 +3,8 @@ import {
 	DescribeLogStreamsCommand,
 	CreateLogStreamCommand,
 } from "@aws-sdk/client-cloudwatch-logs";
-import { Logger } from "aws-cloudwatch-log";
+import { Logger, LoggerConfig } from "aws-cloudwatch-log";
 import { format } from "date-fns";
-
-// Configuration object for AWS CloudWatch Logs
-const config = {
-	logGroupName: process.env.CLOUDWATCH_LOG_GROUP_NAME ?? "", // The name of the log group in AWS CloudWatch
-	region: process.env.AWS_REGION ?? "", // AWS region, default to an empty string if not set
-	accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? "", // AWS access key ID, default to an empty string if not set
-	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? "", // AWS secret access key, default to an empty string if not set
-	uploadFreq: 10000, // Optional. Send logs to AWS LogStream in batches after 10 seconds intervals.
-	local: process.env.NODE_ENV === "localhost", // Optional. If set to true, the log will fall back to the standard 'console.log'.
-};
-
-// Initialize AWS CloudWatch Logs client with the provided configuration
-const cloudwatchlogsClient = new CloudWatchLogsClient({
-	region: config.region,
-	credentials: {
-		accessKeyId: config.accessKeyId,
-		secretAccessKey: config.secretAccessKey,
-	},
-});
 
 // Function to generate a random log stream name
 function generateRandomLogStreamName(): string {
@@ -31,9 +12,11 @@ function generateRandomLogStreamName(): string {
 }
 
 // Function to ensure the log stream exists, creating it if necessary
-async function ensureLogStreamExists(logStreamName: string) {
-	const { logGroupName } = config;
-
+async function ensureLogStreamExists(
+	cloudwatchlogsClient: CloudWatchLogsClient,
+	logGroupName: string,
+	logStreamName: string,
+) {
 	try {
 		// Command to describe log streams with the specified log group and stream name prefix
 		const describeLogStreamsCommand = new DescribeLogStreamsCommand({
@@ -74,18 +57,20 @@ async function ensureLogStreamExists(logStreamName: string) {
 let logger: Logger;
 
 // Function to initialize the logger
-async function initializeLogger(): Promise<void> {
+async function initializeLogger(config: LoggerConfig): Promise<void> {
 	const logStreamName = generateRandomLogStreamName();
-	await ensureLogStreamExists(logStreamName);
+	const cloudwatchlogsClient = new CloudWatchLogsClient({
+		region: config.region,
+		credentials: {
+			accessKeyId: config.accessKeyId,
+			secretAccessKey: config.secretAccessKey,
+		},
+	});
+	await ensureLogStreamExists(cloudwatchlogsClient, config.logGroupName, logStreamName);
 	const dynamicConfig = { ...config, logStreamName };
-	logger = new Logger(dynamicConfig); // Create a new Logger instance with the dynamic configuration
+	logger = new Logger(dynamicConfig);
 	console.log(`Logger initialized with log stream: ${logStreamName}`);
 }
-
-// Initialize the logger and handle potential errors
-initializeLogger().catch((err) => {
-	console.error("Failed to initialize logger:", err);
-});
 
 // Function to wait for the logger to be initialized
 const waitForLogger = async () => {
@@ -103,7 +88,7 @@ const waitForLogger = async () => {
 
 // Private function to log a message with a specified level
 async function log(level: string, message: string, ...response: any[]) {
-	await waitForLogger(); // Wait for the logger to be initialized
+	await waitForLogger();
 
 	if (logger) {
 		const timestamp = format(new Date(), "yyyy-MM-dd HH:mm:ss");
@@ -141,9 +126,10 @@ const loggers = {
 	async debug(message: string, ...response: any[]) {
 		await log("debug", message, ...response);
 	},
+
 	async log(message: string, ...response: any[]) {
 		await log("log", message, ...response);
 	},
 };
 
-export { loggers, waitForLogger };
+export { initializeLogger, loggers };

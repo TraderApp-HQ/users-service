@@ -1,7 +1,7 @@
 declare module "aws-cloudwatch-log" {
-	interface LoggerConfig {
+	export interface LoggerConfig {
 		logGroupName: string;
-		logStreamName: string;
+		logStreamName?: string;
 		region: string;
 		accessKeyId: string;
 		secretAccessKey: string;
