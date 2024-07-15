@@ -7,8 +7,8 @@ import { Logger, LoggerConfig } from "aws-cloudwatch-log";
 import { format } from "date-fns";
 
 // Function to generate a random log stream name
-function generateRandomLogStreamName(): string {
-	return `cloudfare-log-testing-${Math.random().toString(36).substring(2, 15)}`;
+function generateRandomLogStreamName(group_name: string): string {
+	return `${group_name}-${Math.random().toString(36).substring(2, 15)}`;
 }
 
 // Function to ensure the log stream exists, creating it if necessary
@@ -58,7 +58,7 @@ let logger: Logger;
 
 // Function to initialize the logger
 async function initializeLogger(config: LoggerConfig): Promise<void> {
-	const logStreamName = generateRandomLogStreamName();
+	const logStreamName = generateRandomLogStreamName(config.logGroupName);
 	const cloudwatchlogsClient = new CloudWatchLogsClient({
 		region: config.region,
 		credentials: {
