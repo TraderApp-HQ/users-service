@@ -110,6 +110,7 @@ async function log(level: string, message: string, ...response: any[]) {
 		const logMessage = {
 			timestamp,
 			node_env: process.env.NODE_ENV,
+			service_name: process.env.SERVICE,
 			level,
 			message,
 			...response.reduce((acc, curr, index) => {
