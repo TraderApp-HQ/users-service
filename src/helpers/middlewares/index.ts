@@ -34,7 +34,7 @@ export async function checkAdmin(req: Request) {
 
 export async function checkSuperAdmin(req: Request) {
 	const user = await getAccessTokenPayload(req);
-	if (!user.role.includes(Role.ADMIN) || !user.role.includes(Role.SUPER_ADMIN)) {
+	if (!user.role.includes(Role.SUPER_ADMIN)) {
 		const error = new Error(
 			"You don't have the necessary permission to perform this operation.",
 		);
