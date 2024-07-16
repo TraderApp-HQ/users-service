@@ -37,7 +37,7 @@ export const ResponseMessage = {
 	LOGIN: "Login was successful",
 	LOGOUT: "Logout was successful",
 	SIGNUP: "Signup was successful",
-	PASSWORD_RESET_SENT: "Password rest link has been sent",
+	PASSWORD_RESET_SENT: "Password reset link has been sent",
 	PASSWORD_RESET: "Password was reset successfully!",
 	GET_USERS: "Users Fetched successfully",
 	SEARCH_USERS: "Users Searched successfully",
@@ -49,6 +49,7 @@ export const ResponseMessage = {
 
 export const ErrorMessage = {
 	INVALID_LOGIN: "Invalid login credentials!",
+	DEACTIVATED: "Your account has been deactivated. Please, contact support!",
 	INVALID_TOKEN: "Invalid Token",
 	INVALID_USER: "Invalid User",
 	NOTFOUND: "NotFound",
