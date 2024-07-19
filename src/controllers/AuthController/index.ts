@@ -7,7 +7,7 @@ import VerificationToken from "../../models/VerificationToken";
 import { generateResetUrl } from "../../helpers/tokens";
 import { ErrorMessage, ResponseMessage, RESPONSE_FLAGS } from "../../config/constants";
 import { apiResponseHandler, logger } from "@traderapp/shared-resources";
-import { NotificationChannel } from "../../config/enums";
+import { NotificationChannel, Status } from "../../config/enums";
 import {
 	buildResponse,
 	deleteOtp,
@@ -165,6 +165,11 @@ export async function sendPasswordResetLinkHandler(
 	const { user } = req.body;
 
 	try {
+		if (user.status === Status.INACTIVE) {
+			const error = new Error(ErrorMessage.DEACTIVATED);
+			error.name = ErrorMessage.NOTFOUND;
+			throw error;
+		}
 		if (user._id) {
 			const url = await generateResetUrl(user._id);
 			const message: IQueueMessage = {
