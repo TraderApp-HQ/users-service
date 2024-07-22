@@ -17,6 +17,7 @@ import {
 } from "../documentation/auth";
 import { ROUTES } from "../config/constants";
 import { toggleUserActivation, toggleUserActivationPath } from "../documentation/users";
+import { userUpdate, userUpdateBody } from "../documentation/users/userupdate.docs";
 
 const options: swaggerJsdoc.Options = {
 	swaggerDefinition: {
@@ -43,6 +44,7 @@ const options: swaggerJsdoc.Options = {
 				createAuthPasswordLinkResetBody,
 				createAuthRefreshTokenBody,
 				toggleUserActivationPath,
+				userUpdateBody,
 			},
 		},
 		security: [
@@ -59,6 +61,7 @@ const options: swaggerJsdoc.Options = {
 			[`/auth${ROUTES.passwordReset}`]: { post: createAuthPasswordReset },
 			[`/auth${ROUTES.passwordResetLink}`]: { get: createAuthPasswordLinkReset },
 			[`/users${ROUTES.toggleuserActivation}`]: { patch: toggleUserActivation },
+			[`/users${ROUTES.updateUser}`]: { patch: userUpdate },
 		},
 	},
 	apis: ["./src/routes/*.ts", "./src/models/*.ts"], // Point to your route files
