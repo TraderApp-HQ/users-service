@@ -30,7 +30,7 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 		secretNames,
 		secretsJson,
 	});
-	const port = process.env.PORT ?? 8081;
+	const port = process.env.PORT;
 	const dbUrl = process.env.USERS_SERVICE_DB_URL ?? "";
 	// connect to mongodb
 	mongoose
