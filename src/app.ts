@@ -49,7 +49,7 @@ function startServer() {
 		cors({
 			origin: "*",
 			methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
-		}),
+		})
 	);
 
 	// parse incoming requests
@@ -68,7 +68,7 @@ function startServer() {
 
 	// health check
 	app.get("/ping", async (req, res, next) => {
-		res.status(200).send({ message: "pong" });
+		res.status(200).send({ message: "pong users-service" });
 	});
 
 	// handle errors
@@ -92,7 +92,7 @@ function startServer() {
 			apiResponseHandler({
 				type: ResponseType.ERROR,
 				message: errorMessage,
-			}),
+			})
 		);
 	});
 }
