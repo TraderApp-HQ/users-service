@@ -12,4 +12,4 @@ aws ecr get-login-password --region eu-west-1 | sudo docker login --username AWS
 sudo docker pull 575439814610.dkr.ecr.eu-west-1.amazonaws.com/staging-users-service:latest
 
 # Run the newly pulled image
-sudo docker run -d -p 80:8080 -e NODE_ENV=development -e SERVICE=staging-usersService --log-driver=awslogs --log-opt awslogs-region=eu-west-1 --log-opt awslogs-group=/aws/ec2/staging-usersService --log-opt awslogs-create-group=true 575439814610.dkr.ecr.eu-west-1.amazonaws.com/staging-users-service:latest
+sudo docker run -d -p 80:8080 -e NODE_ENV=staging -e SERVICE=staging-usersService --log-driver=awslogs --log-opt awslogs-region=eu-west-1 --log-opt awslogs-group=/aws/ec2/staging-usersService --log-opt awslogs-create-group=true 575439814610.dkr.ecr.eu-west-1.amazonaws.com/staging-users-service:latest
