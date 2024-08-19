@@ -31,14 +31,14 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 		secretsJson,
 	});
 	const port = process.env.PORT;
+	// const port = 8081;
 	const dbUrl = process.env.USERS_SERVICE_DB_URL ?? "";
-	// connect to mongodb
 	mongoose
 		.connect(dbUrl)
 		.then(() => {
 			app.listen(port, () => {
-				logger.log(`Server listening at port ${port}`);
 				startServer();
+				logger.log(`Server listening at port ${port}`);
 				logger.log(`Docs available at http://localhost:${port}/api-docs`);
 			});
 		})
@@ -52,9 +52,13 @@ function startServer() {
 	// Define an array of allowed origins
 	const allowedOrigins = [
 		"http://localhost:8080",
+		"http://localhost:3000",
 		"http://localhost:8788",
 		"https://users-dashboard-dev.traderapp.finance",
 		"https://users-dashboard-staging.traderapp.finance",
+		"https://web-dashboard-three.vercel.app",
+		"https://web-dashboard-dev.traderapp.finance",
+		"https://web-dashboard-staging.traderapp.finance",
 	];
 
 	const corsOptions = {
@@ -90,7 +94,7 @@ function startServer() {
 	app.use("/users", UserRoutes);
 
 	// health check
-	app.get("/ping", async (req, res, next) => {
+	app.get("/ping", async (_req, res, _next) => {
 		res.status(200).json(
 			apiResponseHandler({ message: "Pong!!! Users service is running fine..." }),
 		);
