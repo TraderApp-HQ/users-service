@@ -57,6 +57,7 @@ function startServer() {
 		"https://users-dashboard-dev.traderapp.finance",
 		"https://users-dashboard-staging.traderapp.finance",
 		"https://web-dashboard-three.vercel.app",
+		"https://web-dashboard-git-dev-dikes-projects-e7d9c943.vercel.app/",
 		"https://web-dashboard-dev.traderapp.finance",
 		"https://web-dashboard-staging.traderapp.finance",
 	];
