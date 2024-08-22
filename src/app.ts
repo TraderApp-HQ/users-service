@@ -5,8 +5,8 @@ import { AuthRoutes, CountryRoutes, VerificationRoutes, UserRoutes } from "./rou
 import { config } from "dotenv";
 import { apiResponseHandler, logger, initSecrets } from "@traderapp/shared-resources";
 
-import { ResponseType, ENVIRONMENTS } from "./config/constants";
-import cookies from "cookie-parser";
+import { ResponseType, ENVIRONMENTS, RESPONSE_FLAGS } from "./config/constants";
+import cookieParser from "cookie-parser";
 
 import swaggerUi from "swagger-ui-express";
 import specs from "./utils/swagger";
@@ -16,8 +16,12 @@ import secretsJson from "./env.json";
 config();
 const app = express();
 
-const env = process.env.NODE_ENV ?? "development";
-const suffix = ENVIRONMENTS[env];
+const env = process.env.NODE_ENV;
+if (!env) {
+	logger.error("Error: Environment variable not set");
+	process.exit(1);
+}
+const suffix = ENVIRONMENTS[env].slug;
 const secretNames = ["common-secrets", "users-service-secrets"];
 
 (async function () {
@@ -27,14 +31,14 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 		secretsJson,
 	});
 	const port = process.env.PORT;
+	// const port = 8081;
 	const dbUrl = process.env.USERS_SERVICE_DB_URL ?? "";
-	// connect to mongodb
 	mongoose
 		.connect(dbUrl)
 		.then(() => {
 			app.listen(port, () => {
-				logger.log(`Server listening at port ${port}`);
 				startServer();
+				logger.log(`Server listening at port ${port}`);
 				logger.log(`Docs available at http://localhost:${port}/api-docs`);
 			});
 		})
@@ -45,17 +49,41 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 
 function startServer() {
 	// cors
-	app.use(
-		cors({
-			origin: "*",
-			methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
-		})
-	);
+	// Define an array of allowed origins
+	const allowedOrigins = [
+		"http://localhost:8080",
+		"http://localhost:3000",
+		"http://localhost:8788",
+		"https://users-dashboard-dev.traderapp.finance",
+		"https://users-dashboard-staging.traderapp.finance",
+		"https://web-dashboard-three.vercel.app",
+		"https://web-dashboard-git-dev-dikes-projects-e7d9c943.vercel.app",
+		"https://web-dashboard-dev.traderapp.finance",
+		"https://web-dashboard-staging.traderapp.finance",
+	];
+
+	const corsOptions = {
+		origin: (
+			origin: string | undefined,
+			callback: (error: Error | null, allow?: boolean) => void,
+		) => {
+			// Allow requests with no origin (like mobile apps or curl requests)
+			if (!origin) return callback(null, true);
+			if (allowedOrigins.includes(origin)) {
+				return callback(null, true);
+			} else {
+				return callback(new Error(`Not allowed by CORS: ${origin}`));
+			}
+		},
+		methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
+		credentials: true, // Allow credentials
+	};
+	app.use(cors(corsOptions));
 
 	// parse incoming requests
 	app.use(express.urlencoded({ extended: true }));
 	app.use(express.json());
-	app.use(cookies(process.env.COOKIE_SECRET_KEY));
+	app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 	// documentation
 	app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
@@ -67,20 +95,24 @@ function startServer() {
 	app.use("/users", UserRoutes);
 
 	// health check
-	app.get("/ping", async (req, res, next) => {
-		res.status(200).send({ message: "pong users-service" });
+	app.get("/ping", async (_req, res, _next) => {
+		res.status(200).json(
+			apiResponseHandler({
+				message: `Pong!!! Users service is running on ${env} environment`,
+			}),
+		);
 	});
 
 	// handle errors
 	app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
 		let errorName = err.name;
 		let errorMessage = err.message;
-		let statusCode;
+		let statusCode: number;
 
-		if (err.name === "ValidationError") statusCode = 400;
-		else if (err.name === "Unauthorized") statusCode = 401;
-		else if (err.name === "Forbidden") statusCode = 403;
-		else if (err.name === "NotFound") statusCode = 404;
+		if (err.name === RESPONSE_FLAGS.validationError) statusCode = 400;
+		else if (err.name === RESPONSE_FLAGS.unauthorized) statusCode = 401;
+		else if (err.name === RESPONSE_FLAGS.forbidden) statusCode = 403;
+		else if (err.name === RESPONSE_FLAGS.notfound) statusCode = 404;
 		else {
 			statusCode = 500;
 			errorName = "InternalServerError";
@@ -92,7 +124,12 @@ function startServer() {
 			apiResponseHandler({
 				type: ResponseType.ERROR,
 				message: errorMessage,
-			})
+				object: {
+					statusCode,
+					errorName,
+					errorMessage,
+				},
+			}),
 		);
 	});
 }

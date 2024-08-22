@@ -1,14 +1,29 @@
+import "dotenv/config";
 import { apiDocumentationResponseObject } from "@traderapp/shared-resources";
 
-export const ENVIRONMENTS: Record<string, string> = Object.freeze({
-	development: "dev",
-	staging: "staging",
-	production: "prod",
+interface EnvProperty {
+	slug: string;
+	frontendUrl: string;
+}
+
+export const ENVIRONMENTS: Record<string, EnvProperty> = Object.freeze({
+	development: {
+		slug: "dev",
+		frontendUrl: "https://users-dashboard-dev.traderapp.finance",
+	},
+	staging: {
+		slug: "staging",
+		frontendUrl: "https://users-dashboard-staging.traderapp.finance",
+	},
+	production: {
+		slug: "prod",
+		frontendUrl: "https://dashboard.traderapp.finance",
+	},
 });
 
 export const TOKEN_ATTRIBUTES = {
 	ACCESS_TOKEN_EXPIRES: "15m",
-	REFRESH_TOKEN_EXPIRES: "30d",
+	REFRESH_TOKEN_EXPIRES: "7d",
 	EXPIRES_TIMESTAMP: 15 * 60,
 	TOKEN_ISSUER: "traderapp.finance",
 };
@@ -20,31 +35,49 @@ export const ResponseType = {
 
 export const ResponseMessage = {
 	LOGIN: "Login was successful",
+	LOGOUT: "Logout was successful",
 	SIGNUP: "Signup was successful",
-	PASSWORD_RESET_SENT: "Password rest link has been sent",
+	PASSWORD_RESET_SENT: "Password reset link has been sent",
 	PASSWORD_RESET: "Password was reset successfully!",
 	GET_USERS: "Users Fetched successfully",
+	SEARCH_USERS: "Users Searched successfully",
 	GET_USER: "User Fetched successfully",
 	UPDATE_USER: "User Updated successfully",
+	DEACTIVATE_USER: "User Deactivated successfully",
+	ACTIVATE_USER: "User Activated successfully",
 };
 
 export const ErrorMessage = {
 	INVALID_LOGIN: "Invalid login credentials!",
+	DEACTIVATED: "Your account has been deactivated. Please, contact support!",
 	INVALID_TOKEN: "Invalid Token",
 	INVALID_USER: "Invalid User",
 	NOTFOUND: "NotFound",
 	UNAUTHORIZED: "Unauthorized",
 };
 
-export const cookieOptions = {
+export const REFRESH_TOKEN_EXPIRES = 7 * 24 * 60 * 60; // 7 days
+export const VERIFICATION_TOKEN_EXPIRES = 1 * 24 * 60 * 60; // 1 day
+export const OTP_EXPIRES = 60 * 10; // 10 minutes
+
+export const refreshTokenCookieOptions = {
 	httpOnly: true,
-	secure: true,
+	// secure: process.env.NODE_ENV === "production",
+	secure: false,
 	signed: true,
-	maxAge: 7 * 24 * 60 * 60 * 1000, // Cookie will expire in 7 days
+	maxAge: REFRESH_TOKEN_EXPIRES * 1000,
+};
+
+export const accessTokenCookieOptions = {
+	// secure: process.env.CLIENT ? true : false,
+	secure: false,
+	signed: true,
+	maxAge: 15 * 60 * 1000, // Cookie will expire in 15 minutes
 };
 
 export const RESPONSE_TAGS = {
 	auth: "Auth",
+	users: "Users",
 	verification: "Verification",
 	country: "Country",
 };
@@ -59,6 +92,13 @@ export const RESPONSE_CODES = {
 	forbidden: "403",
 	request_timeout: "408",
 	conflict: "409",
+};
+
+export const RESPONSE_FLAGS = {
+	unauthorized: "Unauthorized",
+	validationError: "ValidationError",
+	forbidden: "Forbidden",
+	notfound: "NotFound",
 };
 
 export const DOC_RESPONSE = {
@@ -78,22 +118,22 @@ export const DOC_RESPONSE = {
 export const ROUTES = {
 	login: "/login",
 	signup: "/signup",
+	createUser: "/createuser",
 	logout: "/logout",
-	refresh_token: "/refresh-token",
-	password_reset: "/password-reset",
-	password_reset_link: "/password-reset/:email",
-	get_user: "/:id",
-	get_all_users: "/",
-	update_user: "/update",
+	refreshToken: "/refresh-token",
+	passwordReset: "/password-reset",
+	passwordResetLink: "/password-reset-link",
+	getUser: "/me",
+	getAllUsers: "/all",
+	updateUser: "/update",
+	toggleuserActivation: "/toggle-activation",
+	searchUser: "/search",
+	verifyOtp: "/verify-otp",
 };
 
 export const PAGINATION = {
 	PAGE: 1,
 	LIMIT: 10,
-};
-
-export const ROLES = {
-	SUPER_ADMIN: "SUPER_ADMIN",
 };
 
 export const EXCLUDE_FIELDS = {

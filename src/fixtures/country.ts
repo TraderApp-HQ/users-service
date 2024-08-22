@@ -1,6 +1,6 @@
 import axios from "axios";
 import Country from "../models/Country";
-import { ICountry } from "../types";
+import { ICountry } from "../config/interfaces";
 
 async function getCountries() {
 	const countries: ICountry[] = [];

@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import mongoose, { Document, Schema, Model } from "mongoose";
-import bcrypt from "bcrypt";
-import { IUser } from "../types";
-import { Roles } from "../config/enums";
-
 import mongoosePaginate from "mongoose-paginate-v2";
+import bcrypt from "bcrypt";
+import { IUser } from "../config/interfaces";
+import { Role, Status } from "../config/enums";
+import { ErrorMessage } from "../config/constants";
 
 export interface IUserModel extends IUser, Document {}
 
 interface UserModel extends Model<IUserModel> {
-	login: any;
+	login: (email: string, password: string) => Promise<IUserModel>;
 	paginate: any;
 }
 
@@ -18,16 +18,17 @@ const UserSchema = new Schema(
 		id: { type: String, unique: true },
 		email: { type: String, required: true, unique: true },
 		password: { type: String, required: true },
-		first_name: { type: String, required: true },
-		last_name: { type: String, required: true },
+		firstName: { type: String, required: true },
+		lastName: { type: String, required: true },
 		phone: { type: String, default: "" },
-		dob: { type: String, required: true },
-		country_id: { type: Number, required: true, ref: "country" },
-		country_name: { type: String, required: false },
+		dob: { type: String },
+		countryId: { type: Number, required: true, ref: "country" },
+		countryName: { type: String, required: false },
 		isEmailVerified: { type: Boolean, default: false },
 		isPhoneVerified: { type: Boolean, default: false },
 		isIdVerified: { type: Boolean, default: false },
-		role: { type: String, enum: Roles, default: Roles.USER },
+		role: { type: [String], enum: Role, default: [Role.USER] },
+		status: { type: String, default: Status.ACTIVE },
 	},
 	{ versionKey: false, timestamps: true },
 );
@@ -46,9 +47,14 @@ UserSchema.pre("save", async function (next) {
 });
 
 UserSchema.statics.login = async function (email, password) {
-	const user = await this.findOne({ email });
+	const user: IUserModel = await this.findOne({ email });
 
 	if (user) {
+		if (user.status === Status.INACTIVE) {
+			const error = new Error(ErrorMessage.DEACTIVATED);
+			error.name = ErrorMessage.NOTFOUND;
+			throw error;
+		}
 		const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
 		if (isPasswordCorrect) return user;

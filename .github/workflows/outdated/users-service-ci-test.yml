@@ -11,12 +11,12 @@ jobs:
     build: # this is the first job - to build the application first with npm
         runs-on: ubuntu-latest
         environment:
-          name: ${{ github.event_name == 'pull_request' && 'dev' || github.ref_name }}
-                           
+            name: ${{ github.event_name == 'pull_request' && 'dev' || github.ref_name }}
+
         steps:
-            - name: Checkout code from branch  # 1st step in this build JOB - to see if the app will build.
+            - name: Checkout code from branch # 1st step in this build JOB - to see if the app will build.
               uses: actions/checkout@v2
-              
+
             - name: Confirm Current Branch and Environment
               run: echo "Current Branch and Environment is:" " ${{ github.ref_name }}"
 
@@ -28,8 +28,7 @@ jobs:
             - name: Install dependencies # install dependencies by force!
               run: npm install --force
 
-            - name: Build # try to build node
-              # - this uses the build script in the script file
+            - name: Build
               run: npm run build
 
             - name: Configure AWS credentials
@@ -39,14 +38,13 @@ jobs:
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                   aws-region: eu-west-1
 
-            - name: Start # try to start server
-              # - this uses the startscript in the script file
+            - name: Start
               run: npm run start &
 
-    Test_if_the_update_can_build_into_an_image:
+    build-image:
         runs-on: ubuntu-latest
         environment:
-          name: ${{ github.event_name == 'pull_request' && 'dev' || github.ref_name }}
+            name: ${{ github.event_name == 'pull_request' && 'dev' || github.ref_name }}
 
         steps:
             - name: Check out code from branch again to build into Docker image
@@ -72,14 +70,9 @@ jobs:
                   ECR_REGISTRY: ${{ steps.ecr-login-id.outputs.registry }}
                   ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
                   IMAGE_TAG: ${{github.run_id}}
-                  ECS_CLUSTER:  ${{ vars.ECS_CLUSTER }}
-                  ECS_SERVICE: ${{ vars.ECS_SERVICE }}
+                  # ECS_CLUSTER:  ${{ vars.ECS_CLUSTER }}
+                  # ECS_SERVICE: ${{ vars.ECS_SERVICE }}
 
               run: |
                   docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
                   echo "Docker Image build is completed. No push to ECR specified."
-
-#       docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-#       echo "::set-output name=built_image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-#end of CI
