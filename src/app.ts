@@ -55,8 +55,7 @@ function startServer() {
 		"http://localhost:3000",
 		"http://localhost:8788",
 		"https://users-dashboard-dev.traderapp.finance",
-		"https://web-dashboard-dev.apis-dev.traderapp.finance",
-		"https://web-dashboard-dev.apis-dev.traderapp.finance/",
+		"https://*.apis-dev.traderapp.finance",
 		"https://web-dashboard-dev.traderapp.finance",
 		"https://web-dashboard-staging.traderapp.finance",
 	];
@@ -69,6 +68,7 @@ function startServer() {
 			// Allow requests with no origin (like mobile apps or curl requests)
 			if (!origin) return callback(null, true);
 			if (allowedOrigins.includes(origin)) {
+				logger.log(`Request Origin: ${origin}`);
 				return callback(null, true);
 			} else {
 				return callback(new Error(`Not allowed by CORS: ${origin}`));
