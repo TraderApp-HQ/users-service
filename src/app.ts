@@ -96,7 +96,7 @@ function startServer() {
 	app.get("/ping", async (_req, res, _next) => {
 		res.status(200).json(
 			apiResponseHandler({
-				message: `Pong!!! Users service is running on ${env} environment now`,
+				message: `Pong!!! Users service is running on ${env} environment currently`,
 			}),
 		);
 	});
