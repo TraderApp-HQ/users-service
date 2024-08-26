@@ -9,11 +9,11 @@ interface EnvProperty {
 export const ENVIRONMENTS: Record<string, EnvProperty> = Object.freeze({
 	development: {
 		slug: "dev",
-		frontendUrl: "https://users-dashboard-dev.traderapp.finance",
+		frontendUrl: "https://web-dashboard-dev.traderapp.finance",
 	},
 	staging: {
 		slug: "staging",
-		frontendUrl: "https://users-dashboard-staging.traderapp.finance",
+		frontendUrl: "https://web-dashboard-staging.traderapp.finance",
 	},
 	production: {
 		slug: "prod",
