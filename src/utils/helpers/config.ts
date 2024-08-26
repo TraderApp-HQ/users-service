@@ -15,6 +15,7 @@ export const EventTemplates = {
 	RESET_PASSWORD: "RESET_PASSWORD",
 	OTP: "OTP",
 	CREATE_USER: "CREATE_USER",
+	CREATE_USER_WALLET: "CREATE_USER_WALLET",
 } as const;
 
 export type EventTemplate = keyof typeof EventTemplates;

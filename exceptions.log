@@ -2076,3 +2076,19 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1197:32)
     at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
     at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-07-09T03:01:49.361Z
+[31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::8080
+Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at Function.listen (/Users/macbook/Desktop/users-service/node_modules/express/lib/application.js:635:24)
+    at /Users/macbook/Desktop/users-service/src/app.ts:39:8
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [unkown-service] development 2024-08-26 23:22:03
+error: uncaughtException: listen EADDRINUSE: address already in use :::8080
+Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at Function.listen (/Users/macbook/Desktop/users-service/node_modules/express/lib/application.js:635:24)
+    at /Users/macbook/Desktop/users-service/src/app.ts:39:8
+    at processTicksAndRejections (node:internal/process/task_queues:95:5) [unkown-service] development 2024-08-26T22:22:03.787Z
