@@ -94,7 +94,7 @@ function startServer() {
 	app.get("/ping", async (_req, res, _next) => {
 		res.status(200).json(
 			apiResponseHandler({
-				message: `Pong!!! Users service is running on ${env} environment currently`,
+				message: `Pong!!! Users service is running on ${env} environment`,
 			}),
 		);
 	});
@@ -113,7 +113,7 @@ function startServer() {
 			statusCode = 500;
 			errorName = "InternalServerError";
 			errorMessage = "Something went wrong. Please try again after a while.";
-			console.log("Error name: ", errorName, "Error message: ", err.message);
+			console.log("Error name: ", err.name, "Error message: ", err.message);
 		}
 
 		res.status(statusCode).json(
