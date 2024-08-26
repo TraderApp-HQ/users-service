@@ -85,6 +85,24 @@ export async function createUserHandler(req: Request, res: Response, next: NextF
 		});
 		logger.log(`Create new user published to queue: ${JSON.stringify(message)}`);
 
+		// Publish message to create user wallets at user creation
+		const newWalletMessage: IQueueMessage = {
+			channel: ["PUSH"],
+			messageObject: {
+				recipientName: data.firstName,
+				messageBody: data.id,
+				emailAddress: data.email,
+			},
+			event: "CREATE_USER_WALLET",
+		};
+		await publishMessageToQueue({
+			queueUrl: process.env.WALLETS_SERVICE_QUEUE_URL ?? "",
+			message: newWalletMessage,
+		});
+		logger.log(
+			`Create wallets for new user published to queue: ${JSON.stringify(newWalletMessage)}`,
+		);
+
 		const resObj = getUserObject(data);
 		res.status(200).json(
 			apiResponseHandler({
