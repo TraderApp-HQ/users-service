@@ -51,11 +51,9 @@ function startServer() {
 	// cors
 	// Define an array of allowed origins
 	const allowedOrigins = [
-		"http://localhost:8080",
 		"http://localhost:3000",
 		"http://localhost:8788",
 		"https://users-dashboard-dev.traderapp.finance",
-		"https://web-dashboard-dev.apis-dev.traderapp.finance",
 		"https://web-dashboard-dev.traderapp.finance",
 		"https://web-dashboard-staging.traderapp.finance",
 	];
@@ -96,7 +94,7 @@ function startServer() {
 	app.get("/ping", async (_req, res, _next) => {
 		res.status(200).json(
 			apiResponseHandler({
-				message: `Pong!!! Users service is running on ${env} environment currently`,
+				message: `Pong!!! Users service is running on ${env} environment`,
 			}),
 		);
 	});
@@ -115,7 +113,7 @@ function startServer() {
 			statusCode = 500;
 			errorName = "InternalServerError";
 			errorMessage = "Something went wrong. Please try again after a while.";
-			console.log("Error name: ", errorName, "Error message: ", err.message);
+			console.log("Error name: ", err.name, "Error message: ", err.message);
 		}
 
 		res.status(statusCode).json(
