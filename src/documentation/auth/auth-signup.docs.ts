@@ -4,12 +4,12 @@ const createAuthSignupBody = {
 	type: "object",
 	required: ["first_name", "last_name", "email", "password", "dob", "country_id"],
 	properties: {
-		first_name: {
+		firstName: {
 			type: "string",
 			example: "Test",
 			required: false,
 		},
-		last_name: {
+		lastName: {
 			type: "string",
 			example: "123",
 			required: true,
@@ -22,15 +22,15 @@ const createAuthSignupBody = {
 			type: "string",
 			example: "Test12345@",
 		},
-		dob: {
-			type: "string",
-			example: "12th November 2001",
-		},
-		country_id: {
+		countryId: {
 			type: "number",
 			example: 234,
 		},
-		referral_code: {
+		countryName: {
+			type: "string",
+			example: "Nigeria",
+		},
+		referralCode: {
 			type: "string",
 			example: "JD_LK324",
 		},

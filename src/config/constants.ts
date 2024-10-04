@@ -80,6 +80,7 @@ export const RESPONSE_TAGS = {
 	users: "Users",
 	verification: "Verification",
 	country: "Country",
+	referrals: "Referrals",
 };
 
 export const RESPONSE_CODES = {
@@ -129,6 +130,10 @@ export const ROUTES = {
 	toggleuserActivation: "/toggle-activation",
 	searchUser: "/search",
 	verifyOtp: "/verify-otp",
+	referralStats: "/referral-stats",
+	inviteFriends: "/invite-friends",
+	communityStats: "/community-stats",
+	referrals: "/referrals",
 };
 
 export const PAGINATION = {

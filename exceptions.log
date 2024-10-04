@@ -2120,3 +2120,139 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1208:32)
     at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
     at Module.require (node:internal/modules/cjs/loader:1233:19) [users-service] staging 2024-10-04T08:16:48.881Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/storeRelationships.ts[0m:[93m21[0m:[93m9[0m - [91merror[0m[90m TS7022: [0m'parentRelationship' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+
+[7m21[0m   const parentRelationship = await UserRelationship.findOne({ userId: parentId });
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/storeRelationships.ts[0m:[93m21[0m:[93m9[0m - [91merror[0m[90m TS7022: [0m'parentRelationship' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+
+[7m21[0m   const parentRelationship = await UserRelationship.findOne({ userId: parentId });
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19) [users-service] staging 2024-10-04 16:29:48
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/storeRelationships.ts[0m:[93m21[0m:[93m9[0m - [91merror[0m[90m TS7022: [0m'parentRelationship' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+
+[7m21[0m   const parentRelationship = await UserRelationship.findOne({ userId: parentId });
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/storeRelationships.ts[0m:[93m21[0m:[93m9[0m - [91merror[0m[90m TS7022: [0m'parentRelationship' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+
+[7m21[0m   const parentRelationship = await UserRelationship.findOne({ userId: parentId });
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19) [users-service] staging 2024-10-04T15:29:48.418Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/storeRelationships.ts[0m:[93m25[0m:[93m9[0m - [91merror[0m[90m TS7022: [0m'parentRelationship' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+
+[7m25[0m   const parentRelationship = await UserRelationship.findOne({ userId: parentId });
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/storeRelationships.ts[0m:[93m25[0m:[93m9[0m - [91merror[0m[90m TS7022: [0m'parentRelationship' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+
+[7m25[0m   const parentRelationship = await UserRelationship.findOne({ userId: parentId });
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19) [users-service] staging 2024-10-04 16:44:18
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/storeRelationships.ts[0m:[93m25[0m:[93m9[0m - [91merror[0m[90m TS7022: [0m'parentRelationship' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+
+[7m25[0m   const parentRelationship = await UserRelationship.findOne({ userId: parentId });
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/storeRelationships.ts[0m:[93m25[0m:[93m9[0m - [91merror[0m[90m TS7022: [0m'parentRelationship' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+
+[7m25[0m   const parentRelationship = await UserRelationship.findOne({ userId: parentId });
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19) [users-service] staging 2024-10-04T15:44:18.435Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04 17:05:43
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04T16:05:43.600Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04 17:06:44
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04T16:06:44.846Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04 17:07:01
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04T16:07:01.573Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04 17:07:38
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04T16:07:38.313Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04 17:07:53
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04T16:07:53.911Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04 18:01:37
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04T17:01:37.400Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04 18:02:09
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04T17:02:09.158Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04 18:03:41
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) [users-service] staging 2024-10-04T17:03:41.949Z

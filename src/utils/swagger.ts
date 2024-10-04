@@ -18,6 +18,13 @@ import {
 import { ROUTES } from "../config/constants";
 import { toggleUserActivation, toggleUserActivationPath } from "../documentation/users";
 import { userUpdate, userUpdateBody } from "../documentation/users/userupdate.docs";
+import {
+	communityStats,
+	getReferrals,
+	getReferralsStats,
+	inviteFriends,
+	inviteFriendsBody,
+} from "../documentation/referrals";
 
 const options: swaggerJsdoc.Options = {
 	swaggerDefinition: {
@@ -27,8 +34,14 @@ const options: swaggerJsdoc.Options = {
 			version: "1.0.0",
 			description: "API documentation for User Service Trader App",
 		},
+		servers: [
+			{
+				url: process.env.SERVICE_URL,
+				description: "Application server",
+			},
+		],
 		components: {
-			securitySchemas: {
+			securitySchemes: {
 				bearerAuth: {
 					type: "http",
 					scheme: "bearer",
@@ -45,6 +58,7 @@ const options: swaggerJsdoc.Options = {
 				createAuthRefreshTokenBody,
 				toggleUserActivationPath,
 				userUpdateBody,
+				inviteFriendsBody,
 			},
 		},
 		security: [
@@ -62,6 +76,10 @@ const options: swaggerJsdoc.Options = {
 			[`/auth${ROUTES.passwordResetLink}`]: { get: createAuthPasswordLinkReset },
 			[`/users${ROUTES.toggleuserActivation}`]: { patch: toggleUserActivation },
 			[`/users${ROUTES.updateUser}`]: { patch: userUpdate },
+			[`/users${ROUTES.referralStats}`]: { get: getReferralsStats },
+			[`/users${ROUTES.inviteFriends}`]: { post: inviteFriends },
+			[`/users${ROUTES.communityStats}`]: { get: communityStats },
+			[`/users${ROUTES.referrals}`]: { get: getReferrals },
 		},
 	},
 	apis: ["./src/routes/*.ts", "./src/models/*.ts"], // Point to your route files

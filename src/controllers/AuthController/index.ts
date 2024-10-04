@@ -21,7 +21,7 @@ import { FeatureFlagManager } from "../../utils/helpers/SplitIOClient";
 import { IQueueMessage } from "../../utils/helpers/types";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
 import { createUniqueReferralCode } from "../../utils/generateReferralCode";
-import { generateReferralTree } from "../../utils/generateReferralTree";
+import { storeRelationships } from "../../utils/storeRelationships";
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -35,7 +35,8 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 		);
 		data.referralCode = userReferralCode;
 		await data.save();
-		await generateReferralTree(referralCode, data.id);
+		const parentUser = await User.findOne({ referralCode });
+		await storeRelationships(data.id, parentUser?.id);
 		logger.debug(`New user created , ${JSON.stringify(data)}`);
 
 		const featureFlags = new FeatureFlagManager();

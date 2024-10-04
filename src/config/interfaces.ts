@@ -66,3 +66,10 @@ export interface IAccessToken {
 	isIdVerified: boolean;
 	role: Role[];
 }
+
+export interface UserRelationship {
+	userId: string; // The user (descendant)
+	parentId: string; // The ancestor (direct parent)
+	level: number; // Level of the ancestor (1 for direct parent, 2 for grandparent, etc.)
+	createdAt: Date;
+}
