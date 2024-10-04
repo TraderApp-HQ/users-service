@@ -20,10 +20,22 @@ import { generatePassword } from "../../utils/generatePassword";
 import { FeatureFlagManager } from "../../utils/helpers/SplitIOClient";
 import { IQueueMessage } from "../../utils/helpers/types";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
+import { createUniqueReferralCode } from "../../utils/generateReferralCode";
+import { generateReferralTree } from "../../utils/generateReferralTree";
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
 	try {
-		const data = await User.create(req.body);
+		const { referralCode, ...reqBody } = req.body;
+		const data = await User.create(reqBody);
+		// Generate and assign a unique referral code
+		const userReferralCode = await createUniqueReferralCode(
+			data.firstName,
+			data.lastName,
+			data.id,
+		);
+		data.referralCode = userReferralCode;
+		await data.save();
+		await generateReferralTree(referralCode, data.id);
 		logger.debug(`New user created , ${JSON.stringify(data)}`);
 
 		const featureFlags = new FeatureFlagManager();

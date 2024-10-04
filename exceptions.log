@@ -2076,3 +2076,47 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1197:32)
     at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
     at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-07-09T03:01:49.361Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/generateReferralTree.ts[0m:[93m2[0m:[93m41[0m - [91merror[0m[90m TS2355: [0mA function whose declared type is neither 'void' nor 'any' must return a value.
+
+[7m2[0m export function generateReferralTree(): Promise<void> {
+[7m [0m [91m                                        ~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/generateReferralTree.ts[0m:[93m2[0m:[93m41[0m - [91merror[0m[90m TS2355: [0mA function whose declared type is neither 'void' nor 'any' must return a value.
+
+[7m2[0m export function generateReferralTree(): Promise<void> {
+[7m [0m [91m                                        ~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19) [users-service] staging 2024-10-04 09:16:48
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/generateReferralTree.ts[0m:[93m2[0m:[93m41[0m - [91merror[0m[90m TS2355: [0mA function whose declared type is neither 'void' nor 'any' must return a value.
+
+[7m2[0m export function generateReferralTree(): Promise<void> {
+[7m [0m [91m                                        ~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/generateReferralTree.ts[0m:[93m2[0m:[93m41[0m - [91merror[0m[90m TS2355: [0mA function whose declared type is neither 'void' nor 'any' must return a value.
+
+[7m2[0m export function generateReferralTree(): Promise<void> {
+[7m [0m [91m                                        ~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/superuser/work/traderapp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19) [users-service] staging 2024-10-04T08:16:48.881Z

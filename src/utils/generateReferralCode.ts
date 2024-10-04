@@ -1,4 +1,5 @@
 import * as crypto from "crypto";
+import User from "../models/User";
 
 // Function to convert a number to a base-n string
 function baseConvert(number: number, base: number): string {
@@ -32,6 +33,27 @@ export function generateReferralCode(firstName: string, lastName: string, userId
 	// Combine initials and base36 hash to form referral code
 	const referralCode =
 		initials + "_" + base36Value.substring(0, Math.min(6, 8 - initials.length));
+
+	return referralCode;
+}
+
+// Generate a unique referral code with a retry mechanism
+export async function createUniqueReferralCode(
+	firstName: string,
+	lastName: string,
+	userId: any,
+): Promise<string> {
+	let isUnique = false;
+	let referralCode = "";
+
+	while (!isUnique) {
+		referralCode = generateReferralCode(firstName, lastName, userId);
+		const existingUser = await User.findOne({ referralCode });
+
+		if (!existingUser) {
+			isUnique = true;
+		}
+	}
 
 	return referralCode;
 }

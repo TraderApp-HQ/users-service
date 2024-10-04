@@ -13,6 +13,7 @@ export interface IUser {
 	isIdVerified?: boolean;
 	role: Role[];
 	status: Status;
+	referralCode: string;
 }
 
 export interface ICountry {
