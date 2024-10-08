@@ -5,8 +5,8 @@ interface UserRelationshipModel extends UserRelationship, Document {}
 
 const UserRelationshipSchema = new Schema(
 	{
-		userId: { type: String },
-		parentId: { type: String },
+		userId: { type: mongoose.Types.ObjectId, ref: "user" },
+		parentId: { type: mongoose.Types.ObjectId, ref: "user" },
 		level: { type: Number },
 		createdAt: { type: Date, default: Date.now },
 	},

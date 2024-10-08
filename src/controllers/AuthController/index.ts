@@ -26,17 +26,17 @@ import { storeRelationships } from "../../utils/storeRelationships";
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
 	try {
 		const { referralCode, ...reqBody } = req.body;
-		const data = await User.create(reqBody);
+		console.log(referralCode, reqBody);
 		// Generate and assign a unique referral code
 		const userReferralCode = await createUniqueReferralCode(
-			data.firstName,
-			data.lastName,
-			data.id,
+			reqBody.firstName,
+			reqBody.lastName,
 		);
-		data.referralCode = userReferralCode;
+		reqBody.referralCode = userReferralCode;
+		const data = await User.create(reqBody);
 		await data.save();
 		const parentUser = await User.findOne({ referralCode });
-		await storeRelationships(data.id, parentUser?.id);
+		await storeRelationships(data.id, referralCode ? parentUser?.id : null);
 		logger.debug(`New user created , ${JSON.stringify(data)}`);
 
 		const featureFlags = new FeatureFlagManager();

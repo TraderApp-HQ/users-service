@@ -138,6 +138,7 @@ export function getUserObject(data: IUserModel) {
 		isEmailVerified: data.isEmailVerified,
 		isIdVerified: data.isIdVerified,
 		role: data.role,
+		referralCode: data.referralCode,
 	};
 }
 export async function buildResponse(res: Response, data: IUserModel) {

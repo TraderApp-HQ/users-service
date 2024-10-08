@@ -25,6 +25,7 @@ import {
 	inviteFriends,
 	inviteFriendsBody,
 } from "../documentation/referrals";
+import { verifyAuthOtp, verifyAuthOtpBody } from "../documentation/auth/auth-verify-otp";
 
 const options: swaggerJsdoc.Options = {
 	swaggerDefinition: {
@@ -59,6 +60,7 @@ const options: swaggerJsdoc.Options = {
 				toggleUserActivationPath,
 				userUpdateBody,
 				inviteFriendsBody,
+				verifyAuthOtpBody,
 			},
 		},
 		security: [
@@ -73,7 +75,8 @@ const options: swaggerJsdoc.Options = {
 			[`/auth${ROUTES.logout}`]: { delete: createAuthLogout },
 			[`/auth${ROUTES.refreshToken}`]: { post: createAuthRefreshToken },
 			[`/auth${ROUTES.passwordReset}`]: { post: createAuthPasswordReset },
-			[`/auth${ROUTES.passwordResetLink}`]: { get: createAuthPasswordLinkReset },
+			[`/auth${ROUTES.passwordResetLink}`]: { post: createAuthPasswordLinkReset },
+			[`/auth${ROUTES.verifyOtp}`]: { put: verifyAuthOtp },
 			[`/users${ROUTES.toggleuserActivation}`]: { patch: toggleUserActivation },
 			[`/users${ROUTES.updateUser}`]: { patch: userUpdate },
 			[`/users${ROUTES.referralStats}`]: { get: getReferralsStats },

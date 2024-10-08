@@ -15,12 +15,12 @@ function baseConvert(number: number, base: number): string {
 }
 
 // Function to generate the referral code
-export function generateReferralCode(firstName: string, lastName: string, userId: number): string {
+export function generateReferralCode(firstName: string, lastName: string): string {
 	// Get initials
 	const initials = (firstName[0] + lastName[0]).toUpperCase();
 
 	// Create a unique string using initials and user ID
-	const uniqueString = `${initials}${userId}`;
+	const uniqueString = `${initials}${crypto.randomUUID().toString().replace(/-/g, "")}`;
 
 	// Use SHA1 to hash the unique string
 	const hash = crypto.createHash("sha1").update(uniqueString).digest("hex");
@@ -31,8 +31,7 @@ export function generateReferralCode(firstName: string, lastName: string, userId
 	const base36Value = baseConvert(decimalValue, 36);
 
 	// Combine initials and base36 hash to form referral code
-	const referralCode =
-		initials + "_" + base36Value.substring(0, Math.min(6, 8 - initials.length));
+	const referralCode = initials + base36Value.substring(0, Math.min(6, 8 - initials.length));
 
 	return referralCode;
 }
@@ -41,13 +40,12 @@ export function generateReferralCode(firstName: string, lastName: string, userId
 export async function createUniqueReferralCode(
 	firstName: string,
 	lastName: string,
-	userId: any,
 ): Promise<string> {
 	let isUnique = false;
 	let referralCode = "";
 
 	while (!isUnique) {
-		referralCode = generateReferralCode(firstName, lastName, userId);
+		referralCode = generateReferralCode(firstName, lastName);
 		const existingUser = await User.findOne({ referralCode });
 
 		if (!existingUser) {

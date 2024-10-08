@@ -45,6 +45,7 @@ export const ResponseMessage = {
 	UPDATE_USER: "User Updated successfully",
 	DEACTIVATE_USER: "User Deactivated successfully",
 	ACTIVATE_USER: "User Activated successfully",
+	GET_REFERRALS: "Referrals Fetched successfully",
 };
 
 export const ErrorMessage = {
