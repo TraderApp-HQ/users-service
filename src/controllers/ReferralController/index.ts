@@ -16,7 +16,7 @@ export async function getUserReferrals(req: Request, res: Response, next: NextFu
 		};
 
 		const referrals = await UserRelationship.find(
-			{ parentId: req.query.id },
+			{ parent: req.query.id },
 			// options,
 		).populate("userId", EXCLUDE_FIELDS.USER);
 		res.status(200).json(
@@ -59,8 +59,8 @@ export async function getCommunityStats(req: Request, res: Response, next: NextF
 
 		if (!userData) throw new Error("Server error");
 
-		const count = await UserRelationship.count({ parentId: userData.id });
-		const [top] = await UserRelationship.find({ parentId: userData.id })
+		const count = await UserRelationship.count({ parent: userData.id });
+		const [top] = await UserRelationship.find({ parent: userData.id })
 			.sort({ level: "descending" })
 			.limit(1);
 

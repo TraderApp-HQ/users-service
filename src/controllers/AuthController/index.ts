@@ -26,7 +26,7 @@ import { storeRelationships } from "../../utils/storeRelationships";
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
 	try {
 		const { referralCode, ...reqBody } = req.body;
-		console.log(referralCode, reqBody);
+
 		// Generate and assign a unique referral code
 		const userReferralCode = await createUniqueReferralCode(
 			reqBody.firstName,
