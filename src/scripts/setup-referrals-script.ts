@@ -12,8 +12,7 @@ async function setup() {
 		const referralCode = generateReferralCode(user.firstName, user.lastName);
 
 		// Update the user's record with the new referral code
-		// await User.updateOne({ _id: user._id }, { referralCode });
-		console.log(`${user.firstName} ${user.lastName}: ${referralCode}`);
+		await User.updateOne({ _id: user._id }, { referralCode });
 	}
 }
 

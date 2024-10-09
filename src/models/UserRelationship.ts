@@ -1,7 +1,12 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, Model } from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
 import { UserRelationship } from "../config/interfaces";
 
-interface UserRelationshipModel extends UserRelationship, Document {}
+interface IUserRelationshipModel extends UserRelationship, Document {}
+
+interface UserRelationshipModel extends Model<IUserRelationshipModel> {
+	paginate: any;
+}
 
 const UserRelationshipSchema = new Schema(
 	{
@@ -13,4 +18,9 @@ const UserRelationshipSchema = new Schema(
 	{ versionKey: false, timestamps: false },
 );
 
-export default mongoose.model<UserRelationshipModel>("user-relationship", UserRelationshipSchema);
+UserRelationshipSchema.plugin(mongoosePaginate);
+
+export default mongoose.model<IUserRelationshipModel, UserRelationshipModel>(
+	"user-relationship",
+	UserRelationshipSchema,
+);

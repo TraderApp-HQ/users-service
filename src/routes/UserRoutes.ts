@@ -11,7 +11,13 @@ import {
 	validateGetUser,
 	validateUpdateUser,
 } from "../middlewares/UserMiddleware";
-import { getUserReferrals } from "../controllers/ReferralController";
+import {
+	getCommunityStats,
+	getUserReferrals,
+	getUserReferralsStats,
+	inviteFriends,
+} from "../controllers/ReferralController";
+import { validateGetReferral, validateInviteFriends } from "../middlewares/ReferralMiddleware";
 
 const router = Router();
 
@@ -21,6 +27,9 @@ router.patch(ROUTES.updateUser, validateUpdateUser, updateUserById);
 router.patch(ROUTES.toggleuserActivation, validateGetUser, toggleUserActivation);
 
 // Referrals
-router.get(ROUTES.referrals, validateGetUser, getUserReferrals);
+router.get(ROUTES.referralStats, validateGetReferral, getUserReferralsStats);
+router.get(ROUTES.referrals, validateGetReferral, getUserReferrals);
+router.post(ROUTES.inviteFriends, validateInviteFriends, inviteFriends);
+router.get(ROUTES.communityStats, validateGetReferral, getCommunityStats);
 
 export default router;
