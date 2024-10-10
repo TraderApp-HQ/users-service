@@ -1,7 +1,7 @@
 import { Platform, PlatformActions, TaskCategory } from "../../config/enums";
-import { TaskPlatform } from "../../config/interfaces";
+import { ITaskPlatform } from "../../config/interfaces";
 
-export const TaskPlatforms: TaskPlatform[] = [
+export const TaskPlatforms: ITaskPlatform[] = [
 	{
 		name: Platform.INSTAGRAM,
 		logoUrl: "https://aws-s3-dev-users-service.s3.eu-west-1.amazonaws.com/instagram.jpeg",
