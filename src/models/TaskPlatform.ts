@@ -1,8 +1,10 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 import { Platform, PlatformActions, TaskCategory } from "../config/enums";
-import { TaskPlatform } from "../config/interfaces";
+import { ITaskPlatform } from "../config/interfaces";
 
-const TaskPlatformSchema = new Schema<TaskPlatform>(
+interface ITaskPlatformModel extends ITaskPlatform, Document {}
+
+const TaskPlatformSchema = new Schema(
 	{
 		name: { type: String, enum: Platform, required: true },
 		logoUrl: { type: String, required: true },
@@ -21,4 +23,4 @@ const TaskPlatformSchema = new Schema<TaskPlatform>(
 	{ timestamps: false },
 );
 
-export default mongoose.model<TaskPlatform>("TaskPlatform", TaskPlatformSchema);
+export default mongoose.model<ITaskPlatformModel>("TaskPlatform", TaskPlatformSchema);

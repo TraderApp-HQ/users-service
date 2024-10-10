@@ -1,8 +1,10 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 import { Platform, PlatformActions, TaskCategory, TaskStatus, TaskType } from "../config/enums";
-import { Task } from "../config/interfaces";
+import { ITask } from "../config/interfaces";
 
-const TaskSchema = new Schema<Task>(
+interface ITaskModel extends ITask, Document {}
+
+const TaskSchema = new Schema(
 	{
 		title: { type: String, required: true },
 		description: { type: String, required: true },
@@ -26,4 +28,4 @@ const TaskSchema = new Schema<Task>(
 
 TaskSchema.index({ title: 1, status: 1, category: 1 });
 
-export default mongoose.model<Task>("Task", TaskSchema);
+export default mongoose.model<ITaskModel>("Task", TaskSchema);

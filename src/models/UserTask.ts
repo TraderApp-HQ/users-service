@@ -1,8 +1,10 @@
-import mongoose, { Schema } from "mongoose";
-import { UserTask } from "../config/interfaces";
+import mongoose, { Document, Schema } from "mongoose";
 import { PlatformActions, UserTaskStatus } from "../config/enums";
+import { IUserTask } from "../config/interfaces";
 
-const UserTaskSchema = new Schema<UserTask>(
+interface IUserTaskModel extends IUserTask, Document {}
+
+const UserTaskSchema = new Schema(
 	{
 		userId: { type: Schema.Types.String, ref: "user", required: true },
 		taskId: { type: Schema.Types.String, ref: "Task", required: true },
@@ -16,4 +18,4 @@ const UserTaskSchema = new Schema<UserTask>(
 UserTaskSchema.index({ userId: 1, taskId: 1 }, { unique: true });
 UserTaskSchema.index({ status: 1 });
 
-export default mongoose.model<UserTask>("UserTask", UserTaskSchema);
+export default mongoose.model<IUserTaskModel>("UserTask", UserTaskSchema);

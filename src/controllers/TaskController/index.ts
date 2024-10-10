@@ -12,8 +12,9 @@ export const createTaskPlatform = async (req: Request, res: Response, next: Next
 		const { name, logoUrl, isActive, supportedActions, categories } = req.body;
 
 		// verify req.body
-		if (!name || !logoUrl || !isActive || !supportedActions || !categories)
+		if (!name || !logoUrl || !isActive || !supportedActions || !categories) {
 			throw new Error("Incomplete platform data.");
+		}
 
 		// create new platform
 		await TaskPlatform.create({
@@ -86,8 +87,9 @@ export const createTask = async (req: Request, res: Response, next: NextFunction
 		} = req.body;
 
 		// verify task data
-		if (!title || !description || !taskType || !category || !points || !status)
+		if (!title || !description || !taskType || !category || !points || !status) {
 			throw new Error("Incomplete task data");
+		}
 
 		// Create task
 		await Task.create({

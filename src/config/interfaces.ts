@@ -76,8 +76,7 @@ export interface IAccessToken {
 	role: Role[];
 }
 
-export interface TaskPlatform {
-	_id?: string;
+export interface ITaskPlatform {
 	name: Platform;
 	logoUrl: string;
 	isActive: boolean;
@@ -85,8 +84,7 @@ export interface TaskPlatform {
 	categories: TaskCategory[];
 }
 
-export interface Task {
-	_id?: string;
+export interface ITask {
 	title: string;
 	description: string;
 	objective?: string;
@@ -102,7 +100,7 @@ export interface Task {
 	status: TaskStatus;
 }
 
-export interface UserTask {
+export interface IUserTask {
 	userId: string;
 	taskId: string;
 	taskPoints: number;
