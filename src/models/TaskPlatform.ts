@@ -1,11 +1,12 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { Platform, PlatformActions, TaskCategory } from "../config/enums";
 import { ITaskPlatform } from "../config/interfaces";
 
-interface ITaskPlatformModel extends ITaskPlatform, Document {}
+interface ITaskPlatformModel extends ITaskPlatform {}
 
 const TaskPlatformSchema = new Schema(
 	{
+		id: { type: String, unique: true },
 		name: { type: String, enum: Platform, required: true },
 		logoUrl: { type: String, required: true },
 		isActive: { type: Boolean, required: true },

@@ -1,11 +1,12 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { PlatformActions, UserTaskStatus } from "../config/enums";
 import { IUserTask } from "../config/interfaces";
 
-interface IUserTaskModel extends IUserTask, Document {}
+interface IUserTaskModel extends IUserTask {}
 
 const UserTaskSchema = new Schema(
 	{
+		id: { type: String, unique: true },
 		userId: { type: Schema.Types.String, ref: "user", required: true },
 		taskId: { type: Schema.Types.String, ref: "Task", required: true },
 		taskPoints: { type: Number, required: true, min: 0 },

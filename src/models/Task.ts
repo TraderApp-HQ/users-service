@@ -2,10 +2,11 @@ import mongoose, { Document, Schema } from "mongoose";
 import { Platform, PlatformActions, TaskCategory, TaskStatus, TaskType } from "../config/enums";
 import { ITask } from "../config/interfaces";
 
-interface ITaskModel extends ITask, Document {}
+interface ITaskModel extends ITask {}
 
 const TaskSchema = new Schema(
 	{
+		id: { type: String, unique: true },
 		title: { type: String, required: true },
 		description: { type: String, required: true },
 		objective: { type: String },
