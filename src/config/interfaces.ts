@@ -77,6 +77,7 @@ export interface IAccessToken {
 }
 
 export interface ITaskPlatform {
+	id: string;
 	name: Platform;
 	logoUrl: string;
 	isActive: boolean;
@@ -85,6 +86,7 @@ export interface ITaskPlatform {
 }
 
 export interface ITask {
+	id: string;
 	title: string;
 	description: string;
 	objective?: string;
@@ -101,6 +103,7 @@ export interface ITask {
 }
 
 export interface IUserTask {
+	id: string;
 	userId: string;
 	taskId: string;
 	taskPoints: number;
