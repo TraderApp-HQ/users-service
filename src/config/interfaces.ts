@@ -1,4 +1,14 @@
-import { NotificationChannel, Role, Status } from "./enums";
+import {
+	NotificationChannel,
+	Platform,
+	PlatformActions,
+	Role,
+	Status,
+	TaskCategory,
+	TaskStatus,
+	TaskType,
+	UserTaskStatus,
+} from "./enums";
 
 export interface IUser {
 	email: string;
@@ -64,4 +74,39 @@ export interface IAccessToken {
 	isEmailVerified: boolean;
 	isIdVerified: boolean;
 	role: Role[];
+}
+
+export interface ITaskPlatform {
+	id: string;
+	name: Platform;
+	logoUrl: string;
+	isActive: boolean;
+	supportedActions: PlatformActions[];
+	categories: TaskCategory[];
+}
+
+export interface ITask {
+	id: string;
+	title: string;
+	description: string;
+	objective?: string;
+	taskType: TaskType;
+	category: TaskCategory;
+	platformId?: string;
+	platformName?: Platform;
+	link?: string;
+	expectedActions?: PlatformActions[];
+	points: number;
+	startDate?: Date;
+	dueDate?: Date;
+	status: TaskStatus;
+}
+
+export interface IUserTask {
+	id: string;
+	userId: string;
+	taskId: string;
+	taskPoints: number;
+	expectedActions: PlatformActions[];
+	status: UserTaskStatus;
 }

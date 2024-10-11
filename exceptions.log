@@ -2076,3 +2076,45 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1197:32)
     at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
     at Module.require (node:internal/modules/cjs/loader:1225:19) [unkown-service] development 2024-07-09T03:01:49.361Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-09 23:47:05
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-09T22:47:05.777Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-09 23:47:37
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-09T22:47:37.870Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-10 00:18:52
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-09T23:18:52.013Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-10 00:20:24
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-09T23:20:24.556Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-10 00:20:44
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-09T23:20:44.386Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-10 00:21:04
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-09T23:21:04.573Z
+[31merror[39m: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-10 00:37:41
+error: uncaughtException: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+Error: getaddrinfo ENOTFOUND secretsmanager.eu-west-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:118:26) [users-service] development 2024-10-09T23:37:41.202Z
