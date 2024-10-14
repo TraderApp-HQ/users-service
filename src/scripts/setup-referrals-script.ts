@@ -9,7 +9,10 @@ async function setup() {
 	const usersWithoutCodes = await User.find({ referralCode: { $exists: false } });
 	// Iterate over each user
 	for (const user of usersWithoutCodes) {
-		const referralCode = generateReferralCode(user.firstName, user.lastName);
+		const referralCode = generateReferralCode({
+			firstName: user.firstName,
+			lastName: user.lastName,
+		});
 
 		// Update the user's record with the new referral code
 		await User.updateOne({ _id: user._id }, { referralCode });

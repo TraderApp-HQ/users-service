@@ -1,21 +1,31 @@
 import * as crypto from "crypto";
 import User from "../models/User";
 
+interface INameInput {
+	firstName: string;
+	lastName: string;
+}
+
+interface IConvert {
+	num: number;
+	base: number;
+}
+
 // Function to convert a number to a base-n string
-function baseConvert(number: number, base: number): string {
+function baseConvert({ num, base }: IConvert): string {
 	const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	let converted = "";
 
-	while (number > 0) {
-		converted = chars[number % base] + converted;
-		number = Math.floor(number / base);
+	while (num > 0) {
+		converted = chars[num % base] + converted;
+		num = Math.floor(num / base);
 	}
 
 	return converted || "0";
 }
 
 // Function to generate the referral code
-export function generateReferralCode(firstName: string, lastName: string): string {
+function generateReferralCode({ firstName, lastName }: INameInput): string {
 	// Get initials
 	const initials = (firstName[0] + lastName[0]).toUpperCase();
 
@@ -28,7 +38,7 @@ export function generateReferralCode(firstName: string, lastName: string): strin
 	// Convert a portion of the hash to a number and then to base-36
 	const hashSegment = hash.substring(0, 6); // Use first 6 characters of hash
 	const decimalValue = parseInt(hashSegment, 16);
-	const base36Value = baseConvert(decimalValue, 36);
+	const base36Value = baseConvert({ num: decimalValue, base: 36 });
 
 	// Combine initials and base36 hash to form referral code
 	const referralCode = initials + base36Value.substring(0, Math.min(6, 8 - initials.length));
@@ -37,15 +47,12 @@ export function generateReferralCode(firstName: string, lastName: string): strin
 }
 
 // Generate a unique referral code with a retry mechanism
-export async function createUniqueReferralCode(
-	firstName: string,
-	lastName: string,
-): Promise<string> {
+async function createUniqueReferralCode({ firstName, lastName }: INameInput): Promise<string> {
 	let isUnique = false;
 	let referralCode = "";
 
 	while (!isUnique) {
-		referralCode = generateReferralCode(firstName, lastName);
+		referralCode = generateReferralCode({ firstName, lastName });
 		const existingUser = await User.findOne({ referralCode });
 
 		if (!existingUser) {
@@ -55,3 +62,5 @@ export async function createUniqueReferralCode(
 
 	return referralCode;
 }
+
+export { generateReferralCode, createUniqueReferralCode };

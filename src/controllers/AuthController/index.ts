@@ -28,15 +28,15 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 		const { referralCode, ...reqBody } = req.body;
 
 		// Generate and assign a unique referral code
-		const userReferralCode = await createUniqueReferralCode(
-			reqBody.firstName,
-			reqBody.lastName,
-		);
+		const userReferralCode = await createUniqueReferralCode({
+			firstName: reqBody.firstName,
+			lastName: reqBody.lastName,
+		});
 		reqBody.referralCode = userReferralCode;
 		const data = await User.create(reqBody);
 		await data.save();
 		const parentUser = await User.findOne({ referralCode });
-		await storeRelationships(data.id, referralCode ? parentUser?.id : null);
+		await storeRelationships({ user: data.id, parent: referralCode ? parentUser?.id : null });
 		logger.debug(`New user created , ${JSON.stringify(data)}`);
 
 		const featureFlags = new FeatureFlagManager();
