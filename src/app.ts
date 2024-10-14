@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import { AuthRoutes, CountryRoutes, VerificationRoutes, UserRoutes } from "./routes";
+import { AuthRoutes, CountryRoutes, VerificationRoutes, UserRoutes, TaskRoutes } from "./routes";
 import { config } from "dotenv";
 import { apiResponseHandler, logger, initSecrets } from "@traderapp/shared-resources";
 
@@ -91,6 +91,7 @@ function startServer() {
 	app.use("/verify", VerificationRoutes);
 	app.use("/countries", CountryRoutes);
 	app.use("/users", UserRoutes);
+	app.use("/task", TaskRoutes);
 
 	// health check
 	app.get("/ping", async (_req, res, _next) => {
