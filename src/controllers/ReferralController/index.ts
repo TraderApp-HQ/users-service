@@ -18,10 +18,12 @@ export async function getUserReferrals(req: Request, res: Response, next: NextFu
 		const referrals = await UserRelationship.find(
 			{ parent: req.query.id },
 			// options,
-		).populate("userId", EXCLUDE_FIELDS.USER);
+		).populate("user", EXCLUDE_FIELDS.USER);
+
+		const totalDocs = await UserRelationship.count({ parent: req.query.id });
 		res.status(200).json(
 			apiResponseHandler({
-				object: { referrals },
+				object: { referrals, totalDocs },
 				message: ResponseMessage.GET_REFERRALS,
 			}),
 		);
