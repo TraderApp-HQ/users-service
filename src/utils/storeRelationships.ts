@@ -1,22 +1,22 @@
 import UserRelationship from "../models/UserRelationship";
 
 interface IStoreRelationshipsInput {
-	user: string;
-	parent: string | null;
+	userId: string;
+	parentId?: string;
 }
 
 // Function to generate the referral relationships
-async function storeRelationships({ user, parent }: IStoreRelationshipsInput) {
+async function storeRelationships({ userId, parentId }: IStoreRelationshipsInput) {
 	const createdAt = new Date();
 
-	if (!parent) return;
+	if (!parentId) return;
 
 	let currentLevel = 1;
 
 	// Insert direct parent relationship
 	await UserRelationship.create({
-		user,
-		parent,
+		userId,
+		parentId,
 		level: currentLevel,
 		createdAt,
 	});
@@ -24,18 +24,18 @@ async function storeRelationships({ user, parent }: IStoreRelationshipsInput) {
 	const relationships = [];
 
 	// Traverse up the parent chain to store relationships
-	while (parent) {
-		const parentRelationship: any = await UserRelationship.findOne({ user: parent });
+	while (parentId) {
+		const parentRelationship: any = await UserRelationship.findOne({ user: parentId });
 
 		if (parentRelationship) {
 			currentLevel++;
 			relationships.push({
-				user,
-				parent: parentRelationship.parent,
+				userId,
+				parentId: parentRelationship.parentId,
 				level: currentLevel,
 				createdAt,
 			});
-			parent = parentRelationship.parent;
+			parentId = parentRelationship.parentId;
 		} else {
 			break;
 		}

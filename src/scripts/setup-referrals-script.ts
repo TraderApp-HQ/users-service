@@ -2,14 +2,15 @@ import mongoose from "mongoose";
 import "dotenv/config";
 
 import User from "../models/User";
-import { generateReferralCode } from "../utils/generateReferralCode";
+import { ReferralService } from "../services/ReferralService";
 
 async function setup() {
 	// Fetch all users without a referral code
 	const usersWithoutCodes = await User.find({ referralCode: { $exists: false } });
+	const referralService = new ReferralService();
 	// Iterate over each user
 	for (const user of usersWithoutCodes) {
-		const referralCode = generateReferralCode({
+		const referralCode = referralService.generateReferralCode({
 			firstName: user.firstName,
 			lastName: user.lastName,
 		});

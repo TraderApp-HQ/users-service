@@ -31,9 +31,7 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 		secretsJson,
 	});
 	const port = process.env.PORT;
-	// const port = 8081;
 	const dbUrl = process.env.USERS_SERVICE_DB_URL ?? "";
-	console.log(dbUrl);
 	mongoose
 		.connect(dbUrl)
 		.then(() => {

@@ -30,6 +30,7 @@ const UserSchema = new Schema(
 		role: { type: [String], enum: Role, default: [Role.USER] },
 		status: { type: String, default: Status.ACTIVE },
 		referralCode: { type: String, unique: true, sparse: true },
+		parentId: { type: String, ref: "user" },
 	},
 	{ versionKey: false, timestamps: true },
 );

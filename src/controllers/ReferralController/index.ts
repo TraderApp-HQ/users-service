@@ -1,29 +1,21 @@
 import { Request, Response, NextFunction } from "express";
-import { EXCLUDE_FIELDS, PAGINATION, ResponseMessage } from "../../config/constants";
+import { PAGINATION, ResponseMessage } from "../../config/constants";
 import { apiResponseHandler, logger } from "@traderapp/shared-resources";
-import UserRelationship from "../../models/UserRelationship";
-import User from "../../models/User";
-import { IQueueMessage } from "../../utils/helpers/types";
-import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
-import { generateInviteUrl } from "../../helpers/tokens";
+import { ReferralService } from "../../services/ReferralService";
 
 export async function getUserReferrals(req: Request, res: Response, next: NextFunction) {
 	try {
 		const { page, size } = req.query;
 		const options = {
-			page: page ?? PAGINATION.PAGE,
-			limit: size ?? PAGINATION.LIMIT,
+			page: (page as string) ?? PAGINATION.PAGE,
+			limit: (size as string) ?? PAGINATION.LIMIT,
+			userId: req.query.id as string,
 		};
-
-		const referrals = await UserRelationship.find(
-			{ parent: req.query.id },
-			// options,
-		).populate("user", EXCLUDE_FIELDS.USER);
-
-		const totalDocs = await UserRelationship.count({ parent: req.query.id });
+		const referralService = new ReferralService();
+		const response = await referralService.getUserReferrals(options);
 		res.status(200).json(
 			apiResponseHandler({
-				object: { referrals, totalDocs },
+				object: response,
 				message: ResponseMessage.GET_REFERRALS,
 			}),
 		);
@@ -34,19 +26,12 @@ export async function getUserReferrals(req: Request, res: Response, next: NextFu
 
 export async function getUserReferralsStats(req: Request, res: Response, next: NextFunction) {
 	try {
-		const userData = await User.findById(req.query.id);
-
-		if (!userData) throw new Error("Server error");
+		const referralService = new ReferralService();
+		const referralStats = await referralService.getUserReferralStats(req.query.id as string);
 
 		res.status(200).json(
 			apiResponseHandler({
-				object: {
-					referralCode: userData.referralCode,
-					referralLink: generateInviteUrl(userData.referralCode),
-					currentRank: "TA-Recruit",
-					currentEarning: 0,
-					rankProgress: 0,
-				},
+				object: referralStats,
 				message: ResponseMessage.GET_REFERRALS_SUMMARY,
 			}),
 		);
@@ -57,22 +42,12 @@ export async function getUserReferralsStats(req: Request, res: Response, next: N
 
 export async function getCommunityStats(req: Request, res: Response, next: NextFunction) {
 	try {
-		const userData = await User.findById(req.query.id);
-
-		if (!userData) throw new Error("Server error");
-
-		const count = await UserRelationship.count({ parent: userData.id });
-		const [top] = await UserRelationship.find({ parent: userData.id })
-			.sort({ level: "descending" })
-			.limit(1);
+		const referralService = new ReferralService();
+		const communityStats = await referralService.getCommunityStats(req.query.id as string);
 
 		res.status(200).json(
 			apiResponseHandler({
-				object: {
-					communityMembers: count,
-					communityATC: 0,
-					referralTreeLevels: top?.level ?? 0,
-				},
+				object: communityStats,
 				message: ResponseMessage.GET_REFERRALS_SUMMARY,
 			}),
 		);
@@ -84,30 +59,10 @@ export async function getCommunityStats(req: Request, res: Response, next: NextF
 export async function inviteFriends(req: Request, res: Response, next: NextFunction) {
 	try {
 		const { emails }: { emails: string[] } = req.body;
+		// const referralService = new ReferralService();
+		// await referralService.inviteFriends(emails, req.query.id as string);
 
-		const userData = await User.findById(req.query.id);
-
-		if (!userData) throw new Error("Server error");
-
-		const url = generateInviteUrl(userData.referralCode);
-
-		for (const email of emails) {
-			const message: IQueueMessage = {
-				channel: ["EMAIL"],
-				messageObject: {
-					recipientName: userData.firstName,
-					messageBody: url,
-					emailAddress: email,
-				},
-				event: "INVITE_USER",
-			};
-			await publishMessageToQueue({
-				queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
-				message,
-			});
-		}
-
-		logger.log(`User Invites sent to queue`);
+		logger.log(`User Invites sent to queue: ${JSON.stringify(emails)}`);
 
 		res.status(200).json(
 			apiResponseHandler({
