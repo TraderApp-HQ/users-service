@@ -16,6 +16,11 @@ const UserTaskSchema = new Schema(
 	{ timestamps: false },
 );
 
+UserTaskSchema.pre("save", function (next) {
+	this.id = this._id;
+	next();
+});
+
 UserTaskSchema.index({ userId: 1, taskId: 1 }, { unique: true });
 UserTaskSchema.index({ status: 1 });
 

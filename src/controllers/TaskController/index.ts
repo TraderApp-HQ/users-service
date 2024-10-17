@@ -3,6 +3,8 @@ import { apiResponseHandler } from "@traderapp/shared-resources";
 import TaskPlatform from "../../models/TaskPlatform";
 import { checkAdmin } from "../../helpers/middlewares";
 import Task from "../../models/Task";
+import { RESPONSE_FLAGS } from "../../config/constants";
+import { TaskStatus, TaskType } from "../../config/enums";
 
 export const createTaskPlatform = async (req: Request, res: Response, next: NextFunction) => {
 	try {
@@ -55,9 +57,21 @@ export const getAllTasks = async (req: Request, res: Response, next: NextFunctio
 		// Returns only active platforms
 		const tasks = await Task.find();
 
+		// modify tasks object to take out _id
+		const modifiedTasks = tasks.map((task) => {
+			// converts mongoose object to javascript object
+			const tasksObject = task.toObject();
+
+			// destructure object to take out _id
+			const { _id, ...rest } = tasksObject;
+
+			// return the rest of the object
+			return rest;
+		});
+
 		res.status(200).json(
 			apiResponseHandler({
-				object: tasks,
+				object: modifiedTasks,
 			}),
 		);
 	} catch (error) {
@@ -83,13 +97,51 @@ export const createTask = async (req: Request, res: Response, next: NextFunction
 			points,
 			startDate,
 			dueDate,
-			status,
 		} = req.body;
+		let status;
 
 		// verify task data
-		if (!title || !description || !taskType || !category || !points || !status) {
-			throw new Error("Incomplete task data");
+		if (
+			!title ||
+			!description ||
+			!taskType ||
+			!category ||
+			!points ||
+			(taskType === TaskType.TIME_BASED && !startDate) ||
+			(taskType === TaskType.TIME_BASED && !dueDate)
+		) {
+			const error: Error = {
+				name: RESPONSE_FLAGS.validationError,
+				message: "Incomplete task data",
+			};
+			throw error;
 		}
+
+		const currentDate = new Date();
+		const stringStartDate = new Date(startDate);
+		const stringDueDate = new Date(dueDate);
+
+		// function to set task status
+		if (taskType === TaskType.PERMANENT) {
+			status = TaskStatus.STARTED;
+		}
+		if (taskType === TaskType.TIME_BASED && currentDate < stringStartDate) {
+			status = TaskStatus.NOT_STARTED;
+		}
+		if (
+			taskType === TaskType.TIME_BASED &&
+			currentDate >= stringStartDate &&
+			currentDate <= stringDueDate
+		) {
+			status = TaskStatus.STARTED;
+		}
+		// if (
+		// 	taskType === TaskType.TIME_BASED &&
+		// 	currentDate > stringStartDate &&
+		// 	currentDate > stringDueDate
+		// ) {
+		// 	status = TaskStatus.COMPLETED;
+		// }
 
 		// Create task
 		await Task.create({
@@ -125,6 +177,15 @@ export const updateTask = async (req: Request, res: Response, next: NextFunction
 
 		const { taskId } = req.params;
 
+		// verify task id
+		if (!taskId || !req.body) {
+			const error: Error = {
+				name: RESPONSE_FLAGS.validationError,
+				message: "Invalid task details.",
+			};
+			throw error;
+		}
+
 		// Update task
 		await Task.findByIdAndUpdate(taskId, { ...req.body }, { runValidators: true });
 
@@ -143,11 +204,15 @@ export const getTask = async (req: Request, res: Response, next: NextFunction) =
 		const { taskId } = req.params;
 
 		// Get task
-		const task = await Task.findById(taskId).populate("platformId");
+		const task: any = await Task.findById(taskId).populate("platformId");
+
+		// convert to javascript object and destructure _id
+		const taskObject = task?.toObject();
+		const { _id, ...modifiedTask } = taskObject;
 
 		res.status(201).json(
 			apiResponseHandler({
-				object: task,
+				object: modifiedTask,
 			}),
 		);
 	} catch (error) {
