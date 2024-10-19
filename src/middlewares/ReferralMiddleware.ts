@@ -4,9 +4,12 @@ import { checkUser } from "../helpers/middlewares";
 
 export async function validateGetReferral(req: Request, res: Response, next: NextFunction) {
 	try {
-		const { id } = await checkUser(req);
-		req.query.id = id;
-		next();
+		const { id } = req.query
+		if (!id) {
+  			const { id } = await checkUser(req)
+  			req.query.id = id
+		}
+		next()
 	} catch (err: any) {
 		next(err);
 	}
