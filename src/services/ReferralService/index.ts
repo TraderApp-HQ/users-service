@@ -31,7 +31,7 @@ class ReferralService {
 		const referrals = await UserRelationship.find({ parent: userId })
 			.populate("userId", EXCLUDE_FIELDS.USER)
 			.limit(Number(limit))
-			.skip(Number(limit) * Number(page));
+			.skip(Number(limit) * (Number(page) - 1));
 
 		const totalDocs = await UserRelationship.countDocuments({ parentId: userId });
 

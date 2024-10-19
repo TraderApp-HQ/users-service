@@ -29,8 +29,8 @@ const UserSchema = new Schema(
 		isIdVerified: { type: Boolean, default: false },
 		role: { type: [String], enum: Role, default: [Role.USER] },
 		status: { type: String, default: Status.ACTIVE },
-		referralCode: { type: String, unique: true, sparse: true },
-		parentId: { type: String, ref: "user" },
+		referralCode: { type: String, index: true, unique: true, sparse: true },
+		parentId: { type: String, index: true, ref: "user" },
 	},
 	{ versionKey: false, timestamps: true },
 );
