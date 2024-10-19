@@ -1,50 +1,51 @@
 import { DOC_RESPONSE, RESPONSE_CODES, RESPONSE_TAGS } from "../../config/constants";
 
-const createAuthSignupBody = {
+const verifyAuthOtpBody = {
 	type: "object",
-	required: ["first_name", "last_name", "email", "password", "dob", "country_id"],
+	required: ["userId", "data", "verificationType"],
 	properties: {
-		firstName: {
+		userId: {
 			type: "string",
-			example: "Test",
+			example: "",
 			required: false,
 		},
-		lastName: {
-			type: "string",
-			example: "123",
+		data: {
+			type: "array",
 			required: true,
+			items: {
+				type: "object",
+				properties: {
+					otp: {
+						type: "string",
+						example: "123456",
+						required: true,
+					},
+					channel: {
+						type: "string",
+						example: "EMAIL",
+					},
+				},
+			},
 		},
-		email: {
-			type: "string",
-			example: "Test123@gmail.com",
-		},
-		password: {
-			type: "string",
-			example: "Test12345@",
-		},
-		countryId: {
-			type: "number",
-			example: 234,
-		},
-		countryName: {
-			type: "string",
-			example: "Nigeria",
-		},
-		referralCode: {
-			type: "string",
-			example: "JD_LK324",
+		verificationType: {
+			type: "array",
+			required: true,
+			items: {
+				type: "string",
+				example: "AUTHENTICATE",
+			},
 		},
 	},
 };
 
-const createAuthSignup = {
+const verifyAuthOtp = {
 	tags: [RESPONSE_TAGS.auth],
 	description: "Create a new user in the system",
 	requestBody: {
 		content: {
 			"application/json": {
 				schema: {
-					$ref: "#/components/schemas/createAuthSignupBody",
+					$ref: "#/components/schemas/verifyAuthOtpBody",
 				},
 			},
 		},
@@ -59,4 +60,4 @@ const createAuthSignup = {
 	},
 };
 
-export { createAuthSignup, createAuthSignupBody };
+export { verifyAuthOtp, verifyAuthOtpBody };

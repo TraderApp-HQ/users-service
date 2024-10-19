@@ -31,7 +31,6 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 		secretsJson,
 	});
 	const port = process.env.PORT;
-	// const port = 8081;
 	const dbUrl = process.env.USERS_SERVICE_DB_URL ?? "";
 	mongoose
 		.connect(dbUrl)
@@ -53,6 +52,7 @@ function startServer() {
 	const allowedOrigins = [
 		"http://localhost:3000",
 		"http://localhost:8788",
+		"http://localhost:8080",
 		"https://users-dashboard-dev.traderapp.finance",
 		"https://web-dashboard-dev.traderapp.finance",
 		"https://web-dashboard-staging.traderapp.finance",

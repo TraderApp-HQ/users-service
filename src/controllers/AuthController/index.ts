@@ -20,10 +20,26 @@ import { generatePassword } from "../../utils/generatePassword";
 import { FeatureFlagManager } from "../../utils/helpers/SplitIOClient";
 import { IQueueMessage } from "../../utils/helpers/types";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
+import { storeRelationships } from "../../utils/storeRelationships";
+import { ReferralService } from "../../services/ReferralService";
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
 	try {
-		const data = await User.create(req.body);
+		const { referralCode, ...reqBody } = req.body;
+		const referralService = new ReferralService();
+		// Generate and assign a unique referral code
+		const userReferralCode = await referralService.createUniqueReferralCode({
+			firstName: reqBody.firstName,
+			lastName: reqBody.lastName,
+		});
+		const parentUser = await User.findOne({ referralCode });
+		reqBody.referralCode = userReferralCode;
+		reqBody.parentId = parentUser?.id;
+		const data = await User.create(reqBody);
+		await storeRelationships({
+			userId: data.id,
+			parentId: parentUser?.id,
+		});
 		logger.debug(`New user created , ${JSON.stringify(data)}`);
 
 		const featureFlags = new FeatureFlagManager();

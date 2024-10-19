@@ -168,3 +168,9 @@ export async function generateResetUrl(_id: string): Promise<string> {
 	const url = `${frontendUrl}/auth/password/reset?token=${verificationToken}&id=${_id}`;
 	return url;
 }
+
+export function generateInviteUrl(referralCode: string) {
+	const frontendUrl = getFrontendUrl();
+	const url = `${frontendUrl}/auth/signup?ref=${referralCode}`;
+	return url;
+}

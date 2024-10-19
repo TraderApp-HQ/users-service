@@ -23,6 +23,8 @@ export interface IUser {
 	isIdVerified?: boolean;
 	role: Role[];
 	status: Status;
+	referralCode: string;
+	parentId?: string;
 }
 
 export interface ICountry {
@@ -74,6 +76,13 @@ export interface IAccessToken {
 	isEmailVerified: boolean;
 	isIdVerified: boolean;
 	role: Role[];
+}
+
+export interface UserRelationship {
+	userId: string; // The user (descendant)
+	parentId: string; // The ancestor (direct parent)
+	level: number; // Level of the ancestor (1 for direct parent, 2 for grandparent, etc.)
+	createdAt: Date;
 }
 
 export interface ITaskPlatform {
