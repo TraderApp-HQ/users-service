@@ -1,31 +1,12 @@
-import { NextFunction, Request, Response } from "express";
 import { apiResponseHandler } from "@traderapp/shared-resources";
-import TaskPlatform from "../../models/TaskPlatform";
-import { checkAdmin } from "../../helpers/middlewares";
+import { NextFunction, Request, Response } from "express";
 import Task from "../../models/Task";
-import { RESPONSE_FLAGS } from "../../config/constants";
-import { TaskStatus, TaskType } from "../../config/enums";
+import TaskPlatform from "../../models/TaskPlatform";
 
 export const createTaskPlatform = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Ensures only Admin can create a new task platform
-		await checkAdmin(req);
-
-		const { name, logoUrl, isActive, supportedActions, categories } = req.body;
-
-		// verify req.body
-		if (!name || !logoUrl || !isActive || !supportedActions || !categories) {
-			throw new Error("Incomplete platform data.");
-		}
-
 		// create new platform
-		await TaskPlatform.create({
-			name,
-			logoUrl,
-			isActive,
-			supportedActions,
-			categories,
-		});
+		await TaskPlatform.create(req.body);
 
 		res.status(201).json(
 			apiResponseHandler({
@@ -81,84 +62,8 @@ export const getAllTasks = async (req: Request, res: Response, next: NextFunctio
 
 export const createTask = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Ensures only Admin can create a new task
-		await checkAdmin(req);
-
-		const {
-			title,
-			description,
-			objective,
-			taskType,
-			category,
-			platformId,
-			platformName,
-			link,
-			expectedActions,
-			points,
-			startDate,
-			dueDate,
-		} = req.body;
-		let status;
-
-		// verify task data
-		if (
-			!title ||
-			!description ||
-			!taskType ||
-			!category ||
-			!points ||
-			(taskType === TaskType.TIME_BASED && !startDate) ||
-			(taskType === TaskType.TIME_BASED && !dueDate)
-		) {
-			const error: Error = {
-				name: RESPONSE_FLAGS.validationError,
-				message: "Incomplete task data",
-			};
-			throw error;
-		}
-
-		const currentDate = new Date();
-		const stringStartDate = new Date(startDate);
-		const stringDueDate = new Date(dueDate);
-
-		// function to set task status
-		if (taskType === TaskType.PERMANENT) {
-			status = TaskStatus.STARTED;
-		}
-		if (taskType === TaskType.TIME_BASED && currentDate < stringStartDate) {
-			status = TaskStatus.NOT_STARTED;
-		}
-		if (
-			taskType === TaskType.TIME_BASED &&
-			currentDate >= stringStartDate &&
-			currentDate <= stringDueDate
-		) {
-			status = TaskStatus.STARTED;
-		}
-		// if (
-		// 	taskType === TaskType.TIME_BASED &&
-		// 	currentDate > stringStartDate &&
-		// 	currentDate > stringDueDate
-		// ) {
-		// 	status = TaskStatus.COMPLETED;
-		// }
-
 		// Create task
-		await Task.create({
-			title,
-			description,
-			objective,
-			taskType,
-			category,
-			platformId,
-			platformName,
-			link,
-			expectedActions,
-			points,
-			startDate,
-			dueDate,
-			status,
-		});
+		await Task.create(req.body);
 
 		res.status(201).json(
 			apiResponseHandler({
@@ -172,22 +77,10 @@ export const createTask = async (req: Request, res: Response, next: NextFunction
 
 export const updateTask = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Ensures only Admin can create a new task
-		await checkAdmin(req);
-
 		const { taskId } = req.params;
 
-		// verify task id
-		if (!taskId || !req.body) {
-			const error: Error = {
-				name: RESPONSE_FLAGS.validationError,
-				message: "Invalid task details.",
-			};
-			throw error;
-		}
-
 		// Update task
-		await Task.findByIdAndUpdate(taskId, { ...req.body }, { runValidators: true });
+		await Task.findByIdAndUpdate(taskId, req.body, { runValidators: true, new: true });
 
 		res.status(201).json(
 			apiResponseHandler({

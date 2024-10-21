@@ -16,6 +16,7 @@ const UserTaskSchema = new Schema(
 	{ timestamps: false },
 );
 
+// saves _id as id when creating user task
 UserTaskSchema.pre("save", function (next) {
 	this.id = this._id;
 	next();

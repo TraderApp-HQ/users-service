@@ -27,7 +27,7 @@ const TaskSchema = new Schema(
 	{ timestamps: false },
 );
 
-// save _id as id when creating task
+// saves _id as id when creating task
 TaskSchema.pre("save", function (next) {
 	this.id = this._id;
 	next();
