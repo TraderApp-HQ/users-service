@@ -20,7 +20,7 @@ import {
 import Token from "../../models/RefreshToken";
 import { IAccessToken } from "../../config/interfaces";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
-import { IQueueMessage } from "../../utils/helpers/types";
+import { IQueueMessageBodyObject, IQueueMessage } from "../../utils/helpers/types";
 
 interface ISendOtp {
 	userData: IUserModel;
@@ -56,26 +56,22 @@ export async function sendOTP({ userData, channels }: ISendOtp) {
 
 	// publish message in parralel to notification-service to send notification
 	const promises = insertData.map((data) => {
-		const message: IQueueMessage = {
-			channel: [data.channel],
-			messageObject: {
-				recipientName: userData.firstName,
-				messageBody: data.otp,
-				emailAddress: userData.email,
-			},
+		const message: IQueueMessageBodyObject = {
+			recipients: [{ firstName: userData.firstName, emailAddress: userData.email }],
+			message: data.otp,
 			event: "OTP",
 		};
 		return {
 			message,
 			promise: publishMessageToQueue({
-				queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
+				queueUrl: process.env.EMAIL_OTP_QUEUE ?? "",
 				message,
 			}),
 		};
 	});
 	await Promise.allSettled(promises.map(async (promise) => promise.promise));
 	console.log("Published messages to queue", {
-		messages: promises.map((promise) => promise.message),
+		messages: promises.map((promise) => JSON.stringify(promise.message)),
 	});
 }
 
@@ -138,6 +134,7 @@ export function getUserObject(data: IUserModel) {
 		isEmailVerified: data.isEmailVerified,
 		isIdVerified: data.isIdVerified,
 		role: data.role,
+		referralCode: data.referralCode,
 	};
 }
 export async function buildResponse(res: Response, data: IUserModel) {

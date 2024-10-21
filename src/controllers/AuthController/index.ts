@@ -18,12 +18,28 @@ import {
 import { IVerifyOtp, VerificationType } from "./config";
 import { generatePassword } from "../../utils/generatePassword";
 import { FeatureFlagManager } from "../../utils/helpers/SplitIOClient";
-import { IQueueMessage } from "../../utils/helpers/types";
+import { IQueueMessageBodyObject, IQueueMessage } from "../../utils/helpers/types";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
+import { storeRelationships } from "../../utils/storeRelationships";
+import { ReferralService } from "../../services/ReferralService";
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
 	try {
-		const data = await User.create(req.body);
+		const { referralCode, ...reqBody } = req.body;
+		const referralService = new ReferralService();
+		// Generate and assign a unique referral code
+		const userReferralCode = await referralService.createUniqueReferralCode({
+			firstName: reqBody.firstName,
+			lastName: reqBody.lastName,
+		});
+		const parentUser = await User.findOne({ referralCode });
+		reqBody.referralCode = userReferralCode;
+		reqBody.parentId = parentUser?.id;
+		const data = await User.create(reqBody);
+		await storeRelationships({
+			userId: data.id,
+			parentId: parentUser?.id,
+		});
 		logger.debug(`New user created , ${JSON.stringify(data)}`);
 
 		const featureFlags = new FeatureFlagManager();
@@ -35,17 +51,13 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 			await sendOTP({ userData: data, channels: [NotificationChannel.EMAIL] });
 		}
 
-		const message: IQueueMessage = {
-			channel: ["EMAIL"],
-			messageObject: {
-				recipientName: data.firstName,
-				messageBody: "",
-				emailAddress: data.email,
-			},
+		const message: IQueueMessageBodyObject = {
+			recipients: [{ firstName: data.firstName, emailAddress: data.email }],
+			message: "",
 			event: "WELCOME",
 		};
 		await publishMessageToQueue({
-			queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
+			queueUrl: process.env.EMAIL_NOTIFICATIONS_QUEUE ?? "",
 			message,
 		});
 
@@ -70,17 +82,13 @@ export async function createUserHandler(req: Request, res: Response, next: NextF
 		const { _id } = data;
 
 		const url = await generateResetUrl(_id);
-		const message: IQueueMessage = {
-			channel: ["EMAIL"],
-			messageObject: {
-				recipientName: data.firstName,
-				messageBody: url,
-				emailAddress: data.email,
-			},
+		const message: IQueueMessageBodyObject = {
+			recipients: [{ firstName: data.firstName, emailAddress: data.email }],
+			message: url,
 			event: "CREATE_USER",
 		};
 		await publishMessageToQueue({
-			queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
+			queueUrl: process.env.EMAIL_NOTIFICATIONS_QUEUE ?? "",
 			message,
 		});
 		logger.log(`Create new user published to queue: ${JSON.stringify(message)}`);
@@ -172,17 +180,13 @@ export async function sendPasswordResetLinkHandler(
 		}
 		if (user._id) {
 			const url = await generateResetUrl(user._id);
-			const message: IQueueMessage = {
-				channel: ["EMAIL"],
-				messageObject: {
-					recipientName: user.firstName,
-					messageBody: url,
-					emailAddress: user.email,
-				},
+			const message: IQueueMessageBodyObject = {
+				recipients: [{ firstName: user.firstName, emailAddress: user.email }],
+				message: url,
 				event: "RESET_PASSWORD",
 			};
 			await publishMessageToQueue({
-				queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
+				queueUrl: process.env.EMAIL_NOTIFICATIONS_QUEUE ?? "",
 				message,
 			});
 			logger.log(`Reset password published to queue: ${JSON.stringify(message)}`);

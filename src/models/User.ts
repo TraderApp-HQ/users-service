@@ -16,7 +16,7 @@ interface UserModel extends Model<IUserModel> {
 const UserSchema = new Schema(
 	{
 		id: { type: String, unique: true },
-		email: { type: String, required: true, unique: true },
+		email: { type: String, required: true, unique: true, index: { unique: true } },
 		password: { type: String, required: true },
 		firstName: { type: String, required: true },
 		lastName: { type: String, required: true },
@@ -29,6 +29,8 @@ const UserSchema = new Schema(
 		isIdVerified: { type: Boolean, default: false },
 		role: { type: [String], enum: Role, default: [Role.USER] },
 		status: { type: String, default: Status.ACTIVE },
+		referralCode: { type: String, index: true, unique: true, sparse: true },
+		parentId: { type: String, index: true, ref: "user" },
 	},
 	{ versionKey: false, timestamps: true },
 );
