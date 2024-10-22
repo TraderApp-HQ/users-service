@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { Platform, PlatformActions, TaskCategory, TaskStatus, TaskType } from "../config/enums";
 import { ITask } from "../config/interfaces";
 
@@ -26,6 +26,12 @@ const TaskSchema = new Schema(
 	},
 	{ timestamps: false },
 );
+
+// saves _id as id when creating task
+TaskSchema.pre("save", function (next) {
+	this.id = this._id;
+	next();
+});
 
 TaskSchema.index({ title: 1, status: 1, category: 1 });
 
