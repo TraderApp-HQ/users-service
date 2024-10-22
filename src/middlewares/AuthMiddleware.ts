@@ -48,7 +48,7 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
 			.label("Password"),
 		countryId: Joi.number().required().label("Country Id"),
 		countryName: Joi.string().required().label("Country Name"),
-		referralCode: Joi.string().label("Referral Code"),
+		referralCode: Joi.string().optional().label("Referral Code"),
 	});
 
 	// validate request

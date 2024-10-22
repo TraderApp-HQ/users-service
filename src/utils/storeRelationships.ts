@@ -25,7 +25,7 @@ async function storeRelationships({ userId, parentId }: IStoreRelationshipsInput
 
 	// Traverse up the parent chain to store relationships
 	while (parentId) {
-		const parentRelationship: any = await UserRelationship.findOne({ user: parentId });
+		const parentRelationship: any = await UserRelationship.findOne({ userId: parentId });
 
 		if (parentRelationship) {
 			currentLevel++;
