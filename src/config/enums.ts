@@ -5,6 +5,12 @@ export enum Role {
 	SUPER_ADMIN = "SUPER_ADMIN",
 }
 
+export enum ReferralRank {
+	TA_RECRUIT = "TA-Recruit",
+	TA_LIEUTENANT = "TA-Lieutenant",
+	TA_CAPTAIN = "TA-Captain",
+}
+
 export enum NotificationChannel {
 	EMAIL = "EMAIL",
 	SMS = "SMS",

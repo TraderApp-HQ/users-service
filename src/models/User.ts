@@ -3,7 +3,7 @@ import mongoose, { Document, Schema, Model } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 import bcrypt from "bcrypt";
 import { IUser } from "../config/interfaces";
-import { Role, Status } from "../config/enums";
+import { ReferralRank, Role, Status } from "../config/enums";
 import { ErrorMessage } from "../config/constants";
 
 export interface IUserModel extends IUser, Document {}
@@ -24,6 +24,7 @@ const UserSchema = new Schema(
 		dob: { type: String },
 		countryId: { type: Number, required: true, ref: "country" },
 		countryName: { type: String, required: false },
+		referralRank: { type: String, enum: ReferralRank, default: ReferralRank.TA_RECRUIT },
 		isEmailVerified: { type: Boolean, default: false },
 		isPhoneVerified: { type: Boolean, default: false },
 		isIdVerified: { type: Boolean, default: false },

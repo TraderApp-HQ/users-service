@@ -32,7 +32,10 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 			firstName: reqBody.firstName,
 			lastName: reqBody.lastName,
 		});
-		const parentUser = await User.findOne({ referralCode });
+		let parentUser;
+		if (referralCode) {
+			parentUser = await User.findOne({ referralCode });
+		}
 		reqBody.referralCode = userReferralCode;
 		reqBody.parentId = parentUser?.id;
 		const data = await User.create(reqBody);
