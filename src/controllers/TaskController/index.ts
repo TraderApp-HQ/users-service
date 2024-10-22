@@ -1,29 +1,12 @@
-import { NextFunction, Request, Response } from "express";
 import { apiResponseHandler } from "@traderapp/shared-resources";
-import TaskPlatform from "../../models/TaskPlatform";
-import { checkAdmin } from "../../helpers/middlewares";
+import { NextFunction, Request, Response } from "express";
 import Task from "../../models/Task";
+import TaskPlatform from "../../models/TaskPlatform";
 
 export const createTaskPlatform = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Ensures only Admin can create a new task platform
-		await checkAdmin(req);
-
-		const { name, logoUrl, isActive, supportedActions, categories } = req.body;
-
-		// verify req.body
-		if (!name || !logoUrl || !isActive || !supportedActions || !categories) {
-			throw new Error("Incomplete platform data.");
-		}
-
 		// create new platform
-		await TaskPlatform.create({
-			name,
-			logoUrl,
-			isActive,
-			supportedActions,
-			categories,
-		});
+		await TaskPlatform.create(req.body);
 
 		res.status(201).json(
 			apiResponseHandler({
@@ -55,9 +38,21 @@ export const getAllTasks = async (req: Request, res: Response, next: NextFunctio
 		// Returns only active platforms
 		const tasks = await Task.find();
 
+		// modify tasks object to take out _id
+		const modifiedTasks = tasks.map((task) => {
+			// converts mongoose object to javascript object
+			const tasksObject = task.toObject();
+
+			// destructure object to take out _id
+			const { _id, ...rest } = tasksObject;
+
+			// return the rest of the object
+			return rest;
+		});
+
 		res.status(200).json(
 			apiResponseHandler({
-				object: tasks,
+				object: modifiedTasks,
 			}),
 		);
 	} catch (error) {
@@ -67,46 +62,8 @@ export const getAllTasks = async (req: Request, res: Response, next: NextFunctio
 
 export const createTask = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Ensures only Admin can create a new task
-		await checkAdmin(req);
-
-		const {
-			title,
-			description,
-			objective,
-			taskType,
-			category,
-			platformId,
-			platformName,
-			link,
-			expectedActions,
-			points,
-			startDate,
-			dueDate,
-			status,
-		} = req.body;
-
-		// verify task data
-		if (!title || !description || !taskType || !category || !points || !status) {
-			throw new Error("Incomplete task data");
-		}
-
 		// Create task
-		await Task.create({
-			title,
-			description,
-			objective,
-			taskType,
-			category,
-			platformId,
-			platformName,
-			link,
-			expectedActions,
-			points,
-			startDate,
-			dueDate,
-			status,
-		});
+		await Task.create(req.body);
 
 		res.status(201).json(
 			apiResponseHandler({
@@ -120,13 +77,10 @@ export const createTask = async (req: Request, res: Response, next: NextFunction
 
 export const updateTask = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Ensures only Admin can create a new task
-		await checkAdmin(req);
-
 		const { taskId } = req.params;
 
 		// Update task
-		await Task.findByIdAndUpdate(taskId, { ...req.body }, { runValidators: true });
+		await Task.findByIdAndUpdate(taskId, req.body, { runValidators: true, new: true });
 
 		res.status(201).json(
 			apiResponseHandler({
@@ -143,11 +97,15 @@ export const getTask = async (req: Request, res: Response, next: NextFunction) =
 		const { taskId } = req.params;
 
 		// Get task
-		const task = await Task.findById(taskId).populate("platformId");
+		const task: any = await Task.findById(taskId).populate("platformId");
+
+		// convert to javascript object and destructure _id
+		const taskObject = task?.toObject();
+		const { _id, ...modifiedTask } = taskObject;
 
 		res.status(201).json(
 			apiResponseHandler({
-				object: task,
+				object: modifiedTask,
 			}),
 		);
 	} catch (error) {

@@ -24,7 +24,7 @@ export enum Status {
 
 export enum Platform {
 	INSTAGRAM = "Instagram",
-	TWITTER = "Twitter",
+	TWITTER = "X - (Twitter)",
 	TIKTOK = "Tiktok",
 	FACEBOOK = "Facebook",
 	WHATSAPP = "Whatsapp",
