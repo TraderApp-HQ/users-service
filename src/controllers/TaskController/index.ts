@@ -112,3 +112,20 @@ export const getTask = async (req: Request, res: Response, next: NextFunction) =
 		next(error);
 	}
 };
+
+export const deleteTask = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const { taskId } = req.params;
+
+		// Delete task
+		await Task.findByIdAndDelete(taskId);
+
+		res.status(201).json(
+			apiResponseHandler({
+				message: "Task deleted successfully.",
+			}),
+		);
+	} catch (error) {
+		next(error);
+	}
+};

@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
 	createTask,
 	createTaskPlatform,
+	deleteTask,
 	getAllTasks,
 	getTask,
 	getTaskPlatform,
@@ -21,5 +22,6 @@ router.get("/:taskId", getTask);
 router.post("/", validateTaskPlatform, createTaskPlatform);
 router.post("/create-task", validateTaskData, createTask);
 router.patch("/:taskId", validateTaskID, validateTaskData, updateTask);
+router.delete("/:taskId", validateTaskID, deleteTask);
 
 export default router;

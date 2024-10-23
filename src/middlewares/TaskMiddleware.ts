@@ -100,6 +100,9 @@ export const validateTaskData = async (req: Request, res: Response, next: NextFu
 			platformName: Joi.string().label("Platform name"),
 			link: Joi.string()
 				.uri({ scheme: ["http", "https", "www"] })
+				.message(
+					"{{#label}} must be a valid URL with patttern matching http://, https://, or www://",
+				)
 				.label("Task link"),
 			expectedActions: Joi.array()
 				.items(Joi.string().valid(...Object.values(PlatformActions)))
