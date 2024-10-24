@@ -2,6 +2,7 @@ import { apiResponseHandler } from "@traderapp/shared-resources";
 import { NextFunction, Request, Response } from "express";
 import Task from "../../models/Task";
 import TaskPlatform from "../../models/TaskPlatform";
+import { PAGINATION } from "../../config/constants";
 
 export const createTaskPlatform = async (req: Request, res: Response, next: NextFunction) => {
 	try {
@@ -35,24 +36,24 @@ export const getTaskPlatform = async (req: Request, res: Response, next: NextFun
 
 export const getAllTasks = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Returns only active platforms
-		const tasks = await Task.find();
+		const { rows, page, search } = req.query;
+		const searchQuery = search ?? "";
+		const paginationOptions = {
+			page: page ?? PAGINATION.PAGE,
+			limit: rows ?? PAGINATION.LIMIT,
+			sort: "-updatedAt",
+			select: "-__v -createdAt -updatedAt -_id",
+		};
+		const queryParams = {
+			title: { $regex: searchQuery, $options: "i" },
+		};
 
-		// modify tasks object to take out _id
-		const modifiedTasks = tasks.map((task) => {
-			// converts mongoose object to javascript object
-			const tasksObject = task.toObject();
-
-			// destructure object to take out _id
-			const { _id, ...rest } = tasksObject;
-
-			// return the rest of the object
-			return rest;
-		});
+		// Returns task in max limit of 10
+		const paginatedTasks = await Task.paginate(queryParams, paginationOptions);
 
 		res.status(200).json(
 			apiResponseHandler({
-				object: modifiedTasks,
+				object: paginatedTasks,
 			}),
 		);
 	} catch (error) {
@@ -97,15 +98,13 @@ export const getTask = async (req: Request, res: Response, next: NextFunction) =
 		const { taskId } = req.params;
 
 		// Get task
-		const task: any = await Task.findById(taskId).populate("platformId");
-
-		// convert to javascript object and destructure _id
-		const taskObject = task?.toObject();
-		const { _id, ...modifiedTask } = taskObject;
+		const task = await Task.findById(taskId)
+			.populate("platformId")
+			.select("-_id -__v -createdAt -updatedAt");
 
 		res.status(201).json(
 			apiResponseHandler({
-				object: modifiedTask,
+				object: task,
 			}),
 		);
 	} catch (error) {
