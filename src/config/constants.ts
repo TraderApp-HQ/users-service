@@ -56,6 +56,7 @@ export const ErrorMessage = {
 	INVALID_USER: "Invalid User",
 	NOTFOUND: "NotFound",
 	UNAUTHORIZED: "Unauthorized",
+	INVALID_REFERRAL_CODE: "Invalid referral code.",
 };
 
 export const REFRESH_TOKEN_EXPIRES = 7 * 24 * 60 * 60; // 7 days
