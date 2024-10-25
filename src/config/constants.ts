@@ -137,6 +137,7 @@ export const ROUTES = {
 	inviteFriends: "/invite-friends",
 	communityStats: "/community-stats",
 	referrals: "/referrals",
+	sendOtp: "/send-otp",
 };
 
 export const PAGINATION = {

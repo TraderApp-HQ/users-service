@@ -285,3 +285,17 @@ export async function validateVerifyOTPRequest(req: Request, res: Response, next
 
 	next();
 }
+
+export async function validateSendOtpRequest(req: Request, res: Response, next: NextFunction) {
+	const schema = Joi.object({
+		userId: Joi.string().required(),
+	});
+
+	const { error } = schema.validate({ userId: req.body.userId });
+	if (error) {
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
+	} else {
+		next();
+	}
+}
