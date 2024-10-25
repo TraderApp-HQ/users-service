@@ -35,6 +35,12 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 		let parentUser;
 		if (referralCode) {
 			parentUser = await User.findOne({ referralCode });
+
+			if (!parentUser) {
+				const error = new Error(ErrorMessage.INVALID_REFERRAL_CODE);
+				error.name = RESPONSE_FLAGS.validationError;
+				throw error;
+			}
 		}
 		reqBody.referralCode = userReferralCode;
 		reqBody.parentId = parentUser?.id;
