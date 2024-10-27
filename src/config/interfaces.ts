@@ -116,6 +116,6 @@ export interface IUserTask {
 	userId: string;
 	taskId: string;
 	taskPoints: number;
-	expectedActions: PlatformActions[];
+	expectedActions?: PlatformActions[];
 	status: UserTaskStatus;
 }

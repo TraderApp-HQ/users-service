@@ -1,9 +1,16 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
 import { RESPONSE_FLAGS } from "../config/constants";
-import { Platform, PlatformActions, TaskCategory, TaskStatus, TaskType } from "../config/enums";
+import {
+	Platform,
+	PlatformActions,
+	TaskCategory,
+	TaskStatus,
+	TaskType,
+	UserTaskStatus,
+} from "../config/enums";
 import { ITask } from "../config/interfaces";
-import { checkAdmin } from "../helpers/middlewares";
+import { checkAdmin, checkUser } from "../helpers/middlewares";
 
 // interface
 interface ITaskWithoutStatus extends Omit<ITask, "status"> {}
@@ -36,9 +43,6 @@ const taskStatusHandler = (body: ITaskWithoutStatus): ITask => {
 
 export const validateTaskPlatform = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Ensures only Admin can create a new task platform
-		await checkAdmin(req);
-
 		// validation schema
 		const schema = Joi.object({
 			id: Joi.string().label("ID"),
@@ -76,9 +80,6 @@ export const validateTaskPlatform = async (req: Request, res: Response, next: Ne
 
 export const validateTaskData = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Ensures only Admin can create a new task platform
-		await checkAdmin(req);
-
 		const currentDate = new Date();
 		currentDate.setHours(0, 0, 0, 0); // Set the time to 00:00:00 to ignore time in the comparison
 
@@ -142,6 +143,59 @@ export const validateTaskID = async (req: Request, res: Response, next: NextFunc
 				name: RESPONSE_FLAGS.notfound,
 				message: "Invalid task ID.",
 			};
+			throw error;
+		}
+
+		next();
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const validateAdmin = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		// validates that user is an admin
+		await checkAdmin(req);
+
+		next();
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const validateUser = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		// validates that user is registered and validate login session
+		await checkUser(req);
+
+		next();
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const validateUserTask = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		// validation schema
+		const schema = Joi.object({
+			id: Joi.string().label("ID"),
+			userId: Joi.string().required().label("User ID"),
+			taskId: Joi.string().required().label("Task ID"),
+			taskPoints: Joi.number().min(0).required().label("Task Point"),
+			expectedActions: Joi.array()
+				.items(Joi.string().valid(...Object.values(PlatformActions)))
+				.label("Expected actions"),
+			status: Joi.string()
+				.valid(...Object.values(UserTaskStatus))
+				.required()
+				.label("Task Status"),
+		});
+
+		// validate request
+		const { error } = schema.validate(req.body);
+		if (error) {
+			// strip string of double quotes
+			error.message = error.message.replace(/\"/g, "");
 			throw error;
 		}
 
