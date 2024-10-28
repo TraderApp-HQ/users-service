@@ -303,3 +303,34 @@ export async function verifyOtpHandler(req: Request, res: Response, next: NextFu
 		next(err);
 	}
 }
+
+export async function sendOtpHandler(req: Request, res: Response, next: NextFunction) {
+	const { userId } = req.body;
+
+	try {
+		const userData = await User.findOne({ _id: userId });
+		if (!userData) {
+			const error = new Error(ErrorMessage.NOTFOUND);
+			error.name = ErrorMessage.NOTFOUND;
+			throw error;
+		}
+
+		const featureFlags = new FeatureFlagManager();
+		const isOtpEnabled = await featureFlags.checkToggleFlag(
+			"release-send-otp",
+			userData._id.toString(),
+		);
+
+		if (isOtpEnabled) {
+			await sendOTP({ userData, channels: [NotificationChannel.EMAIL] });
+		}
+
+		res.status(200).json(
+			apiResponseHandler({
+				message: "OTP sent successfully!",
+			}),
+		);
+	} catch (err) {
+		next(err);
+	}
+}
