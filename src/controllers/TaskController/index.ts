@@ -178,6 +178,31 @@ export const getAllActiveTasks = async (req: Request, res: Response, next: NextF
 		next(error);
 	}
 };
+export const getAllPendingTasksCount = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		// Get user Id
+		const { id } = await checkUser(req);
+
+		// Get all active tasks and user tasks
+		const [Tasks, UserTasks] = await Promise.all([
+			Task.find({ status: TaskStatus.STARTED }).select("id -_id"),
+			UserTask.find({ userId: id }).select("taskId -_id"),
+		]);
+
+		// Get count of only pending tasks
+		const count = Tasks.filter(
+			(task) => !UserTasks.some((userTask) => userTask.taskId === task.id),
+		).length;
+
+		res.status(200).json(
+			apiResponseHandler({
+				object: { pendingTasksCount: count },
+			}),
+		);
+	} catch (error) {
+		next(error);
+	}
+};
 
 export const createUserTask = async (req: Request, res: Response, next: NextFunction) => {
 	try {
