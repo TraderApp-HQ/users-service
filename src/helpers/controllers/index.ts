@@ -33,32 +33,22 @@ interface IUserOtp {
 }
 
 export async function sendOTP({ userData, channels }: ISendOtp) {
-	// generate otp and insert into db
-	const insertData = channels.map((channel) => ({
-		_id: userData._id,
-		otp: generateOTP(),
+	const otpData = channels.map((channel) => ({
 		channel,
+		otp: generateOTP(),
 	}));
-	const otpExist = await OneTimePassword.findOne({ _id: userData._id }).select("_id");
-	if (otpExist) {
-		await Promise.all(
-			channels.map(async (channel) => {
-				await OneTimePassword.updateOne(
-					{ _id: userData._id, channel },
-					{ otp: generateOTP() },
-					{ upsert: true },
-				);
-			}),
-		);
-	} else {
-		await OneTimePassword.create(insertData);
-	}
+
+	await Promise.all(
+		otpData.map(({ channel, otp }) =>
+			OneTimePassword.updateOne({ _id: userData._id, channel }, { otp }, { upsert: true }),
+		),
+	);
 
 	// publish message in parralel to notification-service to send notification
-	const promises = insertData.map((data) => {
+	const promises = otpData.map(({ otp }) => {
 		const message: IQueueMessageBodyObject = {
 			recipients: [{ firstName: userData.firstName, emailAddress: userData.email }],
-			message: data.otp,
+			message: otp,
 			event: "OTP",
 		};
 		return {
@@ -70,6 +60,7 @@ export async function sendOTP({ userData, channels }: ISendOtp) {
 		};
 	});
 	await Promise.allSettled(promises.map(async (promise) => promise.promise));
+
 	console.log("Published messages to queue", {
 		messages: promises.map((promise) => JSON.stringify(promise.message)),
 	});

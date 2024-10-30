@@ -48,7 +48,7 @@ export async function validateSignupRequest(req: Request, res: Response, next: N
 			.label("Password"),
 		countryId: Joi.number().required().label("Country Id"),
 		countryName: Joi.string().required().label("Country Name"),
-		referralCode: Joi.string().label("Referral Code"),
+		referralCode: Joi.string().optional().label("Referral Code"),
 	});
 
 	// validate request
@@ -284,4 +284,21 @@ export async function validateVerifyOTPRequest(req: Request, res: Response, next
 	}
 
 	next();
+}
+
+export async function validateSendOtpRequest(req: Request, res: Response, next: NextFunction) {
+	try {
+		const schema = Joi.object({
+			userId: Joi.string().required(),
+		});
+
+		const { error } = schema.validate({ userId: req.body.userId });
+		if (error) {
+			error.message = error.message.replace(/\"/g, "");
+			next(error);
+		}
+		next();
+	} catch (err) {
+		next(err);
+	}
 }

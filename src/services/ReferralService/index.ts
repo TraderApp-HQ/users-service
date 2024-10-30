@@ -28,7 +28,7 @@ class ReferralService {
 		limit: PaginationType;
 		userId: string;
 	}) {
-		const referrals = await UserRelationship.find({ parent: userId })
+		const referrals = await UserRelationship.find({ parentId: userId })
 			.populate("userId", EXCLUDE_FIELDS.USER)
 			.limit(Number(limit))
 			.skip(Number(limit) * (Number(page) - 1));
@@ -61,8 +61,8 @@ class ReferralService {
 
 		if (!userData) throw new Error("Server error");
 
-		const count = await UserRelationship.count({ parent: userData.id });
-		const [top] = await UserRelationship.find({ parent: userData.id })
+		const count = await UserRelationship.count({ parentId: userData.id });
+		const [top] = await UserRelationship.find({ parentId: userData.id })
 			.sort({ level: "descending" })
 			.limit(1);
 

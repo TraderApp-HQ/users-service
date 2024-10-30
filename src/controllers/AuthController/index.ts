@@ -32,7 +32,16 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 			firstName: reqBody.firstName,
 			lastName: reqBody.lastName,
 		});
-		const parentUser = await User.findOne({ referralCode });
+		let parentUser;
+		if (referralCode) {
+			parentUser = await User.findOne({ referralCode });
+
+			if (!parentUser) {
+				const error = new Error(ErrorMessage.INVALID_REFERRAL_CODE);
+				error.name = RESPONSE_FLAGS.validationError;
+				throw error;
+			}
+		}
 		reqBody.referralCode = userReferralCode;
 		reqBody.parentId = parentUser?.id;
 		const data = await User.create(reqBody);
@@ -288,6 +297,37 @@ export async function verifyOtpHandler(req: Request, res: Response, next: NextFu
 			apiResponseHandler({
 				object: tokenRes,
 				message: "OTP verified successfully!",
+			}),
+		);
+	} catch (err) {
+		next(err);
+	}
+}
+
+export async function sendOtpHandler(req: Request, res: Response, next: NextFunction) {
+	const { userId } = req.body;
+
+	try {
+		const userData = await User.findOne({ _id: userId });
+		if (!userData) {
+			const error = new Error(ErrorMessage.NOTFOUND);
+			error.name = ErrorMessage.NOTFOUND;
+			throw error;
+		}
+
+		const featureFlags = new FeatureFlagManager();
+		const isOtpEnabled = await featureFlags.checkToggleFlag(
+			"release-send-otp",
+			userData._id.toString(),
+		);
+
+		if (isOtpEnabled) {
+			await sendOTP({ userData, channels: [NotificationChannel.EMAIL] });
+		}
+
+		res.status(200).json(
+			apiResponseHandler({
+				message: "OTP sent successfully!",
 			}),
 		);
 	} catch (err) {
