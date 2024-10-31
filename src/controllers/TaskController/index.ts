@@ -1,20 +1,15 @@
 import { apiResponseHandler } from "@traderapp/shared-resources";
 import { NextFunction, Request, Response } from "express";
-import Task from "../../models/Task";
-import TaskPlatform from "../../models/TaskPlatform";
-import { PAGINATION } from "../../config/constants";
-import { TaskStatus, UserTaskStatus } from "../../config/enums";
-import UserTask from "../../models/UserTask";
-import { checkUser } from "../../helpers/middlewares";
+import { TasksCenterService } from "../../services/TasksCenterService";
 
 export const createTaskPlatform = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// create new platform
-		await TaskPlatform.create(req.body);
+		const tasksCenterService = new TasksCenterService();
+		const response = await tasksCenterService.createTaskPlatform(req.body);
 
 		res.status(201).json(
 			apiResponseHandler({
-				message: "Platform successfully uploaded",
+				message: response.message,
 			}),
 		);
 	} catch (error) {
@@ -25,7 +20,8 @@ export const createTaskPlatform = async (req: Request, res: Response, next: Next
 export const getTaskPlatform = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		// Returns only active platforms
-		const taskPlatforms = await TaskPlatform.find({ isActive: true });
+		const tasksCenterService = new TasksCenterService();
+		const taskPlatforms = await tasksCenterService.getTaskPlatforms();
 
 		res.status(200).json(
 			apiResponseHandler({
@@ -39,20 +35,9 @@ export const getTaskPlatform = async (req: Request, res: Response, next: NextFun
 
 export const getAllTasks = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const { rows, page, search } = req.query;
-		const searchQuery = search ?? "";
-		const paginationOptions = {
-			page: Number(page) || PAGINATION.PAGE,
-			limit: Number(rows) || PAGINATION.LIMIT,
-			sort: "-updatedAt",
-			select: "-__v -createdAt -updatedAt -_id",
-		};
-		const queryParams = {
-			title: { $regex: searchQuery, $options: "i" },
-		};
-
 		// Returns task in max limit of 10
-		const paginatedTasks = await Task.paginate(queryParams, paginationOptions);
+		const tasksCenterService = new TasksCenterService();
+		const paginatedTasks = await tasksCenterService.getAllTasks(req.query);
 
 		res.status(200).json(
 			apiResponseHandler({
@@ -67,11 +52,12 @@ export const getAllTasks = async (req: Request, res: Response, next: NextFunctio
 export const createTask = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		// Create task
-		await Task.create(req.body);
+		const tasksCenterService = new TasksCenterService();
+		const response = await tasksCenterService.createTask(req.body);
 
 		res.status(201).json(
 			apiResponseHandler({
-				message: "Task successfully added.",
+				message: response.message,
 			}),
 		);
 	} catch (error) {
@@ -84,11 +70,12 @@ export const updateTask = async (req: Request, res: Response, next: NextFunction
 		const { taskId } = req.params;
 
 		// Update task
-		await Task.findByIdAndUpdate(taskId, req.body, { runValidators: true, new: true });
+		const tasksCenterService = new TasksCenterService();
+		const response = await tasksCenterService.updateTask(taskId, req.body);
 
 		res.status(201).json(
 			apiResponseHandler({
-				message: "Task updated successfully.",
+				message: response.message,
 			}),
 		);
 	} catch (error) {
@@ -101,9 +88,8 @@ export const getTask = async (req: Request, res: Response, next: NextFunction) =
 		const { taskId } = req.params;
 
 		// Get task
-		const task = await Task.findById(taskId)
-			.populate("platformId")
-			.select("-_id -__v -createdAt -updatedAt");
+		const tasksCenterService = new TasksCenterService();
+		const task = await tasksCenterService.getTask(taskId);
 
 		res.status(201).json(
 			apiResponseHandler({
@@ -120,11 +106,12 @@ export const deleteTask = async (req: Request, res: Response, next: NextFunction
 		const { taskId } = req.params;
 
 		// Delete task
-		await Task.findByIdAndDelete(taskId);
+		const tasksCenterService = new TasksCenterService();
+		const response = await tasksCenterService.deleteTask(taskId);
 
 		res.status(201).json(
 			apiResponseHandler({
-				message: "Task deleted successfully.",
+				message: response.message,
 			}),
 		);
 	} catch (error) {
@@ -134,40 +121,8 @@ export const deleteTask = async (req: Request, res: Response, next: NextFunction
 
 export const getAllActiveTasks = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Get user Id
-		const { id } = await checkUser(req);
-
-		const { rows, page, task } = req.query;
-
-		const paginationOptions = {
-			page: Number(page) || PAGINATION.PAGE,
-			limit: Number(rows) || PAGINATION.LIMIT,
-			sort: "-updatedAt",
-			select: "id title points taskType dueDate status -_id",
-		};
-		const queryParams = {
-			status: TaskStatus.STARTED,
-		};
-
-		const userTaskPaginationOptions = {
-			page: Number(page) || PAGINATION.PAGE,
-			limit: Number(rows) || PAGINATION.LIMIT,
-			sort: "updatedAt",
-			select: "id taskId status -_id",
-		};
-
-		// this queries th userTask document using the userId and status field.
-		const userTaskQueryParams = {
-			userId: id,
-			...(task === "pending" && { status: UserTaskStatus.IN_REVIEW }),
-			...(task === "completed" && { status: UserTaskStatus.DONE }),
-		};
-
-		// Returns all active tasks in max limit of 10
-		const [paginatedTasks, userTasks] = await Promise.all([
-			Task.paginate(queryParams, paginationOptions),
-			UserTask.paginate(userTaskQueryParams, userTaskPaginationOptions),
-		]);
+		const tasksCenterService = new TasksCenterService();
+		const { paginatedTasks, userTasks } = await tasksCenterService.getAllActiveTasks(req);
 
 		res.status(200).json(
 			apiResponseHandler({
@@ -180,19 +135,8 @@ export const getAllActiveTasks = async (req: Request, res: Response, next: NextF
 };
 export const getAllPendingTasksCount = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Get user Id
-		const { id } = await checkUser(req);
-
-		// Get all active tasks and user tasks
-		const [Tasks, UserTasks] = await Promise.all([
-			Task.find({ status: TaskStatus.STARTED }).select("id -_id"),
-			UserTask.find({ userId: id }).select("taskId -_id"),
-		]);
-
-		// Get count of only pending tasks
-		const count = Tasks.filter(
-			(task) => !UserTasks.some((userTask) => userTask.taskId === task.id),
-		).length;
+		const tasksCenterService = new TasksCenterService();
+		const count = await tasksCenterService.getAllPendingTasksCount(req);
 
 		res.status(200).json(
 			apiResponseHandler({
@@ -207,11 +151,13 @@ export const getAllPendingTasksCount = async (req: Request, res: Response, next:
 export const createUserTask = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		// Create user task
-		await UserTask.create(req.body);
+		const tasksCenterService = new TasksCenterService();
+		const response = await tasksCenterService.createUserTask(req.body);
+		// await UserTask.create(req.body);
 
 		res.status(201).json(
 			apiResponseHandler({
-				message: "User task successfully added.",
+				message: response.message,
 			}),
 		);
 	} catch (error) {
@@ -221,24 +167,8 @@ export const createUserTask = async (req: Request, res: Response, next: NextFunc
 
 export const getUserTask = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Get user Id
-		const { id } = await checkUser(req);
-
-		const { taskId } = req.params;
-
-		// get task and task status
-		const [task, taskStatus] = await Promise.all([
-			Task.findById(taskId).populate("platformId").select("-_id -__v -createdAt -updatedAt"),
-			UserTask.find({
-				userId: id,
-				taskId,
-			}).select("status -_id"),
-		]);
-
-		const modifiedtask = {
-			...task?.toObject(),
-			status: taskStatus[0] ? taskStatus[0].status : UserTaskStatus.PENDING,
-		};
+		const tasksCenterService = new TasksCenterService();
+		const modifiedtask = await tasksCenterService.getUserTask(req);
 
 		res.status(201).json(
 			apiResponseHandler({
