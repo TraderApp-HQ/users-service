@@ -8,6 +8,7 @@ import {
 	sendPasswordResetLinkHandler,
 	verifyOtpHandler,
 	createUserHandler,
+	sendOtpHandler,
 } from "../controllers/AuthController";
 import {
 	validateSignupRequest,
@@ -18,6 +19,7 @@ import {
 	validatePasswordResetRequest,
 	validateVerifyOTPRequest,
 	validateCreateUserRequest,
+	validateSendOtpRequest,
 } from "../middlewares/AuthMiddleware";
 import { ROUTES } from "../config/constants";
 
@@ -35,5 +37,6 @@ router.post(
 	sendPasswordResetLinkHandler,
 );
 router.put(ROUTES.verifyOtp, validateVerifyOTPRequest, verifyOtpHandler);
+router.post(ROUTES.sendOtp, validateSendOtpRequest, sendOtpHandler);
 
 export default router;
