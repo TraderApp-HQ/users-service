@@ -1,16 +1,15 @@
 import { apiResponseHandler } from "@traderapp/shared-resources";
 import { NextFunction, Request, Response } from "express";
-import Task from "../../models/Task";
-import TaskPlatform from "../../models/TaskPlatform";
+import { TasksCenterService } from "../../services/TasksCenterService";
 
 export const createTaskPlatform = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// create new platform
-		await TaskPlatform.create(req.body);
+		const tasksCenterService = new TasksCenterService();
+		const response = await tasksCenterService.createTaskPlatform(req.body);
 
 		res.status(201).json(
 			apiResponseHandler({
-				message: "Platform successfully uploaded",
+				message: response.message,
 			}),
 		);
 	} catch (error) {
@@ -21,7 +20,8 @@ export const createTaskPlatform = async (req: Request, res: Response, next: Next
 export const getTaskPlatform = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		// Returns only active platforms
-		const taskPlatforms = await TaskPlatform.find({ isActive: true });
+		const tasksCenterService = new TasksCenterService();
+		const taskPlatforms = await tasksCenterService.getTaskPlatforms();
 
 		res.status(200).json(
 			apiResponseHandler({
@@ -35,24 +35,13 @@ export const getTaskPlatform = async (req: Request, res: Response, next: NextFun
 
 export const getAllTasks = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// Returns only active platforms
-		const tasks = await Task.find();
-
-		// modify tasks object to take out _id
-		const modifiedTasks = tasks.map((task) => {
-			// converts mongoose object to javascript object
-			const tasksObject = task.toObject();
-
-			// destructure object to take out _id
-			const { _id, ...rest } = tasksObject;
-
-			// return the rest of the object
-			return rest;
-		});
+		// Returns task in max limit of 10
+		const tasksCenterService = new TasksCenterService();
+		const paginatedTasks = await tasksCenterService.getAllTasks(req.query);
 
 		res.status(200).json(
 			apiResponseHandler({
-				object: modifiedTasks,
+				object: paginatedTasks,
 			}),
 		);
 	} catch (error) {
@@ -63,11 +52,12 @@ export const getAllTasks = async (req: Request, res: Response, next: NextFunctio
 export const createTask = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		// Create task
-		await Task.create(req.body);
+		const tasksCenterService = new TasksCenterService();
+		const response = await tasksCenterService.createTask(req.body);
 
 		res.status(201).json(
 			apiResponseHandler({
-				message: "Task successfully added.",
+				message: response.message,
 			}),
 		);
 	} catch (error) {
@@ -80,11 +70,12 @@ export const updateTask = async (req: Request, res: Response, next: NextFunction
 		const { taskId } = req.params;
 
 		// Update task
-		await Task.findByIdAndUpdate(taskId, req.body, { runValidators: true, new: true });
+		const tasksCenterService = new TasksCenterService();
+		const response = await tasksCenterService.updateTask(taskId, req.body);
 
 		res.status(201).json(
 			apiResponseHandler({
-				message: "Task updated successfully.",
+				message: response.message,
 			}),
 		);
 	} catch (error) {
@@ -97,15 +88,12 @@ export const getTask = async (req: Request, res: Response, next: NextFunction) =
 		const { taskId } = req.params;
 
 		// Get task
-		const task: any = await Task.findById(taskId).populate("platformId");
-
-		// convert to javascript object and destructure _id
-		const taskObject = task?.toObject();
-		const { _id, ...modifiedTask } = taskObject;
+		const tasksCenterService = new TasksCenterService();
+		const task = await tasksCenterService.getTask(taskId);
 
 		res.status(201).json(
 			apiResponseHandler({
-				object: modifiedTask,
+				object: task,
 			}),
 		);
 	} catch (error) {
@@ -118,11 +106,73 @@ export const deleteTask = async (req: Request, res: Response, next: NextFunction
 		const { taskId } = req.params;
 
 		// Delete task
-		await Task.findByIdAndDelete(taskId);
+		const tasksCenterService = new TasksCenterService();
+		const response = await tasksCenterService.deleteTask(taskId);
 
 		res.status(201).json(
 			apiResponseHandler({
-				message: "Task deleted successfully.",
+				message: response.message,
+			}),
+		);
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const getAllActiveTasks = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const tasksCenterService = new TasksCenterService();
+		const { paginatedTasks, userTasks } = await tasksCenterService.getAllActiveTasks(req);
+
+		res.status(200).json(
+			apiResponseHandler({
+				object: { allTask: paginatedTasks, userTask: userTasks },
+			}),
+		);
+	} catch (error) {
+		next(error);
+	}
+};
+export const getAllPendingTasksCount = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const tasksCenterService = new TasksCenterService();
+		const count = await tasksCenterService.getAllPendingTasksCount(req);
+
+		res.status(200).json(
+			apiResponseHandler({
+				object: { pendingTasksCount: count },
+			}),
+		);
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const createUserTask = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		// Create user task
+		const tasksCenterService = new TasksCenterService();
+		const response = await tasksCenterService.createUserTask(req.body);
+		// await UserTask.create(req.body);
+
+		res.status(201).json(
+			apiResponseHandler({
+				message: response.message,
+			}),
+		);
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const getUserTask = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const tasksCenterService = new TasksCenterService();
+		const modifiedtask = await tasksCenterService.getUserTask(req);
+
+		res.status(201).json(
+			apiResponseHandler({
+				object: modifiedtask,
 			}),
 		);
 	} catch (error) {

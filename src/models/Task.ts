@@ -1,8 +1,13 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Model, Schema } from "mongoose";
+import paginate from "mongoose-paginate-v2";
 import { Platform, PlatformActions, TaskCategory, TaskStatus, TaskType } from "../config/enums";
 import { ITask } from "../config/interfaces";
 
 interface ITaskModel extends ITask {}
+
+interface PTaskModel extends Model<ITaskModel> {
+	paginate: any;
+}
 
 const TaskSchema = new Schema(
 	{
@@ -24,9 +29,10 @@ const TaskSchema = new Schema(
 		dueDate: { type: Date },
 		status: { type: String, enum: Object.values(TaskStatus), required: true },
 	},
-	{ timestamps: false },
+	{ timestamps: true },
 );
 
+TaskSchema.plugin(paginate);
 // saves _id as id when creating task
 TaskSchema.pre("save", function (next) {
 	this.id = this._id;
@@ -35,4 +41,4 @@ TaskSchema.pre("save", function (next) {
 
 TaskSchema.index({ title: 1, status: 1, category: 1 });
 
-export default mongoose.model<ITaskModel>("Task", TaskSchema);
+export default mongoose.model<ITaskModel, PTaskModel>("Task", TaskSchema);
