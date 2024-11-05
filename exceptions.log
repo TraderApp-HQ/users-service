@@ -3344,3 +3344,127 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1206:32)
     at Function.Module._load (node:internal/modules/cjs/loader:1022:12)
     at Module.require (node:internal/modules/cjs/loader:1231:19) [users-service] development 2024-10-17T14:41:24.420Z
+[31merror[39m: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/controllers/index.ts[0m:[93m17[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m17[0m <<<<<<< HEAD
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m19[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m19[0m =======
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m20[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m20[0m >>>>>>> Implement OTP rate limiting
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m53[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m53[0m <<<<<<< HEAD
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m57[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m57[0m =======
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m61[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m61[0m >>>>>>> Implement OTP rate limiting
+[7m  [0m [91m~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/controllers/index.ts[0m:[93m17[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m17[0m <<<<<<< HEAD
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m19[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m19[0m =======
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m20[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m20[0m >>>>>>> Implement OTP rate limiting
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m53[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m53[0m <<<<<<< HEAD
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m57[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m57[0m =======
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m61[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m61[0m >>>>>>> Implement OTP rate limiting
+[7m  [0m [91m~~~~~~~[0m
+
+    at createTSError (/home/fisayo_unix/traderapp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/fisayo_unix/traderapp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/fisayo_unix/traderapp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/fisayo_unix/traderapp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/fisayo_unix/traderapp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1308:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/fisayo_unix/traderapp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1117:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:958:12)
+    at Module.require (node:internal/modules/cjs/loader:1141:19) [users-service] development 2024-11-06 04:23:08
+error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/controllers/index.ts[0m:[93m17[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m17[0m <<<<<<< HEAD
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m19[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m19[0m =======
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m20[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m20[0m >>>>>>> Implement OTP rate limiting
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m53[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m53[0m <<<<<<< HEAD
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m57[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m57[0m =======
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m61[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m61[0m >>>>>>> Implement OTP rate limiting
+[7m  [0m [91m~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/helpers/controllers/index.ts[0m:[93m17[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m17[0m <<<<<<< HEAD
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m19[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m19[0m =======
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m20[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m20[0m >>>>>>> Implement OTP rate limiting
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m53[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m53[0m <<<<<<< HEAD
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m57[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m57[0m =======
+[7m  [0m [91m~~~~~~~[0m
+[96msrc/helpers/controllers/index.ts[0m:[93m61[0m:[93m1[0m - [91merror[0m[90m TS1185: [0mMerge conflict marker encountered.
+
+[7m61[0m >>>>>>> Implement OTP rate limiting
+[7m  [0m [91m~~~~~~~[0m
+
+    at createTSError (/home/fisayo_unix/traderapp/users-service/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/fisayo_unix/traderapp/users-service/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/fisayo_unix/traderapp/users-service/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/fisayo_unix/traderapp/users-service/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/fisayo_unix/traderapp/users-service/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1308:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/fisayo_unix/traderapp/users-service/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1117:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:958:12)
+    at Module.require (node:internal/modules/cjs/loader:1141:19) [users-service] development 2024-11-06T03:23:08.583Z
