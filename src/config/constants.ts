@@ -62,6 +62,8 @@ export const ErrorMessage = {
 export const REFRESH_TOKEN_EXPIRES = 7 * 24 * 60 * 60; // 7 days
 export const VERIFICATION_TOKEN_EXPIRES = 1 * 24 * 60 * 60; // 1 day
 export const OTP_EXPIRES = 60 * 10; // 10 minutes
+export const OTP_RATE_LIMIT_EXPIRES = 60 * 60; // 1 hour
+export const MAX_OTP_ATTEMPTS = 5;
 
 export const refreshTokenCookieOptions = {
 	httpOnly: true,
