@@ -119,3 +119,9 @@ export interface IUserTask {
 	expectedActions?: PlatformActions[];
 	status: UserTaskStatus;
 }
+
+export interface OtpRateLimit {
+	channel: NotificationChannel;
+	attempts: number;
+	rateLimitStart: Date;
+}
