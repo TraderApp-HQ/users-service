@@ -11,11 +11,11 @@ const OneTimePasswordSchema = new Schema(
 		otp: { type: String },
 		verificationToken: { type: String },
 		channel: { type: String, enum: NotificationChannel, default: NotificationChannel.EMAIL },
-		expireAt: { type: Date, default: Date.now },
+		createdAt: { type: Date, default: Date.now },
 	},
 	{ versionKey: false, timestamps: false },
 );
 
-OneTimePasswordSchema.index({ expireAt: 1 }, { expireAfterSeconds: OTP_EXPIRES });
+OneTimePasswordSchema.index({ createdAt: 1 }, { expireAfterSeconds: OTP_EXPIRES });
 
 export default mongoose.model<OneTimePasswordModel>("one-time-password", OneTimePasswordSchema);

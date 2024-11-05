@@ -14,6 +14,7 @@ import {
 import { IVerifyOtp } from "../../controllers/AuthController/config";
 import {
 	ENVIRONMENTS,
+	ErrorMessage,
 	MAX_OTP_ATTEMPTS,
 	REFRESH_TOKEN_EXPIRES,
 	accessTokenCookieOptions,
@@ -46,9 +47,9 @@ export async function sendOTP({ userData, channels }: ISendOtp) {
 
 			if (rateLimitRecord.attempts > MAX_OTP_ATTEMPTS) {
 				const error = new Error(
-					"Exceeded maximum OTP requests within an hour. Please try again later.",
+					"You've exceeded the maxium OTP requests. Please wait for one hour and try again.",
 				);
-				error.name = "OTP Rate Limit Exceeded";
+				error.name = ErrorMessage.UNAUTHORIZED;
 				throw error;
 			}
 		}),
