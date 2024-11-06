@@ -14,16 +14,16 @@ import {
 import { IVerifyOtp } from "../../controllers/AuthController/config";
 import {
 	ENVIRONMENTS,
-	ErrorMessage,
 	MAX_OTP_ATTEMPTS,
 	REFRESH_TOKEN_EXPIRES,
+	RESPONSE_FLAGS,
 	accessTokenCookieOptions,
 	refreshTokenCookieOptions,
 } from "../../config/constants";
 import Token from "../../models/RefreshToken";
 import { IAccessToken } from "../../config/interfaces";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
-import { IQueueMessageBodyObject, IQueueMessage } from "../../utils/helpers/types";
+import { IQueueMessageBodyObject } from "../../utils/helpers/types";
 import { startSession } from "mongoose";
 
 interface ISendOtp {
@@ -47,9 +47,9 @@ export async function sendOTP({ userData, channels }: ISendOtp) {
 
 			if (rateLimitRecord.attempts > MAX_OTP_ATTEMPTS) {
 				const error = new Error(
-					"You've exceeded the maxium OTP requests. Please wait for one hour and try again.",
+					"You've exceeded the maximum OTP requests. Please wait for one hour and try again.",
 				);
-				error.name = ErrorMessage.UNAUTHORIZED;
+				error.name = RESPONSE_FLAGS.forbidden;
 				throw error;
 			}
 		}),
