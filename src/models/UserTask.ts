@@ -1,13 +1,8 @@
-import mongoose, { Model, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { PlatformActions, UserTaskStatus } from "../config/enums";
 import { IUserTask } from "../config/interfaces";
-import paginate from "mongoose-paginate-v2";
 
 interface IUserTaskModel extends IUserTask {}
-
-interface PUserTaskModel extends Model<IUserTaskModel> {
-	paginate: any;
-}
 
 const UserTaskSchema = new Schema(
 	{
@@ -21,7 +16,6 @@ const UserTaskSchema = new Schema(
 	{ timestamps: true },
 );
 
-UserTaskSchema.plugin(paginate);
 // saves _id as id when creating user task
 UserTaskSchema.pre("save", function (next) {
 	this.id = this._id;
@@ -31,4 +25,4 @@ UserTaskSchema.pre("save", function (next) {
 UserTaskSchema.index({ userId: 1, taskId: 1 }, { unique: true });
 UserTaskSchema.index({ status: 1 });
 
-export default mongoose.model<IUserTaskModel, PUserTaskModel>("UserTask", UserTaskSchema);
+export default mongoose.model<IUserTaskModel>("UserTask", UserTaskSchema);

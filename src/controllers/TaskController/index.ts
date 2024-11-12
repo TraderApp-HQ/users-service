@@ -122,11 +122,11 @@ export const deleteTask = async (req: Request, res: Response, next: NextFunction
 export const getAllActiveTasks = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const tasksCenterService = new TasksCenterService();
-		const { paginatedTasks, userTasks } = await tasksCenterService.getAllActiveTasks(req);
+		const { allActiveTasks, userTasks } = await tasksCenterService.getAllActiveTasks(req);
 
 		res.status(200).json(
 			apiResponseHandler({
-				object: { allTask: paginatedTasks, userTask: userTasks },
+				object: { allTask: allActiveTasks, userTask: userTasks },
 			}),
 		);
 	} catch (error) {
