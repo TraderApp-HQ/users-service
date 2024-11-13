@@ -64,32 +64,6 @@ export class TasksCenterService {
 	async getAllActiveTasks(req: Request) {
 		const { id } = await checkUser(req);
 
-		// const { rows, page, task } = req.query;
-
-		// const paginationOptions = {
-		// 	...(task === "all" ? { page: Number(page) || PAGINATION.PAGE } : { page: 1 }),
-		// 	...(task === "all" ? { limit: Number(rows) || PAGINATION.LIMIT } : { limit: 100 }),
-		// 	sort: "-updatedAt",
-		// 	select: "id title points taskType dueDate status -_id",
-		// };
-		// const queryParams = {
-		// 	status: TaskStatus.STARTED,
-		// };
-
-		// const userTaskPaginationOptions = {
-		// 	...(task === "completed" ? { page: Number(page) || PAGINATION.PAGE } : { page: 1 }),
-		// 	...(task === "completed"
-		// 		? { limit: Number(rows) || PAGINATION.LIMIT }
-		// 		: { limit: 100 }),
-		// 	sort: "updatedAt",
-		// 	select: "id taskId status -_id",
-		// };
-
-		// // this queries the userTask document using the userId and status field.
-		// const userTaskQueryParams = {
-		// 	userId: id,
-		// };
-
 		// Returns all active tasks and User tasks.
 		const [allActiveTasks, userTasks] = await Promise.all([
 			Task.find({ status: TaskStatus.STARTED })
