@@ -1,5 +1,4 @@
 import { Request } from "express";
-import { PAGINATION } from "../../config/constants";
 import { TaskStatus, UserTaskStatus } from "../../config/enums";
 import { ITask, ITaskPlatform, IUserTask } from "../../config/interfaces";
 import { checkUser } from "../../helpers/middlewares";
@@ -22,23 +21,14 @@ export class TasksCenterService {
 		return taskPlatforms;
 	}
 
-	async getAllTasks(query: { rows?: string; page?: string; search?: string }) {
-		const { rows, page, search } = query;
-		const searchQuery = search ?? "";
-		const paginationOptions = {
-			page: Number(page) || PAGINATION.PAGE,
-			limit: Number(rows) || PAGINATION.LIMIT,
-			sort: "-updatedAt",
-			select: "-__v -createdAt -updatedAt -_id",
-		};
-		const queryParams = {
-			title: { $regex: searchQuery, $options: "i" },
-		};
+	async getAllTasks(query: { search?: string }) {
+		const { search } = query;
+		const searchQuery = search?.trim();
+		const tasks = await Task.find(searchQuery ? { title: new RegExp(searchQuery, "i") } : {})
+			.sort("-updatedAt")
+			.select("-__v -createdAt -updatedAt -_id");
 
-		// Returns task in max limit of 10
-		const paginatedTasks = await Task.paginate(queryParams, paginationOptions);
-
-		return paginatedTasks;
+		return tasks;
 	}
 
 	async createTask(data: Omit<ITask, "id">): Promise<{ message: string }> {
@@ -74,39 +64,15 @@ export class TasksCenterService {
 	async getAllActiveTasks(req: Request) {
 		const { id } = await checkUser(req);
 
-		const { rows, page, task } = req.query;
-
-		const paginationOptions = {
-			...(task === "all" ? { page: Number(page) || PAGINATION.PAGE } : { page: 1 }),
-			...(task === "all" ? { limit: Number(rows) || PAGINATION.LIMIT } : { limit: 100 }),
-			sort: "-updatedAt",
-			select: "id title points taskType dueDate status -_id",
-		};
-		const queryParams = {
-			status: TaskStatus.STARTED,
-		};
-
-		const userTaskPaginationOptions = {
-			...(task === "completed" ? { page: Number(page) || PAGINATION.PAGE } : { page: 1 }),
-			...(task === "completed"
-				? { limit: Number(rows) || PAGINATION.LIMIT }
-				: { limit: 100 }),
-			sort: "updatedAt",
-			select: "id taskId status -_id",
-		};
-
-		// this queries the userTask document using the userId and status field.
-		const userTaskQueryParams = {
-			userId: id,
-		};
-
-		// Returns all active tasks in max limit of 10
-		const [paginatedTasks, userTasks] = await Promise.all([
-			Task.paginate(queryParams, paginationOptions),
-			UserTask.paginate(userTaskQueryParams, userTaskPaginationOptions),
+		// Returns all active tasks and User tasks.
+		const [allActiveTasks, userTasks] = await Promise.all([
+			Task.find({ status: TaskStatus.STARTED })
+				.sort("-updatedAt")
+				.select("id title points taskType dueDate status -_id"),
+			UserTask.find({ userId: id }).sort("-updatedAt").select("id taskId status -_id"),
 		]);
 
-		return { paginatedTasks, userTasks };
+		return { allActiveTasks, userTasks };
 	}
 
 	async getAllPendingTasksCount(req: Request): Promise<number> {
