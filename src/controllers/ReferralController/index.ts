@@ -59,8 +59,8 @@ export async function getCommunityStats(req: Request, res: Response, next: NextF
 export async function inviteFriends(req: Request, res: Response, next: NextFunction) {
 	try {
 		const { emails }: { emails: string[] } = req.body;
-		// const referralService = new ReferralService();
-		// await referralService.inviteFriends(emails, req.query.id as string);
+		const referralService = new ReferralService();
+		await referralService.inviteFriends(emails, req.query.id as string);
 
 		logger.log(`User Invites sent to queue: ${JSON.stringify(emails)}`);
 
