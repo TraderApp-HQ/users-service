@@ -99,28 +99,6 @@ class ReferralService {
 			queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
 			message,
 		});
-
-		// const messages = [];
-
-		// for (const email of emails) {
-		// 	const message: IQueueMessage = {
-		// 		channel: ["EMAIL"],
-		// 		messageObject: {
-		// 			recipientName: userData.firstName,
-		// 			messageBody: url,
-		// 			emailAddress: email,
-		// 		},
-		// 		event: "INVITE_USER",
-		// 	};
-		// 	messages.push(
-		// 		publishMessageToQueue({
-		// 			queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
-		// 			message,
-		// 		}),
-		// 	);
-		// }
-
-		// await Promise.all(messages);
 	}
 
 	// Function to convert a number to a base-n string

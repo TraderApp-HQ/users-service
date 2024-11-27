@@ -25,14 +25,11 @@ export async function validateInviteFriends(req: Request, res: Response, next: N
 			emails: Joi.array().items(Joi.string().email()).required().label("Emails"),
 		});
 
-		// validate request
-		const { error } = schema.validate({ emails: req.body.emails });
-
-		if (error) {
-			// strip string of double quotes
-			error.message = error.message.replace(/\"/g, "");
-			next(error);
-		}
+		// Remove invalid emails
+		req.body.emails = req.body.emails.filter((email: string) => {
+			const { error } = schema.validate({ emails: [email] });
+			return !error;
+		});
 
 		next();
 	} catch (err: any) {
