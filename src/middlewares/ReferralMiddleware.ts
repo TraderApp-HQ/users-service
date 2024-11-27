@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
 import { checkUser } from "../helpers/middlewares";
+import { RESPONSE_FLAGS } from "../config/constants";
 
 export async function validateGetReferral(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -30,6 +31,13 @@ export async function validateInviteFriends(req: Request, res: Response, next: N
 			const { error } = schema.validate({ emails: [email] });
 			return !error;
 		});
+
+		if (req.body.emails.length === 0) {
+			const error = new Error("At least one valid email is required.");
+			error.name = RESPONSE_FLAGS.validationError;
+			next(error);
+			return;
+		}
 
 		next();
 	} catch (err: any) {
