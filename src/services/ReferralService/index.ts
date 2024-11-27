@@ -74,6 +74,7 @@ class ReferralService {
 	}
 
 	async inviteFriends(emails: string[], userId: string) {
+		const emailSubject = "Join TraderApp Early & Get 90% Off—Unlock Consistent Profits Today";
 		const userData = await User.findById(userId);
 
 		if (!userData) throw new Error("Server error");
@@ -93,6 +94,7 @@ class ReferralService {
 				firstName: userData.firstName,
 				lastName: userData.lastName,
 			},
+			subject: emailSubject,
 		};
 
 		await publishMessageToQueue({
