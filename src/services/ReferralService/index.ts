@@ -98,7 +98,7 @@ class ReferralService {
 		};
 
 		await publishMessageToQueue({
-			queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
+			queueUrl: process.env.EMAIL_NOTIFICATIONS_QUEUE ?? "",
 			message,
 		});
 	}
