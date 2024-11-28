@@ -31,10 +31,11 @@ export interface IMessageRecipient {
 }
 
 export interface IQueueMessageBodyObject {
-	recipients: [IMessageRecipient];
+	recipients: IMessageRecipient[];
 	subject?: string;
 	message: string;
 	event: EventTemplate;
+	sender?: IMessageRecipient;
 }
 
 export interface IQueueMessageBody extends Omit<SQSRecord, "body"> {

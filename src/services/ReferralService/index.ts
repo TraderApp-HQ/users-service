@@ -4,7 +4,7 @@ import { generateInviteUrl } from "../../helpers/tokens";
 import User from "../../models/User";
 import UserRelationship from "../../models/UserRelationship";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
-import { IQueueMessage } from "../../utils/helpers/types";
+import { IQueueMessage, IQueueMessageBodyObject } from "../../utils/helpers/types";
 
 type PaginationType = string | string[] | undefined | number;
 
@@ -74,33 +74,33 @@ class ReferralService {
 	}
 
 	async inviteFriends(emails: string[], userId: string) {
+		const emailSubject = "Join TraderApp Early & Get 90% Off—Unlock Consistent Profits Today";
 		const userData = await User.findById(userId);
 
 		if (!userData) throw new Error("Server error");
 
 		const url = generateInviteUrl(userData.referralCode);
 
-		const messages = [];
+		const recipients = emails.map((email) => ({
+			firstName: "",
+			emailAddress: email,
+		}));
 
-		for (const email of emails) {
-			const message: IQueueMessage = {
-				channel: ["EMAIL"],
-				messageObject: {
-					recipientName: userData.firstName,
-					messageBody: url,
-					emailAddress: email,
-				},
-				event: "INVITE_USER",
-			};
-			messages.push(
-				publishMessageToQueue({
-					queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
-					message,
-				}),
-			);
-		}
+		const message: IQueueMessageBodyObject = {
+			recipients,
+			message: url,
+			event: "INVITE_USER",
+			sender: {
+				firstName: userData.firstName,
+				lastName: userData.lastName,
+			},
+			subject: emailSubject,
+		};
 
-		await Promise.all(messages);
+		await publishMessageToQueue({
+			queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
+			message,
+		});
 	}
 
 	// Function to convert a number to a base-n string
