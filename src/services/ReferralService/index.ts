@@ -19,26 +19,84 @@ interface IConvert {
 }
 
 class ReferralService {
+	private async fetchRelationships(
+		query: object,
+		populateField: string,
+		page: PaginationType,
+		limit: PaginationType,
+	) {
+		const results = await UserRelationship.find(query)
+			.populate(populateField, EXCLUDE_FIELDS.USER)
+			.sort({ level: "asc" })
+			.limit(Number(limit))
+			.skip(Number(limit) * (Number(page) - 1));
+
+		const totalDocs = await UserRelationship.countDocuments(query);
+
+		return {
+			results,
+			totalDocs,
+			totalPages: Math.ceil(totalDocs / Number(limit)),
+		};
+	}
+
 	async getUserReferrals({
 		page,
 		limit,
 		userId,
+		minLevel = 1,
+		maxLevel = 15,
 	}: {
 		page: PaginationType;
 		limit: PaginationType;
 		userId: string;
+		minLevel?: number;
+		maxLevel?: number;
 	}) {
-		const referrals = await UserRelationship.find({ parentId: userId })
-			.populate("userId", EXCLUDE_FIELDS.USER)
-			.limit(Number(limit))
-			.skip(Number(limit) * (Number(page) - 1));
-
-		const totalDocs = await UserRelationship.countDocuments({ parentId: userId });
-
+		const {
+			results: referrals,
+			totalDocs,
+			totalPages,
+		} = await this.fetchRelationships(
+			{ parentId: userId, level: { $gte: minLevel, $lte: maxLevel } },
+			"userId",
+			page,
+			limit,
+		);
 		return {
 			referrals,
 			totalDocs,
-			totalPages: Math.ceil(totalDocs / Number(limit)),
+			totalPages,
+		};
+	}
+
+	async getUserReferrers({
+		page,
+		limit,
+		userId,
+		minLevel,
+		maxLevel,
+	}: {
+		page: PaginationType;
+		limit: PaginationType;
+		userId: string;
+		minLevel?: number;
+		maxLevel?: number;
+	}) {
+		const {
+			results: referrers,
+			totalDocs,
+			totalPages,
+		} = await this.fetchRelationships(
+			{ userId, level: { $gte: minLevel, $lte: maxLevel } },
+			"parentId",
+			page,
+			limit,
+		);
+		return {
+			referrers,
+			totalDocs,
+			totalPages,
 		};
 	}
 
