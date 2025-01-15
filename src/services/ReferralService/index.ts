@@ -18,13 +18,28 @@ interface IConvert {
 	base: number;
 }
 
+interface IReferralQueryParams {
+	page: PaginationType;
+	limit: PaginationType;
+	userId: string;
+	minLevel?: number;
+	maxLevel?: number;
+}
+
+interface IFetchRelationshipsInput {
+	query: object;
+	populateField: string;
+	page: PaginationType;
+	limit: PaginationType;
+}
+
 class ReferralService {
-	private async fetchRelationships(
-		query: object,
-		populateField: string,
-		page: PaginationType,
-		limit: PaginationType,
-	) {
+	private async fetchRelationships({
+		query,
+		populateField,
+		page,
+		limit,
+	}: IFetchRelationshipsInput) {
 		const results = await UserRelationship.find(query)
 			.populate(populateField, EXCLUDE_FIELDS.USER)
 			.sort({ level: "asc" })
@@ -46,23 +61,17 @@ class ReferralService {
 		userId,
 		minLevel = 1,
 		maxLevel = 15,
-	}: {
-		page: PaginationType;
-		limit: PaginationType;
-		userId: string;
-		minLevel?: number;
-		maxLevel?: number;
-	}) {
+	}: IReferralQueryParams) {
 		const {
 			results: referrals,
 			totalDocs,
 			totalPages,
-		} = await this.fetchRelationships(
-			{ parentId: userId, level: { $gte: minLevel, $lte: maxLevel } },
-			"userId",
+		} = await this.fetchRelationships({
+			query: { parentId: userId, level: { $gte: minLevel, $lte: maxLevel } },
+			populateField: "userId",
 			page,
 			limit,
-		);
+		});
 		return {
 			referrals,
 			totalDocs,
@@ -70,29 +79,17 @@ class ReferralService {
 		};
 	}
 
-	async getUserReferrers({
-		page,
-		limit,
-		userId,
-		minLevel,
-		maxLevel,
-	}: {
-		page: PaginationType;
-		limit: PaginationType;
-		userId: string;
-		minLevel?: number;
-		maxLevel?: number;
-	}) {
+	async getUserReferrers({ page, limit, userId, minLevel, maxLevel }: IReferralQueryParams) {
 		const {
 			results: referrers,
 			totalDocs,
 			totalPages,
-		} = await this.fetchRelationships(
-			{ userId, level: { $gte: minLevel, $lte: maxLevel } },
-			"parentId",
+		} = await this.fetchRelationships({
+			query: { userId, level: { $gte: minLevel, $lte: maxLevel } },
+			populateField: "parentId",
 			page,
 			limit,
-		);
+		});
 		return {
 			referrers,
 			totalDocs,

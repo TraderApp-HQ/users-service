@@ -20,8 +20,7 @@ const UserRelationshipSchema = new Schema(
 
 UserRelationshipSchema.plugin(mongoosePaginate);
 
-UserRelationshipSchema.index({ userId: 1, level: 1 });
-UserRelationshipSchema.index({ parentId: 1, level: 1 });
+UserRelationshipSchema.index({ userId: 1, parentId: 1, level: 1 });
 
 export default mongoose.model<IUserRelationshipModel, UserRelationshipModel>(
 	"user-relationship",
