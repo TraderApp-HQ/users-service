@@ -150,3 +150,13 @@ export const PAGINATION = {
 export const EXCLUDE_FIELDS = {
 	USER: "-_id -password",
 };
+
+export const ReferralRank = {
+	TA_RECRUIT: "TA-Recruit",
+	TA_LIEUTENANT: "TA-Lieutenant",
+	TA_CAPTAIN: "TA-Captain",
+	TA_MAJOR: "TA-Major",
+	TA_COLONEL: "TA-Colonel",
+	TA_GENERAL: "TA-General",
+	TA_FIELD_MARSHAL: "TA-Field-Marshal",
+} as const;
