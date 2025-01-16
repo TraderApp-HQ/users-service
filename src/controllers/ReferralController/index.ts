@@ -56,6 +56,22 @@ export async function getCommunityStats(req: Request, res: Response, next: NextF
 	}
 }
 
+export async function getReferralOverview(req: Request, res: Response, next: NextFunction) {
+	try {
+		const referralService = new ReferralService();
+		const stats = await referralService.getReferralOverview(req.query.id as string);
+
+		res.status(200).json(
+			apiResponseHandler({
+				object: stats,
+				message: ResponseMessage.GET_REFERRALS_SUMMARY,
+			}),
+		);
+	} catch (err) {
+		next(err);
+	}
+}
+
 export async function inviteFriends(req: Request, res: Response, next: NextFunction) {
 	try {
 		const { emails }: { emails: string[] } = req.body;

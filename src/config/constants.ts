@@ -140,6 +140,7 @@ export const ROUTES = {
 	communityStats: "/community-stats",
 	referrals: "/referrals",
 	sendOtp: "/send-otp",
+	referralOverview: "/referral-overview",
 };
 
 export const PAGINATION = {

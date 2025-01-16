@@ -128,6 +128,18 @@ class ReferralService {
 		};
 	}
 
+	async getReferralOverview(userId: string) {
+		const [userReferralStats, communityStats] = await Promise.all([
+			this.getUserReferralStats(userId),
+			this.getCommunityStats(userId),
+		]);
+
+		return {
+			...userReferralStats,
+			...communityStats,
+		};
+	}
+
 	async inviteFriends(emails: string[], userId: string) {
 		const emailSubject = "Join TraderApp Early & Get 90% Off—Unlock Consistent Profits Today";
 		const userData = await User.findById(userId);
