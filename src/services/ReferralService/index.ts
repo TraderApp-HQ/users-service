@@ -1,10 +1,11 @@
 import * as crypto from "crypto";
-import { EXCLUDE_FIELDS } from "../../config/constants";
+import { EXCLUDE_FIELDS, ReferralRank } from "../../config/constants";
 import { generateInviteUrl } from "../../helpers/tokens";
-import User from "../../models/User";
+import User, { IUserModel } from "../../models/User";
 import UserRelationship from "../../models/UserRelationship";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
 import { IQueueMessage, IQueueMessageBodyObject } from "../../utils/helpers/types";
+import { Types } from "mongoose";
 
 type PaginationType = string | string[] | undefined | number;
 
@@ -97,25 +98,24 @@ class ReferralService {
 		};
 	}
 
-	async getUserReferralStats(userId: string) {
-		const userData = await User.findById(userId);
-
-		if (!userData) throw new Error("Server error");
-
+	private async _getUserReferralStats(userData: IUserModel & { _id: Types.ObjectId }) {
 		return {
 			referralCode: userData.referralCode,
 			referralLink: generateInviteUrl(userData.referralCode),
-			currentRank: "TA-Recruit",
+			currentRank: ReferralRank.TA_RECRUIT,
 			currentEarning: 0,
 			rankProgress: 0,
 		};
 	}
 
-	async getCommunityStats(userId: string) {
+	async getUserReferralStats(userId: string) {
 		const userData = await User.findById(userId);
-
 		if (!userData) throw new Error("Server error");
 
+		return this._getUserReferralStats(userData);
+	}
+
+	private async _getCommunityStats(userData: IUserModel & { _id: Types.ObjectId }) {
 		const count = await UserRelationship.count({ parentId: userData.id });
 		const [top] = await UserRelationship.find({ parentId: userData.id })
 			.sort({ level: "descending" })
@@ -128,10 +128,20 @@ class ReferralService {
 		};
 	}
 
+	async getCommunityStats(userId: string) {
+		const userData = await User.findById(userId);
+		if (!userData) throw new Error("Server error");
+
+		return this._getCommunityStats(userData);
+	}
+
 	async getReferralOverview(userId: string) {
+		const userData = await User.findById(userId);
+		if (!userData) throw new Error("Server error");
+
 		const [userReferralStats, communityStats] = await Promise.all([
-			this.getUserReferralStats(userId),
-			this.getCommunityStats(userId),
+			this._getUserReferralStats(userData),
+			this._getCommunityStats(userData),
 		]);
 
 		return {
