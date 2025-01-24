@@ -13,6 +13,7 @@ import {
 } from "../middlewares/UserMiddleware";
 import {
 	getCommunityStats,
+	getReferralOverview,
 	getUserReferrals,
 	getUserReferralsStats,
 	inviteFriends,
@@ -31,5 +32,6 @@ router.get(ROUTES.referralStats, validateGetReferral, getUserReferralsStats);
 router.get(ROUTES.referrals, validateGetReferral, getUserReferrals);
 router.post(ROUTES.inviteFriends, validateInviteFriends, inviteFriends);
 router.get(ROUTES.communityStats, validateGetReferral, getCommunityStats);
+router.get(ROUTES.referralOverview, validateGetReferral, getReferralOverview);
 
 export default router;

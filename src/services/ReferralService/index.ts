@@ -1,10 +1,11 @@
 import * as crypto from "crypto";
-import { EXCLUDE_FIELDS } from "../../config/constants";
+import { EXCLUDE_FIELDS, ReferralRank } from "../../config/constants";
 import { generateInviteUrl } from "../../helpers/tokens";
-import User from "../../models/User";
+import User, { IUserModel } from "../../models/User";
 import UserRelationship from "../../models/UserRelationship";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
 import { IQueueMessage, IQueueMessageBodyObject } from "../../utils/helpers/types";
+import { Types } from "mongoose";
 
 type PaginationType = string | string[] | undefined | number;
 
@@ -18,49 +19,103 @@ interface IConvert {
 	base: number;
 }
 
+interface IReferralQueryParams {
+	page: PaginationType;
+	limit: PaginationType;
+	userId: string;
+	minLevel?: number;
+	maxLevel?: number;
+}
+
+interface IFetchRelationshipsInput {
+	query: object;
+	populateField: string;
+	page: PaginationType;
+	limit: PaginationType;
+}
+
 class ReferralService {
-	async getUserReferrals({
+	private async fetchRelationships({
+		query,
+		populateField,
 		page,
 		limit,
-		userId,
-	}: {
-		page: PaginationType;
-		limit: PaginationType;
-		userId: string;
-	}) {
-		const referrals = await UserRelationship.find({ parentId: userId })
-			.populate("userId", EXCLUDE_FIELDS.USER)
+	}: IFetchRelationshipsInput) {
+		const results = await UserRelationship.find(query)
+			.populate(populateField, EXCLUDE_FIELDS.USER)
+			.sort({ level: "asc" })
 			.limit(Number(limit))
 			.skip(Number(limit) * (Number(page) - 1));
 
-		const totalDocs = await UserRelationship.countDocuments({ parentId: userId });
+		const totalDocs = await UserRelationship.countDocuments(query);
 
 		return {
-			referrals,
+			results,
 			totalDocs,
 			totalPages: Math.ceil(totalDocs / Number(limit)),
 		};
 	}
 
-	async getUserReferralStats(userId: string) {
-		const userData = await User.findById(userId);
+	async getUserReferrals({
+		page,
+		limit,
+		userId,
+		minLevel = 1,
+		maxLevel = 15,
+	}: IReferralQueryParams) {
+		const {
+			results: referrals,
+			totalDocs,
+			totalPages,
+		} = await this.fetchRelationships({
+			query: { parentId: userId, level: { $gte: minLevel, $lte: maxLevel } },
+			populateField: "userId",
+			page,
+			limit,
+		});
+		return {
+			referrals,
+			totalDocs,
+			totalPages,
+		};
+	}
 
-		if (!userData) throw new Error("Server error");
+	async getUserReferrers({ page, limit, userId, minLevel, maxLevel }: IReferralQueryParams) {
+		const {
+			results: referrers,
+			totalDocs,
+			totalPages,
+		} = await this.fetchRelationships({
+			query: { userId, level: { $gte: minLevel, $lte: maxLevel } },
+			populateField: "parentId",
+			page,
+			limit,
+		});
+		return {
+			referrers,
+			totalDocs,
+			totalPages,
+		};
+	}
 
+	private async _getUserReferralStats(userData: IUserModel & { _id: Types.ObjectId }) {
 		return {
 			referralCode: userData.referralCode,
 			referralLink: generateInviteUrl(userData.referralCode),
-			currentRank: "TA-Recruit",
+			currentRank: ReferralRank.TA_RECRUIT,
 			currentEarning: 0,
 			rankProgress: 0,
 		};
 	}
 
-	async getCommunityStats(userId: string) {
+	async getUserReferralStats(userId: string) {
 		const userData = await User.findById(userId);
-
 		if (!userData) throw new Error("Server error");
 
+		return this._getUserReferralStats(userData);
+	}
+
+	private async _getCommunityStats(userData: IUserModel & { _id: Types.ObjectId }) {
 		const count = await UserRelationship.count({ parentId: userData.id });
 		const [top] = await UserRelationship.find({ parentId: userData.id })
 			.sort({ level: "descending" })
@@ -70,6 +125,28 @@ class ReferralService {
 			communityMembers: count,
 			communityATC: 0,
 			referralTreeLevels: top?.level ?? 0,
+		};
+	}
+
+	async getCommunityStats(userId: string) {
+		const userData = await User.findById(userId);
+		if (!userData) throw new Error("Server error");
+
+		return this._getCommunityStats(userData);
+	}
+
+	async getReferralOverview(userId: string) {
+		const userData = await User.findById(userId);
+		if (!userData) throw new Error("Server error");
+
+		const [userReferralStats, communityStats] = await Promise.all([
+			this._getUserReferralStats(userData),
+			this._getCommunityStats(userData),
+		]);
+
+		return {
+			...userReferralStats,
+			...communityStats,
 		};
 	}
 
