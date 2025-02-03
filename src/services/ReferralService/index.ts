@@ -6,6 +6,7 @@ import UserRelationship from "../../models/UserRelationship";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
 import { IQueueMessage, IQueueMessageBodyObject } from "../../utils/helpers/types";
 import { Types } from "mongoose";
+import { Status } from "../../config/enums";
 
 type PaginationType = string | string[] | undefined | number;
 
@@ -41,19 +42,38 @@ class ReferralService {
 		page,
 		limit,
 	}: IFetchRelationshipsInput) {
-		const results = await UserRelationship.find(query)
+		let queryBuilder = UserRelationship.find(query)
 			.populate(populateField, EXCLUDE_FIELDS.USER)
-			.sort({ level: "asc" })
-			.limit(Number(limit))
-			.skip(Number(limit) * (Number(page) - 1));
+			.sort({ level: "asc" });
 
-		const totalDocs = await UserRelationship.countDocuments(query);
+		const isPaginated = limit && Number(limit) > 0;
+
+		if (isPaginated) {
+			queryBuilder = queryBuilder
+				.limit(Number(limit))
+				.skip(Number(limit) * (Number(page) - 1));
+		}
+
+		const results = await queryBuilder.exec();
+
+		const totalDocs = isPaginated
+			? await UserRelationship.countDocuments(query)
+			: results.length;
 
 		return {
 			results,
 			totalDocs,
 			totalPages: Math.ceil(totalDocs / Number(limit)),
 		};
+	}
+
+	async getUserReferralIds(userId: string) {
+		const relationships = await UserRelationship.find(
+			{ parentId: userId },
+			{ userId: 1, _id: 0 },
+		).lean();
+		const referralIds = relationships.map((rel) => rel.userId.toString());
+		return { userId, referralIds };
 	}
 
 	async getUserReferrals({
@@ -126,6 +146,36 @@ class ReferralService {
 			communityATC: 0,
 			referralTreeLevels: top?.level ?? 0,
 		};
+	}
+
+	async sendUserReferralIdsToQueue() {
+		const queueUrl = process.env.REFERRALS_DATA_QUEUE ?? "";
+		const BATCH_SIZE = 500;
+		let skip = 0;
+		let hasMore = true;
+		const promiseList: Array<Promise<void>> = [];
+
+		while (hasMore) {
+			const users = await User.find({ status: Status.ACTIVE })
+				.select("id")
+				.limit(BATCH_SIZE)
+				.skip(skip)
+				.lean();
+			if (users.length === 0) {
+				hasMore = false;
+			}
+			const promises = users.map(async (user) => {
+				const { userId, referralIds } = await this.getUserReferralIds(user.id);
+				const message = { userId, referralIds, event: "GET_TRADING_BALANCE" };
+
+				await publishMessageToQueue({ queueUrl, message });
+			});
+
+			promiseList.push(...promises);
+			skip += BATCH_SIZE;
+		}
+
+		await Promise.all(promiseList);
 	}
 
 	async getCommunityStats(userId: string) {

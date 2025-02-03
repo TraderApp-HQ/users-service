@@ -12,6 +12,7 @@ import swaggerUi from "swagger-ui-express";
 import specs from "./utils/swagger";
 
 import secretsJson from "./env.json";
+import "./cron/referralQueue";
 
 config();
 const app = express();
