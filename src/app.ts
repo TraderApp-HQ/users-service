@@ -12,7 +12,7 @@ import swaggerUi from "swagger-ui-express";
 import specs from "./utils/swagger";
 
 import secretsJson from "./env.json";
-import "./cron/referralQueue";
+import runAllJobs from "./jobs";
 
 config();
 const app = express();
@@ -40,6 +40,7 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 				startServer();
 				logger.log(`Server listening at port ${port}`);
 				logger.log(`Docs available at http://localhost:${port}/api-docs`);
+				runAllJobs(); // Start running jobs after the server starts
 			});
 		})
 		.catch((err) => {

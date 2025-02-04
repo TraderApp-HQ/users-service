@@ -163,6 +163,7 @@ class ReferralService {
 				.lean();
 			if (users.length === 0) {
 				hasMore = false;
+				continue;
 			}
 			const promises = users.map(async (user) => {
 				const { userId, referralIds } = await this.getUserReferralIds(user.id);
