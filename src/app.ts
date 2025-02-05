@@ -40,7 +40,6 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 				startServer();
 				logger.log(`Server listening at port ${port}`);
 				logger.log(`Docs available at http://localhost:${port}/api-docs`);
-				runAllJobs(); // Start running jobs after the server starts
 			});
 		})
 		.catch((err) => {
@@ -133,4 +132,7 @@ function startServer() {
 			}),
 		);
 	});
+
+	// Start all jobs when the application starts
+	runAllJobs();
 }

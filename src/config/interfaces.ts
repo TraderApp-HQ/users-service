@@ -9,6 +9,7 @@ import {
 	TaskType,
 	UserTaskStatus,
 } from "./enums";
+import { ReferralRank } from "./constants";
 
 export interface IUser {
 	email: string;
@@ -124,4 +125,14 @@ export interface OtpRateLimit {
 	channel: NotificationChannel;
 	attempts: number;
 	rateLimitStart: Date;
+}
+
+export type ReferralRankType = keyof typeof ReferralRank;
+
+export interface IUserBase {
+	id: string;
+	firstName: string;
+	lastName: string;
+	email: string;
+	referralRank?: ReferralRankType;
 }

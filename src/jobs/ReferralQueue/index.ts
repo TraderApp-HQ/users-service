@@ -7,10 +7,10 @@ export function referralIdsQueueJob() {
 
 	cron.schedule(EVERY_MIDNIGHT, async () => {
 		try {
-			await referralService.sendUserReferralIdsToQueue();
-			console.log("Successfully sent referral IDs to queue");
+			await referralService.sendUserReferralProfilesToQueue();
+			console.log("Successfully sent referrals to queue");
 		} catch (err) {
-			console.error("Error sending referral IDs to queue");
+			console.log("Error sending referrals to queue", err);
 		}
 	});
 }

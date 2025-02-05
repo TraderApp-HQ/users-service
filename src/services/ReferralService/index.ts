@@ -7,6 +7,9 @@ import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
 import { IQueueMessage, IQueueMessageBodyObject } from "../../utils/helpers/types";
 import { Types } from "mongoose";
 import { Status } from "../../config/enums";
+import { IUserBase } from "../../config/interfaces";
+
+const REFERRAL_USER_FIELDS = "id firstName lastName email referralRank -_id";
 
 type PaginationType = string | string[] | undefined | number;
 
@@ -42,23 +45,13 @@ class ReferralService {
 		page,
 		limit,
 	}: IFetchRelationshipsInput) {
-		let queryBuilder = UserRelationship.find(query)
+		const results = await UserRelationship.find(query)
 			.populate(populateField, EXCLUDE_FIELDS.USER)
-			.sort({ level: "asc" });
+			.sort({ level: "asc" })
+			.limit(Number(limit))
+			.skip(Number(limit) * (Number(page) - 1));
 
-		const isPaginated = limit && Number(limit) > 0;
-
-		if (isPaginated) {
-			queryBuilder = queryBuilder
-				.limit(Number(limit))
-				.skip(Number(limit) * (Number(page) - 1));
-		}
-
-		const results = await queryBuilder.exec();
-
-		const totalDocs = isPaginated
-			? await UserRelationship.countDocuments(query)
-			: results.length;
+		const totalDocs = await UserRelationship.countDocuments(query);
 
 		return {
 			results,
@@ -67,13 +60,14 @@ class ReferralService {
 		};
 	}
 
-	async getUserReferralIds(userId: string) {
-		const relationships = await UserRelationship.find(
-			{ parentId: userId },
+	async getUserReferralProfiles(userProfile: IUserBase) {
+		const referrals = await UserRelationship.find<{ userId: IUserBase }>(
+			{ parentId: userProfile.id },
 			{ userId: 1, _id: 0 },
-		).lean();
-		const referralIds = relationships.map((rel) => rel.userId.toString());
-		return { userId, referralIds };
+		)
+			.populate({ path: "userId", select: REFERRAL_USER_FIELDS })
+			.lean();
+		return { user: userProfile, referrals: referrals.map((ref) => ref.userId) };
 	}
 
 	async getUserReferrals({
@@ -148,7 +142,7 @@ class ReferralService {
 		};
 	}
 
-	async sendUserReferralIdsToQueue() {
+	async sendUserReferralProfilesToQueue() {
 		const queueUrl = process.env.REFERRALS_DATA_QUEUE ?? "";
 		const BATCH_SIZE = 500;
 		let skip = 0;
@@ -156,8 +150,8 @@ class ReferralService {
 		const promiseList: Array<Promise<void>> = [];
 
 		while (hasMore) {
-			const users = await User.find({ status: Status.ACTIVE })
-				.select("id")
+			const users = await User.find<IUserBase>({ status: Status.ACTIVE })
+				.select(REFERRAL_USER_FIELDS)
 				.limit(BATCH_SIZE)
 				.skip(skip)
 				.lean();
@@ -165,9 +159,9 @@ class ReferralService {
 				hasMore = false;
 				continue;
 			}
-			const promises = users.map(async (user) => {
-				const { userId, referralIds } = await this.getUserReferralIds(user.id);
-				const message = { userId, referralIds, event: "GET_TRADING_BALANCE" };
+			const promises = users.map(async (userProfile) => {
+				const { user, referrals } = await this.getUserReferralProfiles(userProfile);
+				const message = { user, referrals };
 
 				await publishMessageToQueue({ queueUrl, message });
 			});
