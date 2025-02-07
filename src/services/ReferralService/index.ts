@@ -7,7 +7,7 @@ import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
 import { IQueueMessage, IQueueMessageBodyObject } from "../../utils/helpers/types";
 import { Types } from "mongoose";
 import { Status } from "../../config/enums";
-import { IUserBase } from "../../config/interfaces";
+import { IUserData } from "../../config/interfaces";
 
 const REFERRAL_USER_FIELDS = "id firstName lastName email referralRank -_id";
 
@@ -60,8 +60,8 @@ class ReferralService {
 		};
 	}
 
-	async getUserReferralProfiles(userProfile: IUserBase) {
-		const referrals = await UserRelationship.find<{ userId: IUserBase }>(
+	async getUserReferralProfiles(userProfile: IUserData) {
+		const referrals = await UserRelationship.find<{ userId: IUserData }>(
 			{ parentId: userProfile.id },
 			{ userId: 1, _id: 0 },
 		)
@@ -144,33 +144,45 @@ class ReferralService {
 
 	async sendUserReferralProfilesToQueue() {
 		const queueUrl = process.env.REFERRALS_DATA_QUEUE ?? "";
-		const BATCH_SIZE = 500;
-		let skip = 0;
-		let hasMore = true;
-		const promiseList: Array<Promise<void>> = [];
+		const BATCH_SIZE = 5000;
+		const referralProfilePromises: Array<
+			Promise<{
+				user: IUserData;
+				referrals: IUserData[];
+			}>
+		> = [];
 
-		while (hasMore) {
-			const users = await User.find<IUserBase>({ status: Status.ACTIVE })
-				.select(REFERRAL_USER_FIELDS)
-				.limit(BATCH_SIZE)
-				.skip(skip)
-				.lean();
-			if (users.length === 0) {
-				hasMore = false;
-				continue;
+		const cursor = User.find<IUserData>({ status: Status.ACTIVE })
+			.select(REFERRAL_USER_FIELDS)
+			.lean()
+			.cursor();
+		let batch: IUserData[] = [];
+
+		for await (const userProfile of cursor) {
+			batch.push(userProfile);
+
+			if (batch.length === BATCH_SIZE) {
+				referralProfilePromises.push(
+					...batch.map(async (user) => this.getUserReferralProfiles(user)),
+				);
+				batch = [];
 			}
-			const promises = users.map(async (userProfile) => {
-				const { user, referrals } = await this.getUserReferralProfiles(userProfile);
-				const message = { user, referrals };
-
-				await publishMessageToQueue({ queueUrl, message });
-			});
-
-			promiseList.push(...promises);
-			skip += BATCH_SIZE;
 		}
 
-		await Promise.all(promiseList);
+		// Process the last batch if any users are left
+		if (batch.length > 0) {
+			referralProfilePromises.push(
+				...batch.map(async (user) => this.getUserReferralProfiles(user)),
+			);
+		}
+
+		const referralProfiles = await Promise.all(referralProfilePromises);
+
+		const queuePromises = referralProfiles.map(async (profile) =>
+			publishMessageToQueue({ queueUrl, message: profile }),
+		);
+
+		await Promise.all(queuePromises);
 	}
 
 	async getCommunityStats(userId: string) {

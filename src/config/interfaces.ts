@@ -129,7 +129,7 @@ export interface OtpRateLimit {
 
 export type ReferralRankType = keyof typeof ReferralRank;
 
-export interface IUserBase {
+export interface IUserData {
 	id: string;
 	firstName: string;
 	lastName: string;
