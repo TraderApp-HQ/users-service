@@ -1,7 +1,7 @@
-import { referralIdsQueueJob } from "./ReferralQueue";
+import { userReferralsTrackingJob } from "./ReferralQueue";
 
 const runAllJobs = () => {
-	referralIdsQueueJob();
+	userReferralsTrackingJob();
 };
 
 export default runAllJobs;

@@ -39,6 +39,8 @@ interface IFetchRelationshipsInput {
 }
 
 class ReferralService {
+	private readonly MIN_LEVEL = 1;
+	private readonly MAX_LEVEL = 15;
 	private async fetchRelationships({
 		query,
 		populateField,
@@ -70,12 +72,13 @@ class ReferralService {
 		return { user: userProfile, referrals: referrals.map((ref) => ref.userId) };
 	}
 
+	// Client-facing API for paginated referral data access
 	async getUserReferrals({
 		page,
 		limit,
 		userId,
-		minLevel = 1,
-		maxLevel = 15,
+		minLevel = this.MIN_LEVEL,
+		maxLevel = this.MAX_LEVEL,
 	}: IReferralQueryParams) {
 		const {
 			results: referrals,

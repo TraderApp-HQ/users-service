@@ -2,7 +2,7 @@ import cron from "node-cron";
 import { ReferralService } from "../../services/ReferralService";
 import { EVERY_MIDNIGHT } from "../config";
 
-export function referralIdsQueueJob() {
+export function userReferralsTrackingJob() {
 	const referralService = new ReferralService();
 
 	cron.schedule(EVERY_MIDNIGHT, async () => {
