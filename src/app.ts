@@ -12,6 +12,7 @@ import swaggerUi from "swagger-ui-express";
 import specs from "./utils/swagger";
 
 import secretsJson from "./env.json";
+import runAllJobs from "./jobs";
 
 config();
 const app = express();
@@ -131,4 +132,7 @@ function startServer() {
 			}),
 		);
 	});
+
+	// Start all jobs when the application starts
+	runAllJobs();
 }
