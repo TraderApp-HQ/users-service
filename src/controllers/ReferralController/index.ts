@@ -40,6 +40,26 @@ export async function getUserReferralsStats(req: Request, res: Response, next: N
 	}
 }
 
+export async function sendUserReferralProfileToQueue(
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) {
+	try {
+		const { userId }: { userId: string } = req.body;
+		const referralService = new ReferralService();
+		await referralService.sendUserReferralProfileToQueue(userId);
+
+		res.status(200).json(
+			apiResponseHandler({
+				message: ResponseMessage.TRACK_USER_REFERRALS,
+			}),
+		);
+	} catch (err) {
+		next(err);
+	}
+}
+
 export async function getCommunityStats(req: Request, res: Response, next: NextFunction) {
 	try {
 		const referralService = new ReferralService();

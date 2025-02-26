@@ -1,5 +1,5 @@
 import * as crypto from "crypto";
-import { EXCLUDE_FIELDS, ReferralRank } from "../../config/constants";
+import { EXCLUDE_FIELDS, RANK_REQUIREMENTS, ReferralRank } from "../../config/constants";
 import { generateInviteUrl } from "../../helpers/tokens";
 import User, { IUserModel } from "../../models/User";
 import UserRelationship from "../../models/UserRelationship";
@@ -7,7 +7,15 @@ import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
 import { IQueueMessage, IQueueMessageBodyObject } from "../../utils/helpers/types";
 import { Types } from "mongoose";
 import { Status } from "../../config/enums";
-import { IUserData } from "../../config/interfaces";
+import {
+	IRankCriteria,
+	IRankData,
+	IUserData,
+	ReferralRankType,
+	IReferralData,
+} from "../../config/interfaces";
+import { logger } from "@traderapp/shared-resources";
+import { FeatureFlagManager } from "../../utils/helpers/SplitIOClient";
 
 const REFERRAL_USER_FIELDS = "id firstName lastName email referralRank -_id";
 
@@ -62,14 +70,56 @@ class ReferralService {
 		};
 	}
 
-	async getUserReferralProfiles(userProfile: IUserData) {
+	private computeRankData(criteria: IRankCriteria): IRankData {
+		const { personalATC, communityATC, communitySize, isTestReferralTracking } = criteria;
+
+		const rankData: IRankData = Object.fromEntries(
+			Object.keys(RANK_REQUIREMENTS).map((rank) => [
+				rank,
+				{
+					personalATC: { completed: false, minValue: 0 },
+					communityATC: { completed: false, minValue: 0 },
+					communitySize: { completed: false, minValue: 0 },
+				},
+			]),
+		) as IRankData;
+
+		for (const rank of Object.keys(RANK_REQUIREMENTS) as ReferralRankType[]) {
+			rankData[rank] = {
+				personalATC: {
+					completed: personalATC >= RANK_REQUIREMENTS[rank].personalATC,
+					minValue: RANK_REQUIREMENTS[rank].personalATC,
+				},
+				communityATC: {
+					completed: communityATC >= RANK_REQUIREMENTS[rank].communityATC,
+					minValue: RANK_REQUIREMENTS[rank].communityATC,
+				},
+				communitySize: {
+					completed:
+						communitySize >=
+						(isTestReferralTracking
+							? RANK_REQUIREMENTS[rank].testCommunitySize
+							: RANK_REQUIREMENTS[rank].communitySize),
+					minValue: isTestReferralTracking
+						? RANK_REQUIREMENTS[rank].testCommunitySize
+						: RANK_REQUIREMENTS[rank].communitySize,
+				},
+			};
+		}
+
+		return rankData;
+	}
+
+	async getUserReferralProfiles(userProfile: IUserModel): Promise<IReferralData> {
 		const referrals = await UserRelationship.find<{ userId: IUserData }>(
 			{ parentId: userProfile.id },
 			{ userId: 1, _id: 0 },
 		)
 			.populate({ path: "userId", select: REFERRAL_USER_FIELDS })
 			.lean();
-		return { user: userProfile, referrals: referrals.map((ref) => ref.userId) };
+		const { id, firstName, lastName, email, referralRank } = userProfile;
+		const user: IUserData = { id, firstName, lastName, email, referralRank };
+		return { user, referrals: referrals.map((ref) => ref.userId) };
 	}
 
 	// Client-facing API for paginated referral data access
@@ -115,11 +165,12 @@ class ReferralService {
 		};
 	}
 
-	private async _getUserReferralStats(userData: IUserModel & { _id: Types.ObjectId }) {
+	private async _getUserReferralStats(userData: IUserModel) {
 		return {
 			referralCode: userData.referralCode,
 			referralLink: generateInviteUrl(userData.referralCode),
-			currentRank: ReferralRank.TA_RECRUIT,
+			currentRank: userData.referralRank,
+			personalATC: userData.personalATC,
 			currentEarning: 0,
 			rankProgress: 0,
 		};
@@ -132,17 +183,41 @@ class ReferralService {
 		return this._getUserReferralStats(userData);
 	}
 
-	private async _getCommunityStats(userData: IUserModel & { _id: Types.ObjectId }) {
+	private async _getCommunityStats(userData: IUserModel) {
 		const count = await UserRelationship.count({ parentId: userData.id });
 		const [top] = await UserRelationship.find({ parentId: userData.id })
 			.sort({ level: "descending" })
 			.limit(1);
 
 		return {
-			communityMembers: count,
-			communityATC: 0,
+			communitySize: count,
+			communityATC: userData.communityATC,
 			referralTreeLevels: top?.level ?? 0,
 		};
+	}
+
+	async sendUserReferralProfileToQueue(userId: string) {
+		const userData = await User.findById(userId);
+		if (!userData) throw new Error("Server error");
+
+		const queueUrl = process.env.REFERRALS_DATA_QUEUE ?? "";
+
+		const referralProfiles = await this.getUserReferralProfiles(userData);
+
+		const featureFlags = new FeatureFlagManager();
+		const isReferralTracking = await featureFlags.checkToggleFlag(
+			"release-referral-tracking",
+			userId,
+		);
+
+		if (isReferralTracking) {
+			referralProfiles.isTestReferralTracking = true;
+		}
+
+		await User.findByIdAndUpdate(userId, { isTestReferralTrackingInProgress: true });
+
+		await publishMessageToQueue({ queueUrl, message: referralProfiles });
+		logger.log(`User (${userId}) referrals published to queue`);
 	}
 
 	async sendUserReferralProfilesToQueue() {
@@ -155,11 +230,11 @@ class ReferralService {
 			}>
 		> = [];
 
-		const cursor = User.find<IUserData>({ status: Status.ACTIVE })
+		const cursor = User.find({ status: Status.ACTIVE })
 			.select(REFERRAL_USER_FIELDS)
 			.lean()
 			.cursor();
-		let batch: IUserData[] = [];
+		let batch: IUserModel[] = [];
 
 		for await (const userProfile of cursor) {
 			batch.push(userProfile);
@@ -204,9 +279,26 @@ class ReferralService {
 			this._getCommunityStats(userData),
 		]);
 
+		const featureFlags = new FeatureFlagManager();
+		const isReferralTracking = await featureFlags.checkToggleFlag(
+			"release-referral-tracking",
+			userId,
+		);
+
+		const criteria: IRankCriteria = {
+			personalATC: userReferralStats.personalATC,
+			communityATC: communityStats.communityATC,
+			communitySize: communityStats.communitySize,
+			isTestReferralTracking: isReferralTracking,
+		};
+
+		const rankData = this.computeRankData(criteria);
+
 		return {
 			...userReferralStats,
 			...communityStats,
+			rankData,
+			isTestReferralTrackingInProgress: userData.isTestReferralTrackingInProgress,
 		};
 	}
 
