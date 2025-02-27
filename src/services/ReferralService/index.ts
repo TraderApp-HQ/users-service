@@ -286,9 +286,9 @@ class ReferralService {
 		);
 
 		const criteria: IRankCriteria = {
-			personalATC: userReferralStats.personalATC,
-			communityATC: communityStats.communityATC,
-			communitySize: communityStats.communitySize,
+			personalATC: userReferralStats.personalATC ?? 0,
+			communityATC: communityStats.communityATC ?? 0,
+			communitySize: communityStats.communitySize ?? 0,
 			isTestReferralTracking: isReferralTracking,
 		};
 

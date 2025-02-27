@@ -26,10 +26,10 @@ export interface IUser {
 	status: Status;
 	referralCode: string;
 	parentId?: string;
-	referralRank: ReferralRankType;
-	personalATC: number;
-	communityATC: number;
-	isTestReferralTrackingInProgress: boolean;
+	referralRank?: ReferralRankType;
+	personalATC?: number;
+	communityATC?: number;
+	isTestReferralTrackingInProgress?: boolean;
 }
 
 export interface ICountry {
