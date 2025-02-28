@@ -200,7 +200,7 @@ class ReferralService {
 		const userData = await User.findById(userId);
 		if (!userData) throw new Error("Server error");
 
-		const queueUrl = process.env.REFERRALS_DATA_QUEUE ?? "";
+		const queueUrl = process.env.USER_REFERRALS_TRACKING_QUEUE ?? "";
 
 		const referralProfiles = await this.getUserReferralProfiles(userData);
 
@@ -221,7 +221,7 @@ class ReferralService {
 	}
 
 	async sendUserReferralProfilesToQueue() {
-		const queueUrl = process.env.REFERRALS_DATA_QUEUE ?? "";
+		const queueUrl = process.env.USER_REFERRALS_TRACKING_QUEUE ?? "";
 		const BATCH_SIZE = 5000;
 		const referralProfilePromises: Array<
 			Promise<{
