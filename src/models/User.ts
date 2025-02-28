@@ -27,7 +27,7 @@ const UserSchema = new Schema(
 		referralRank: {
 			type: String,
 			enum: Object.values(ReferralRank),
-			default: ReferralRank.TA_RECRUIT,
+			default: null,
 			index: true,
 		},
 		isEmailVerified: { type: Boolean, default: false },
@@ -37,11 +37,9 @@ const UserSchema = new Schema(
 		status: { type: String, default: Status.ACTIVE, index: true },
 		referralCode: { type: String, index: true, unique: true, sparse: true },
 		parentId: { type: String, index: true, ref: "user" },
-		balance: {
-			availableBalance: { type: Number, default: 0 },
-			locked: { type: Number, default: 0 },
-		},
+		personalATC: { type: Number, default: 0 },
 		communityATC: { type: Number, default: 0 },
+		isTestReferralTrackingInProgress: { type: Boolean, default: false },
 	},
 	{ versionKey: false, timestamps: true },
 );

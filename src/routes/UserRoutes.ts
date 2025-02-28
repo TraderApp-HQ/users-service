@@ -17,8 +17,10 @@ import {
 	getUserReferrals,
 	getUserReferralsStats,
 	inviteFriends,
+	sendUserReferralProfileToQueue,
 } from "../controllers/ReferralController";
 import { validateGetReferral, validateInviteFriends } from "../middlewares/ReferralMiddleware";
+import { validateAdmin } from "../middlewares/TaskMiddleware";
 
 const router = Router();
 
@@ -33,5 +35,6 @@ router.get(ROUTES.referrals, validateGetReferral, getUserReferrals);
 router.post(ROUTES.inviteFriends, validateInviteFriends, inviteFriends);
 router.get(ROUTES.communityStats, validateGetReferral, getCommunityStats);
 router.get(ROUTES.referralOverview, validateGetReferral, getReferralOverview);
+router.post(ROUTES.trackReferrals, validateAdmin, sendUserReferralProfileToQueue);
 
 export default router;

@@ -26,6 +26,10 @@ export interface IUser {
 	status: Status;
 	referralCode: string;
 	parentId?: string;
+	referralRank?: ReferralRankType;
+	personalATC?: number;
+	communityATC?: number;
+	isTestReferralTrackingInProgress?: boolean;
 }
 
 export interface ICountry {
@@ -127,7 +131,7 @@ export interface OtpRateLimit {
 	rateLimitStart: Date;
 }
 
-export type ReferralRankType = keyof typeof ReferralRank;
+export type ReferralRankType = (typeof ReferralRank)[keyof typeof ReferralRank];
 
 export interface IUserData {
 	id: string;
@@ -135,4 +139,30 @@ export interface IUserData {
 	lastName: string;
 	email: string;
 	referralRank?: ReferralRankType;
+}
+
+export interface IRankCriteriaStatus {
+	completed: boolean;
+	minValue: number;
+}
+
+export interface IRankCriteria {
+	personalATC: number;
+	communityATC: number;
+	communitySize: number;
+	isTestReferralTracking?: boolean;
+}
+
+export type IRankData = {
+	[rank in ReferralRankType]: {
+		personalATC: IRankCriteriaStatus;
+		communityATC: IRankCriteriaStatus;
+		communitySize: IRankCriteriaStatus;
+	};
+};
+
+export interface IReferralData {
+	user: IUserData;
+	referrals: IUserData[];
+	isTestReferralTracking?: boolean;
 }
