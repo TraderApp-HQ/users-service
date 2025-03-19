@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import mongoose, { Document, Schema, Model } from "mongoose";
+import mongoose, { Document, Schema, Model, PaginateResult, PaginateOptions } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 import bcrypt from "bcrypt";
 import { IUser } from "../config/interfaces";
@@ -10,7 +10,7 @@ export interface IUserModel extends IUser, Document {}
 
 interface UserModel extends Model<IUserModel> {
 	login: (email: string, password: string) => Promise<IUserModel>;
-	paginate: any;
+	paginate: (query?: object, options?: PaginateOptions) => Promise<PaginateResult<IUserModel>>;
 }
 
 const UserSchema = new Schema(
@@ -26,7 +26,7 @@ const UserSchema = new Schema(
 		countryName: { type: String, required: false },
 		referralRank: {
 			type: String,
-			enum: Object.values(ReferralRank),
+			enum: [...Object.values(ReferralRank), null],
 			default: null,
 			index: true,
 		},

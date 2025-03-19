@@ -1,5 +1,5 @@
 import * as crypto from "crypto";
-import { EXCLUDE_FIELDS, RANK_REQUIREMENTS, ReferralRank } from "../../config/constants";
+import { EXCLUDE_FIELDS, RANK_REQUIREMENTS } from "../../config/constants";
 import { generateInviteUrl } from "../../helpers/tokens";
 import User, { IUserModel } from "../../models/User";
 import UserRelationship from "../../models/UserRelationship";
@@ -18,6 +18,12 @@ import { logger } from "@traderapp/shared-resources";
 import { FeatureFlagManager } from "../../utils/helpers/SplitIOClient";
 
 const REFERRAL_USER_FIELDS = "id firstName lastName email referralRank -_id";
+
+const VALID_SORT_FIELDS = ["level", "createdAt"] as const;
+type SortFieldType = (typeof VALID_SORT_FIELDS)[number];
+
+const VALID_SORT_ORDERS = ["asc", "desc"] as const;
+type SortOrderType = (typeof VALID_SORT_ORDERS)[number];
 
 type PaginationType = string | string[] | undefined | number;
 
@@ -44,30 +50,41 @@ interface IFetchRelationshipsInput {
 	populateField: string;
 	page: PaginationType;
 	limit: PaginationType;
+	sortField?: SortFieldType;
+	sortOrder?: SortOrderType;
 }
 
 class ReferralService {
 	private readonly MIN_LEVEL = 1;
 	private readonly MAX_LEVEL = 15;
+
 	private async fetchRelationships({
 		query,
 		populateField,
 		page,
 		limit,
+		sortField = "createdAt",
+		sortOrder = "desc",
 	}: IFetchRelationshipsInput) {
-		const results = await UserRelationship.find(query)
-			.populate(populateField, EXCLUDE_FIELDS.USER)
-			.sort({ level: "asc" })
-			.limit(Number(limit))
-			.skip(Number(limit) * (Number(page) - 1));
+		if (!VALID_SORT_FIELDS.includes(sortField)) {
+			sortField = "createdAt";
+		}
 
-		const totalDocs = await UserRelationship.countDocuments(query);
+		if (!VALID_SORT_ORDERS.includes(sortOrder)) {
+			sortOrder = "desc";
+		}
 
-		return {
-			results,
-			totalDocs,
-			totalPages: Math.ceil(totalDocs / Number(limit)),
+		const paginateOptions = {
+			page: Number(page),
+			limit: Number(limit),
+			sort: { [sortField]: sortOrder },
+			populate: {
+				path: populateField,
+				select: EXCLUDE_FIELDS.USER,
+			},
 		};
+
+		return UserRelationship.paginate(query, paginateOptions);
 	}
 
 	private computeRankData(criteria: IRankCriteria): IRankData {
@@ -130,39 +147,21 @@ class ReferralService {
 		minLevel = this.MIN_LEVEL,
 		maxLevel = this.MAX_LEVEL,
 	}: IReferralQueryParams) {
-		const {
-			results: referrals,
-			totalDocs,
-			totalPages,
-		} = await this.fetchRelationships({
+		return this.fetchRelationships({
 			query: { parentId: userId, level: { $gte: minLevel, $lte: maxLevel } },
 			populateField: "userId",
 			page,
 			limit,
 		});
-		return {
-			referrals,
-			totalDocs,
-			totalPages,
-		};
 	}
 
 	async getUserReferrers({ page, limit, userId, minLevel, maxLevel }: IReferralQueryParams) {
-		const {
-			results: referrers,
-			totalDocs,
-			totalPages,
-		} = await this.fetchRelationships({
+		return this.fetchRelationships({
 			query: { userId, level: { $gte: minLevel, $lte: maxLevel } },
 			populateField: "parentId",
 			page,
 			limit,
 		});
-		return {
-			referrers,
-			totalDocs,
-			totalPages,
-		};
 	}
 
 	private async _getUserReferralStats(userData: IUserModel) {
