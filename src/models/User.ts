@@ -26,7 +26,7 @@ const UserSchema = new Schema(
 		countryName: { type: String, required: false },
 		referralRank: {
 			type: String,
-			enum: Object.values(ReferralRank),
+			enum: [...Object.values(ReferralRank), null],
 			default: null,
 			index: true,
 		},
