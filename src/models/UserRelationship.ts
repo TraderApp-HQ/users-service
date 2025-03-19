@@ -1,11 +1,14 @@
-import mongoose, { Schema, Document, Model } from "mongoose";
+import mongoose, { Schema, Document, Model, PaginateOptions, PaginateResult } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 import { UserRelationship } from "../config/interfaces";
 
 interface IUserRelationshipModel extends UserRelationship, Document {}
 
 interface UserRelationshipModel extends Model<IUserRelationshipModel> {
-	paginate: any;
+	paginate: (
+		query?: object,
+		options?: PaginateOptions,
+	) => Promise<PaginateResult<IUserRelationshipModel>>;
 }
 
 const UserRelationshipSchema = new Schema(

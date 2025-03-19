@@ -55,19 +55,17 @@ class ReferralService {
 		page,
 		limit,
 	}: IFetchRelationshipsInput) {
-		const results = await UserRelationship.find(query)
-			.populate(populateField, EXCLUDE_FIELDS.USER)
-			.sort({ level: "asc" })
-			.limit(Number(limit))
-			.skip(Number(limit) * (Number(page) - 1));
-
-		const totalDocs = await UserRelationship.countDocuments(query);
-
-		return {
-			results,
-			totalDocs,
-			totalPages: Math.ceil(totalDocs / Number(limit)),
+		const paginateOptions = {
+			page: Number(page),
+			limit: Number(limit),
+			sort: { level: "asc" },
+			populate: {
+				path: populateField,
+				select: EXCLUDE_FIELDS.USER,
+			},
 		};
+
+		return UserRelationship.paginate(query, paginateOptions);
 	}
 
 	private computeRankData(criteria: IRankCriteria): IRankData {
@@ -130,39 +128,21 @@ class ReferralService {
 		minLevel = this.MIN_LEVEL,
 		maxLevel = this.MAX_LEVEL,
 	}: IReferralQueryParams) {
-		const {
-			results: referrals,
-			totalDocs,
-			totalPages,
-		} = await this.fetchRelationships({
+		return this.fetchRelationships({
 			query: { parentId: userId, level: { $gte: minLevel, $lte: maxLevel } },
 			populateField: "userId",
 			page,
 			limit,
 		});
-		return {
-			referrals,
-			totalDocs,
-			totalPages,
-		};
 	}
 
 	async getUserReferrers({ page, limit, userId, minLevel, maxLevel }: IReferralQueryParams) {
-		const {
-			results: referrers,
-			totalDocs,
-			totalPages,
-		} = await this.fetchRelationships({
+		return this.fetchRelationships({
 			query: { userId, level: { $gte: minLevel, $lte: maxLevel } },
 			populateField: "parentId",
 			page,
 			limit,
 		});
-		return {
-			referrers,
-			totalDocs,
-			totalPages,
-		};
 	}
 
 	private async _getUserReferralStats(userData: IUserModel) {
