@@ -1,4 +1,5 @@
 import * as crypto from "crypto";
+import "dotenv/config";
 import { EXCLUDE_FIELDS, RANK_REQUIREMENTS } from "../../config/constants";
 import { generateInviteUrl } from "../../helpers/tokens";
 import User, { IUserModel } from "../../models/User";
