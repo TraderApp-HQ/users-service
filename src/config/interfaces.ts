@@ -2,6 +2,7 @@ import {
 	NotificationChannel,
 	Platform,
 	PlatformActions,
+	PlatformFollowStatus,
 	Role,
 	Status,
 	TaskCategory,
@@ -30,6 +31,25 @@ export interface IUser {
 	personalATC?: number;
 	communityATC?: number;
 	isTestReferralTrackingInProgress?: boolean;
+}
+
+export interface IPlatformsFollower {
+	id: string;
+	userId: string;
+	platformName: Platform;
+	username: string;
+	followStatus: PlatformFollowStatus;
+	fullName: string;
+	avatarUrl: string;
+	followersCount: string;
+}
+
+export interface ISocialPageFollower {
+	id: string;
+	username: string;
+	fullName: string;
+	avatarUrl: string;
+	followersCount: string;
 }
 
 export interface ICountry {
