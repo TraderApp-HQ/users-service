@@ -41,7 +41,16 @@ export interface IPlatformsFollower {
 	followStatus: PlatformFollowStatus;
 	fullName: string;
 	avatarUrl: string;
-	followersCount: string;
+	followersCount: number;
+}
+
+export interface IAllFollowersRecord {
+	id: string;
+	platform: Platform;
+	username: string;
+	fullName: string;
+	avatarUrl: string;
+	followersCount: number;
 }
 
 export interface ISocialPageFollower {

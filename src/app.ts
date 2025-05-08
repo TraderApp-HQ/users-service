@@ -80,8 +80,8 @@ function startServer() {
 	app.use(cors(corsOptions));
 
 	// parse incoming requests
-	app.use(express.urlencoded({ extended: true }));
-	app.use(express.json());
+	app.use(express.urlencoded({ extended: true, limit: "8mb" }));
+	app.use(express.json({ limit: "8mb" }));
 	app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 	// documentation

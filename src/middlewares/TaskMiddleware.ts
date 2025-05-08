@@ -204,3 +204,39 @@ export const validateUserTask = async (req: Request, res: Response, next: NextFu
 		next(error);
 	}
 };
+
+export const validateTaskPlatformsData = async (
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) => {
+	try {
+		// validates that user is an admin
+		await checkAdmin(req);
+
+		// validation schema for req body
+		const schema = Joi.object({
+			platform: Joi.string()
+				.valid(...Object.values(Platform))
+				.required()
+				.label("Platform"),
+			platformAction: Joi.string()
+				.valid(...Object.values(PlatformActions))
+				.required()
+				.label("Platform Action"),
+			file: Joi.string().required().label("File"),
+		});
+
+		// validate request body
+		const { error } = schema.validate(req.body);
+		if (error) {
+			// strip string of double quotes
+			error.message = error.message.replace(/\"/g, "");
+			throw error;
+		}
+
+		next();
+	} catch (error) {
+		next(error);
+	}
+};
