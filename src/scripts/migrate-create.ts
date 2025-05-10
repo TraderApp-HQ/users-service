@@ -13,11 +13,15 @@ function createMigrationFile(name: string) {
 	export async function up() {
 		console.log("Running migration: ${migrationFileName}");
 		// Your migration logic here
+
+		console.log("Migration completed successfully for: ${migrationFileName}");
 	}
 
 	export async function down() {
 		console.log("Rolling back migration: ${migrationFileName}");
 		// Your rollback logic here
+
+		console.log("Rollback completed successfully for: ${migrationFileName}");
 	}
 	`;
 
