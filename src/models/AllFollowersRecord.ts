@@ -7,7 +7,7 @@ interface IAllFollowersRecordSchema extends IAllFollowersRecord {}
 const AllFollowersRecordSchema = new Schema(
 	{
 		id: { type: String, unique: true },
-		platform: { type: String, enum: Object.values(Platform), required: true },
+		platform: { type: String, enum: Object.values(Platform), required: true, index: true },
 		username: { type: String, unique: true, required: true },
 		fullName: { type: String },
 		avatarUrl: { type: String },

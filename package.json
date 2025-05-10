@@ -11,7 +11,13 @@
 		"lint": "eslint src --ext .ts",
 		"format": "prettier --write \"src/**/*.ts\"",
 		"init-countries": "npx ts-node src/scripts/get-countries-script",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"run-sample-script": "ts-node src/scripts/fixtures/sample-script.ts",
+		"db:migrate-all": "ts-node src/scripts/migrate.ts",
+		"db:migrate-one": "ts-node src/scripts/migrate.ts migrate",
+		"db:migrate-rollback": "ts-node src/scripts/migrate.ts rollback",
+		"db:migrate-rollback-all": "ts-node src/scripts/migrate.ts rollback-all",
+		"db:migration-create": "ts-node src/scripts/migrate-create.ts"
 	},
 	"dependencies": {
 		"@aws-sdk/client-secrets-manager": "^3.321.1",

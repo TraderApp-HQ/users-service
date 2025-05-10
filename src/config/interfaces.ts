@@ -33,17 +33,6 @@ export interface IUser {
 	isTestReferralTrackingInProgress?: boolean;
 }
 
-export interface IPlatformsFollower {
-	id: string;
-	userId: string;
-	platformName: Platform;
-	username: string;
-	followStatus: PlatformFollowStatus;
-	fullName: string;
-	avatarUrl: string;
-	followersCount: number;
-}
-
 export interface IAllFollowersRecord {
 	id: string;
 	platform: Platform;
