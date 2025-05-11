@@ -125,9 +125,15 @@ export class TasksCenterService {
 		return { message: "User task successfully added." };
 	}
 
-	async updateTaskPlatformData(req: Request) {
-		const { platform, platformAction, file } = req.body;
-
+	async updateTaskPlatformData({
+		platform,
+		platformAction,
+		file,
+	}: {
+		platform: string;
+		platformAction: string;
+		file: string;
+	}) {
 		// Strip Data URI prefix if present
 		const base64String = file.split(",")[1];
 
