@@ -11,6 +11,10 @@ export const ENVIRONMENTS: Record<string, EnvProperty> = Object.freeze({
 		slug: "dev",
 		frontendUrl: "https://web-dashboard-dev.traderapp.finance",
 	},
+	test: {
+		slug: "dev",
+		frontendUrl: "https://web-dashboard-dev.traderapp.finance",
+	},
 	staging: {
 		slug: "staging",
 		frontendUrl: "https://web-dashboard-staging.traderapp.finance",

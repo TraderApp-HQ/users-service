@@ -34,6 +34,11 @@ export enum PlatformActions {
 	POST = "Post",
 }
 
+export enum PlatformFollowStatus {
+	FOLLOWING = "Following",
+	NOT_FOLLOWING = "Not Following",
+}
+
 export enum TaskCategory {
 	SOCIAL = "Social Media Engagement",
 	CONTENT = "Content Creation",

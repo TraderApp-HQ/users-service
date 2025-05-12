@@ -179,3 +179,24 @@ export const getUserTask = async (req: Request, res: Response, next: NextFunctio
 		next(error);
 	}
 };
+
+export const updateTaskPlatformData = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const { platform, platformAction, file } = req.body;
+
+		const tasksCenterService = new TasksCenterService();
+		const response = await tasksCenterService.updateTaskPlatformData({
+			platform,
+			platformAction,
+			file,
+		});
+
+		res.status(201).json(
+			apiResponseHandler({
+				message: response.message,
+			}),
+		);
+	} catch (error) {
+		next(error);
+	}
+};
