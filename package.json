@@ -10,8 +10,7 @@
 		"test": "npx jest",
 		"lint": "eslint src --ext .ts",
 		"format": "prettier --write \"src/**/*.ts\"",
-		"init-countries": "npx ts-node src/scripts/get-countries-script",
-		"prepare": "husky install"
+		"init-countries": "npx ts-node src/scripts/get-countries-script"
 	},
 	"dependencies": {
 		"@aws-sdk/client-secrets-manager": "^3.321.1",
