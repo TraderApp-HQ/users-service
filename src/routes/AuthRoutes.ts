@@ -1,28 +1,39 @@
 import { Router } from "express";
-import { 
-    signupHandler, 
-    loginHandler, 
-    refreshTokenHandler,
-    logoutHandler,
-    passwordResetHandler,
-    sendPasswordResetLinkHandler 
+import {
+	signupHandler,
+	loginHandler,
+	refreshTokenHandler,
+	logoutHandler,
+	passwordResetHandler,
+	sendPasswordResetLinkHandler,
+	verifyOtpHandler,
+	createUserHandler,
 } from "../controllers/AuthController";
-import { 
-    validateSignupRequest, 
-    validateLoginRequest, 
-    validateRefreshTokenRequest,
-    validateLogoutRequest,
-    validateSendPasswordResetLinkRequest,
-    validatePasswordResetRequest
-} from "../middlewares/AuthMiddleware"; 
+import {
+	validateSignupRequest,
+	validateLoginRequest,
+	validateRefreshTokenRequest,
+	validateLogoutRequest,
+	validateSendPasswordResetLinkRequest,
+	validatePasswordResetRequest,
+	validateVerifyOTPRequest,
+	validateCreateUserRequest,
+} from "../middlewares/AuthMiddleware";
+import { ROUTES } from "../config/constants";
 
 const router = Router();
 
-router.post("/signup", validateSignupRequest, signupHandler);
-router.post("/login", validateLoginRequest, loginHandler);
-router.delete("/logout", validateLogoutRequest, logoutHandler);
-router.post("/refresh-token", validateRefreshTokenRequest, refreshTokenHandler);
-router.post("/password-reset", validatePasswordResetRequest, passwordResetHandler);
-router.get("/password-reset/:email", validateSendPasswordResetLinkRequest, sendPasswordResetLinkHandler);
+router.post(ROUTES.signup, validateSignupRequest, signupHandler);
+router.post(ROUTES.createUser, validateCreateUserRequest, createUserHandler);
+router.post(ROUTES.login, validateLoginRequest, loginHandler);
+router.delete(ROUTES.logout, validateLogoutRequest, logoutHandler);
+router.post(ROUTES.refreshToken, validateRefreshTokenRequest, refreshTokenHandler);
+router.post(ROUTES.passwordReset, validatePasswordResetRequest, passwordResetHandler);
+router.post(
+	ROUTES.passwordResetLink,
+	validateSendPasswordResetLinkRequest,
+	sendPasswordResetLinkHandler,
+);
+router.put(ROUTES.verifyOtp, validateVerifyOTPRequest, verifyOtpHandler);
 
 export default router;

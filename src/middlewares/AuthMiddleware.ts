@@ -1,222 +1,286 @@
 import { Request, Response, NextFunction } from "express";
 import Joi from "joi";
-import bcrypt from "bcrypt";
-import { verifyRefreshToken } from "../utils/tokens";
+import { validateUserVerificationToken, verifyRefreshToken } from "../helpers/tokens";
 import Token from "../models/RefreshToken";
 import User from "../models/User";
-import PasswordResetToken from "../models/PasswordResetToken";
+import { RESPONSE_FLAGS } from "../config/constants";
+import { NotificationChannel, Role } from "../config/enums";
+import { IVerifyOtp, VerificationType } from "../controllers/AuthController/config";
+import { isValidObjectId } from "mongoose";
 
 export async function validateLoginRequest(req: Request, res: Response, next: NextFunction) {
-    //get params from request body
-    const { email, password } = req.body;
+	// get params from request body
+	const { email, password } = req.body;
 
-    //define validation schema
-    const schema = Joi.object({
-        email: Joi.string().email().required().label("Email"),
-        password: Joi.string().required().label("Password")
-    });
+	// define validation schema
+	const schema = Joi.object({
+		email: Joi.string().email().required().label("Email"),
+		password: Joi.string().required().label("Password"),
+	});
 
-    //validate request
-    const { error } = schema.validate({ email, password });
+	// validate request
+	const { error } = schema.validate({ email, password });
 
-    if(error) {
-        //strip string of double quotes
-        error.message = error.message.replace(/\"/g, "");
-        next(error);
-    }
-    else {
-        next();
-    }
+	if (error) {
+		// strip string of double quotes
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
+	} else {
+		next();
+	}
 }
 
 export async function validateSignupRequest(req: Request, res: Response, next: NextFunction) {
-    //define validation schema
-    const schema = Joi.object({
-        first_name: Joi.string().required().label("First Name"),
-        last_name: Joi.string().required().label("Last Name"),
-        email: Joi.string().email().required().label("Email"),
-        password: Joi.string().min(8).required().label("Password"),
-        dob: Joi.string().required().label("Date of Birth"),
-        country_id: Joi.number().required().label("Country Id")
-    })
+	// define validation schema
+	const schema = Joi.object({
+		firstName: Joi.string().required().label("First Name"),
+		lastName: Joi.string().required().label("Last Name"),
+		email: Joi.string().email().required().label("Email"),
+		password: Joi.string()
+			.min(8)
+			.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_#]).+$/)
+			.required()
+			.messages({
+				"string.min": "The password must be at least 8 characters long.",
+				"string.pattern.base":
+					"The password should contain at least one upper case, one number, one lower case character, and one special character.",
+			})
+			.label("Password"),
+		countryId: Joi.number().required().label("Country Id"),
+		countryName: Joi.string().required().label("Country Name"),
+	});
 
-    //validate request
-    const { error } = schema.validate(req.body);
+	// validate request
+	const { error } = schema.validate(req.body);
 
-    if(error) {
-        //strip string of quotes
-        error.message = error.message.replace(/\"/g, '');
-        next(error);
-    }
-    else {
-        //get email from request body
-        const { email } = req.body;
+	if (error) {
+		// strip string of quotes
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
+	} else {
+		// get email from request body
+		const { email } = req.body;
 
-        try {
-            //check if email already in use and throw error if true
-            const isUser = await User.findOne({ email });
-            if(isUser) {
-                const err = new Error("This Email address is already in use!");
-                err.name = "Forbidden";
-                throw err;
-            }
+		try {
+			// check if email already in use and throw error if true
+			const isUser = await User.findOne({ email });
+			if (isUser) {
+				const err = new Error("This Email address is already in use!");
+				err.name = RESPONSE_FLAGS.forbidden;
+				throw err;
+			}
 
-            next();
-        }
-        catch(err: any) {
-            next(err);
-        }
-    }
+			next();
+		} catch (err: any) {
+			next(err);
+		}
+	}
+}
+
+export async function validateCreateUserRequest(req: Request, res: Response, next: NextFunction) {
+	// define validation schema
+	const roleSchema = Joi.string().valid(...Object.values(Role));
+
+	const schema = Joi.object({
+		firstName: Joi.string().required().label("First Name"),
+		lastName: Joi.string().required().label("Last Name"),
+		email: Joi.string().email().required().label("Email"),
+		role: Joi.array().items(roleSchema).min(1).required(),
+		countryId: Joi.number().required().label("Country Id"),
+		countryName: Joi.string().required().label("Country Name"),
+	});
+
+	// validate request
+	const { error } = schema.validate(req.body);
+
+	if (error) {
+		// strip string of quotes
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
+	} else {
+		// get email from request body
+		const { email } = req.body;
+
+		try {
+			// check if email already in use and throw error if true
+			const isUser = await User.findOne({ email });
+			if (isUser) {
+				const err = new Error("This Email address is already in use!");
+				err.name = RESPONSE_FLAGS.forbidden;
+				throw err;
+			}
+
+			next();
+		} catch (err: any) {
+			next(err);
+		}
+	}
 }
 
 export async function validateRefreshTokenRequest(req: Request, res: Response, next: NextFunction) {
-    //get refresh token from request body
-    const { refresh_token } = req.body;
+	// get refresh token from request body
+	const refreshToken = req.signedCookies.refreshToken;
 
-    //define validation schema
-    const schema = Joi.object({
-        refresh_token: Joi.string().required().label("Refresh Token")
-    });
+	// define validation schema
+	const schema = Joi.object({
+		refreshToken: Joi.string().required().label("Refresh Token"),
+	});
 
-    //validate request
-    const { error } = schema.validate({ refresh_token });
+	// validate request
+	const { error } = schema.validate({ refreshToken });
 
-    //check if error in request and throw error
-    if(error) {
-        error.message = error.message.replace(/\"/g, "");
-        next(error);
-        return
-    }
+	// check if error in request and throw error
+	if (error) {
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
+		return;
+	}
 
-    try {
-        //create error object
-        const err = new Error("Invalid Token");
-        err.name = "Unauthorized";
+	try {
+		// create error object
+		const err = new Error("No valid session found!");
+		err.name = RESPONSE_FLAGS.forbidden;
 
-        //verify refresh token and get user's id
-        let _id = await verifyRefreshToken(refresh_token);
+		// verify refresh token and get user's id
+		const _id = await verifyRefreshToken(refreshToken);
 
-        //check if user has token in db and throw error if not
-        const userSession = await Token.findOne({ _id });
-        if(!userSession) throw err;
+		// check if user has token in db and throw error if not
+		const userSession = await Token.findOne({ _id });
+		if (!userSession) throw err;
 
-        //check if token is not same as the one the user has in db
-        //throw unauthorized error and delete token from db
-        if(userSession.refresh_token !== refresh_token) {
-            await Token.deleteOne({ _id });
-            throw err;
-        }
-        
-        //attach id to req body and continue;
-        req.body._id = _id;
-        next();
-    }
-    catch(err: any) {
-        next(err);
-    }
+		// check if token is not same as the one the user has in db
+		// throw unauthorized error and delete token from db
+		if (userSession.refreshToken !== refreshToken) {
+			await Token.deleteOne({ _id });
+			throw err;
+		}
+
+		// attach id to req body and continue;
+		req.body._id = _id;
+		next();
+	} catch (err: any) {
+		next(err);
+	}
 }
 
 export async function validateLogoutRequest(req: Request, res: Response, next: NextFunction) {
-    //get refresh token from request body
-    const { refresh_token } = req.body;
+	// get refresh token from request body
+	const refreshToken = req.signedCookies.refreshToken;
+	// define validation schema
+	const schema = Joi.object({
+		refreshToken: Joi.string().required().label("Refresh Token"),
+	});
 
-    //define validation schema
-    const schema = Joi.object({
-        refresh_token: Joi.string().required().label("Refresh Token")
-    });
+	// validate request
+	const { error } = schema.validate({ refreshToken });
 
-    //validate request
-    const { error } = schema.validate({ refresh_token });
+	// throw error if request is invalid
+	if (error) {
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
+		return;
+	}
 
-    //throw error if request is invalid
-    if(error) {
-        error.message = error.message.replace(/\"/g, "");
-        next(error);
-        return
-    }
+	try {
+		// verify refresh token and get user's id
+		const _id = await verifyRefreshToken(refreshToken);
 
-    try {
-        //verify refresh token and get user's id
-        let _id = await verifyRefreshToken(refresh_token);
-        
-        //attach id to req body and continue;
-        req.body._id = _id;
-        next();
-    }
-    catch(err: any) {
-        next(err);
-    }
+		// attach id to req body and continue;
+		req.body._id = _id;
+		next();
+	} catch (err: any) {
+		next(err);
+	}
 }
 
-export async function validateSendPasswordResetLinkRequest(req: Request, res: Response, next: NextFunction) {
-    const { email } = req.params;
+export async function validateSendPasswordResetLinkRequest(
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) {
+	const { email } = req.body;
 
-    const schema = Joi.object({
-        email: Joi.string().email().required().label("Email")
-    });
+	const schema = Joi.object({
+		email: Joi.string().email().required().label("Email"),
+	});
 
-    const { error } = schema.validate({ email });
+	const { error } = schema.validate({ email });
 
-    if(error) {
-        error.message = error.message.replace(/\"/g, "");
-        next(error);
-        return
-    }
+	if (error) {
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
+		return;
+	}
 
-    try {
-        const user = await User.findOne({ email });
-        req.body._id = user?._id;
-        next()
-    }
-    catch(err) {
-
-    }
+	try {
+		const user = await User.findOne({ email });
+		req.body.user = user;
+		next();
+	} catch (err) {
+		next(err);
+	}
 }
 
-export async function validatePasswordResetRequest(req: Request, res: Response, next: NextFunction) {
-    const { reset_token, password, user_id } = req.body;
+export async function validatePasswordResetRequest(
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) {
+	const { verificationToken, password, userId } = req.body;
 
-    const schema = Joi.object({
-        reset_token: Joi.string().required().label("Reset Token"),
-        password: Joi.string().min(8).required().label("Password"),
-        user_id: Joi.string().required().label("User Id")
-    });
+	const schema = Joi.object({
+		verificationToken: Joi.string().required().label("Verification Token"),
+		password: Joi.string().min(8).required().label("Password"),
+		userId: Joi.string().required().label("User Id"),
+	});
 
-    const { error } = schema.validate({ reset_token, password, user_id });
+	const { error } = schema.validate({ verificationToken, password, userId });
 
-    if(error) {
-        error.message = error.message.replace(/\"/g, "");
-        next(error);
-        return
-    }
+	if (error) {
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
+		return;
+	}
 
-    let errorFlag = 0;
+	if (!isValidObjectId(userId)) {
+		const err = new Error("User Id is an invalid format");
+		err.name = RESPONSE_FLAGS.validationError;
+		next(err);
+		return;
+	}
 
-    try {
+	try {
+		await validateUserVerificationToken({ userId, verificationToken });
+		next();
+	} catch (err: any) {
+		err.name = RESPONSE_FLAGS.forbidden;
+		next(err);
+	}
+}
 
-        //check if reset token in db
-        const user = await PasswordResetToken.findOne({ _id: user_id });
+export async function validateVerifyOTPRequest(req: Request, res: Response, next: NextFunction) {
+	const { userId, data, verificationType } = req.body as IVerifyOtp;
 
+	const dataSchema = Joi.object({
+		otp: Joi.string().required(),
+		channel: Joi.string()
+			.valid(...Object.values(NotificationChannel))
+			.required(),
+	});
+	const verificationTypeSchema = Joi.string().valid(...Object.values(VerificationType));
+	const schema = Joi.object({
+		userId: Joi.string().required(),
+		data: Joi.array().items(dataSchema).min(1).required(),
+		verificationType: Joi.array().items(verificationTypeSchema).min(1),
+	});
 
-        if(!user) {
-            errorFlag = 1;
-            throw Error("Invalid request");
-        }
+	const { error } = schema.validate({ userId, data, verificationType });
 
-        //compare reset token to see if they match
-        let isTokenValid = await bcrypt.compare(reset_token, user.reset_token);
+	if (error) {
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
+		return;
+	}
 
-        if(!isTokenValid) {
-            errorFlag = 2;
-            await PasswordResetToken.deleteOne({ _id: user_id });
-            throw Error("Invalid Token");
-        }
-
-        next();
-    }
-    catch(err: any) {
-        if(errorFlag == 1) err.name = "Forbidden";
-        else if(errorFlag == 2) err.name = "Unauthorized";
-        next(err);
-    }
+	next();
 }
