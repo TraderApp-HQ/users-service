@@ -1,4 +1,16 @@
-import { NotificationChannel, Role, Status } from "./enums";
+import {
+	NotificationChannel,
+	Platform,
+	PlatformActions,
+	PlatformFollowStatus,
+	Role,
+	Status,
+	TaskCategory,
+	TaskStatus,
+	TaskType,
+	UserTaskStatus,
+} from "./enums";
+import { ReferralRank } from "./constants";
 
 export interface IUser {
 	email: string;
@@ -13,6 +25,29 @@ export interface IUser {
 	isIdVerified?: boolean;
 	role: Role[];
 	status: Status;
+	referralCode: string;
+	parentId?: string;
+	referralRank?: ReferralRankType;
+	personalATC?: number;
+	communityATC?: number;
+	isTestReferralTrackingInProgress?: boolean;
+}
+
+export interface IAllFollowersRecord {
+	id: string;
+	platform: Platform;
+	username: string;
+	fullName: string;
+	avatarUrl: string;
+	followersCount: number;
+}
+
+export interface ISocialPageFollower {
+	id: string;
+	username: string;
+	fullName: string;
+	avatarUrl: string;
+	followersCount: string;
 }
 
 export interface ICountry {
@@ -64,4 +99,88 @@ export interface IAccessToken {
 	isEmailVerified: boolean;
 	isIdVerified: boolean;
 	role: Role[];
+}
+
+export interface UserRelationship {
+	userId: string; // The user (descendant)
+	parentId: string; // The ancestor (direct parent)
+	level: number; // Level of the ancestor (1 for direct parent, 2 for grandparent, etc.)
+	createdAt: Date;
+}
+
+export interface ITaskPlatform {
+	id: string;
+	name: Platform;
+	logoUrl: string;
+	isActive: boolean;
+	supportedActions: PlatformActions[];
+	categories: TaskCategory[];
+}
+
+export interface ITask {
+	id: string;
+	title: string;
+	description: string;
+	objective?: string;
+	taskType: TaskType;
+	category: TaskCategory;
+	platformId?: string;
+	platformName?: Platform;
+	link?: string;
+	expectedActions?: PlatformActions[];
+	points: number;
+	startDate?: Date;
+	dueDate?: Date;
+	status: TaskStatus;
+}
+
+export interface IUserTask {
+	id: string;
+	userId: string;
+	taskId: string;
+	taskPoints: number;
+	expectedActions?: PlatformActions[];
+	status: UserTaskStatus;
+}
+
+export interface OtpRateLimit {
+	channel: NotificationChannel;
+	attempts: number;
+	rateLimitStart: Date;
+}
+
+export type ReferralRankType = (typeof ReferralRank)[keyof typeof ReferralRank];
+
+export interface IUserData {
+	id: string;
+	firstName: string;
+	lastName: string;
+	email: string;
+	referralRank?: ReferralRankType;
+}
+
+export interface IRankCriteriaStatus {
+	completed: boolean;
+	minValue: number;
+}
+
+export interface IRankCriteria {
+	personalATC: number;
+	communityATC: number;
+	communitySize: number;
+	isTestReferralTracking?: boolean;
+}
+
+export type IRankData = {
+	[rank in ReferralRankType]: {
+		personalATC: IRankCriteriaStatus;
+		communityATC: IRankCriteriaStatus;
+		communitySize: IRankCriteriaStatus;
+	};
+};
+
+export interface IReferralData {
+	user: IUserData;
+	referrals: IUserData[];
+	isTestReferralTracking?: boolean;
 }

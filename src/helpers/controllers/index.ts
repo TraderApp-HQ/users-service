@@ -4,6 +4,7 @@ import "dotenv/config";
 import { NotificationChannel } from "../../config/enums";
 import OneTimePassword from "../../models/OneTimePassword";
 import { IUserModel } from "../../models/User";
+import OtpRateLimit from "../../models/OtpRateLimit";
 import {
 	generateAccessToken,
 	generateOTP,
@@ -13,14 +14,17 @@ import {
 import { IVerifyOtp } from "../../controllers/AuthController/config";
 import {
 	ENVIRONMENTS,
+	MAX_OTP_ATTEMPTS,
 	REFRESH_TOKEN_EXPIRES,
+	RESPONSE_FLAGS,
 	accessTokenCookieOptions,
 	refreshTokenCookieOptions,
 } from "../../config/constants";
 import Token from "../../models/RefreshToken";
 import { IAccessToken } from "../../config/interfaces";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
-import { IQueueMessage } from "../../utils/helpers/types";
+import { IQueueMessageBodyObject } from "../../utils/helpers/types";
+import { startSession } from "mongoose";
 
 interface ISendOtp {
 	userData: IUserModel;
@@ -33,49 +37,58 @@ interface IUserOtp {
 }
 
 export async function sendOTP({ userData, channels }: ISendOtp) {
-	// generate otp and insert into db
-	const insertData = channels.map((channel) => ({
-		_id: userData._id,
-		otp: generateOTP(),
-		channel,
-	}));
-	const otpExist = await OneTimePassword.findOne({ _id: userData._id }).select("_id");
-	if (otpExist) {
-		await Promise.all(
-			channels.map(async (channel) => {
-				await OneTimePassword.updateOne(
-					{ _id: userData._id, channel },
-					{ otp: generateOTP() },
-					{ upsert: true },
+	await Promise.all(
+		channels.map(async (channel) => {
+			const rateLimitRecord = await OtpRateLimit.findOneAndUpdate(
+				{ _id: userData._id, channel },
+				{ $inc: { attempts: 1 }, $setOnInsert: { rateLimitStart: new Date() } },
+				{ upsert: true, new: true },
+			);
+
+			if (rateLimitRecord.attempts > MAX_OTP_ATTEMPTS) {
+				const error = new Error(
+					"You've exceeded the maximum OTP requests. Please wait for one hour and try again.",
 				);
-			}),
-		);
-	} else {
-		await OneTimePassword.create(insertData);
-	}
+				error.name = RESPONSE_FLAGS.forbidden;
+				throw error;
+			}
+		}),
+	);
+
+	const otpData = channels.map((channel) => ({
+		channel,
+		otp: generateOTP(),
+	}));
+
+	await Promise.all(
+		otpData.map(({ channel, otp }) =>
+			OneTimePassword.updateOne(
+				{ _id: userData._id, channel },
+				{ otp, createdAt: new Date() }, // Reset TTL window on update
+				{ upsert: true },
+			),
+		),
+	);
 
 	// publish message in parralel to notification-service to send notification
-	const promises = insertData.map((data) => {
-		const message: IQueueMessage = {
-			channel: [data.channel],
-			messageObject: {
-				recipientName: userData.firstName,
-				messageBody: data.otp,
-				emailAddress: userData.email,
-			},
+	const promises = otpData.map(({ otp }) => {
+		const message: IQueueMessageBodyObject = {
+			recipients: [{ firstName: userData.firstName, emailAddress: userData.email }],
+			message: otp,
 			event: "OTP",
 		};
 		return {
 			message,
 			promise: publishMessageToQueue({
-				queueUrl: process.env.NOTIFICATIONS_SERVICE_QUEUE_URL ?? "",
+				queueUrl: process.env.EMAIL_OTP_QUEUE ?? "",
 				message,
 			}),
 		};
 	});
 	await Promise.allSettled(promises.map(async (promise) => promise.promise));
+
 	console.log("Published messages to queue", {
-		messages: promises.map((promise) => promise.message),
+		messages: promises.map((promise) => JSON.stringify(promise.message)),
 	});
 }
 
@@ -113,10 +126,19 @@ export async function verifyOTP({ userId, data }: IVerifyOtp) {
 }
 
 export async function deleteOtp({ userId, channels }: IUserOtp): Promise<void> {
+	const session = await startSession();
 	try {
-		await OneTimePassword.deleteMany({
-			_id: userId,
-			channel: { $in: channels },
+		await session.withTransaction(async () => {
+			await Promise.all([
+				OneTimePassword.deleteMany({
+					_id: userId,
+					channel: { $in: channels },
+				}).session(session),
+				OtpRateLimit.deleteMany({
+					_id: userId,
+					channel: { $in: channels },
+				}).session(session),
+			]);
 		});
 		logger.log(`Deleted OTPs for userId: ${userId} and channels: ${channels.join(", ")}`);
 	} catch (error) {
@@ -138,6 +160,7 @@ export function getUserObject(data: IUserModel) {
 		isEmailVerified: data.isEmailVerified,
 		isIdVerified: data.isIdVerified,
 		role: data.role,
+		referralCode: data.referralCode,
 	};
 }
 export async function buildResponse(res: Response, data: IUserModel) {
