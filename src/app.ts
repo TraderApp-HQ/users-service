@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import { AuthRoutes, CountryRoutes, VerificationRoutes, UserRoutes } from "./routes";
+import { AuthRoutes, CountryRoutes, VerificationRoutes, UserRoutes, TaskRoutes } from "./routes";
 import { config } from "dotenv";
 import { apiResponseHandler, logger, initSecrets } from "@traderapp/shared-resources";
 
@@ -12,6 +12,7 @@ import swaggerUi from "swagger-ui-express";
 import specs from "./utils/swagger";
 
 import secretsJson from "./env.json";
+import runAllJobs from "./jobs";
 
 config();
 const app = express();
@@ -31,7 +32,6 @@ const secretNames = ["common-secrets", "users-service-secrets"];
 		secretsJson,
 	});
 	const port = process.env.PORT;
-	// const port = 8081;
 	const dbUrl = process.env.USERS_SERVICE_DB_URL ?? "";
 	mongoose
 		.connect(dbUrl)
@@ -53,6 +53,7 @@ function startServer() {
 	const allowedOrigins = [
 		"http://localhost:3000",
 		"http://localhost:8788",
+		"http://localhost:8080",
 		"https://users-dashboard-dev.traderapp.finance",
 		"https://web-dashboard-dev.traderapp.finance",
 		"https://www.web-dashboard-dev.traderapp.finance",
@@ -83,8 +84,8 @@ function startServer() {
 	app.use(cors(corsOptions));
 
 	// parse incoming requests
-	app.use(express.urlencoded({ extended: true }));
-	app.use(express.json());
+	app.use(express.urlencoded({ extended: true, limit: "8mb" }));
+	app.use(express.json({ limit: "8mb" }));
 	app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 	// documentation
@@ -95,6 +96,7 @@ function startServer() {
 	app.use("/verify", VerificationRoutes);
 	app.use("/countries", CountryRoutes);
 	app.use("/users", UserRoutes);
+	app.use("/task", TaskRoutes);
 
 	// health check
 	app.get("/ping", async (_req, res, _next) => {
@@ -134,4 +136,7 @@ function startServer() {
 			}),
 		);
 	});
+
+	// Start all jobs when the application starts
+	runAllJobs();
 }

@@ -8,8 +8,8 @@ export async function getAllUsers(req: Request, res: Response, next: NextFunctio
 	try {
 		const { page, size, searchKeyword } = req.query;
 		const options = {
-			page: page ?? PAGINATION.PAGE,
-			limit: size ?? PAGINATION.LIMIT,
+			page: Number(page ?? PAGINATION.PAGE),
+			limit: Number(size ?? PAGINATION.LIMIT),
 			select: EXCLUDE_FIELDS.USER,
 		};
 		const searchQuery = searchKeyword ?? "";
