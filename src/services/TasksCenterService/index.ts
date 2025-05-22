@@ -1,10 +1,12 @@
 import { Request } from "express";
-import { TaskStatus, UserTaskStatus } from "../../config/enums";
+import { PlatformActions, TaskStatus, UserTaskStatus } from "../../config/enums";
 import { ITask, ITaskPlatform, IUserTask } from "../../config/interfaces";
 import { checkUser } from "../../helpers/middlewares";
 import Task from "../../models/Task";
 import TaskPlatform from "../../models/TaskPlatform";
 import UserTask from "../../models/UserTask";
+import { parse } from "csv-parse/sync";
+import AllFollowersRecord from "../../models/AllFollowersRecord";
 
 export class TasksCenterService {
 	async createTaskPlatform(data: Omit<ITaskPlatform, "id">): Promise<{ message: string }> {
@@ -121,5 +123,56 @@ export class TasksCenterService {
 		await UserTask.create(data);
 
 		return { message: "User task successfully added." };
+	}
+
+	async updateTaskPlatformData({
+		platform,
+		platformAction,
+		file,
+	}: {
+		platform: string;
+		platformAction: string;
+		file: string;
+	}) {
+		// Strip Data URI prefix if present
+		const base64String = file.split(",")[1];
+
+		// Decode base64 to buffer
+		const buffer = Buffer.from(base64String, "base64");
+
+		// Convert buffer to string and parse CSV
+		let csvText = buffer.toString("utf-8");
+
+		// Strip UTF-8 BOM
+		if (csvText.charCodeAt(0) === 0xfeff) {
+			csvText = csvText.slice(1);
+		}
+
+		// Parse CSV into array of objects using headers
+		const records: any[] = parse(csvText, {
+			columns: true, // Uses fiest rows as keys
+			skip_empty_lines: true,
+			trim: true,
+			relax_column_count: true, // Allows for empty columns
+		});
+
+		// Extract needed followers data and update database
+		if (platformAction === PlatformActions.FOLLOW) {
+			const extractedData = records.map((record) => ({
+				platform,
+				userName: record?.userName || record?.Username,
+				fullName: record?.fullName || record?.Name,
+				avatarUrl: record?.avatarUrl || record?.["Avatar URL"],
+				followersCount: Number(record?.Followers || record?.["Followers Count"]),
+			}));
+
+			// Delete existing documents for this platform only
+			await AllFollowersRecord.deleteMany({ platform });
+
+			// Insert the new documents for this platform
+			await AllFollowersRecord.insertMany(extractedData);
+		}
+
+		return { message: `Data for ${platform} updated successfully` };
 	}
 }
