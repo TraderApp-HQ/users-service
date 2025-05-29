@@ -40,6 +40,11 @@ const UserSchema = new Schema(
 		personalATC: { type: Number, default: 0 },
 		communityATC: { type: Number, default: 0 },
 		isTestReferralTrackingInProgress: { type: Boolean, default: false },
+		maxRankFromReferrals: {
+			type: String,
+			enum: Object.values(ReferralRank),
+			default: ReferralRank.TA_RECRUIT,
+		},
 	},
 	{ versionKey: false, timestamps: true },
 );
