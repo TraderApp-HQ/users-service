@@ -77,22 +77,22 @@ export class TasksCenterService {
 		return { allActiveTasks, userTasks };
 	}
 
-	async getAllPendingTasksCount(req: Request): Promise<number> {
+	async getAllPendingTasks(req: Request): Promise<Array<{ id: string; title: string }>> {
 		// Get user Id
 		const { id } = await checkUser(req);
 
 		// Get all active tasks and user tasks
 		const [Tasks, UserTasks] = await Promise.all([
-			Task.find({ status: TaskStatus.STARTED }).select("id -_id"),
+			Task.find({ status: TaskStatus.STARTED }).select("id title -_id"),
 			UserTask.find({ userId: id }).select("taskId -_id"),
 		]);
 
 		// Get count of only pending tasks
-		const count = Tasks.filter(
+		const pendingTasks = Tasks.filter(
 			(task) => !UserTasks.some((userTask) => userTask.taskId === task.id),
-		).length;
+		);
 
-		return count;
+		return pendingTasks;
 	}
 
 	async getUserTask(req: Request) {
