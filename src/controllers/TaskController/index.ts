@@ -133,14 +133,14 @@ export const getAllActiveTasks = async (req: Request, res: Response, next: NextF
 		next(error);
 	}
 };
-export const getAllPendingTasksCount = async (req: Request, res: Response, next: NextFunction) => {
+export const getAllPendingTasks = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const tasksCenterService = new TasksCenterService();
-		const count = await tasksCenterService.getAllPendingTasksCount(req);
+		const pendingTasks = await tasksCenterService.getAllPendingTasks(req);
 
 		res.status(200).json(
 			apiResponseHandler({
-				object: { pendingTasksCount: count },
+				object: { pendingTasks },
 			}),
 		);
 	} catch (error) {
