@@ -1,12 +1,8 @@
-import { Request, Response, NextFunction } from "express";
+import { apiResponseHandler, logger } from "@traderapp/shared-resources";
 import bcrypt from "bcrypt";
 import "dotenv/config";
-import User from "../../models/User";
-import Token from "../../models/RefreshToken";
-import VerificationToken from "../../models/VerificationToken";
-import { generateResetUrl } from "../../helpers/tokens";
-import { ErrorMessage, ResponseMessage, RESPONSE_FLAGS } from "../../config/constants";
-import { apiResponseHandler, logger } from "@traderapp/shared-resources";
+import { NextFunction, Request, Response } from "express";
+import { ErrorMessage, RESPONSE_FLAGS, ResponseMessage } from "../../config/constants";
 import { NotificationChannel, Status } from "../../config/enums";
 import {
 	buildResponse,
@@ -15,13 +11,17 @@ import {
 	sendOTP,
 	verifyOTP,
 } from "../../helpers/controllers";
-import { IVerifyOtp, VerificationType } from "./config";
+import { generateResetUrl } from "../../helpers/tokens";
+import Token from "../../models/RefreshToken";
+import User from "../../models/User";
+import VerificationToken from "../../models/VerificationToken";
+import { ReferralService } from "../../services/ReferralService";
 import { generatePassword } from "../../utils/generatePassword";
 import { FeatureFlagManager } from "../../utils/helpers/SplitIOClient";
-import { IQueueMessageBodyObject, IQueueMessage } from "../../utils/helpers/types";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
+import { IQueueMessageBodyObject } from "../../utils/helpers/types";
 import { storeRelationships } from "../../utils/storeRelationships";
-import { ReferralService } from "../../services/ReferralService";
+import { IVerifyOtp, VerificationType } from "./config";
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -88,19 +88,35 @@ export async function createUserHandler(req: Request, res: Response, next: NextF
 		req.body.password = defaultPassword;
 		const data = await User.create(req.body);
 		logger.debug(`New user created , ${JSON.stringify(data)}`);
-		const { _id } = data;
+		const { _id, firstName, email } = data;
 
+		// Generate resetUrl and signup message
 		const url = await generateResetUrl(_id);
 		const message: IQueueMessageBodyObject = {
-			recipients: [{ firstName: data.firstName, emailAddress: data.email }],
+			recipients: [{ firstName, emailAddress: email }],
 			message: url,
 			event: "CREATE_USER",
 		};
-		await publishMessageToQueue({
-			queueUrl: process.env.EMAIL_NOTIFICATIONS_QUEUE ?? "",
-			message,
-		});
+
+		// Generate wallet creation message
+		const walletMessage = { userId: _id };
+
+		// Publish to SQS Queue
+		await Promise.all([
+			// Publish to Email Notification Queue
+			publishMessageToQueue({
+				queueUrl: process.env.EMAIL_NOTIFICATIONS_QUEUE ?? "",
+				message,
+			}),
+			// Publish to Create User Wallet Queue
+			publishMessageToQueue({
+				queueUrl: process.env.CREATE_USER_WALLET_QUEUE ?? "",
+				message: walletMessage,
+			}),
+		]);
+
 		logger.log(`Create new user published to queue: ${JSON.stringify(message)}`);
+		logger.log(`Create new user wallet published to queue: ${JSON.stringify(walletMessage)}`);
 
 		const resObj = getUserObject(data);
 		res.status(200).json(
