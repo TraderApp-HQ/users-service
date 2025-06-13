@@ -45,11 +45,6 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 		reqBody.referralCode = userReferralCode;
 		reqBody.parentId = parentUser?.id;
 		const data = await User.create(reqBody);
-		await storeRelationships({
-			userId: data.id,
-			parentId: parentUser?.id,
-		});
-		logger.debug(`New user created , ${JSON.stringify(data)}`);
 
 		const featureFlags = new FeatureFlagManager();
 		const isOtpEnabled = await featureFlags.checkToggleFlag(
@@ -65,11 +60,31 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 			message: "",
 			event: "WELCOME",
 		};
-		await publishMessageToQueue({
-			queueUrl: process.env.EMAIL_NOTIFICATIONS_QUEUE ?? "",
-			message,
-		});
 
+		// Generate wallet creation message
+		const walletMessage = { userId: data.id };
+
+		// Publish to SQS Queue
+		await Promise.all([
+			// Publish to Email Notification Queue
+			publishMessageToQueue({
+				queueUrl: process.env.EMAIL_NOTIFICATIONS_QUEUE ?? "",
+				message,
+			}),
+			// Publish to Create User Wallet Queue
+			publishMessageToQueue({
+				queueUrl: process.env.CREATE_USER_WALLET_QUEUE ?? "",
+				message: walletMessage,
+			}),
+			// store referral relationship
+			await storeRelationships({
+				userId: data.id,
+				parentId: parentUser?.id,
+			}),
+		]);
+
+		logger.debug(`New user created on signup , ${JSON.stringify(data)}`);
+		logger.log(`Create new user wallet published to queue: ${JSON.stringify(walletMessage)}`);
 		const resObj = getUserObject(data);
 		res.status(200).json(
 			apiResponseHandler({
