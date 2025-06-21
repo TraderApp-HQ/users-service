@@ -7,6 +7,7 @@ import { NotificationChannel, Status } from "../../config/enums";
 import {
 	buildResponse,
 	deleteOtp,
+	getTaskField,
 	getUserObject,
 	sendOTP,
 	verifyOTP,
@@ -286,20 +287,20 @@ export async function verifyOtpHandler(req: Request, res: Response, next: NextFu
 
 		// mostly used for verifications. e.g email, phoneNumber
 		if (verificationType?.includes(VerificationType.UPDATE)) {
-			const updateFields: Partial<{ isEmailVerified: boolean; isPhoneVerified: boolean }> =
-				{};
-			data.forEach(({ channel }) => {
-				if (channel === NotificationChannel.EMAIL) {
-					updateFields.isEmailVerified = true;
-				}
-				if (channel === NotificationChannel.SMS) {
-					updateFields.isPhoneVerified = true;
-				}
-			});
+			const queueUrl = process.env.UPDATE_USER_ONBOARDING_TASK_STATUS_QUEUE ?? "";
 
-			if (Object.keys(updateFields).length > 0) {
-				await User.updateOne({ _id: userId }, { $set: updateFields });
-			}
+			await Promise.all(
+				data.map(
+					async ({ channel }) =>
+						await publishMessageToQueue({
+							queueUrl,
+							message: {
+								userId,
+								taskField: getTaskField(channel),
+							},
+						}),
+				),
+			);
 		}
 
 		// mostly used for signup and login

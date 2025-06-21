@@ -18,6 +18,10 @@ export async function validateUpdateUser(req: Request, res: Response, next: Next
 			role: Joi.array().items(roleSchema).min(1),
 			countryId: Joi.number().label("Country Id"),
 			countryName: Joi.string().label("Country Name"),
+			facebookUsername: Joi.string().label("Facebook Username"),
+			twitterUsername: Joi.string().label("Twitter Username"),
+			tiktokUsername: Joi.string().label("TikTok Username"),
+			instagramUsername: Joi.string().label("Instagram Username"),
 		});
 		// validate request
 		const { error } = schema.validate(req.body);

@@ -1,16 +1,16 @@
+import { ReferralRank } from "./constants";
 import {
 	NotificationChannel,
 	Platform,
 	PlatformActions,
-	PlatformFollowStatus,
 	Role,
 	Status,
 	TaskCategory,
+	TaskMode,
 	TaskStatus,
 	TaskType,
 	UserTaskStatus,
 } from "./enums";
-import { ReferralRank } from "./constants";
 
 export interface IUser {
 	email: string;
@@ -21,6 +21,15 @@ export interface IUser {
 	countryId: number;
 	dob: string;
 	isEmailVerified?: boolean;
+	isFirstDepositMade?: boolean;
+	isTradingAccountConnected?: boolean;
+	isSocialAccountConnected?: boolean;
+	isOnboardingTaskDone?: boolean;
+	showOnboardingSteps?: boolean;
+	facebookUsername?: string;
+	twitterUsername?: string;
+	tiktokUsername?: string;
+	instagramUsername?: string;
 	isPhoneVerified?: boolean;
 	isIdVerified?: boolean;
 	role: Role[];
@@ -122,6 +131,7 @@ export interface ITask {
 	title: string;
 	description: string;
 	objective?: string;
+	taskMode: TaskMode;
 	taskType: TaskType;
 	category: TaskCategory;
 	platformId?: string;
