@@ -11,17 +11,17 @@ export async function validateUpdateUser(req: Request, res: Response, next: Next
 
 		const schema = Joi.object({
 			id: Joi.string().label("User id"),
-			firstName: Joi.string().label("First Name"),
-			lastName: Joi.string().label("Last Name"),
-			phone: Joi.string().label("Phone"),
-			dob: Joi.string().label("Date of Birth"),
-			role: Joi.array().items(roleSchema).min(1),
-			countryId: Joi.number().label("Country Id"),
-			countryName: Joi.string().label("Country Name"),
-			facebookUsername: Joi.string().label("Facebook Username"),
-			twitterUsername: Joi.string().label("Twitter Username"),
-			tiktokUsername: Joi.string().label("TikTok Username"),
-			instagramUsername: Joi.string().label("Instagram Username"),
+			firstName: Joi.string().optional().label("First Name"),
+			lastName: Joi.string().optional().label("Last Name"),
+			phone: Joi.string().optional().label("Phone"),
+			dob: Joi.string().optional().label("Date of Birth"),
+			role: Joi.array().items(roleSchema).min(1).optional(),
+			countryId: Joi.number().optional().label("Country Id"),
+			countryName: Joi.string().optional().label("Country Name"),
+			facebookUsername: Joi.string().optional().label("Facebook Username"),
+			twitterUsername: Joi.string().optional().label("Twitter Username"),
+			tiktokUsername: Joi.string().optional().label("TikTok Username"),
+			instagramUsername: Joi.string().optional().label("Instagram Username"),
 		});
 		// validate request
 		const { error } = schema.validate(req.body);

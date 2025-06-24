@@ -9,6 +9,7 @@ import {
 	verifyOtpHandler,
 	createUserHandler,
 	sendOtpHandler,
+	verifyEmailHandler,
 } from "../controllers/AuthController";
 import {
 	validateSignupRequest,
@@ -20,12 +21,14 @@ import {
 	validateVerifyOTPRequest,
 	validateCreateUserRequest,
 	validateSendOtpRequest,
+	validateVerifyEmailRequest,
 } from "../middlewares/AuthMiddleware";
 import { ROUTES } from "../config/constants";
 
 const router = Router();
 
 router.post(ROUTES.signup, validateSignupRequest, signupHandler);
+router.post(ROUTES.verifyEmail, validateVerifyEmailRequest, verifyEmailHandler);
 router.post(ROUTES.createUser, validateCreateUserRequest, createUserHandler);
 router.post(ROUTES.login, validateLoginRequest, loginHandler);
 router.delete(ROUTES.logout, validateLogoutRequest, logoutHandler);

@@ -14,7 +14,7 @@ import {
 } from "../../helpers/controllers";
 import { generateResetUrl } from "../../helpers/tokens";
 import Token from "../../models/RefreshToken";
-import User from "../../models/User";
+import User, { IUserModel } from "../../models/User";
 import VerificationToken from "../../models/VerificationToken";
 import { ReferralService } from "../../services/ReferralService";
 import { generatePassword } from "../../utils/generatePassword";
@@ -72,6 +72,35 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 		});
 
 		const resObj = getUserObject(data);
+		res.status(200).json(
+			apiResponseHandler({
+				object: resObj,
+				message: "A one time password has been sent to your email!",
+			}),
+		);
+	} catch (err) {
+		next(err);
+	}
+}
+
+export async function verifyEmailHandler(req: Request, res: Response, next: NextFunction) {
+	try {
+		const { id, email } = req.body;
+		const featureFlags = new FeatureFlagManager();
+		const isOtpEnabled = await featureFlags.checkToggleFlag("release-send-otp", id.toString());
+		if (isOtpEnabled) {
+			const userData = (await User.findById(id)) as IUserModel;
+			await sendOTP({
+				userData,
+				channels: [NotificationChannel.EMAIL],
+			});
+		}
+
+		const resObj = {
+			id,
+			email,
+		};
+
 		res.status(200).json(
 			apiResponseHandler({
 				object: resObj,
@@ -287,6 +316,22 @@ export async function verifyOtpHandler(req: Request, res: Response, next: NextFu
 
 		// mostly used for verifications. e.g email, phoneNumber
 		if (verificationType?.includes(VerificationType.UPDATE)) {
+			const updateFields: Partial<{ isEmailVerified: boolean; isPhoneVerified: boolean }> =
+				{};
+			data.forEach(({ channel }) => {
+				if (channel === NotificationChannel.EMAIL) {
+					updateFields.isEmailVerified = true;
+				}
+				if (channel === NotificationChannel.SMS) {
+					updateFields.isPhoneVerified = true;
+				}
+			});
+
+			if (Object.keys(updateFields).length > 0) {
+				await User.updateOne({ _id: userId }, { $set: updateFields });
+			}
+
+			// Serverless function
 			const queueUrl = process.env.UPDATE_USER_ONBOARDING_TASK_STATUS_QUEUE ?? "";
 
 			await Promise.all(

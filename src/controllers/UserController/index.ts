@@ -51,8 +51,7 @@ export async function getUserById(req: Request, res: Response, next: NextFunctio
 
 export async function updateUserById(req: Request, res: Response, next: NextFunction) {
 	try {
-		const { id, facebookUsername, twitterUsername, tiktokUsername, instagramUsername } =
-			req.body;
+		const { id } = req.body;
 		const user = await User.findByIdAndUpdate(id, req.body, { new: true }).select(
 			EXCLUDE_FIELDS.USER,
 		);
@@ -60,10 +59,10 @@ export async function updateUserById(req: Request, res: Response, next: NextFunc
 		// Handle social media username connection flag toggle
 		if (
 			user &&
-			!!facebookUsername &&
-			!!twitterUsername &&
-			!!tiktokUsername &&
-			!!instagramUsername
+			!!user.facebookUsername &&
+			!!user.twitterUsername &&
+			!!user.tiktokUsername &&
+			!!user.instagramUsername
 		) {
 			await publishMessageToQueue({
 				queueUrl: process.env.UPDATE_USER_ONBOARDING_STATUS_QUEUE ?? "",

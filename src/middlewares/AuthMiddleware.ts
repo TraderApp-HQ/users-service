@@ -118,6 +118,39 @@ export async function validateCreateUserRequest(req: Request, res: Response, nex
 	}
 }
 
+export async function validateVerifyEmailRequest(req: Request, res: Response, next: NextFunction) {
+	const schema = Joi.object({
+		id: Joi.string().required().label("User ID"),
+		email: Joi.string().email().required().label("Email"),
+	});
+
+	// validate request
+	const { error } = schema.validate(req.body);
+
+	if (error) {
+		// strip string of quotes
+		error.message = error.message.replace(/\"/g, "");
+		next(error);
+	} else {
+		// get id from request body
+		const { id } = req.body;
+
+		try {
+			// check if user exist
+			const existingUser = await User.findById(id);
+			if (!existingUser) {
+				const err = new Error("User not found!");
+				err.name = RESPONSE_FLAGS.notfound;
+				throw err;
+			}
+
+			next();
+		} catch (err: any) {
+			next(err);
+		}
+	}
+}
+
 export async function validateRefreshTokenRequest(req: Request, res: Response, next: NextFunction) {
 	// get refresh token from request body
 	const refreshToken = req.signedCookies.refreshToken;
