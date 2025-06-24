@@ -56,9 +56,10 @@ export async function updateUserById(req: Request, res: Response, next: NextFunc
 			EXCLUDE_FIELDS.USER,
 		);
 
-		// Handle social media username connection flag toggle
+		// Toggle isSocialAccountConnected to true if all social handles are provided.
 		if (
 			user &&
+			!user.isSocialAccountConnected &&
 			!!user.facebookUsername &&
 			!!user.twitterUsername &&
 			!!user.tiktokUsername &&
