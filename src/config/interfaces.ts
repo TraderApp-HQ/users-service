@@ -31,6 +31,7 @@ export interface IUser {
 	personalATC?: number;
 	communityATC?: number;
 	isTestReferralTrackingInProgress?: boolean;
+	maxRankFromReferrals: ReferralRankType;
 }
 
 export interface IAllFollowersRecord {
@@ -169,6 +170,7 @@ export interface IRankCriteria {
 	communityATC: number;
 	communitySize: number;
 	isTestReferralTracking?: boolean;
+	maxRankFromReferrals: ReferralRankType;
 }
 
 export type IRankData = {
@@ -176,6 +178,7 @@ export type IRankData = {
 		personalATC: IRankCriteriaStatus;
 		communityATC: IRankCriteriaStatus;
 		communitySize: IRankCriteriaStatus;
+		hasRequiredRankReferrals: IRankCriteriaStatus;
 	};
 };
 
