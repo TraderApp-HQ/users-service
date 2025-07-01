@@ -1,12 +1,16 @@
 import * as crypto from "crypto";
 import "dotenv/config";
-import { EXCLUDE_FIELDS, RANK_REQUIREMENTS } from "../../config/constants";
+import {
+	EXCLUDE_FIELDS,
+	RANK_INDEX_MAP,
+	RANK_REQUIREMENTS,
+	REQUIRED_RANK_REFERRALS,
+} from "../../config/constants";
 import { generateInviteUrl } from "../../helpers/tokens";
 import User, { IUserModel } from "../../models/User";
 import UserRelationship from "../../models/UserRelationship";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
-import { IQueueMessage, IQueueMessageBodyObject } from "../../utils/helpers/types";
-import { Types } from "mongoose";
+import { IQueueMessageBodyObject } from "../../utils/helpers/types";
 import { Status } from "../../config/enums";
 import {
 	IRankCriteria,
@@ -88,8 +92,21 @@ class ReferralService {
 		return UserRelationship.paginate(query, paginateOptions);
 	}
 
+	private hasRequiredRankReferrals(
+		rank: ReferralRankType,
+		maxRankFromReferrals: ReferralRankType,
+	): boolean {
+		return RANK_INDEX_MAP[maxRankFromReferrals] >= RANK_INDEX_MAP[rank];
+	}
+
 	private computeRankData(criteria: IRankCriteria): IRankData {
-		const { personalATC, communityATC, communitySize, isTestReferralTracking } = criteria;
+		const {
+			personalATC,
+			communityATC,
+			communitySize,
+			isTestReferralTracking,
+			maxRankFromReferrals,
+		} = criteria;
 
 		const rankData: IRankData = Object.fromEntries(
 			Object.keys(RANK_REQUIREMENTS).map((rank) => [
@@ -98,6 +115,7 @@ class ReferralService {
 					personalATC: { completed: false, minValue: 0 },
 					communityATC: { completed: false, minValue: 0 },
 					communitySize: { completed: false, minValue: 0 },
+					hasRequiredRankReferrals: { completed: false, minValue: 0 },
 				},
 			]),
 		) as IRankData;
@@ -121,6 +139,10 @@ class ReferralService {
 					minValue: isTestReferralTracking
 						? RANK_REQUIREMENTS[rank].testCommunitySize
 						: RANK_REQUIREMENTS[rank].communitySize,
+				},
+				hasRequiredRankReferrals: {
+					completed: this.hasRequiredRankReferrals(rank, maxRankFromReferrals),
+					minValue: REQUIRED_RANK_REFERRALS,
 				},
 			};
 		}
@@ -290,6 +312,7 @@ class ReferralService {
 			communityATC: communityStats.communityATC ?? 0,
 			communitySize: communityStats.communitySize ?? 0,
 			isTestReferralTracking: isReferralTracking,
+			maxRankFromReferrals: userData.maxRankFromReferrals,
 		};
 
 		const rankData = this.computeRankData(criteria);
