@@ -7,7 +7,7 @@ import { NotificationChannel, Status } from "../../config/enums";
 import {
 	buildResponse,
 	deleteOtp,
-	getTaskField,
+	getNotificationChannelOnboardingChecklistItem,
 	getUserObject,
 	sendOTP,
 	verifyOTP,
@@ -72,35 +72,6 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 		});
 
 		const resObj = getUserObject(data);
-		res.status(200).json(
-			apiResponseHandler({
-				object: resObj,
-				message: "A one time password has been sent to your email!",
-			}),
-		);
-	} catch (err) {
-		next(err);
-	}
-}
-
-export async function verifyEmailHandler(req: Request, res: Response, next: NextFunction) {
-	try {
-		const { id, email } = req.body;
-		const featureFlags = new FeatureFlagManager();
-		const isOtpEnabled = await featureFlags.checkToggleFlag("release-send-otp", id.toString());
-		if (isOtpEnabled) {
-			const userData = (await User.findById(id)) as IUserModel;
-			await sendOTP({
-				userData,
-				channels: [NotificationChannel.EMAIL],
-			});
-		}
-
-		const resObj = {
-			id,
-			email,
-		};
-
 		res.status(200).json(
 			apiResponseHandler({
 				object: resObj,
@@ -331,19 +302,18 @@ export async function verifyOtpHandler(req: Request, res: Response, next: NextFu
 				await User.updateOne({ _id: userId }, { $set: updateFields });
 			}
 
-			// Serverless function
-			const queueUrl = process.env.UPDATE_USER_ONBOARDING_TASK_STATUS_QUEUE ?? "";
-
+			// Publish email verification to queue
+			const queueUrl = process.env.TRACK_USER_ONBOARDING_CHECKLIST_QUEUE ?? "";
 			await Promise.all(
-				data.map(
-					async ({ channel }) =>
-						await publishMessageToQueue({
-							queueUrl,
-							message: {
-								userId,
-								taskField: getTaskField(channel),
-							},
-						}),
+				data.map(async ({ channel }) =>
+					publishMessageToQueue({
+						queueUrl,
+						message: {
+							userId,
+							onboardingChecklistItem:
+								getNotificationChannelOnboardingChecklistItem(channel),
+						},
+					}),
 				),
 			);
 		}

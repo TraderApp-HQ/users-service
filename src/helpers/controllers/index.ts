@@ -18,7 +18,7 @@ import OtpRateLimit from "../../models/OtpRateLimit";
 import Token from "../../models/RefreshToken";
 import { IUserModel } from "../../models/User";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
-import { IQueueMessageBodyObject, UserOnboardingTaskField } from "../../utils/helpers/types";
+import { IQueueMessageBodyObject, UserOnboardingChecklist } from "../../utils/helpers/types";
 import {
 	generateAccessToken,
 	generateOTP,
@@ -197,13 +197,15 @@ export function getFrontendUrl() {
 	return ENVIRONMENTS[process.env.NODE_ENV ?? "development"].frontendUrl;
 }
 
-export const getTaskField = (notificationChannel: string): UserOnboardingTaskField | "" => {
+export const getNotificationChannelOnboardingChecklistItem = (
+	notificationChannel: string,
+): UserOnboardingChecklist | "" => {
 	switch (notificationChannel) {
 		case NotificationChannel.EMAIL:
-			return UserOnboardingTaskField.IS_EMAIL_VERIFIED;
+			return UserOnboardingChecklist.IS_EMAIL_VERIFIED;
 		case NotificationChannel.SMS:
 		case NotificationChannel.WHATSAPP:
-			return UserOnboardingTaskField.IS_PHONE_VERIFIED;
+			return UserOnboardingChecklist.IS_PHONE_VERIFIED;
 		default:
 			return "";
 	}

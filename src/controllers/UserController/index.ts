@@ -4,7 +4,7 @@ import { apiResponseHandler } from "@traderapp/shared-resources";
 import { ResponseMessage, PAGINATION, EXCLUDE_FIELDS } from "../../config/constants";
 import { Status } from "../../config/enums";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
-import { UserOnboardingTaskField } from "../../utils/helpers/types";
+import { UserOnboardingChecklist } from "../../utils/helpers/types";
 
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -60,16 +60,16 @@ export async function updateUserById(req: Request, res: Response, next: NextFunc
 		if (
 			user &&
 			!user.isSocialAccountConnected &&
-			!!user.facebookUsername &&
-			!!user.twitterUsername &&
-			!!user.tiktokUsername &&
-			!!user.instagramUsername
+			(!!user.facebookUsername ||
+				!!user.twitterUsername ||
+				!!user.tiktokUsername ||
+				!!user.instagramUsername)
 		) {
 			await publishMessageToQueue({
-				queueUrl: process.env.UPDATE_USER_ONBOARDING_STATUS_QUEUE ?? "",
+				queueUrl: process.env.TRACK_USER_ONBOARDING_CHECKLIST_QUEUE ?? "",
 				message: {
 					userId: id,
-					taskField: UserOnboardingTaskField.IS_SOCIAL_ACCOUNT_CONNECTED,
+					onboardingChecklistItem: UserOnboardingChecklist.IS_SOCIAL_ACCOUNT_CONNECTED,
 				},
 			});
 		}
@@ -118,10 +118,10 @@ export async function toggleUserOnboardingStatus(req: Request, res: Response, ne
 		}
 
 		await publishMessageToQueue({
-			queueUrl: process.env.UPDATE_USER_ONBOARDING_STATUS_QUEUE ?? "",
+			queueUrl: process.env.TRACK_USER_ONBOARDING_CHECKLIST_QUEUE ?? "",
 			message: {
 				userId: id,
-				taskField: field,
+				onboardingChecklistItem: field,
 			},
 		});
 

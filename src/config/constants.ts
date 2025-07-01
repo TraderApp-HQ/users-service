@@ -140,7 +140,6 @@ export const ROUTES = {
 	toggleuserActivation: "/toggle-activation",
 	searchUser: "/search",
 	verifyOtp: "/verify-otp",
-	verifyEmail: "/verify-email",
 	referralStats: "/referral-stats",
 	inviteFriends: "/invite-friends",
 	communityStats: "/community-stats",
