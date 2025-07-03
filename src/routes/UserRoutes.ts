@@ -3,6 +3,7 @@ import {
 	getAllUsers,
 	getUserById,
 	toggleUserActivation,
+	toggleUserOnboardingStatus,
 	updateUserById,
 } from "../controllers/UserController";
 import { ROUTES } from "../config/constants";
@@ -28,6 +29,7 @@ router.get(ROUTES.getAllUsers, validateGetAllUsers, getAllUsers);
 router.get(ROUTES.getUser, validateGetUser, getUserById);
 router.patch(ROUTES.updateUser, validateUpdateUser, updateUserById);
 router.patch(ROUTES.toggleuserActivation, validateGetUser, toggleUserActivation);
+router.patch(ROUTES.toggleUserOnboardingStatus, validateGetUser, toggleUserOnboardingStatus);
 
 // Referrals
 router.get(ROUTES.referralStats, validateGetReferral, getUserReferralsStats);

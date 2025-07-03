@@ -147,6 +147,7 @@ export const ROUTES = {
 	sendOtp: "/send-otp",
 	referralOverview: "/referral-overview",
 	trackReferrals: "/track-referrals",
+	toggleUserOnboardingStatus: "/toggle-user-onboarding-status",
 };
 
 export const PAGINATION = {

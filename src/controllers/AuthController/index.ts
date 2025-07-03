@@ -7,13 +7,14 @@ import { NotificationChannel, Status } from "../../config/enums";
 import {
 	buildResponse,
 	deleteOtp,
+	getNotificationChannelOnboardingChecklistItem,
 	getUserObject,
 	sendOTP,
 	verifyOTP,
 } from "../../helpers/controllers";
 import { generateResetUrl } from "../../helpers/tokens";
 import Token from "../../models/RefreshToken";
-import User from "../../models/User";
+import User, { IUserModel } from "../../models/User";
 import VerificationToken from "../../models/VerificationToken";
 import { ReferralService } from "../../services/ReferralService";
 import { generatePassword } from "../../utils/generatePassword";
@@ -315,6 +316,21 @@ export async function verifyOtpHandler(req: Request, res: Response, next: NextFu
 			if (Object.keys(updateFields).length > 0) {
 				await User.updateOne({ _id: userId }, { $set: updateFields });
 			}
+
+			// Publish email verification to queue
+			const queueUrl = process.env.TRACK_USER_ONBOARDING_CHECKLIST_QUEUE ?? "";
+			await Promise.all(
+				data.map(async ({ channel }) =>
+					publishMessageToQueue({
+						queueUrl,
+						message: {
+							userId,
+							onboardingChecklistItem:
+								getNotificationChannelOnboardingChecklistItem(channel),
+						},
+					}),
+				),
+			);
 		}
 
 		// mostly used for signup and login

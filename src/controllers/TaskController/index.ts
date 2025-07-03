@@ -147,13 +147,26 @@ export const getAllPendingTasks = async (req: Request, res: Response, next: Next
 		next(error);
 	}
 };
+export const getOnboardingTasks = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const tasksCenterService = new TasksCenterService();
+		const onboardingTasks = await tasksCenterService.getOnboardingTasks(req);
+
+		res.status(200).json(
+			apiResponseHandler({
+				object: { onboardingTasks },
+			}),
+		);
+	} catch (error) {
+		next(error);
+	}
+};
 
 export const createUserTask = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		// Create user task
 		const tasksCenterService = new TasksCenterService();
 		const response = await tasksCenterService.createUserTask(req.body);
-		// await UserTask.create(req.body);
 
 		res.status(201).json(
 			apiResponseHandler({

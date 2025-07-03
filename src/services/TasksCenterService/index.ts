@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { PlatformActions, TaskStatus, UserTaskStatus } from "../../config/enums";
+import { PlatformActions, TaskMode, TaskStatus, UserTaskStatus } from "../../config/enums";
 import { ITask, ITaskPlatform, IUserTask } from "../../config/interfaces";
 import { checkUser } from "../../helpers/middlewares";
 import Task from "../../models/Task";
@@ -116,6 +116,30 @@ export class TasksCenterService {
 		};
 
 		return modifiedtask;
+	}
+
+	async getOnboardingTasks(
+		req: Request,
+	): Promise<Array<{ id: string; title: string; status: UserTaskStatus }>> {
+		// Get user Id
+		const { id } = await checkUser(req);
+
+		// Get all active onboarding tasks and user tasks
+		const [onBoardingTasks, userTasks] = await Promise.all([
+			Task.find({ status: TaskStatus.STARTED, taskMode: TaskMode.ON_BOARDING })
+				.select("id title -_id")
+				.lean(),
+			UserTask.find({ userId: id }).select("taskId status -_id").lean(),
+		]);
+
+		const userTaskMap = new Map(userTasks.map((ut) => [ut.taskId, ut.status]));
+
+		const modifiedOnboardingTasks = onBoardingTasks.map((onboard) => ({
+			...onboard,
+			status: userTaskMap.get(onboard.id) ?? UserTaskStatus.PENDING,
+		}));
+
+		return modifiedOnboardingTasks;
 	}
 
 	async createUserTask(data: Omit<IUserTask, "id">): Promise<{ message: string }> {

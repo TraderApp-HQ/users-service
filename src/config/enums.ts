@@ -46,6 +46,11 @@ export enum TaskCategory {
 	REFERRAL = "Referral Tasks",
 }
 
+export enum TaskMode {
+	GENERAL = "General",
+	ON_BOARDING = "On Boarding",
+}
+
 export enum TaskType {
 	PERMANENT = "Permanent",
 	TIME_BASED = "Time Based",

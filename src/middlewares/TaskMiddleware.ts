@@ -5,6 +5,7 @@ import {
 	Platform,
 	PlatformActions,
 	TaskCategory,
+	TaskMode,
 	TaskStatus,
 	TaskType,
 	UserTaskStatus,
@@ -89,6 +90,10 @@ export const validateTaskData = async (req: Request, res: Response, next: NextFu
 			title: Joi.string().min(5).required().label("Title"),
 			description: Joi.string().min(5).required().label("Description"),
 			objective: Joi.string().label("Description"),
+			taskMode: Joi.string()
+				.valid(...Object.values(TaskMode))
+				.required()
+				.label("Task Mode"),
 			taskType: Joi.string()
 				.valid(...Object.values(TaskType))
 				.required()
