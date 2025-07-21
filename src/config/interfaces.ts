@@ -9,6 +9,7 @@ import {
 	TaskMode,
 	TaskStatus,
 	TaskType,
+	TradingStatus,
 	UserTaskStatus,
 } from "./enums";
 
@@ -35,6 +36,7 @@ export interface IUser {
 	isIdVerified?: boolean;
 	role: Role[];
 	status: Status;
+	tradingStatus: TradingStatus;
 	referralCode: string;
 	parentId?: string;
 	referralRank?: ReferralRankType;

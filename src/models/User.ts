@@ -3,7 +3,7 @@ import mongoose, { Document, Schema, Model, PaginateResult, PaginateOptions } fr
 import mongoosePaginate from "mongoose-paginate-v2";
 import bcrypt from "bcrypt";
 import { IUser } from "../config/interfaces";
-import { Role, Status } from "../config/enums";
+import { Role, Status, TradingStatus } from "../config/enums";
 import { ErrorMessage, ReferralRank } from "../config/constants";
 
 export interface IUserModel extends IUser, Document {}
@@ -44,7 +44,8 @@ const UserSchema = new Schema(
 		isPhoneVerified: { type: Boolean, default: false },
 		isIdVerified: { type: Boolean, default: false },
 		role: { type: [String], enum: Role, default: [Role.USER] },
-		status: { type: String, default: Status.INACTIVE, index: true },
+		status: { type: String, default: Status.ACTIVE, index: true },
+		tradingStatus: { type: String, default: TradingStatus.INACTIVE, index: true },
 		referralCode: { type: String, index: true, unique: true, sparse: true },
 		parentId: { type: String, index: true, ref: "user" },
 		personalATC: { type: Number, default: 0 },

@@ -16,6 +16,11 @@ export enum Status {
 	INACTIVE = "INACTIVE",
 }
 
+export enum TradingStatus {
+	ACTIVE = "ACTIVE",
+	INACTIVE = "INACTIVE",
+}
+
 export enum Platform {
 	INSTAGRAM = "Instagram",
 	TWITTER = "X - (Twitter)",
