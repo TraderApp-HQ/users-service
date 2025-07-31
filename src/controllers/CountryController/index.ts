@@ -2,8 +2,6 @@ import { Request, Response, NextFunction } from "express";
 import Country from "../../models/Country";
 import { apiResponseHandler } from "@traderapp/shared-resources";
 
-const status = "SUCCESS";
-
 export async function countriesHandler(req: Request, res: Response, next: NextFunction) {
 	try {
 		const data = await Country.find({});

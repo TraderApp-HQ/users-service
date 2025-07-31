@@ -148,6 +148,8 @@ export const ROUTES = {
 	referralOverview: "/referral-overview",
 	trackReferrals: "/track-referrals",
 	toggleUserOnboardingStatus: "/toggle-user-onboarding-status",
+	subscribeToPushNotifications: "/subscribe-to-push-notifications",
+	unsubscribeFromPushNotifications: "/unsubscribe-from-push-notifications",
 };
 
 export const PAGINATION = {
