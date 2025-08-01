@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { apiResponseHandler } from "@traderapp/shared-resources";
+import { apiResponseHandler, logger } from "@traderapp/shared-resources";
 import PushSubscription from "../../models/PushSubscription";
 import { RESPONSE_FLAGS } from "../../config/constants";
 
@@ -9,7 +9,7 @@ export async function subscribeToPushNotifications(
 	next: NextFunction,
 ) {
 	const { endpoint, keys, userId } = req.body;
-	console.log("Subscribe to push notifications", req.body);
+	logger.log(`Subscribe to push notifications ${JSON.stringify(req.body)}`);
 
 	if (!endpoint || !keys?.p256dh || !keys?.auth) {
 		const error = new Error("Invalid subscription data");
@@ -40,7 +40,7 @@ export async function unsubscribeFromPushNotifications(
 	next: NextFunction,
 ) {
 	const { userId, endpoint } = req.body;
-	console.log("Unsubscribe from push notifications", req.body);
+	logger.log(`Unsubscribe from push notifications ${JSON.stringify(req.body)}`);
 
 	try {
 		const data = await PushSubscription.findOne({ userId, endpoint });
