@@ -148,6 +148,7 @@ export async function createUserHandler(req: Request, res: Response, next: NextF
 
 export async function loginHandler(req: Request, res: Response, next: NextFunction) {
 	const { email, password } = req.body;
+	console.log("Login handler", email);
 
 	try {
 		const data = await User.login(email, password);

@@ -1,7 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import Joi from "joi";
-import { Role } from "../config/enums";
-import { checkAdmin, checkUser } from "../helpers/middlewares";
+import { checkUser } from "../helpers/middlewares";
 import { RESPONSE_FLAGS } from "../config/constants";
 
 export async function validateSubscribeToPushNotifications(

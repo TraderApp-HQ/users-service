@@ -9,6 +9,7 @@ export async function subscribeToPushNotifications(
 	next: NextFunction,
 ) {
 	const { endpoint, keys, userId } = req.body;
+	console.log("Subscribe to push notifications", req.body);
 
 	if (!endpoint || !keys?.p256dh || !keys?.auth) {
 		const error = new Error("Invalid subscription data");
@@ -39,6 +40,7 @@ export async function unsubscribeFromPushNotifications(
 	next: NextFunction,
 ) {
 	const { userId, endpoint } = req.body;
+	console.log("Unsubscribe from push notifications", req.body);
 
 	try {
 		const data = await PushSubscription.findOne({ userId, endpoint });
