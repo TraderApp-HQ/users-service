@@ -1,16 +1,17 @@
+import { ReferralRank } from "./constants";
 import {
 	NotificationChannel,
 	Platform,
 	PlatformActions,
-	PlatformFollowStatus,
 	Role,
 	Status,
 	TaskCategory,
+	TaskMode,
 	TaskStatus,
 	TaskType,
+	TradingStatus,
 	UserTaskStatus,
 } from "./enums";
-import { ReferralRank } from "./constants";
 
 export interface IUser {
 	email: string;
@@ -21,16 +22,28 @@ export interface IUser {
 	countryId: number;
 	dob: string;
 	isEmailVerified?: boolean;
+	isFirstDepositMade?: boolean;
+	isTradingAccountConnected?: boolean;
+	isPersonalATCFunded?: boolean;
+	isSocialAccountConnected?: boolean;
+	isOnboardingTaskDone?: boolean;
+	showOnboardingSteps?: boolean;
+	facebookUsername?: string;
+	twitterUsername?: string;
+	tiktokUsername?: string;
+	instagramUsername?: string;
 	isPhoneVerified?: boolean;
 	isIdVerified?: boolean;
 	role: Role[];
 	status: Status;
+	tradingStatus: TradingStatus;
 	referralCode: string;
 	parentId?: string;
 	referralRank?: ReferralRankType;
 	personalATC?: number;
 	communityATC?: number;
 	isTestReferralTrackingInProgress?: boolean;
+	maxRankFromReferrals: ReferralRankType;
 }
 
 export interface IAllFollowersRecord {
@@ -122,6 +135,7 @@ export interface ITask {
 	title: string;
 	description: string;
 	objective?: string;
+	taskMode: TaskMode;
 	taskType: TaskType;
 	category: TaskCategory;
 	platformId?: string;
@@ -169,6 +183,7 @@ export interface IRankCriteria {
 	communityATC: number;
 	communitySize: number;
 	isTestReferralTracking?: boolean;
+	maxRankFromReferrals: ReferralRankType;
 }
 
 export type IRankData = {
@@ -176,6 +191,7 @@ export type IRankData = {
 		personalATC: IRankCriteriaStatus;
 		communityATC: IRankCriteriaStatus;
 		communitySize: IRankCriteriaStatus;
+		hasRequiredRankReferrals: IRankCriteriaStatus;
 	};
 };
 

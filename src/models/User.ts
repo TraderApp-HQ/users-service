@@ -3,7 +3,7 @@ import mongoose, { Document, Schema, Model, PaginateResult, PaginateOptions } fr
 import mongoosePaginate from "mongoose-paginate-v2";
 import bcrypt from "bcrypt";
 import { IUser } from "../config/interfaces";
-import { Role, Status } from "../config/enums";
+import { Role, Status, TradingStatus } from "../config/enums";
 import { ErrorMessage, ReferralRank } from "../config/constants";
 
 export interface IUserModel extends IUser, Document {}
@@ -31,15 +31,31 @@ const UserSchema = new Schema(
 			index: true,
 		},
 		isEmailVerified: { type: Boolean, default: false },
+		isFirstDepositMade: { type: Boolean, default: false },
+		isTradingAccountConnected: { type: Boolean, default: false },
+		isPersonalATCFunded: { type: Boolean, default: false },
+		isSocialAccountConnected: { type: Boolean, default: false },
+		isOnboardingTaskDone: { type: Boolean, default: false },
+		showOnboardingSteps: { type: Boolean, default: true },
+		facebookUsername: { type: String, default: "" },
+		twitterUsername: { type: String, default: "" },
+		tiktokUsername: { type: String, default: "" },
+		instagramUsername: { type: String, default: "" },
 		isPhoneVerified: { type: Boolean, default: false },
 		isIdVerified: { type: Boolean, default: false },
 		role: { type: [String], enum: Role, default: [Role.USER] },
 		status: { type: String, default: Status.ACTIVE, index: true },
+		tradingStatus: { type: String, default: TradingStatus.INACTIVE, index: true },
 		referralCode: { type: String, index: true, unique: true, sparse: true },
 		parentId: { type: String, index: true, ref: "user" },
 		personalATC: { type: Number, default: 0 },
 		communityATC: { type: Number, default: 0 },
 		isTestReferralTrackingInProgress: { type: Boolean, default: false },
+		maxRankFromReferrals: {
+			type: String,
+			enum: Object.values(ReferralRank),
+			default: ReferralRank.TA_RECRUIT,
+		},
 	},
 	{ versionKey: false, timestamps: true },
 );

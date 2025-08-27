@@ -1,5 +1,12 @@
 import mongoose, { Schema } from "mongoose";
-import { Platform, PlatformActions, TaskCategory, TaskStatus, TaskType } from "../config/enums";
+import {
+	Platform,
+	PlatformActions,
+	TaskCategory,
+	TaskMode,
+	TaskStatus,
+	TaskType,
+} from "../config/enums";
 import { ITask } from "../config/interfaces";
 
 interface ITaskModel extends ITask {}
@@ -10,6 +17,12 @@ const TaskSchema = new Schema(
 		title: { type: String, required: true },
 		description: { type: String, required: true },
 		objective: { type: String },
+		taskMode: {
+			type: String,
+			required: true,
+			enum: Object.values(TaskMode),
+			default: TaskMode.GENERAL,
+		},
 		taskType: { type: String, required: true, enum: Object.values(TaskType) },
 		category: { type: String, required: true, enum: Object.values(TaskCategory) },
 		platformId: {

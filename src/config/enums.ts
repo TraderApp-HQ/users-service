@@ -16,6 +16,11 @@ export enum Status {
 	INACTIVE = "INACTIVE",
 }
 
+export enum TradingStatus {
+	ACTIVE = "ACTIVE",
+	INACTIVE = "INACTIVE",
+}
+
 export enum Platform {
 	INSTAGRAM = "Instagram",
 	TWITTER = "X - (Twitter)",
@@ -44,6 +49,11 @@ export enum TaskCategory {
 	CONTENT = "Content Creation",
 	MARKET = "Market Research",
 	REFERRAL = "Referral Tasks",
+}
+
+export enum TaskMode {
+	GENERAL = "General",
+	ON_BOARDING = "On Boarding",
 }
 
 export enum TaskType {
