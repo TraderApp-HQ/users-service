@@ -157,8 +157,15 @@ class ReferralService {
 		)
 			.populate({ path: "userId", select: REFERRAL_USER_FIELDS })
 			.lean();
-		const { id, firstName, lastName, email, referralRank } = userProfile;
-		const user: IUserData = { id, firstName, lastName, email, referralRank };
+		const { id, firstName, lastName, email, referralRank, isFirstDepositMade } = userProfile;
+		const user: IUserData = {
+			id,
+			firstName,
+			lastName,
+			email,
+			referralRank,
+			isFirstDepositMade: isFirstDepositMade ?? false,
+		};
 		return { user, referrals: referrals.map((ref) => ref.userId) };
 	}
 
@@ -322,6 +329,7 @@ class ReferralService {
 			...communityStats,
 			rankData,
 			isTestReferralTrackingInProgress: userData.isTestReferralTrackingInProgress,
+			isFirstDepositMade: userData.isFirstDepositMade,
 		};
 	}
 
