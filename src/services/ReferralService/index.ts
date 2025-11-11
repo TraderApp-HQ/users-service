@@ -22,7 +22,7 @@ import {
 import { logger } from "@traderapp/shared-resources";
 import { FeatureFlagManager } from "../../utils/helpers/SplitIOClient";
 
-const REFERRAL_USER_FIELDS = "id firstName lastName email referralRank -_id";
+const REFERRAL_USER_FIELDS = "id firstName lastName email referralRank isFirstDepositMade -_id";
 
 const VALID_SORT_FIELDS = ["level", "createdAt"] as const;
 type SortFieldType = (typeof VALID_SORT_FIELDS)[number];
