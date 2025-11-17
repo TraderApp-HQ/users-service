@@ -62,9 +62,6 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 			event: "WELCOME",
 		};
 
-		// Generate wallet creation message
-		const walletMessage = { userId: data.id };
-
 		// Publish to SQS Queue
 		await Promise.all([
 			// Publish to Email Notification Queue
@@ -74,8 +71,8 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 			}),
 			// Publish to Create User Wallet Queue
 			publishMessageToQueue({
-				queueUrl: process.env.CREATE_USER_WALLET_QUEUE ?? "",
-				message: walletMessage,
+				queueUrl: process.env.CREATE_USER_RESOURCES_QUEUE ?? "",
+				message: { userId: data.id },
 			}),
 			// store referral relationship
 			await storeRelationships({
@@ -85,7 +82,9 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 		]);
 
 		logger.debug(`New user created on signup , ${JSON.stringify(data)}`);
-		logger.log(`Create new user wallet published to queue: ${JSON.stringify(walletMessage)}`);
+		logger.log(
+			`Create new user resources published to queue: ${JSON.stringify({ userId: data.id })}`,
+		);
 		const resObj = getUserObject(data);
 		res.status(200).json(
 			apiResponseHandler({
@@ -114,9 +113,6 @@ export async function createUserHandler(req: Request, res: Response, next: NextF
 			event: "CREATE_USER",
 		};
 
-		// Generate wallet creation message
-		const walletMessage = { userId: _id };
-
 		// Publish to SQS Queue
 		await Promise.all([
 			// Publish to Email Notification Queue
@@ -126,13 +122,17 @@ export async function createUserHandler(req: Request, res: Response, next: NextF
 			}),
 			// Publish to Create User Wallet Queue
 			publishMessageToQueue({
-				queueUrl: process.env.CREATE_USER_WALLET_QUEUE ?? "",
-				message: walletMessage,
+				queueUrl: process.env.CREATE_USER_RESOURCES_QUEUE ?? "",
+				message: { userId: _id.toString() },
 			}),
 		]);
 
 		logger.log(`Create new user published to queue: ${JSON.stringify(message)}`);
-		logger.log(`Create new user wallet published to queue: ${JSON.stringify(walletMessage)}`);
+		logger.log(
+			`Create new user resources published to queue: ${JSON.stringify({
+				userId: _id.toString(),
+			})}`,
+		);
 
 		const resObj = getUserObject(data);
 		res.status(200).json(

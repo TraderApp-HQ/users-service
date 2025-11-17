@@ -22,7 +22,7 @@ import {
 import { logger } from "@traderapp/shared-resources";
 import { FeatureFlagManager } from "../../utils/helpers/SplitIOClient";
 
-const REFERRAL_USER_FIELDS = "id firstName lastName email referralRank -_id";
+const REFERRAL_USER_FIELDS = "id firstName lastName email referralRank isFirstDepositMade -_id";
 
 const VALID_SORT_FIELDS = ["level", "createdAt"] as const;
 type SortFieldType = (typeof VALID_SORT_FIELDS)[number];
@@ -157,8 +157,15 @@ class ReferralService {
 		)
 			.populate({ path: "userId", select: REFERRAL_USER_FIELDS })
 			.lean();
-		const { id, firstName, lastName, email, referralRank } = userProfile;
-		const user: IUserData = { id, firstName, lastName, email, referralRank };
+		const { id, firstName, lastName, email, referralRank, isFirstDepositMade } = userProfile;
+		const user: IUserData = {
+			id,
+			firstName,
+			lastName,
+			email,
+			referralRank,
+			isFirstDepositMade: isFirstDepositMade ?? false,
+		};
 		return { user, referrals: referrals.map((ref) => ref.userId) };
 	}
 
@@ -322,6 +329,7 @@ class ReferralService {
 			...communityStats,
 			rankData,
 			isTestReferralTrackingInProgress: userData.isTestReferralTrackingInProgress,
+			isFirstDepositMade: userData.isFirstDepositMade,
 		};
 	}
 
