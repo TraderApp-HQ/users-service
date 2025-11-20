@@ -35,7 +35,7 @@ export class QueueService {
 			const response = await this.sqsClient.send(command);
 			return response.MessageId ?? "";
 		} catch (error) {
-			console.error("Error sending message:", error);
+			console.error("Error sending message:", { error, message, queueUrl: this.queueUrl });
 			throw error;
 		}
 	}

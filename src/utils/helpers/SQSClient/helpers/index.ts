@@ -55,7 +55,8 @@ export const publishMessageToQueue = async ({ message, queueUrl, awsRegion }: Qu
 		}
 		await sqsClient.sendMessage(processedBody);
 	} catch (error) {
-		logger.error(`Error sending message to queue == ${JSON.stringify(error)}`);
+		console.error("Error sending message to queue", { error, message, queueUrl, awsRegion });
+		throw error;
 	}
 };
 
