@@ -48,6 +48,7 @@ const UserSchema = new Schema(
 		tradingStatus: { type: String, default: TradingStatus.INACTIVE, index: true },
 		referralCode: { type: String, index: true, unique: true, sparse: true },
 		parentId: { type: String, index: true, ref: "user" },
+		activationFee: { type: Number, default: 0 },
 		personalATC: { type: Number, default: 0 },
 		communityATC: { type: Number, default: 0 },
 		isTestReferralTrackingInProgress: { type: Boolean, default: false },
