@@ -44,6 +44,7 @@ export interface IUser {
 	communityATC?: number;
 	isTestReferralTrackingInProgress?: boolean;
 	maxRankFromReferrals: ReferralRankType;
+	activationFee?: number;
 }
 
 export interface IAllFollowersRecord {
