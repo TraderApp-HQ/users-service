@@ -43,7 +43,7 @@ interface DeleteQueueMessagesInput {
 // };
 
 export const publishMessageToQueue = async ({ message, queueUrl, awsRegion }: QueueInput) => {
-	const region = awsRegion ?? process.env.AWS_REGION ?? "";
+	const region = awsRegion ?? process.env.AWS_REGION ?? "eu-west-1";
 	const sqsClient = new QueueService({ region, queueUrl });
 
 	try {
