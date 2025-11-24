@@ -5,8 +5,9 @@ import {
 	createUserTask,
 	deleteTask,
 	getAllActiveTasks,
-	getAllPendingTasksCount,
+	getAllPendingTasks,
 	getAllTasks,
+	getOnboardingTasks,
 	getTask,
 	getTaskPlatform,
 	getUserTask,
@@ -30,7 +31,8 @@ router.use(validateUser);
 
 router.get("/", validateAdmin, getAllTasks);
 router.get("/platforms", getTaskPlatform);
-router.get("/pending-tasks-count", getAllPendingTasksCount);
+router.get("/pending-tasks", getAllPendingTasks);
+router.get("/onboarding-tasks", getOnboardingTasks);
 router.get("/active-tasks", getAllActiveTasks);
 router.get("/user-task/:taskId", getUserTask);
 router.get("/:taskId", validateAdmin, getTask);

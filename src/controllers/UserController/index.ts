@@ -3,6 +3,8 @@ import User from "../../models/User";
 import { apiResponseHandler } from "@traderapp/shared-resources";
 import { ResponseMessage, PAGINATION, EXCLUDE_FIELDS } from "../../config/constants";
 import { Status } from "../../config/enums";
+import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
+import { UserOnboardingChecklist } from "../../utils/helpers/types";
 
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -53,6 +55,25 @@ export async function updateUserById(req: Request, res: Response, next: NextFunc
 		const user = await User.findByIdAndUpdate(id, req.body, { new: true }).select(
 			EXCLUDE_FIELDS.USER,
 		);
+
+		// Toggle isSocialAccountConnected to true if all social handles are provided.
+		if (
+			user &&
+			!user.isSocialAccountConnected &&
+			(!!user.facebookUsername ||
+				!!user.twitterUsername ||
+				!!user.tiktokUsername ||
+				!!user.instagramUsername)
+		) {
+			await publishMessageToQueue({
+				queueUrl: process.env.TRACK_USER_ONBOARDING_CHECKLIST_QUEUE ?? "",
+				message: {
+					userId: id,
+					onboardingChecklistItem: UserOnboardingChecklist.IS_SOCIAL_ACCOUNT_CONNECTED,
+				},
+			});
+		}
+
 		res.status(200).json(
 			apiResponseHandler({
 				object: user,
@@ -80,6 +101,33 @@ export async function toggleUserActivation(req: Request, res: Response, next: Ne
 				message: userStatus
 					? ResponseMessage.DEACTIVATE_USER
 					: ResponseMessage.ACTIVATE_USER,
+			}),
+		);
+	} catch (err) {
+		next(err);
+	}
+}
+
+export async function toggleUserOnboardingStatus(req: Request, res: Response, next: NextFunction) {
+	try {
+		const { id } = req.query;
+		const { field } = req.body;
+		const user = await User.findById(id);
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+
+		await publishMessageToQueue({
+			queueUrl: process.env.TRACK_USER_ONBOARDING_CHECKLIST_QUEUE ?? "",
+			message: {
+				userId: id,
+				onboardingChecklistItem: field,
+			},
+		});
+
+		res.status(200).json(
+			apiResponseHandler({
+				message: "User Onboarding flag update published to queue.",
 			}),
 		);
 	} catch (err) {

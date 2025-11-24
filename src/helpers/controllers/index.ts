@@ -1,17 +1,7 @@
 import { logger } from "@traderapp/shared-resources";
-import { Response } from "express";
 import "dotenv/config";
-import { NotificationChannel } from "../../config/enums";
-import OneTimePassword from "../../models/OneTimePassword";
-import { IUserModel } from "../../models/User";
-import OtpRateLimit from "../../models/OtpRateLimit";
-import {
-	generateAccessToken,
-	generateOTP,
-	generateRefreshToken,
-	issueTokenResponse,
-} from "../tokens";
-import { IVerifyOtp } from "../../controllers/AuthController/config";
+import { Response } from "express";
+import { startSession } from "mongoose";
 import {
 	ENVIRONMENTS,
 	MAX_OTP_ATTEMPTS,
@@ -20,11 +10,21 @@ import {
 	accessTokenCookieOptions,
 	refreshTokenCookieOptions,
 } from "../../config/constants";
-import Token from "../../models/RefreshToken";
+import { NotificationChannel } from "../../config/enums";
 import { IAccessToken } from "../../config/interfaces";
+import { IVerifyOtp } from "../../controllers/AuthController/config";
+import OneTimePassword from "../../models/OneTimePassword";
+import OtpRateLimit from "../../models/OtpRateLimit";
+import Token from "../../models/RefreshToken";
+import { IUserModel } from "../../models/User";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
-import { IQueueMessageBodyObject } from "../../utils/helpers/types";
-import { startSession } from "mongoose";
+import { IQueueMessageBodyObject, UserOnboardingChecklist } from "../../utils/helpers/types";
+import {
+	generateAccessToken,
+	generateOTP,
+	generateRefreshToken,
+	issueTokenResponse,
+} from "../tokens";
 
 interface ISendOtp {
 	userData: IUserModel;
@@ -196,3 +196,17 @@ export async function buildResponse(res: Response, data: IUserModel) {
 export function getFrontendUrl() {
 	return ENVIRONMENTS[process.env.NODE_ENV ?? "development"].frontendUrl;
 }
+
+export const getNotificationChannelOnboardingChecklistItem = (
+	notificationChannel: string,
+): UserOnboardingChecklist | "" => {
+	switch (notificationChannel) {
+		case NotificationChannel.EMAIL:
+			return UserOnboardingChecklist.IS_EMAIL_VERIFIED;
+		case NotificationChannel.SMS:
+		case NotificationChannel.WHATSAPP:
+			return UserOnboardingChecklist.IS_PHONE_VERIFIED;
+		default:
+			return "";
+	}
+};

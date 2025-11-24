@@ -1,27 +1,28 @@
-import { Request, Response, NextFunction } from "express";
+import { apiResponseHandler, logger } from "@traderapp/shared-resources";
 import bcrypt from "bcrypt";
 import "dotenv/config";
-import User from "../../models/User";
-import Token from "../../models/RefreshToken";
-import VerificationToken from "../../models/VerificationToken";
-import { generateResetUrl } from "../../helpers/tokens";
-import { ErrorMessage, ResponseMessage, RESPONSE_FLAGS } from "../../config/constants";
-import { apiResponseHandler, logger } from "@traderapp/shared-resources";
+import { NextFunction, Request, Response } from "express";
+import { ErrorMessage, RESPONSE_FLAGS, ResponseMessage } from "../../config/constants";
 import { NotificationChannel, Status } from "../../config/enums";
 import {
 	buildResponse,
 	deleteOtp,
+	getNotificationChannelOnboardingChecklistItem,
 	getUserObject,
 	sendOTP,
 	verifyOTP,
 } from "../../helpers/controllers";
-import { IVerifyOtp, VerificationType } from "./config";
+import { generateResetUrl } from "../../helpers/tokens";
+import Token from "../../models/RefreshToken";
+import User, { IUserModel } from "../../models/User";
+import VerificationToken from "../../models/VerificationToken";
+import { ReferralService } from "../../services/ReferralService";
 import { generatePassword } from "../../utils/generatePassword";
 import { FeatureFlagManager } from "../../utils/helpers/SplitIOClient";
-import { IQueueMessageBodyObject, IQueueMessage } from "../../utils/helpers/types";
 import { publishMessageToQueue } from "../../utils/helpers/SQSClient/helpers";
+import { IQueueMessageBodyObject } from "../../utils/helpers/types";
 import { storeRelationships } from "../../utils/storeRelationships";
-import { ReferralService } from "../../services/ReferralService";
+import { IVerifyOtp, VerificationType } from "./config";
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -45,11 +46,6 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 		reqBody.referralCode = userReferralCode;
 		reqBody.parentId = parentUser?.id;
 		const data = await User.create(reqBody);
-		await storeRelationships({
-			userId: data.id,
-			parentId: parentUser?.id,
-		});
-		logger.debug(`New user created , ${JSON.stringify(data)}`);
 
 		const featureFlags = new FeatureFlagManager();
 		const isOtpEnabled = await featureFlags.checkToggleFlag(
@@ -65,11 +61,30 @@ export async function signupHandler(req: Request, res: Response, next: NextFunct
 			message: "",
 			event: "WELCOME",
 		};
-		await publishMessageToQueue({
-			queueUrl: process.env.EMAIL_NOTIFICATIONS_QUEUE ?? "",
-			message,
-		});
 
+		// Publish to SQS Queue
+		await Promise.all([
+			// Publish to Email Notification Queue
+			publishMessageToQueue({
+				queueUrl: process.env.EMAIL_NOTIFICATIONS_QUEUE ?? "",
+				message,
+			}),
+			// Publish to Create User Wallet Queue
+			publishMessageToQueue({
+				queueUrl: process.env.CREATE_USER_RESOURCES_QUEUE ?? "",
+				message: { userId: data.id },
+			}),
+			// store referral relationship
+			await storeRelationships({
+				userId: data.id,
+				parentId: parentUser?.id,
+			}),
+		]);
+
+		logger.debug(`New user created on signup , ${JSON.stringify(data)}`);
+		logger.log(
+			`Create new user resources published to queue: ${JSON.stringify({ userId: data.id })}`,
+		);
 		const resObj = getUserObject(data);
 		res.status(200).json(
 			apiResponseHandler({
@@ -88,19 +103,36 @@ export async function createUserHandler(req: Request, res: Response, next: NextF
 		req.body.password = defaultPassword;
 		const data = await User.create(req.body);
 		logger.debug(`New user created , ${JSON.stringify(data)}`);
-		const { _id } = data;
+		const { _id, firstName, email } = data;
 
+		// Generate resetUrl and signup message
 		const url = await generateResetUrl(_id);
 		const message: IQueueMessageBodyObject = {
-			recipients: [{ firstName: data.firstName, emailAddress: data.email }],
+			recipients: [{ firstName, emailAddress: email }],
 			message: url,
 			event: "CREATE_USER",
 		};
-		await publishMessageToQueue({
-			queueUrl: process.env.EMAIL_NOTIFICATIONS_QUEUE ?? "",
-			message,
-		});
+
+		// Publish to SQS Queue
+		await Promise.all([
+			// Publish to Email Notification Queue
+			publishMessageToQueue({
+				queueUrl: process.env.EMAIL_NOTIFICATIONS_QUEUE ?? "",
+				message,
+			}),
+			// Publish to Create User Wallet Queue
+			publishMessageToQueue({
+				queueUrl: process.env.CREATE_USER_RESOURCES_QUEUE ?? "",
+				message: { userId: _id.toString() },
+			}),
+		]);
+
 		logger.log(`Create new user published to queue: ${JSON.stringify(message)}`);
+		logger.log(
+			`Create new user resources published to queue: ${JSON.stringify({
+				userId: _id.toString(),
+			})}`,
+		);
 
 		const resObj = getUserObject(data);
 		res.status(200).json(
@@ -116,6 +148,7 @@ export async function createUserHandler(req: Request, res: Response, next: NextF
 
 export async function loginHandler(req: Request, res: Response, next: NextFunction) {
 	const { email, password } = req.body;
+	logger.log(`Login handler ${email}`);
 
 	try {
 		const data = await User.login(email, password);
@@ -284,6 +317,21 @@ export async function verifyOtpHandler(req: Request, res: Response, next: NextFu
 			if (Object.keys(updateFields).length > 0) {
 				await User.updateOne({ _id: userId }, { $set: updateFields });
 			}
+
+			// Publish email verification to queue
+			const queueUrl = process.env.TRACK_USER_ONBOARDING_CHECKLIST_QUEUE ?? "";
+			await Promise.all(
+				data.map(async ({ channel }) =>
+					publishMessageToQueue({
+						queueUrl,
+						message: {
+							userId,
+							onboardingChecklistItem:
+								getNotificationChannelOnboardingChecklistItem(channel),
+						},
+					}),
+				),
+			);
 		}
 
 		// mostly used for signup and login

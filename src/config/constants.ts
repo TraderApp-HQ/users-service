@@ -147,6 +147,9 @@ export const ROUTES = {
 	sendOtp: "/send-otp",
 	referralOverview: "/referral-overview",
 	trackReferrals: "/track-referrals",
+	toggleUserOnboardingStatus: "/toggle-user-onboarding-status",
+	subscribeToPushNotifications: "/subscribe-to-push-notifications",
+	unsubscribeFromPushNotifications: "/unsubscribe-from-push-notifications",
 };
 
 export const PAGINATION = {
@@ -212,3 +215,17 @@ export const RANK_REQUIREMENTS = {
 		testCommunitySize: 12,
 	},
 } as const;
+
+export const RANK_ORDER = [
+	ReferralRank.TA_RECRUIT,
+	ReferralRank.TA_LIEUTENANT,
+	ReferralRank.TA_CAPTAIN,
+	ReferralRank.TA_MAJOR,
+	ReferralRank.TA_COLONEL,
+	ReferralRank.TA_GENERAL,
+	ReferralRank.TA_FIELD_MARSHAL,
+];
+
+export const RANK_INDEX_MAP = Object.fromEntries(RANK_ORDER.map((r, i) => [r, i]));
+
+export const REQUIRED_RANK_REFERRALS = 3;
